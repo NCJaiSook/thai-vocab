@@ -1,0 +1,5585 @@
+// คลังคำศัพท์ภาษาไทย 500 คำแบ่งตามหมวดหมู่ (Thai Vocabulary Dataset - 500 Words)
+// ออกแบบมาเพื่อการเรียนรู้ การออกเสียง และการฝึกทบทวนบนแท็บเล็ตและคอมพิวเตอร์
+
+const INITIAL_CATEGORIES = [
+  {
+    "id": "all",
+    "name": "ทั้งหมด",
+    "icon": "📚",
+    "color": "from-blue-500 to-indigo-600",
+    "count": 0
+  },
+  {
+    "id": "food",
+    "name": "อาหารและเครื่องดื่ม",
+    "icon": "🍲",
+    "color": "from-amber-500 to-orange-600",
+    "count": 0
+  },
+  {
+    "id": "animals",
+    "name": "สัตว์และธรรมชาติ",
+    "icon": "🌿",
+    "color": "from-emerald-500 to-teal-600",
+    "count": 0
+  },
+  {
+    "id": "body",
+    "name": "ร่างกายและสุขภาพ",
+    "icon": "❤️",
+    "color": "from-rose-500 to-pink-600",
+    "count": 0
+  },
+  {
+    "id": "daily",
+    "name": "ชีวิตประจำวันและสิ่งของ",
+    "icon": "⏰",
+    "color": "from-cyan-500 to-blue-600",
+    "count": 0
+  },
+  {
+    "id": "travel",
+    "name": "การเดินทางและสถานที่",
+    "icon": "✈️",
+    "color": "from-sky-500 to-indigo-600",
+    "count": 0
+  },
+  {
+    "id": "emotions",
+    "name": "อารมณ์และความรู้สึก",
+    "icon": "😊",
+    "color": "from-yellow-400 to-amber-500",
+    "count": 0
+  },
+  {
+    "id": "jobs",
+    "name": "อาชีพและการทำงาน",
+    "icon": "💼",
+    "color": "from-purple-500 to-violet-600",
+    "count": 0
+  },
+  {
+    "id": "education",
+    "name": "การศึกษาและวิทยาการ",
+    "icon": "🎓",
+    "color": "from-blue-600 to-cyan-600",
+    "count": 0
+  },
+  {
+    "id": "buddhism",
+    "name": "พระพุทธศาสนาและพระสงฆ์",
+    "icon": "🪷",
+    "color": "from-amber-500 to-orange-600",
+    "count": 0
+  },
+  {
+    "id": "tricky",
+    "name": "คำน่ารู้และสำนวนไทย",
+    "icon": "💡",
+    "color": "from-fuchsia-500 to-pink-600",
+    "count": 0
+  }
+];
+
+const INITIAL_WORDS = [
+  {
+    "id": "f_1",
+    "word": "กะเพรา",
+    "pronunciation": "กะ - เพรา",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ไม้ล้มลุกใบมีกลิ่นหอม รสเผ็ดร้อน นิยมนำมาผัด (มักสะกดผิดเป็น กระเพรา)",
+    "exampleSentence": "เมนูยอดนิยมคือผัดกะเพราไก่ไข่ดาว",
+    "romanization": "ka-phrao"
+  },
+  {
+    "id": "f_2",
+    "word": "ก๋วยเตี๋ยว",
+    "pronunciation": "ก๋วย - เตี๋ยว",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "อาหารประเภทเส้นทำจากแป้งข้าวเจ้า ลวกในน้ำร้อน",
+    "exampleSentence": "ตอนเที่ยงเราไปกินก๋วยเตี๋ยวน้ำใสกัน",
+    "romanization": "kuai-tiao"
+  },
+  {
+    "id": "f_3",
+    "word": "ต้มยำ",
+    "pronunciation": "ต้ม - ยำ",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "แกงรสเปรี้ยวเผ็ด ปรุงด้วยข่า ตะไคร้ ใบมะกรูด และมะนาว",
+    "exampleSentence": "ต้มยำกุ้งเป็นอาหารไทยที่มีชื่อเสียงไปทั่วโลก",
+    "romanization": "tom-yam"
+  },
+  {
+    "id": "f_4",
+    "word": "มะม่วง",
+    "pronunciation": "มะ - ม่วง",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผลไม้รสเปรี้ยวเมื่อดิบ และรสหวานหอมเมื่อสุก",
+    "exampleSentence": "ข้าวเหนียวมะม่วงเป็นของหวานที่ชาวต่างชาติโปรดปราน",
+    "romanization": "ma-muang"
+  },
+  {
+    "id": "f_5",
+    "word": "ทุเรียน",
+    "pronunciation": "ทุ - เรียน",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผลไม้เปลือกมีหนาม เนื้อสีเหลืองนวล กลิ่นหอมแรง ราชาแห่งผลไม้",
+    "exampleSentence": "ทุเรียนหมอนทองรสชาติหวานมันอร่อย",
+    "romanization": "thu-rian"
+  },
+  {
+    "id": "f_6",
+    "word": "ส้มตำ",
+    "pronunciation": "ส้ม - ตำ",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "อาหารคาวทำจากเส้นมะละกอดิบ ตำคลุกเคล้ากับพริกและเครื่องปรุง",
+    "exampleSentence": "ส้มตำไทยรสชาติเปรี้ยวหวานกลมกล่อม",
+    "romanization": "som-tam"
+  },
+  {
+    "id": "f_7",
+    "word": "น้ำพริก",
+    "pronunciation": "น้ำ - พริก",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "เครื่องจิ้มรสเผ็ด ปรุงจากพริก กะปิ หรือเนื้อปลา รับประทานกับผัก",
+    "exampleSentence": "คุณยายชอบรับประทานน้ำพริกกะปิกับปลาทูทอด",
+    "romanization": "nam-phrik"
+  },
+  {
+    "id": "f_8",
+    "word": "ชาเขียว",
+    "pronunciation": "ชา - เขียว",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "เครื่องดื่มชงจากใบชาสด ไม่ผ่านการหมัก มีสารต้านอนุมูลอิสระ",
+    "exampleSentence": "เขาดื่มชาเขียวร้อนทุกเช้าหลังตื่นนอน",
+    "romanization": "cha-khiao"
+  },
+  {
+    "id": "f_9",
+    "word": "ข้าวมันไก่",
+    "pronunciation": "ข้าว - มัน - ไก่",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ข้าวที่หุงด้วยน้ำต้มกระดูกและมันไก่ เสิร์ฟพร้อมเนื้อไก่ต้มและน้ำจิ้มเต้าเจี้ยว",
+    "exampleSentence": "ร้านข้าวมันไก่นี้มีน้ำซุปหวานกระดูกไก่มาก",
+    "romanization": "khao-man-kai"
+  },
+  {
+    "id": "f_10",
+    "word": "ข้าวซอย",
+    "pronunciation": "ข้าว - ซอย",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "อาหารพื้นเมืองทางภาคเหนือ เป็นเส้นบะหมี่ในน้ำแกงกะทิรสเข้มข้น",
+    "exampleSentence": "เมื่อไปเที่ยวเชียงใหม่ต้องไม่พลาดชิมข้าวซอยไก่",
+    "romanization": "khao-soi"
+  },
+  {
+    "id": "f_11",
+    "word": "แกงเขียวหวาน",
+    "pronunciation": "แกง - เขียว - หวาน",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "แกงกะทิใส่พริกแกงสีเขียว รสเผ็ดหอมหวานมัน",
+    "exampleSentence": "แกงเขียวหวานไก่กินคู่กับขนมจีนเข้ากันได้ดีมาก",
+    "romanization": "kaeng-khiao-wan"
+  },
+  {
+    "id": "f_12",
+    "word": "พะแนง",
+    "pronunciation": "พะ - แนง",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "แกงคั่วกะทิข้น รสเค็มหวานหอมกลิ่นใบมะกรูดซอย",
+    "exampleSentence": "พะแนงหมูจานนี้มีน้ำแกงขลุกขลิกเข้มข้น",
+    "romanization": "pha-naeng"
+  },
+  {
+    "id": "f_13",
+    "word": "ผัดไทย",
+    "pronunciation": "ผัด - ไท",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ก๋วยเตี๋ยวเส้นเล็กผัดกับเต้าหู้ ถั่วงอก กุ้งแห้ง และไข่ ปรุงรสด้วยน้ำมะขามเปียก",
+    "exampleSentence": "ผัดไทยกุ้งสดบีบมะนาวเพิ่มความเปรี้ยวสดชื่น",
+    "romanization": "phat-thai"
+  },
+  {
+    "id": "f_14",
+    "word": "มัสมั่น",
+    "pronunciation": "มัด - สะ - มัน",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "แกงกะทิรสชาติเข้มข้น ใส่เครื่องเทศ ถั่วลิสง และมันฝรั่ง",
+    "exampleSentence": "แกงมัสมั่นเนื้อได้รับการยกย่องว่าเป็นอาหารอร่อยระดับโลก",
+    "romanization": "mat-sa-man"
+  },
+  {
+    "id": "f_15",
+    "word": "ทอดมัน",
+    "pronunciation": "ทอด - มัน",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "เนื้อปลาหรือกุ้งนวดกับพริกแกง นำไปทอดเป็นแผ่นกลม",
+    "exampleSentence": "ทอดมันปลากรายเหนียวนุ่มจิ้มกับน้ำจิ้มแตงกวา",
+    "romanization": "thot-man"
+  },
+  {
+    "id": "f_16",
+    "word": "ไข่เจียว",
+    "pronunciation": "ไข่ - เจียว",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ไข่ที่ตีให้เข้ากันแล้วนำไปทอดในน้ำมันร้อนจนฟูกรอบ",
+    "exampleSentence": "ไข่เจียวหมูสับร้อนๆ ทานกับข้าวสวยอร่อยที่สุด",
+    "romanization": "khai-chiao"
+  },
+  {
+    "id": "f_17",
+    "word": "ต้มข่าไก่",
+    "pronunciation": "ต้ม - ข่า - ไก่",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "แกงกะทิใส่ข่าอ่อน ตะไคร้ และเนื้อไก่ รสเปรี้ยวเค็มมัน",
+    "exampleSentence": "ต้มข่าไก่มีกลิ่นหอมของข่าและใบมะกรูด",
+    "romanization": "tom-kha-kai"
+  },
+  {
+    "id": "f_18",
+    "word": "หมูกระทะ",
+    "pronunciation": "หมู - กระ - ทะ",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "อาหารปิ้งย่างที่ใช้กระทะโค้งมีช่องใส่น้ำซุป ล้อมวงกินกันอย่างอบอุ่น",
+    "exampleSentence": "เย็นวันศุกร์เพื่อนๆ ชวนกันไปกินหมูกระทะ",
+    "romanization": "mu-kra-tha"
+  },
+  {
+    "id": "f_19",
+    "word": "ปลากะพง",
+    "pronunciation": "ปลา - กะ - พง",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ปลาน้ำกร่อยและน้ำเค็ม เนื้อแน่น นิยมนำมาทอดน้ำปลาหรือนึ่งมะนาว",
+    "exampleSentence": "ปลากะพงทอดน้ำปลาจานนี้กรอบนอกนุ่มใน",
+    "romanization": "pla-ka-phong"
+  },
+  {
+    "id": "f_20",
+    "word": "หอยนางรม",
+    "pronunciation": "หอย - นาง - รม",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "หอยทะเลสองฝา เนื้อนุ่ม รสหวาน นิยมรับประทานสดหรือทำออส่วน",
+    "exampleSentence": "หอยนางรมสดเสิร์ฟพร้อมยอดกระถินและน้ำพริกเผา",
+    "romanization": "hoi-nang-rom"
+  },
+  {
+    "id": "f_21",
+    "word": "กุ้งเผา",
+    "pronunciation": "กุ้ง - เผา",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "กุ้งแม่น้ำตัวใหญ่นำมาย่างบนเตาถ่านจนมันกุ้งเยิ้ม",
+    "exampleSentence": "กุ้งเผาอยุธยามีเนื้อแน่นเด้งและมันเยิ้ม",
+    "romanization": "kung-phao"
+  },
+  {
+    "id": "f_22",
+    "word": "กาแฟ",
+    "pronunciation": "กา - แฟ",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "เครื่องดื่มทำจากเมล็ดกาแฟคั่ว มีคาเฟอีนช่วยให้ตื่นตัว",
+    "exampleSentence": "เขาชอบดื่มกาแฟดำไม่ใส่น้ำตาลในตอนเช้า",
+    "romanization": "ka-fae"
+  },
+  {
+    "id": "f_23",
+    "word": "นมสด",
+    "pronunciation": "นม - สด",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "น้ำนมวัวแท้ที่มีคุณค่าทางอาหารสูง มีแคลเซียมช่วยบำรุงกระดูก",
+    "exampleSentence": "ดื่มนมสดอุ่นๆ ก่อนนอนช่วยให้นอนหลับสบาย",
+    "romanization": "nom-sot"
+  },
+  {
+    "id": "f_24",
+    "word": "น้ำเต้าหู้",
+    "pronunciation": "น้ำ - เต้า - หู้",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "เครื่องดื่มที่ได้จากการบดถั่วเหลืองต้มกับน้ำ",
+    "exampleSentence": "คุณแม่ซื้อน้ำเต้าหู้ไม่หวานและปาท่องโก๋มาฝาก",
+    "romanization": "nam-tao-hu"
+  },
+  {
+    "id": "f_25",
+    "word": "ลอดช่อง",
+    "pronunciation": "ลอด - ช่อง",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ขนมไทยทำจากแป้งใบเตยเป็นตัวเรียว รับประทานกับน้ำกะทิน้ำตาลปี๊บ",
+    "exampleSentence": "ลอดช่องน้ำกะทิหอมควันเทียนและหวานชื่นใจ",
+    "romanization": "lot-chong"
+  },
+  {
+    "id": "f_26",
+    "word": "บัวลอย",
+    "pronunciation": "บัว - ลอย",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ขนมไทยทำจากแป้งปั้นเป็นเม็ดกลมต้มในกะทิหวานเค็ม",
+    "exampleSentence": "บัวลอยไข่หวานถ้วยนี้มีสีสันจากพืชธรรมชาติ",
+    "romanization": "bua-loi"
+  },
+  {
+    "id": "f_27",
+    "word": "ขนมครก",
+    "pronunciation": "ขะ - หนม - ครก",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ขนมทำจากแป้งข้าวเจ้าและกะทิ หยอดในเตาหลุมจนขอบกรอบ",
+    "exampleSentence": "ขนมครกชาววังหน้าต้นหอมและข้าวโพดหวานมันกำลังดี",
+    "romanization": "kha-nom-khrok"
+  },
+  {
+    "id": "f_28",
+    "word": "ข้าวต้ม",
+    "pronunciation": "ข้าว - ต้ม",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ข้าวที่ต้มในน้ำซุปจนเม็ดข้าวนุ่ม นิยมรับประทานเป็นอาหารเช้า",
+    "exampleSentence": "เช้านี้อากาศเย็นสบายเหมาะกับข้าวต้มปลาร้อนๆ",
+    "romanization": "khao-tom"
+  },
+  {
+    "id": "f_29",
+    "word": "โจ๊ก",
+    "pronunciation": "โจ๊ก",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ข้าวต้มบดละเอียดจนเนื้อเนียนนุ่ม รับประทานกับไข่ลวกและหมูสับ",
+    "exampleSentence": "โจ๊กหมูใส่ตับและขิงซอยช่วยให้ร่างกายอบอุ่น",
+    "romanization": "chok"
+  },
+  {
+    "id": "f_30",
+    "word": "กวยจั๊บ",
+    "pronunciation": "กวย - จับ",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "อาหารประเภทเส้นแป้งม้วนกลม ต้มในน้ำซุปพะโล้หรือน้ำใส",
+    "exampleSentence": "กวยจั๊บน้ำข้นชามนี้หอมกลิ่นพริกไทยดำ",
+    "romanization": "kuai-chap"
+  },
+  {
+    "id": "f_31",
+    "word": "ซาลาเปา",
+    "pronunciation": "ซา - ลา - เปา",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ขนมนึ่งทำจากแป้งสาลีสอดไส้หมูสับหรือไส้ครีม",
+    "exampleSentence": "ซาลาเปาไส้หมูแดงแป้งนุ่มฟูอร่อย",
+    "romanization": "sa-la-pao"
+  },
+  {
+    "id": "f_32",
+    "word": "เกี๊ยวซ่า",
+    "pronunciation": "เกี๊ยว - ซ่า",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "แผ่นแป้งห่อไส้หมูและผัก นำไปทอดหรือนึ่ง",
+    "exampleSentence": "เกี๊ยวซ่าทอดกรอบด้านหนึ่งและนุ่มอีกด้านหนึ่ง",
+    "romanization": "kiao-sa"
+  },
+  {
+    "id": "f_33",
+    "word": "โรตี",
+    "pronunciation": "โร - ตี",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "แป้งทอดบนกระทะแบน ราดนมข้นหวานและน้ำตาล",
+    "exampleSentence": "โรตีกรอบราดนมข้นเป็นของว่างยามดึกยอดฮิต",
+    "romanization": "ro-ti"
+  },
+  {
+    "id": "f_34",
+    "word": "แตงโม",
+    "pronunciation": "แตง - โม",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผลไม้ผลกลมโต เปลือกเขียว เนื้อสีแดงฉ่ำน้ำ รสหวานชื่นใจ",
+    "exampleSentence": "กินแตงโมแช่เย็นในวันอากาศร้อนช่วยคลายร้อนได้ดี",
+    "romanization": "taeng-mo"
+  },
+  {
+    "id": "f_35",
+    "word": "สับปะรด",
+    "pronunciation": "สับ - ปะ - รด",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผลไม้มีตาหนาแน่น รสเปรี้ยวอมหวาน มีเอนไซม์ช่วยย่อยอาหาร",
+    "exampleSentence": "สับปะรดภูแลมีรสหวานกรอบและแกนรับประทานได้",
+    "romanization": "sap-pa-rot"
+  },
+  {
+    "id": "f_36",
+    "word": "เงาะ",
+    "pronunciation": "เงาะ",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผลไม้เปลือกมีขนสีแดง เนื้อขาวใส รสหวานอร่อย",
+    "exampleSentence": "เงาะโรงเรียนจากสุราษฎร์ธานีขึ้นชื่อเรื่องความหวานกรอบ",
+    "romanization": "ngo"
+  },
+  {
+    "id": "f_37",
+    "word": "มังคุด",
+    "pronunciation": "มัง - คุด",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผลไม้เปลือกสีม่วงเข้ม เนื้อสีขาวเป็นกลีบ ได้รับฉายาราชินีแห่งผลไม้",
+    "exampleSentence": "มังคุดมีรสหวานอมเปรี้ยวสดชื่น",
+    "romanization": "mang-khut"
+  },
+  {
+    "id": "f_38",
+    "word": "ลำไย",
+    "pronunciation": "ลำ - ไย",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผลไม้เปลือกสีน้ำตาลบาง เนื้อใส รสหวานฉ่ำ",
+    "exampleSentence": "ลำไยอบแห้งนำมาต้มทำน้ำสมุนไพรดับกระหาย",
+    "romanization": "lam-yai"
+  },
+  {
+    "id": "f_39",
+    "word": "ฝรั่ง",
+    "pronunciation": "ฝะ - หรั่ง",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผลไม้เปลือกเขียว เนื้อสีขาวกรอบ อุดมด้วยวิตามินซีสูงมาก",
+    "exampleSentence": "ฝรั่งกิมจูเนื้อแน่นกรอบและไม่มีเมล็ด",
+    "romanization": "fa-rang"
+  },
+  {
+    "id": "f_40",
+    "word": "ส้มโอ",
+    "pronunciation": "ส้ม - โอ",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผลไม้ตระกูลส้มผลใหญ่ กลีบเนื้อแน่นฉ่ำ รสหวานอมเปรี้ยว",
+    "exampleSentence": "ส้มโอขาวน้ำผึ้งจากนครปฐมมีรสชาติหวานอร่อย",
+    "romanization": "som-o"
+  },
+  {
+    "id": "f_41",
+    "word": "กล้วยหอม",
+    "pronunciation": "กล้วย - หอม",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผลไม้ผลยาวโค้ง กลิ่นหอมหวาน ให้พลังงานสูงแก่นักกีฬา",
+    "exampleSentence": "เขากินกล้วยหอมหนึ่งผลก่อนไปวิ่งออกกำลังกาย",
+    "romanization": "kluai-hom"
+  },
+  {
+    "id": "f_42",
+    "word": "มะพร้าว",
+    "pronunciation": "มะ - พร้าว",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "พืชยืนต้น ผลมีน้ำหวานหอมและเนื้อมัน นิยมนำมาคั้นกะทิ",
+    "exampleSentence": "น้ำมะพร้าวน้ำหอมดื่มแล้วสดชื่นดับกระหาย",
+    "romanization": "ma-phrao"
+  },
+  {
+    "id": "f_43",
+    "word": "ขนุน",
+    "pronunciation": "ขะ - หนุน",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผลไม้ขนาดใหญ่ เปลือกมีหนามถี่ เนื้อสีเหลืองทองรสหวานจัด",
+    "exampleSentence": "ขนุนสุกมีกลิ่นหอมหวานชวนรับประทาน",
+    "romanization": "kha-nun"
+  },
+  {
+    "id": "f_44",
+    "word": "มะละกอ",
+    "pronunciation": "มะ - ละ - กอ",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผลไม้ผลยาวรี ผลดิบใช้ตำส้มตำ ผลสุกเนื้อสีส้มรสหวาน",
+    "exampleSentence": "มะละกอสุกช่วยให้ระบบขับถ่ายทำงานได้ดี",
+    "romanization": "ma-la-ko"
+  },
+  {
+    "id": "f_45",
+    "word": "ชมพู่",
+    "pronunciation": "ชม - พู่",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผลไม้รูปคล้ายระฆัง เนื้อฉ่ำน้ำ กรอบ รสหวานอ่อนๆ",
+    "exampleSentence": "ชมพู่ทับทิมจันทร์ผลสีแดงสดและรสหวานกรอบ",
+    "romanization": "chom-phu"
+  },
+  {
+    "id": "f_46",
+    "word": "แก้วมังกร",
+    "pronunciation": "แก้ว - มัง - กอน",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผลไม้เปลือกสีชมพูมีเกล็ด เนื้อสีขาวหรือแดงมีเมล็ดงาเล็กๆ",
+    "exampleSentence": "แก้วมังกรมีแคลอรีต่ำและกากใยสูงเหมาะกับผู้รักสุขภาพ",
+    "romanization": "kaeo-mang-kon"
+  },
+  {
+    "id": "f_47",
+    "word": "ลองกอง",
+    "pronunciation": "ลอง - กอง",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผลไม้เนื้อใสเป็นกลีบ รสหวานหอม เปลือกมียางน้อย",
+    "exampleSentence": "ลองกองตันหยงมัสมีรสหวานชื่นใจ",
+    "romanization": "long-kong"
+  },
+  {
+    "id": "f_48",
+    "word": "กระเทียม",
+    "pronunciation": "กระ - เทียม",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "พืชหัวใต้ดิน กลิ่นฉุนฉุน ใช้แต่งกลิ่นรสในอาหารและบำรุงสุขภาพ",
+    "exampleSentence": "กระเทียมเจียวสีเหลืองทองช่วยให้อาหารหอมน่ากิน",
+    "romanization": "kra-thiam"
+  },
+  {
+    "id": "f_49",
+    "word": "หอมแดง",
+    "pronunciation": "หอม - แดง",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "พืชหัวสีม่วงแดง ใช้เป็นเครื่องแกงและซอยใส่ยำ",
+    "exampleSentence": "หอมแดงซอยช่วยเพิ่มรสชาติในต้มยำและลาบ",
+    "romanization": "hom-daeng"
+  },
+  {
+    "id": "f_50",
+    "word": "ตะไคร้",
+    "pronunciation": "ตะ - ใคร้",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "พืชล้มลุก กลิ่นหอมสดชื่น ลำต้นใช้ดับคาวในต้มยำ",
+    "exampleSentence": "กลิ่นตะไคร้ช่วยให้อาหารไทยมีเอกลักษณ์เฉพาะตัว",
+    "romanization": "ta-khrai"
+  },
+  {
+    "id": "f_51",
+    "word": "ข่า",
+    "pronunciation": "ข่า",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "พืชตระกูลขิง มีเหง้าใต้ดิน รสเผ็ดปร่า ใช้ใส่ในต้มยำและต้มข่า",
+    "exampleSentence": "ข่าแก่ช่วยดับกลิ่นคาวเนื้อสัตว์ได้เป็นอย่างดี",
+    "romanization": "kha"
+  },
+  {
+    "id": "f_52",
+    "word": "ใบมะกรูด",
+    "pronunciation": "ใบ - มะ - กรูก",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ใบไม้รูปคอดกลาง กลิ่นหอมระเหยสดชื่น นิยมฉีกใส่แกง",
+    "exampleSentence": "ฉีกใบมะกรูดใส่ในแกงเผ็ดช่วยเพิ่มความหอม",
+    "romanization": "bai-ma-krut"
+  },
+  {
+    "id": "f_53",
+    "word": "มะนาว",
+    "pronunciation": "มะ - นาว",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผลไม้รสเปรี้ยวจัด ใช้แต่งรสเปรี้ยวในอาหารไทยเกือบทุกชนิด",
+    "exampleSentence": "น้ำมะนาวคั้นสดช่วยชูรสให้อาหารกลมกล่อม",
+    "romanization": "ma-nao"
+  },
+  {
+    "id": "f_54",
+    "word": "พริกขี้หนู",
+    "pronunciation": "พริก - ขี้ - หนู",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "พริกเม็ดเล็กแต่มีรสเผ็ดร้อนจัดจ้าน",
+    "exampleSentence": "พริกขี้หนูสวนมีกลิ่นหอมและรสเผ็ดมาก",
+    "romanization": "phrik-khi-nu"
+  },
+  {
+    "id": "f_55",
+    "word": "น้ำปลา",
+    "pronunciation": "น้ำ - ปลา",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "เครื่องปรุงรสเค็มจากการหมักปลา ให้กลิ่นหอมและรสอูมามิ",
+    "exampleSentence": "น้ำปลาแท้จากการหมักปลากะตักมีคุณภาพดี",
+    "romanization": "nam-pla"
+  },
+  {
+    "id": "f_56",
+    "word": "ซีอิ๊ว",
+    "pronunciation": "ซี - อิ๊ว",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "เครื่องปรุงรสเค็มทำจากการหมักถั่วเหลือง",
+    "exampleSentence": "เหยาะซีอิ๊วขาวลงในข้าวต้มช่วยเพิ่มรสเค็มกลมกล่อม",
+    "romanization": "si-io"
+  },
+  {
+    "id": "f_57",
+    "word": "กะปิ",
+    "pronunciation": "กะ - ปิ",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "เครื่องปรุงรสเค็มทำจากเคยหมักกับเกลือ ใช้ทำน้ำพริกและแกง",
+    "exampleSentence": "กะปิระนองมีกลิ่นหอมและรสชาติเค็มมัน",
+    "romanization": "ka-pi"
+  },
+  {
+    "id": "f_58",
+    "word": "น้ำตาลปี๊บ",
+    "pronunciation": "น้ำ - ตาน - ปี๊บ",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "น้ำตาลมะพร้าวหรือน้ำตาลโตนด รสหวานนวลละมุน",
+    "exampleSentence": "ใช้น้ำตาลปี๊บปรุงส้มตำทำให้รสหวานนุ่มนวลไม่แหลม",
+    "romanization": "nam-tan-pip"
+  },
+  {
+    "id": "f_59",
+    "word": "ขมิ้น",
+    "pronunciation": "ขะ - มิ้น",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "พืชเหง้าสีเหลืองส้ม กลิ่นหอมเฉพาะตัว ใช้แต่งสีและดับคาว",
+    "exampleSentence": "ไก่ทอดขมิ้นมีสีเหลืองทองและกลิ่นหอมน่ารับประทาน",
+    "romanization": "kha-min"
+  },
+  {
+    "id": "f_60",
+    "word": "กะทิ",
+    "pronunciation": "กะ - ทิ",
+    "category": "food",
+    "partOfSpeech": "คำนาม",
+    "meaning": "น้ำคั้นสีขาวข้นจากเนื้อมะพร้าวขูด ใช้ทำแกงและขนมไทย",
+    "exampleSentence": "แกงกะทิของไทยมีรสชาติเข้มข้นและหอมมัน",
+    "romanization": "ka-thi"
+  },
+  {
+    "id": "a_1",
+    "word": "ช้าง",
+    "pronunciation": "ช้าง",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สัตว์เลี้ยงลูกด้วยนมบนบกขนาดใหญ่ที่สุด มีงวงและงา สัตว์คู่บ้านคู่เมืองไทย",
+    "exampleSentence": "ช้างไทยมีความฉลาดและเป็นมิตรกับผู้ดูแล",
+    "romanization": "chang"
+  },
+  {
+    "id": "a_2",
+    "word": "ม้า",
+    "pronunciation": "ม้า",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สัตว์สี่เท้ากีบเดียว วิ่งได้รวดเร็ว มนุษย์ใช้เป็นพาหนะมาแต่อดีต",
+    "exampleSentence": "ม้าวิ่งควบอย่างสง่างามบนทุ่งหญ้ากว้าง",
+    "romanization": "ma"
+  },
+  {
+    "id": "a_3",
+    "word": "วัว",
+    "pronunciation": "วัว",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สัตว์เคี้ยวเอื้องสี่เท้า เลี้ยงไว้เพื่อเอานมและเนื้อ",
+    "exampleSentence": "ฝูงวัวกำลังเล็มหญ้าเขียวขจีในฟาร์ม",
+    "romanization": "wua"
+  },
+  {
+    "id": "a_4",
+    "word": "ควาย",
+    "pronunciation": "ควาย",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สัตว์เคี้ยวเอื้อง ผิวสีเทาเข้มหรือดำ ในอดีตช่วยชาวนาไถนา",
+    "exampleSentence": "ควายชอบลงไปแช่ปลักโคลนเพื่อคลายความร้อน",
+    "romanization": "khwai"
+  },
+  {
+    "id": "a_5",
+    "word": "เสือ",
+    "pronunciation": "เสือ",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สัตว์กินเนื้อตระกูลแมว มีลายพาดกลอนหรือจุด ล่าเหยื่ออย่างว่องไว",
+    "exampleSentence": "เสือโคร่งเป็นผู้ล่าที่มีความสำคัญต่อระบบนิเวศในป่า",
+    "romanization": "suea"
+  },
+  {
+    "id": "a_6",
+    "word": "สิงโต",
+    "pronunciation": "สิง - โต",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สัตว์กินเนื้อขนาดใหญ่ ตัวผู้มีแผงคอหนา ได้รับฉายาเจ้าป่า",
+    "exampleSentence": "สิงโตนอนพักผ่อนใต้ร่มไม้ในทุ่งหญ้าสะวันนา",
+    "romanization": "sing-to"
+  },
+  {
+    "id": "a_7",
+    "word": "หมี",
+    "pronunciation": "หมี",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สัตว์เลี้ยงลูกด้วยนมตัวใหญ่ ขนหนา เดินสี่เท้า ชอบกินน้ำผึ้งและปลา",
+    "exampleSentence": "หมีควายอาศัยอยู่ในป่าดิบชื้นของไทย",
+    "romanization": "mi"
+  },
+  {
+    "id": "a_8",
+    "word": "ลิง",
+    "pronunciation": "ลิง",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สัตว์เลี้ยงลูกด้วยนม มีความคล่องแคล่วว่องไว ชอบปีนป่ายต้นไม้",
+    "exampleSentence": "ฝูงลิงกระโดดข้ามกิ่งไม้อย่างสนุกสนาน",
+    "romanization": "ling"
+  },
+  {
+    "id": "a_9",
+    "word": "กระรอก",
+    "pronunciation": "กระ - รอก",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สัตว์ฟันแทะขนาดเล็ก มีหางเป็นพวงฟูสวยงาม ชอบกินผลไม้และถั่ว",
+    "exampleSentence": "กระรอกน้อยวิ่งไต่ไปตามสายไฟอย่างคล่องแคล่ว",
+    "romanization": "kra-rok"
+  },
+  {
+    "id": "a_10",
+    "word": "กระต่าย",
+    "pronunciation": "กระ - ต่าย",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สัตว์เลี้ยงลูกด้วยนมขนาดเล็ก หูยาว ขนปุกปุย กระโดดได้รวดเร็ว",
+    "exampleSentence": "กระต่ายขาวแทะแครอทอย่างเอร็ดอร่อย",
+    "romanization": "kra-tai"
+  },
+  {
+    "id": "a_11",
+    "word": "กวาง",
+    "pronunciation": "กวาง",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สัตว์เคี้ยวเอื้อง ตัวผู้มักมีเขาแตกกิ่งก้านสง่างาม ตื่นตัวตลอดเวลา",
+    "exampleSentence": "กวางป่าเล็มหญ้าอยู่ริมโป่งดินเค็มในอุทยาน",
+    "romanization": "kwang"
+  },
+  {
+    "id": "a_12",
+    "word": "สุนัข",
+    "pronunciation": "สุ - นัก",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สัตว์เลี้ยงที่ซื่อสัตย์ต่อเจ้าของ เป็นเพื่อนที่ดีของมนุษย์",
+    "exampleSentence": "สุนัขวิ่งกระดิกหางต้อนรับเจ้านายกลับบ้าน",
+    "romanization": "su-nak"
+  },
+  {
+    "id": "a_13",
+    "word": "แมว",
+    "pronunciation": "แมว",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สัตว์เลี้ยงขนาดเล็ก ตระกูลเสือ รักอิสระ ชอบคลอเคลีย",
+    "exampleSentence": "แมวสีส้มนอนหลับตาพริ้มบนตักของเจ้าของ",
+    "romanization": "maeo"
+  },
+  {
+    "id": "a_14",
+    "word": "นกพิราบ",
+    "pronunciation": "นก - พิ - ราบ",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "นกขนาดกลาง ขนสีเทา มักอาศัยอยู่ตามจัตุรัสและสวนสาธารณะ",
+    "exampleSentence": "ฝูงนกพิราบบินลงมากินเศษขนมปังในลานกว้าง",
+    "romanization": "nok-phi-rap"
+  },
+  {
+    "id": "a_15",
+    "word": "นกยูง",
+    "pronunciation": "นก - ยูง",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "นกขนาดใหญ่ ตัวผู้สามารถรำแพนหางเป็นรูปพัดอันงดงาม",
+    "exampleSentence": "นกยูงรำแพนอวดขนหางสีเขียวมรกตอย่างน่าทึ่ง",
+    "romanization": "nok-yung"
+  },
+  {
+    "id": "a_16",
+    "word": "นกฮูก",
+    "pronunciation": "นก - ฮูก",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "นกล่าเหยื่อออกหากินเวลากลางคืน ตาโต คอหมุนได้รอบทิศ",
+    "exampleSentence": "นกฮูกเกาะกิ่งไม้เงียบกริบเพื่อรอจับหนูในยามค่ำคืน",
+    "romanization": "nok-huk"
+  },
+  {
+    "id": "a_17",
+    "word": "เหยี่ยว",
+    "pronunciation": "เหยี่ยว",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "นกล่าเหยื่อ มีสายตาคมกริบ กรงเล็บแหลมคม บินร่อนได้สูง",
+    "exampleSentence": "เหยี่ยวร่อนลงมาจับปลาในน้ำได้อย่างแม่นยำ",
+    "romanization": "yiao"
+  },
+  {
+    "id": "a_18",
+    "word": "เป็ด",
+    "pronunciation": "เป็ด",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สัตว์ปีกว่ายน้ำได้ ปากแบน ขนกันน้ำ",
+    "exampleSentence": "ฝูงเป็ดว่ายน้ำเรียงแถวในคลองหลังบ้าน",
+    "romanization": "pet"
+  },
+  {
+    "id": "a_19",
+    "word": "ไก่",
+    "pronunciation": "ไก่",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สัตว์ปีกเลี้ยงไว้เพื่อกินไข่และเนื้อ ตัวผู้ขันบอกเวลาในตอนเช้า",
+    "exampleSentence": "ไก่แจ้ตัวผู้ขันเสียงดังกังวานยามรุ่งอรุณ",
+    "romanization": "kai"
+  },
+  {
+    "id": "a_20",
+    "word": "ห่าน",
+    "pronunciation": "ห่าน",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สัตว์ปีกคอยาว ตัวใหญ่กว่าเป็ด ส่งเสียงร้องดังและคอยเฝ้าบ้านได้",
+    "exampleSentence": "ห่านเดินเป็นฝูงคอยช่วยกินหญ้าในสวนผลไม้",
+    "romanization": "han"
+  },
+  {
+    "id": "a_21",
+    "word": "ปลาทอง",
+    "pronunciation": "ปลา - ทอง",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ปลาสวยงามขนาดเล็ก สีส้มทอง ว่ายน้ำช้าๆ นิยมเลี้ยงในตู้",
+    "exampleSentence": "ปลาทองว่ายน้ำกระดิกหางพริ้วไหวในอ่างบัว",
+    "romanization": "pla-thong"
+  },
+  {
+    "id": "a_22",
+    "word": "ปลาวาฬ",
+    "pronunciation": "ปลา - วาน",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สัตว์เลี้ยงลูกด้วยนมในทะเลขนาดมหึมา (ทางวิทยาศาสตร์เรียก วาฬ)",
+    "exampleSentence": "วาฬบรูด้าอ้าปากฮุบฝูงปลากะตักในอ่าวไทย",
+    "romanization": "pla-wan"
+  },
+  {
+    "id": "a_23",
+    "word": "โลมา",
+    "pronunciation": "โล - มา",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สัตว์เลี้ยงลูกด้วยนมในทะเล ฉลาด ขี้เล่น ชอบกระโดดเหนือน้ำ",
+    "exampleSentence": "ฝูงโลมากระโดดเล่นคลื่นเคียงข้างเรือของนักท่องเที่ยว",
+    "romanization": "lo-ma"
+  },
+  {
+    "id": "a_24",
+    "word": "ฉลาม",
+    "pronunciation": "ฉะ - หลาม",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ปลากระดูกอ่อนขนาดใหญ่ มีฟันแหลมคม เป็นผู้ล่าแห่งท้องทะเล",
+    "exampleSentence": "ฉลามวาฬยักษ์ใหญ่ใจดีว่ายผ่านนักดำน้ำอย่างสงบนิ่ง",
+    "romanization": "cha-lam"
+  },
+  {
+    "id": "a_25",
+    "word": "เต่า",
+    "pronunciation": "เต่า",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สัตว์เลื้อยคลานมีกระดองแข็งหุ้มตัว เคลื่อนไหวช้า อายุยืนยาว",
+    "exampleSentence": "เต่าทะเลคลานขึ้นมาวางไข่บนชายหาดยามดึก",
+    "romanization": "tao"
+  },
+  {
+    "id": "a_26",
+    "word": "จระเข้",
+    "pronunciation": "จอ - ระ - เข้",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สัตว์เลื้อยคลานขนาดใหญ่ อาศัยในน้ำ ปากกว้าง ฟันแหลมคม",
+    "exampleSentence": "จระเข้นอนผึ่งแดดอยู่ริมตลิ่งอย่างนิ่งสงบ",
+    "romanization": "cho-ra-khe"
+  },
+  {
+    "id": "a_27",
+    "word": "กบ",
+    "pronunciation": "กบ",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สัตว์สะเทินน้ำสะเทินบก ขาหลังยาวกระโดดได้ไกล ร้องเสียงดังเมื่อฝนตก",
+    "exampleSentence": "กบร้องประสานเสียงหลังฝนตกพรำๆ ยามค่ำ",
+    "romanization": "kop"
+  },
+  {
+    "id": "a_28",
+    "word": "อึ่งอ่าง",
+    "pronunciation": "อึ่ง - อ่าง",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สัตว์สะเทินน้ำสะเทินบก ลำตัวป้อม พองตัวได้เมื่อตกใจ",
+    "exampleSentence": "อึ่งอ่างพองลมจนตัวกลมเพื่อข่มขู่ศัตรู",
+    "romanization": "ueng-ang"
+  },
+  {
+    "id": "a_29",
+    "word": "ผีเสื้อ",
+    "pronunciation": "ผี - เสื้อ",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "แมลงปีกสวยงาม กินน้ำหวานจากดอกไม้ ช่วยผสมเกสร",
+    "exampleSentence": "ผีเสื้อบินตอมดอกเข็มในสวนดอกไม้อย่างเพลิดเพลิน",
+    "romanization": "phi-suea"
+  },
+  {
+    "id": "a_30",
+    "word": "ผึ้ง",
+    "pronunciation": "ผึ้ง",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "แมลงขยัน ช่วยผสมเกสร สร้างรังและผลิตน้ำผึ้งแสนหวาน",
+    "exampleSentence": "ผึ้งงานบินเก็บเกสรดอกไม้กลับไปที่รัง",
+    "romanization": "phueng"
+  },
+  {
+    "id": "a_31",
+    "word": "มด",
+    "pronunciation": "มด",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "แมลงตัวเล็กที่มีความสามัคคีและขยันขันแข็ง แบกของหนักได้หลายเท่าตัว",
+    "exampleSentence": "แถวมดเดินขนเศษอาหารกลับเข้ารังอย่างเป็นระเบียบ",
+    "romanization": "mot"
+  },
+  {
+    "id": "a_32",
+    "word": "ปลวก",
+    "pronunciation": "ปลวก",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "แมลงอาศัยรวมกันเป็นรังใหญ่ กินเนื้อไม้เป็นอาหาร",
+    "exampleSentence": "ปลวกสร้างจอมปลวกสูงตระหง่านกลางทุ่งนา",
+    "romanization": "pluak"
+  },
+  {
+    "id": "a_33",
+    "word": "แมลงปอ",
+    "pronunciation": "มะ - แลง - ปอ",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "แมลงปีกบางใส ตาโต บินร่อนและเปลี่ยนทิศทางได้รวดเร็ว",
+    "exampleSentence": "แมลงปอบินโฉบผิวน้ำในสระบัวยามบ่าย",
+    "romanization": "ma-laeng-po"
+  },
+  {
+    "id": "a_34",
+    "word": "หิ่งห้อย",
+    "pronunciation": "หิ่ง - ห้อย",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "แมลงตัวเล็กที่สามารถเปล่งแสงกะพริบได้ในยามค่ำคืน",
+    "exampleSentence": "ต้นลำพูริมน้ำสว่างไสวด้วยแสงระยิบระยับของหิ่งห้อย",
+    "romanization": "hing-hoi"
+  },
+  {
+    "id": "a_35",
+    "word": "ยุง",
+    "pronunciation": "ยุง",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "แมลงขนาดเล็ก ตัวเมียดูดเลือดและเป็นพาหะนำโรคไข้เลือดออก",
+    "exampleSentence": "ควรคว่ำภาชนะที่มีน้ำขังเพื่อป้องกันการเพาะพันธุ์ของยุง",
+    "romanization": "yung"
+  },
+  {
+    "id": "a_36",
+    "word": "ภูเขา",
+    "pronunciation": "พู - เขา",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "พื้นที่ดินหรือหินที่สูงเด่นขึ้นมาจากพื้นราบอย่างชัดเจน",
+    "exampleSentence": "เราเดินขึ้นสู่ยอดภูเขาเพื่อชมทะเลหมอกยามเช้า",
+    "romanization": "phu-khao"
+  },
+  {
+    "id": "a_37",
+    "word": "น้ำตก",
+    "pronunciation": "น้ำ - ตก",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สายน้ำที่ไหลตกลงมาจากหน้าผาสูงสู่แอ่งน้ำเบื้องล่าง",
+    "exampleSentence": "เสียงน้ำตกดังกึกก้องสร้างความสดชื่นให้กับป่าเขา",
+    "romanization": "nam-tok"
+  },
+  {
+    "id": "a_38",
+    "word": "ทะเล",
+    "pronunciation": "ทะ - เล",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผืนน้ำเค็มขนาดใหญ่ที่ปกคลุมพื้นที่ส่วนใหญ่ของโลก",
+    "exampleSentence": "ลมทะเลพัดพาคลื่นซัดเข้าหาฝั่งอย่างต่อเนื่อง",
+    "romanization": "tha-le"
+  },
+  {
+    "id": "a_39",
+    "word": "มหาสมุทร",
+    "pronunciation": "มะ - หา - สะ - หมุด",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ห้วงน้ำเค็มกว้างใหญ่ไพศาลที่เชื่อมต่อทวีปต่างๆ",
+    "exampleSentence": "มหาสมุทรแปซิฟิกเป็นมหาสมุทรที่กว้างใหญ่ที่สุดในโลก",
+    "romanization": "ma-ha-sa-mut"
+  },
+  {
+    "id": "a_40",
+    "word": "เกาะ",
+    "pronunciation": "เกาะ",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผืนแผ่นดินที่มีน้ำล้อมรอบอยู่ทุกด้าน",
+    "exampleSentence": "เกาะพีพีมีน้ำทะเลใสราวกระจกและหาดทรายขาวละเอียด",
+    "romanization": "ko"
+  },
+  {
+    "id": "a_41",
+    "word": "หาดทราย",
+    "pronunciation": "หาด - ซาย",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "พื้นที่ริมฝั่งน้ำที่ปกคลุมด้วยเม็ดทรายนุ่มละเอียด",
+    "exampleSentence": "เด็กๆ วิ่งเล่นเก็บเปลือกหอยบนหาดทรายขาว",
+    "romanization": "hat-sai"
+  },
+  {
+    "id": "a_42",
+    "word": "ถ้ำ",
+    "pronunciation": "ถ้ำ",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "โพรงธรรมชาติใต้ดินหรือในภูเขา มีหินงอกหินย้อยสวยงาม",
+    "exampleSentence": "ภายในถ้ำมีหินงอกหินย้อยที่ส่องประกายระยิบระยับ",
+    "romanization": "tham"
+  },
+  {
+    "id": "a_43",
+    "word": "แม่น้ำ",
+    "pronunciation": "แม่ - น้ำ",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ทางน้ำธรรมชาติขนาดใหญ่ ไหลหล่อเลี้ยงชุมชนและบ้านเมือง",
+    "exampleSentence": "แม่น้ำเจ้าพระยาเปรียบเสมือนเส้นเลือดใหญ่ของคนไทย",
+    "romanization": "mae-nam"
+  },
+  {
+    "id": "a_44",
+    "word": "ลำธาร",
+    "pronunciation": "ลำ - ทาน",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สายน้ำธรรมชาติขนาดเล็ก น้ำใสสะอาด ไหลรินผ่านโขดหิน",
+    "exampleSentence": "น้ำในลำธารเย็นเฉียบจนมองเห็นฝูงปลาแหวกว่าย",
+    "romanization": "lam-than"
+  },
+  {
+    "id": "a_45",
+    "word": "คลอง",
+    "pronunciation": "คลอง",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ทางน้ำที่ขุดขึ้นหรือเกิดตามธรรมชาติ ใช้สัญจรและระบายน้ำ",
+    "exampleSentence": "บ้านริมคลองยังคงมีเรือพายขายขนมหวานในยามเช้า",
+    "romanization": "khlong"
+  },
+  {
+    "id": "a_46",
+    "word": "ป่าดงดิบ",
+    "pronunciation": "ป่า - ดง - ดิบ",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ป่าไม้เขียวชอุ่มตลอดทั้งปี มีความชื้นสูงและอุดมด้วยสิ่งมีชีวิต",
+    "exampleSentence": "ป่าดงดิบเป็นแหล่งต้นน้ำลำธารที่สำคัญยิ่ง",
+    "romanization": "pa-dong-dip"
+  },
+  {
+    "id": "a_47",
+    "word": "พระอาทิตย์",
+    "pronunciation": "พระ - อา - ทิด",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ดวงดาวศูนย์กลางของระบบสุริยะ ให้แสงสว่างและความอบอุ่นแก่โลก",
+    "exampleSentence": "แสงพระอาทิตย์ยามเช้าสาดส่องทาทาบยอดไม้",
+    "romanization": "phra-a-thit"
+  },
+  {
+    "id": "a_48",
+    "word": "พระจันทร์",
+    "pronunciation": "พระ - จัน",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ดาวบริวารของโลก ส่องแสงนวลเย็นตายามค่ำคืน",
+    "exampleSentence": "คืนวันเพ็ญพระจันทร์เต็มดวงสว่างสุกใส",
+    "romanization": "phra-chan"
+  },
+  {
+    "id": "a_49",
+    "word": "ดวงดาว",
+    "pronunciation": "ดวง - ดาว",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "วัตถุท้องฟ้าที่ส่องแสงระยิบระยับบนฟากฟ้ายามราตรี",
+    "exampleSentence": "บนยอดดอยสูงมองเห็นดวงดาวเกลื่อนท้องฟ้า",
+    "romanization": "duang-dao"
+  },
+  {
+    "id": "a_50",
+    "word": "ก้อนเมฆ",
+    "pronunciation": "ก้อน - เมก",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "กลุ่มละอองน้ำหรือเกล็ดน้ำแข็งที่ลอยอยู่ในชั้นบรรยากาศ",
+    "exampleSentence": "ก้อนเมฆสีขาวลอยล่องอยู่บนท้องฟ้าสีคราม",
+    "romanization": "kon-mek"
+  },
+  {
+    "id": "a_51",
+    "word": "สายรุ้ง",
+    "pronunciation": "สาย - รุ้ง",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "แนวแสงเจ็ดสีโค้งบนท้องฟ้า เกิดจากการหักเหของแสงแดดผ่านละอองฝน",
+    "exampleSentence": "สายรุ้งทอดโค้งสวยงามหลังฝนซาเม็ด",
+    "romanization": "sai-rung"
+  },
+  {
+    "id": "a_52",
+    "word": "ฝนตก",
+    "pronunciation": "ฝน - ตก",
+    "category": "animals",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "ละอองน้ำในเมฆรวมตัวกันหนักขึ้นแล้วตกลงมาสู่พื้นดิน",
+    "exampleSentence": "ฝนตกช่วยคลายความร้อนอบอ้าวและทำให้ต้นไม้สดชื่น",
+    "romanization": "fon-tok"
+  },
+  {
+    "id": "a_53",
+    "word": "พายุ",
+    "pronunciation": "พา - ยุ",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ลมแรงจัดมักเกิดร่วมกับฝนตกหนัก คลื่นลมในทะเลปั่นป่วน",
+    "exampleSentence": "ชาวประมงนำเรือเข้าฝั่งเพื่อหลบพายุฝน",
+    "romanization": "pha-yu"
+  },
+  {
+    "id": "a_54",
+    "word": "ฟ้าร้อง",
+    "pronunciation": "ฟ้า - ร้อง",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "เสียงดังกึกก้องบนท้องฟ้าที่เกิดจากการขยายตัวของอากาศเมื่อเกิดฟ้าแลบ",
+    "exampleSentence": "เสียงฟ้าร้องคำรามบอกเตือนว่าฝนกำลังจะตกหนัก",
+    "romanization": "fa-rong"
+  },
+  {
+    "id": "a_55",
+    "word": "ฟ้าผ่า",
+    "pronunciation": "ฟ้า - ผ่า",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "การคายประจุไฟฟ้าจากก้อนเมฆลงสู่พื้นดิน มีพลังงานมหาศาล",
+    "exampleSentence": "ไม่ควรหลบฝนใต้ต้นไม้ใหญ่เพื่อป้องกันอันตรายจากฟ้าผ่า",
+    "romanization": "fa-pha"
+  },
+  {
+    "id": "a_56",
+    "word": "ดอกบัว",
+    "pronunciation": "ดอก - บัว",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ไม้น้ำมีดอกงดงาม สัญลักษณ์แห่งความบริสุทธิ์และธรรมะ",
+    "exampleSentence": "ดอกบัวหลวงสีชมพูบานรับแสงแดดในสระน้ำ",
+    "romanization": "dok-bua"
+  },
+  {
+    "id": "a_57",
+    "word": "ดอกมะลิ",
+    "pronunciation": "ดอก - มะ - ลิ",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ดอกไม้สีขาวบริสุทธิ์ กลิ่นหอมชื่นใจ สัญลักษณ์ของวันแม่แห่งชาติ",
+    "exampleSentence": "ร้อยพวงมาลัยดอกมะลิกราบคุณแม่ด้วยความกตัญญู",
+    "romanization": "dok-ma-li"
+  },
+  {
+    "id": "a_58",
+    "word": "ดอกกล้วยไม้",
+    "pronunciation": "ดอก - กล้วย - ไม้",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ดอกไม้มีกลีบสวยงาม หลากสีสัน บานทนทาน",
+    "exampleSentence": "ประเทศไทยส่งออกดอกกล้วยไม้ไปยังหลายประเทศทั่วโลก",
+    "romanization": "dok-kluai-mai"
+  },
+  {
+    "id": "a_59",
+    "word": "ดอกกุหลาบ",
+    "pronunciation": "ดอก - กุ - หลาบ",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ดอกไม้มีหนามแหลม กลิ่นหอม นิยมมอบให้เพื่อแสดงความรัก",
+    "exampleSentence": "ดอกกุหลาบสีแดงบานสะพรั่งส่งกลิ่นหอมฟุ้ง",
+    "romanization": "dok-ku-lap"
+  },
+  {
+    "id": "a_60",
+    "word": "ต้นไทร",
+    "pronunciation": "ต้น - ไทร",
+    "category": "animals",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ไม้ยืนต้นขนาดใหญ่ มีรากอากาศห้อยย้อย ร่มเงากว้างขวาง",
+    "exampleSentence": "นกนานาชนิดพากันมากินลูกไทรรวมกันบนกิ่งไม้ใหญ่",
+    "romanization": "ton-sai"
+  },
+  {
+    "id": "b_1",
+    "word": "ศีรษะ",
+    "pronunciation": "สี - สะ",
+    "category": "body",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ส่วนบนสุดของร่างกาย เป็นที่อยู่ของสมอง (มักสะกดผิดเป็น ศรีษะ)",
+    "exampleSentence": "สวมหมวกกันน็อกทุกครั้งเพื่อปกป้องศีรษะ",
+    "romanization": "si-sa"
+  },
+  {
+    "id": "b_2",
+    "word": "ใบหน้า",
+    "pronunciation": "ใบ - หน้า",
+    "category": "body",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ส่วนหน้าของศีรษะ ประกอบด้วยตา จมูก ปาก",
+    "exampleSentence": "ล้างใบหน้าด้วยน้ำสะอาดช่วยให้รู้สึกสดชื่น",
+    "romanization": "bai-na"
+  },
+  {
+    "id": "b_3",
+    "word": "ดวงตา",
+    "pronunciation": "ดวง - ตา",
+    "category": "body",
+    "partOfSpeech": "คำนาม",
+    "meaning": "อวัยวะรับแสงและการมองเห็น ช่วยให้เราสัมผัสความงามรอบตัว",
+    "exampleSentence": "พักสายตาจากหน้าจอโทรศัพท์เป็นระยะเพื่อถนอมดวงตา",
+    "romanization": "duang-ta"
+  },
+  {
+    "id": "b_4",
+    "word": "คิ้ว",
+    "pronunciation": "คิ้ว",
+    "category": "body",
+    "partOfSpeech": "คำนาม",
+    "meaning": "แนวขนเหนือเบ้าตา ช่วยป้องกันเหงื่อไหลเข้าตา",
+    "exampleSentence": "เขาเลิกคิ้วขึ้นด้วยความสงสัยในคำตอบ",
+    "romanization": "khiu"
+  },
+  {
+    "id": "b_5",
+    "word": "ขนตา",
+    "pronunciation": "ขน - ตา",
+    "category": "body",
+    "partOfSpeech": "คำนาม",
+    "meaning": "เส้นขนที่ริมขอบตา ช่วยป้องกันฝุ่นละอองเข้าสู่ดวงตา",
+    "exampleSentence": "ขนตายาวช่วยปกป้องดวงตาจากลมและละอองฝุ่น",
+    "romanization": "khon-ta"
+  },
+  {
+    "id": "b_6",
+    "word": "หู",
+    "pronunciation": "หู",
+    "category": "body",
+    "partOfSpeech": "คำนาม",
+    "meaning": "อวัยวะรับฟังเสียงและการทรงตัวของร่างกาย",
+    "exampleSentence": "ไม่ควรเปิดเสียงหูฟังดังเกินไปเพราะอาจทำลายประสาทหู",
+    "romanization": "hu"
+  },
+  {
+    "id": "b_7",
+    "word": "จมูก",
+    "pronunciation": "จะ - หมูก",
+    "category": "body",
+    "partOfSpeech": "คำนาม",
+    "meaning": "อวัยวะรับกลิ่นและเป็นทางผ่านของลมหายใจ",
+    "exampleSentence": "สูดกลิ่นหอมของดอกไม้เข้าเต็มจมูก",
+    "romanization": "cha-muk"
+  },
+  {
+    "id": "b_8",
+    "word": "ริมฝีปาก",
+    "pronunciation": "ริม - ฝี - ปาก",
+    "category": "body",
+    "partOfSpeech": "คำนาม",
+    "meaning": "เนื้อนุ่มรอบช่องปาก ช่วยในการพูดและการรับประทานอาหาร",
+    "exampleSentence": "ทาลิปมันเพื่อป้องกันริมฝีปากแห้งแตกในฤดูหนาว",
+    "romanization": "rim-fi-pak"
+  },
+  {
+    "id": "b_9",
+    "word": "ฟัน",
+    "pronunciation": "ฟัน",
+    "category": "body",
+    "partOfSpeech": "คำนาม",
+    "meaning": "กระดูกแข็งในปาก ทำหน้าที่บดเคี้ยวอาหารให้ละเอียด",
+    "exampleSentence": "แปรงฟันอย่างน้อยวันละสองครั้งเพื่อป้องกันฟันผุ",
+    "romanization": "fan"
+  },
+  {
+    "id": "b_10",
+    "word": "ลิ้น",
+    "pronunciation": "ลิ้น",
+    "category": "body",
+    "partOfSpeech": "คำนาม",
+    "meaning": "กล้ามเนื้อในปาก รับรู้รสชาติและช่วยในการออกเสียง",
+    "exampleSentence": "ลิ้นสามารถรับรสหวาน เปรี้ยว เค็ม ขม และอูมามิ",
+    "romanization": "lin"
+  },
+  {
+    "id": "b_11",
+    "word": "คาง",
+    "pronunciation": "คาง",
+    "category": "body",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ส่วนล่างสุดของใบหน้า อยู่ใต้ริมฝีปากล่าง",
+    "exampleSentence": "เขานั่งเท้าคางครุ่นคิดปัญหาอย่างตั้งใจ",
+    "romanization": "khang"
+  },
+  {
+    "id": "b_12",
+    "word": "ลำคอ",
+    "pronunciation": "ลำ - คอ",
+    "category": "body",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ส่วนที่เชื่อมต่อระหว่างศีรษะกับลำตัว ภายในมีหลอดลมและหลอดอาหาร",
+    "exampleSentence": "จิบน้ำอุ่นผสมมะนาวช่วยบรรเทาอาการระคายเคืองลำคอ",
+    "romanization": "lam-kho"
+  },
+  {
+    "id": "b_13",
+    "word": "หัวไหล่",
+    "pronunciation": "หัว - ไหล่",
+    "category": "body",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ส่วนที่ต่อระหว่างคอกับต้นแขน",
+    "exampleSentence": "ยืดเส้นยืดสายบริหารหัวไหล่เพื่อลดอาการเมื่อยล้า",
+    "romanization": "hua-lai"
+  },
+  {
+    "id": "b_14",
+    "word": "แขน",
+    "pronunciation": "แขน",
+    "category": "body",
+    "partOfSpeech": "คำนาม",
+    "meaning": "อวัยวะจากหัวไหล่ถึงข้อมือ ช่วยในการยกและหยิบจับสิ่งของ",
+    "exampleSentence": "เขาอ้าแขนโอบกอดลูกด้วยความรัก",
+    "romanization": "khaen"
+  },
+  {
+    "id": "b_15",
+    "word": "ข้อศอก",
+    "pronunciation": "ข้อ - สอก",
+    "category": "body",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ข้อต่อระหว่างต้นแขนกับปลายแขน พับงอได้",
+    "exampleSentence": "วางข้อศอกบนโต๊ะทำงานในท่าที่ผ่อนคลาย",
+    "romanization": "kho-sok"
+  },
+  {
+    "id": "b_16",
+    "word": "ข้อมือ",
+    "pronunciation": "ข้อ - มือ",
+    "category": "body",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ข้อต่อระหว่างแขนกับมือ หมุนและขยับได้หลายทิศทาง",
+    "exampleSentence": "สวมใส่นาฬิกาข้อมือเรือนโปรดก่อนออกจากบ้าน",
+    "romanization": "kho-mue"
+  },
+  {
+    "id": "b_17",
+    "word": "มือ",
+    "pronunciation": "มือ",
+    "category": "body",
+    "partOfSpeech": "คำนาม",
+    "meaning": "อวัยวะส่วนปลายของแขน มีนิ้วมือสำหรับหยิบจับสร้างสรรค์สิ่งต่างๆ",
+    "exampleSentence": "ล้างมือด้วยสบู่ให้สะอาดก่อนรับประทานอาหารเสมอ",
+    "romanization": "mue"
+  },
+  {
+    "id": "b_18",
+    "word": "นิ้วมือ",
+    "pronunciation": "นิ้ว - มือ",
+    "category": "body",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ส่วนยื่นออกจากฝ่ามือ มีข้างละห้านิ้ว ช่วยในการสัมผัสและหยิบของ",
+    "exampleSentence": "ปลายนิ้วมือมีความไวต่อการสัมผัสเป็นพิเศษ",
+    "romanization": "nio-mue"
+  },
+  {
+    "id": "b_19",
+    "word": "เล็บ",
+    "pronunciation": "เล็บ",
+    "category": "body",
+    "partOfSpeech": "คำนาม",
+    "meaning": "แผ่นแข็งที่ปลายนิ้ว ช่วยปกป้องเนื้อเยื่อและหยิบสิ่งของเล็กๆ",
+    "exampleSentence": "ตัดเล็บให้สั้นและสะอาดอยู่เสมอเพื่อสุขอนามัยที่ดี",
+    "romanization": "lep"
+  },
+  {
+    "id": "b_20",
+    "word": "หน้าอก",
+    "pronunciation": "หน้า - อก",
+    "category": "body",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ส่วนหน้าของลำตัวตั้งแต่คอลงมาถึงกะบังลม ภายในมีปอดและหัวใจ",
+    "exampleSentence": "สูดลมหายใจเข้าลึกๆ จนหน้าอกขยาย",
+    "romanization": "na-ok"
+  },
+  {
+    "id": "b_21",
+    "word": "ท้อง",
+    "pronunciation": "ท้อง",
+    "category": "body",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ส่วนของลำตัวระหว่างหน้าอกกับกระดูกเชิงกราน บรรจุอวัยวะย่อยอาหาร",
+    "exampleSentence": "อย่าปล่อยให้ท้องว่างนานจนเกินไปเพราะอาจเป็นโรคกระเพาะ",
+    "romanization": "thong"
+  },
+  {
+    "id": "b_22",
+    "word": "หัวใจ",
+    "pronunciation": "หัว - ใจ",
+    "category": "body",
+    "partOfSpeech": "คำนาม",
+    "meaning": "อวัยวะสูบฉีดเลือดไปเลี้ยงร่างกาย เต้นสม่ำเสมอตลอดชีวิต",
+    "exampleSentence": "การออกกำลังกายแบบคาร์ดิโอช่วยเสริมสร้างความแข็งแรงของหัวใจ",
+    "romanization": "hua-chai"
+  },
+  {
+    "id": "b_23",
+    "word": "ปอด",
+    "pronunciation": "ปอด",
+    "category": "body",
+    "partOfSpeech": "คำนาม",
+    "meaning": "อวัยวะแลกเปลี่ยนก๊าซออกซิเจนและคาร์บอนไดออกไซด์ในการหายใจ",
+    "exampleSentence": "หลีกเลี่ยงควันบุหรี่และฝุ่นละอองเพื่อรักษาปอดให้แข็งแรง",
+    "romanization": "pot"
+  },
+  {
+    "id": "b_24",
+    "word": "ตับ",
+    "pronunciation": "ตับ",
+    "category": "body",
+    "partOfSpeech": "คำนาม",
+    "meaning": "อวัยวะขนาดใหญ่ในช่องท้อง ขับสารพิษและผลิตน้ำดีช่วยย่อยไขมัน",
+    "exampleSentence": "ตับมีหน้าที่สำคัญในการกำจัดของเสียออกจากร่างกาย",
+    "romanization": "tap"
+  },
+  {
+    "id": "b_25",
+    "word": "ไต",
+    "pronunciation": "ไต",
+    "category": "body",
+    "partOfSpeech": "คำนาม",
+    "meaning": "อวัยวะคู่รูปถั่ว กรองของเสียออกจากเลือดและขับออกทางปัสสาวะ",
+    "exampleSentence": "ดื่มน้ำสะอาดวันละ 8 แก้วเพื่อช่วยให้ไตทำงานได้มีประสิทธิภาพ",
+    "romanization": "tai"
+  },
+  {
+    "id": "b_26",
+    "word": "กระเพาะ",
+    "pronunciation": "กระ - เพาะ",
+    "category": "body",
+    "partOfSpeech": "คำนาม",
+    "meaning": "อวัยวะรองรับและย่อยอาหารเบื้องต้นด้วยกรดและเอนไซม์",
+    "exampleSentence": "รับประทานอาหารให้ตรงเวลาเพื่อป้องกันอาการปวดกระเพาะ",
+    "romanization": "kra-pho"
+  },
+  {
+    "id": "b_27",
+    "word": "ลำไส้",
+    "pronunciation": "ลำ - ไส้",
+    "category": "body",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ทางเดินอาหารต่อจากกระเพาะ ย่อยและดูดซึมสารอาหารเข้าสู่กระแสเลือด",
+    "exampleSentence": "การรับประทานผักผลไม้ช่วยเพิ่มกากใยในลำไส้",
+    "romanization": "lam-sai"
+  },
+  {
+    "id": "b_28",
+    "word": "กระดูก",
+    "pronunciation": "กระ - ดูก",
+    "category": "body",
+    "partOfSpeech": "คำนาม",
+    "meaning": "โครงร่างแข็งภายในร่างกาย ค้ำจุนและปกป้องอวัยวะภายใน",
+    "exampleSentence": "นมและปลาตัวเล็กมีแคลเซียมสูงช่วยบำรุงกระดูก",
+    "romanization": "kra-duk"
+  },
+  {
+    "id": "b_29",
+    "word": "กล้ามเนื้อ",
+    "pronunciation": "กล้าม - เนื้อ",
+    "category": "body",
+    "partOfSpeech": "คำนาม",
+    "meaning": "เนื้อเยื่อที่หดตัวได้ ทำให้เกิดแรงและการเคลื่อนไหวของร่างกาย",
+    "exampleSentence": "ออกกำลังกายแบบยกน้ำหนักช่วยเสริมสร้างมวลกล้ามเนื้อ",
+    "romanization": "klam-nuea"
+  },
+  {
+    "id": "b_30",
+    "word": "เส้นประสาท",
+    "pronunciation": "เส้น - ประ - สาด",
+    "category": "body",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ใยส่งสัญญาณความรู้สึกและคำสั่งระหว่างสมองกับอวัยวะต่างๆ",
+    "exampleSentence": "การนอนหลับพักผ่อนช่วยฟื้นฟูระบบประสาท",
+    "romanization": "sen-pra-sat"
+  },
+  {
+    "id": "b_31",
+    "word": "เลือด",
+    "pronunciation": "เลือด",
+    "category": "body",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ของเหลวสีแดงหมุนเวียนในหลอดเลือด นำพาสารอาหารและออกซิเจน",
+    "exampleSentence": "การตรวจเลือดประจำปีช่วยให้ทราบสภาวะสุขภาพเบื้องต้น",
+    "romanization": "lueat"
+  },
+  {
+    "id": "b_32",
+    "word": "ผิวหนัง",
+    "pronunciation": "ผิว - หนัง",
+    "category": "body",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ชั้นปกคลุมภายนอกร่างกาย ควบคุมอุณหภูมิและป้องกันเชื้อโรค",
+    "exampleSentence": "ทาครีมกันแดดเพื่อปกป้องผิวหนังจากรังสีอัลตราไวโอเลต",
+    "romanization": "fiu-nang"
+  },
+  {
+    "id": "b_33",
+    "word": "สุขภาพ",
+    "pronunciation": "สุก - ขะ - พาบ",
+    "category": "body",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ภาวะความสมบูรณ์ทั้งร่างกายและจิตใจ ปราศจากโรคภัย",
+    "exampleSentence": "การไม่มีโรคเป็นลาภอันประเสริฐ สุขภาพดีเริ่มต้นที่ตัวเรา",
+    "romanization": "suk-kha-phap"
+  },
+  {
+    "id": "b_34",
+    "word": "แข็งแรง",
+    "pronunciation": "แข็ง - แรง",
+    "category": "body",
+    "partOfSpeech": "คำคุณศัพท์",
+    "meaning": "มีพละกำลัง ร่างกายสมบูรณ์ ไม่เจ็บป่วยง่าย",
+    "exampleSentence": "เขามีสุขภาพแข็งแรงเพราะออกกำลังกายเป็นประจำ",
+    "romanization": "khaeng-raeng"
+  },
+  {
+    "id": "b_35",
+    "word": "ออกกำลังกาย",
+    "pronunciation": "ออก - กำ - ลัง - กาย",
+    "category": "body",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "บริหารร่างกายเพื่อให้กล้ามเนื้อและระบบไหลเวียนโลหิตทำงานดีขึ้น",
+    "exampleSentence": "ชวนกันไปเดินเร็วออกกำลังกายที่สวนสาธารณะ",
+    "romanization": "ok-kam-lang-kai"
+  },
+  {
+    "id": "b_36",
+    "word": "วิตามิน",
+    "pronunciation": "วิ - ตา - มิน",
+    "category": "body",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สารอินทรีย์ที่จำเป็นต่อการเจริญเติบโตและการทำงานของร่างกาย",
+    "exampleSentence": "ส้มและฝรั่งอุดมไปด้วยวิตามินซีที่ช่วยเสริมภูมิคุ้มกัน",
+    "romanization": "wi-ta-min"
+  },
+  {
+    "id": "b_37",
+    "word": "บาดเจ็บ",
+    "pronunciation": "บาด - เจ็บ",
+    "category": "body",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "ได้รับอันตรายจนเนื้อตัวเป็นแผลหรือฟกช้ำ",
+    "exampleSentence": "ปฐมพยาบาลเบื้องต้นอย่างถูกวิธีเมื่อมีผู้ได้รับบาดเจ็บ",
+    "romanization": "bat-chep"
+  },
+  {
+    "id": "b_38",
+    "word": "ไข้หวัด",
+    "pronunciation": "ไข้ - หวัด",
+    "category": "body",
+    "partOfSpeech": "คำนาม",
+    "meaning": "โรคติดเชื้อไวรัสทางเดินหายใจ มีอาการคัดจมูก มีน้ำมูก และตัวร้อน",
+    "exampleSentence": "สวมหน้ากากอนามัยเมื่อเป็นไข้หวัดเพื่อไม่ให้แพร่เชื้อสู่ผู้อื่น",
+    "romanization": "khai-wat"
+  },
+  {
+    "id": "b_39",
+    "word": "ไอ",
+    "pronunciation": "ไอ",
+    "category": "body",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "ขับลมออกจากลำคออย่างแรงและมีเสียง เพื่อขจัดสิ่งระคายเคือง",
+    "exampleSentence": "ใช้ทิชชูปิดปากเวลาไอเพื่อสุขอนามัยที่ดี",
+    "romanization": "ai"
+  },
+  {
+    "id": "b_40",
+    "word": "จาม",
+    "pronunciation": "จาม",
+    "category": "body",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "พ่นลมหายใจออกทางจมูกและปากอย่างแรงและกะทันหัน",
+    "exampleSentence": "ละอองเกสรดอกไม้ทำให้เขาเกิดอาการจามบ่อยครั้ง",
+    "romanization": "cham"
+  },
+  {
+    "id": "b_41",
+    "word": "ปวดหัว",
+    "pronunciation": "ปวด - หัว",
+    "category": "body",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "รู้สึกเจ็บหรือตึงบริเวณศีรษะ พักผ่อนไม่พอหรือเครียด",
+    "exampleSentence": "นอนพักในห้องที่มืดและเงียบช่วยบรรเทาอาการปวดหัว",
+    "romanization": "puat-hua"
+  },
+  {
+    "id": "b_42",
+    "word": "ปวดท้อง",
+    "pronunciation": "ปวด - ท้อง",
+    "category": "body",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "รู้สึกเจ็บแน่นในช่องท้อง อาจเกิดจากอาหารไม่ย่อยหรือกระเพาะอักเสบ",
+    "exampleSentence": "หากปวดท้องรุนแรงควรไปพบแพทย์เพื่อตรวจวินิจฉัย",
+    "romanization": "puat-thong"
+  },
+  {
+    "id": "b_43",
+    "word": "คลื่นไส้",
+    "pronunciation": "คลื่น - ไส้",
+    "category": "body",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "รู้สึกพะอืดพะอมอยากอาเจียน",
+    "exampleSentence": "อาการเมารถทำให้เขารู้สึกคลื่นไส้และวิงเวียน",
+    "romanization": "khluen-sai"
+  },
+  {
+    "id": "b_44",
+    "word": "เวียนศีรษะ",
+    "pronunciation": "เวียน - สี - สะ",
+    "category": "body",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "รู้สึกบ้านหมุน ทรงตัวไม่อยู่ ตาลาย",
+    "exampleSentence": "นั่งพักนิ่งๆ และสูดดมยาดมเมื่อรู้สึกเวียนศีรษะ",
+    "romanization": "wian-si-sa"
+  },
+  {
+    "id": "b_45",
+    "word": "อักเสบ",
+    "pronunciation": "อัก - เสบ",
+    "category": "body",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "อาการปวด บวม แดง ร้อน ที่เนื้อเยื่อเนื่องจากบาดเจ็บหรือติดเชื้อ",
+    "exampleSentence": "ทายาปฏิชีวนะเพื่อป้องกันแผลติดเชื้อและอักเสบ",
+    "romanization": "ak-sep"
+  },
+  {
+    "id": "b_46",
+    "word": "ติดเชื้อ",
+    "pronunciation": "ติด - เชื้อ",
+    "category": "body",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "จุลินทรีย์ก่อโรคเข้าสู่ร่างกายและเพิ่มจำนวนจนเกิดอาการป่วย",
+    "exampleSentence": "รักษาความสะอาดของบาดแผลเพื่อป้องกันการติดเชื้อ",
+    "romanization": "tit-chuea"
+  },
+  {
+    "id": "b_47",
+    "word": "ภูมิแพ้",
+    "pronunciation": "พูม - แพ้",
+    "category": "body",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ปฏิกิริยาของระบบภูมิคุ้มกันที่ตอบสนองไวเกินไปต่อสารก่อภูมิแพ้",
+    "exampleSentence": "ผู้ที่เป็นภูมิแพ้อากาศควรทำความสะอาดห้องนอนเป็นประจำ",
+    "romanization": "phum-phae"
+  },
+  {
+    "id": "b_48",
+    "word": "พยาบาล",
+    "pronunciation": "พะ - ยา - บาน",
+    "category": "body",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผู้ประกอบวิชาชีพดูแลผู้ป่วยและฟื้นฟูสุขภาพ",
+    "exampleSentence": "พยาบาลให้การดูแลผู้ป่วยด้วยความเมตตาและเอาใจใส่",
+    "romanization": "pha-ya-ban"
+  },
+  {
+    "id": "b_49",
+    "word": "แพทย์",
+    "pronunciation": "แพด",
+    "category": "body",
+    "partOfSpeech": "คำนาม",
+    "meaning": "หมอ ผู้ตรวจวินิจฉัยและรักษาอาการเจ็บป่วย",
+    "exampleSentence": "แพทย์แนะนำให้ปรับเปลี่ยนพฤติกรรมการรับประทานอาหาร",
+    "romanization": "phaet"
+  },
+  {
+    "id": "b_50",
+    "word": "ยารักษาโรค",
+    "pronunciation": "ยา - รัก - สา - โรก",
+    "category": "body",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สารที่ใช้บรรเทา บำบัด หรือป้องกันโรคภัยไข้เจ็บ",
+    "exampleSentence": "ควรอ่านฉลากยารักษาโรคให้ละเอียดก่อนรับประทานเสมอ",
+    "romanization": "ya-rak-sa-rok"
+  },
+  {
+    "id": "b_51",
+    "word": "โรงพยาบาล",
+    "pronunciation": "โรง - พะ - ยา - บาน",
+    "category": "body",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สถานพยาบาลที่ให้การตรวจรักษาและดูแลผู้ป่วยตลอด 24 ชั่วโมง",
+    "exampleSentence": "โรงพยาบาลมีอุปกรณ์ทางการแพทย์ที่ทันสมัยพร้อมให้การรักษา",
+    "romanization": "rong-pha-ya-ban"
+  },
+  {
+    "id": "b_52",
+    "word": "คลินิก",
+    "pronunciation": "คลิ - นิก",
+    "category": "body",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สถานพยาบาลขนาดเล็ก ให้การตรวจรักษาโรคทั่วไป",
+    "exampleSentence": "เขาแวะไปหาหมอที่คลินิกใกล้บ้านหลังเลิกงาน",
+    "romanization": "khli-nik"
+  },
+  {
+    "id": "b_53",
+    "word": "วัคซีน",
+    "pronunciation": "วัก - ซีน",
+    "category": "body",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สารสร้างภูมิคุ้มกันโรค ฉีดเพื่อป้องกันการเจ็บป่วยล่วงหน้า",
+    "exampleSentence": "การฉีดวัคซีนป้องกันไข้หวัดใหญ่ช่วยลดความรุนแรงของโรค",
+    "romanization": "wak-sin"
+  },
+  {
+    "id": "b_54",
+    "word": "พักผ่อน",
+    "pronunciation": "พัก - ผ่อน",
+    "category": "body",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "หยุดทำงานชั่วคราวเพื่อผ่อนคลายร่างกายและจิตใจ",
+    "exampleSentence": "การพักผ่อนอย่างเพียงพอช่วยให้ร่างกายฟื้นฟูได้อย่างรวดเร็ว",
+    "romanization": "phak-phon"
+  },
+  {
+    "id": "b_55",
+    "word": "รอยยิ้ม",
+    "pronunciation": "รอย - ยิ้ม",
+    "category": "body",
+    "partOfSpeech": "คำนาม",
+    "meaning": "การแสดงออกบนใบหน้าที่มุมปากยกขึ้น แสดงความเป็นมิตรและมีความสุข",
+    "exampleSentence": "รอยยิ้มที่สดใสช่วยสร้างบรรยากาศที่ดีให้กับคนรอบข้าง",
+    "romanization": "roi-yim"
+  },
+  {
+    "id": "b_56",
+    "word": "ความดัน",
+    "pronunciation": "ความ - ดัน",
+    "category": "body",
+    "partOfSpeech": "คำนาม",
+    "meaning": "แรงดันของเลือดที่กระทบต่อผนังหลอดเลือดแดง",
+    "exampleSentence": "ควรตรวจวัดความดันโลหิตเป็นประจำเพื่อเฝ้าระวังสุขภาพ",
+    "romanization": "khwam-dan"
+  },
+  {
+    "id": "b_57",
+    "word": "ชีพจร",
+    "pronunciation": "ชีบ - พะ - จอน",
+    "category": "body",
+    "partOfSpeech": "คำนาม",
+    "meaning": "จังหวะการเต้นของหลอดเลือดตามการบีบตัวของหัวใจ",
+    "exampleSentence": "แพทย์จับชีพจรที่ข้อมือเพื่อตรวจจังหวะการเต้นของหัวใจ",
+    "romanization": "chip-pha-chon"
+  },
+  {
+    "id": "b_58",
+    "word": "สายตา",
+    "pronunciation": "สาย - ตา",
+    "category": "body",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ความสามารถในการมองเห็นของดวงตา",
+    "exampleSentence": "ตรวจวัดสายตาประกอบแว่นเพื่อให้มองเห็นได้ชัดเจนยิ่งขึ้น",
+    "romanization": "sai-ta"
+  },
+  {
+    "id": "b_59",
+    "word": "หายใจ",
+    "pronunciation": "หาย - ใจ",
+    "category": "body",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "สูดอากาศเข้าและขับอากาศออกจากปอดเพื่อดำรงชีวิต",
+    "exampleSentence": "สูดลมหายใจเข้าลึกๆ ช่วยให้จิตใจสงบและผ่อนคลาย",
+    "romanization": "hai-chai"
+  },
+  {
+    "id": "b_60",
+    "word": "สมอง",
+    "pronunciation": "สะ - มอง",
+    "category": "body",
+    "partOfSpeech": "คำนาม",
+    "meaning": "อวัยวะควบคุมการคิด ความจำ อารมณ์ และการทำงานของทั้งร่างกาย",
+    "exampleSentence": "การเรียนรู้สิ่งใหม่ๆ เป็นประจำช่วยกระตุ้นการทำงานของสมอง",
+    "romanization": "sa-mong"
+  },
+  {
+    "id": "d_1",
+    "word": "ตื่นนอน",
+    "pronunciation": "ตื่น - นอน",
+    "category": "daily",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "ฟื้นจากการหลับ เริ่มต้นกิจกรรมของวันใหม่",
+    "exampleSentence": "ตื่นนอนแต่เช้าตรู่เพื่อสูดอากาศบริสุทธิ์",
+    "romanization": "tuen-non"
+  },
+  {
+    "id": "d_2",
+    "word": "ล้างหน้า",
+    "pronunciation": "ล้าง - หน้า",
+    "category": "daily",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "ทำความสะอาดใบหน้าด้วยน้ำและโฟมล้างหน้า",
+    "exampleSentence": "ล้างหน้าด้วยน้ำเย็นช่วยให้รู้สึกกระปรี้กระเปร่า",
+    "romanization": "lang-na"
+  },
+  {
+    "id": "d_3",
+    "word": "แปรงฟัน",
+    "pronunciation": "แปรง - ฟัน",
+    "category": "daily",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "ทำความสะอาดฟันด้วยแปรงและยาสีฟัน",
+    "exampleSentence": "แปรงฟันให้ทั่วถึงอย่างน้อยสองนาที",
+    "romanization": "praeng-fan"
+  },
+  {
+    "id": "d_4",
+    "word": "อาบน้ำ",
+    "pronunciation": "อาบ - น้ำ",
+    "category": "daily",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "ชำระร่างกายด้วยน้ำเพื่อความสะอาดสดชื่น",
+    "exampleSentence": "อาบน้ำอุ่นช่วยให้กล้ามเนื้อผ่อนคลาย",
+    "romanization": "ap-nam"
+  },
+  {
+    "id": "d_5",
+    "word": "แต่งตัว",
+    "pronunciation": "แต่ง - ตัว",
+    "category": "daily",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "สวมใส่เสื้อผ้าและจัดระเบียบเครื่องแต่งกายให้เรียบร้อย",
+    "exampleSentence": "แต่งตัวสุภาพเรียบร้อยเพื่อไปสัมภาษณ์งาน",
+    "romanization": "taeng-tua"
+  },
+  {
+    "id": "d_6",
+    "word": "รับประทาน",
+    "pronunciation": "รับ - ประ - ทาน",
+    "category": "daily",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "กินหรือดื่ม (คำสุภาพเป็นทางการ)",
+    "exampleSentence": "ทุกคนพร้อมหน้ากันรับประทานอาหารเย็น",
+    "romanization": "rap-pra-than"
+  },
+  {
+    "id": "d_7",
+    "word": "อ่านหนังสือ",
+    "pronunciation": "อ่าน - หนัง - สือ",
+    "category": "daily",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "กวาดสายตาทำความเข้าใจข้อความเพื่อความรู้และความเพลิดเพลิน",
+    "exampleSentence": "อ่านหนังสือก่อนนอนช่วยให้จิตใจสงบนิ่ง",
+    "romanization": "an-nang-sue"
+  },
+  {
+    "id": "d_8",
+    "word": "ทำการบ้าน",
+    "pronunciation": "ทำ - การ - บ้าน",
+    "category": "daily",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "ทำแบบฝึกหัดที่ได้รับมอบหมายจากครู",
+    "exampleSentence": "ทำการบ้านให้เสร็จเรียบร้อยก่อนไปเล่นเกม",
+    "romanization": "tham-kan-ban"
+  },
+  {
+    "id": "d_9",
+    "word": "ทำงาน",
+    "pronunciation": "ทำ - งาน",
+    "category": "daily",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "ประกอบอาชีพหรือปฏิบัติหน้าที่ตามที่ได้รับมอบหมาย",
+    "exampleSentence": "เขาตั้งใจทำงานด้วยความมุ่งมั่นและรับผิดชอบ",
+    "romanization": "tham-ngan"
+  },
+  {
+    "id": "d_10",
+    "word": "เข้านอน",
+    "pronunciation": "เข้า - นอน",
+    "category": "daily",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "เตรียมตัวขึ้นเตียงเพื่อพักผ่อนในยามค่ำคืน",
+    "exampleSentence": "เข้านอนแต่หัวค่ำเพื่อให้ร่างกายได้พักผ่อนเต็มที่",
+    "romanization": "khao-non"
+  },
+  {
+    "id": "d_11",
+    "word": "หลับฝัน",
+    "pronunciation": "หลับ - ฝัน",
+    "category": "daily",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "นอนหลับสนิทและเห็นเรื่องราวในจินตนาการ",
+    "exampleSentence": "ขอให้หลับฝันดีและตื่นมาด้วยความสดชื่น",
+    "romanization": "lap-fan"
+  },
+  {
+    "id": "d_12",
+    "word": "นาฬิกา",
+    "pronunciation": "นา - ลิ - กา",
+    "category": "daily",
+    "partOfSpeech": "คำนาม",
+    "meaning": "เครื่องมือบอกเวลา (ใช้ ฬ จุฬา สะกด)",
+    "exampleSentence": "นาฬิกาปลุกส่งเสียงเตือนเมื่อถึงเวลาหกโมงเช้า",
+    "romanization": "na-li-ka"
+  },
+  {
+    "id": "d_13",
+    "word": "ปฏิทิน",
+    "pronunciation": "ปะ - ติ - ทิน",
+    "category": "daily",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ตารางแสดงวัน สัปดาห์ และเดือนของแต่ละปี",
+    "exampleSentence": "จดบันทึกวันนัดหมายสำคัญลงในปฏิทิน",
+    "romanization": "pa-ti-thin"
+  },
+  {
+    "id": "d_14",
+    "word": "กระเป๋า",
+    "pronunciation": "กระ - เป๋า",
+    "category": "daily",
+    "partOfSpeech": "คำนาม",
+    "meaning": "เครื่องใช้สำหรับใส่สิ่งของ สัมภาระ หรือเงิน",
+    "exampleSentence": "เก็บหนังสือและกล่องดินสอใส่ในกระเป๋านักเรียน",
+    "romanization": "kra-pao"
+  },
+  {
+    "id": "d_15",
+    "word": "รองเท้า",
+    "pronunciation": "รอง - เท้า",
+    "category": "daily",
+    "partOfSpeech": "คำนาม",
+    "meaning": "เครื่องสวมใส่หุ้มเท้าเพื่อความสะดวกและป้องกันอันตราย",
+    "exampleSentence": "ถอดรองเท้าและจัดวางให้เป็นระเบียบหน้าประตู",
+    "romanization": "rong-thao"
+  },
+  {
+    "id": "d_16",
+    "word": "ถุงเท้า",
+    "pronunciation": "ถุง - เท้า",
+    "category": "daily",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผ้าที่สวมใส่หุ้มเท้าก่อนใส่รองเท้า",
+    "exampleSentence": "สวมถุงเท้าเพื่อป้องกันรองเท้ากัดและซับเหงื่อ",
+    "romanization": "thung-thao"
+  },
+  {
+    "id": "d_17",
+    "word": "เสื้อผ้า",
+    "pronunciation": "เสื้อ - ผ้า",
+    "category": "daily",
+    "partOfSpeech": "คำนาม",
+    "meaning": "เครื่องนุ่งห่มร่างกายเพื่อความอบอุ่นและสุภาพ",
+    "exampleSentence": "ซักเสื้อผ้าและตากแดดให้แห้งสนิท",
+    "romanization": "suea-pha"
+  },
+  {
+    "id": "d_18",
+    "word": "กางเกง",
+    "pronunciation": "กาง - เกง",
+    "category": "daily",
+    "partOfSpeech": "คำนาม",
+    "meaning": "เครื่องนุ่งห่มส่วนล่าง มีสองขาสวมใส่",
+    "exampleSentence": "สวมกางเกงขายาวผ้าฝรั่งที่ใส่สบาย",
+    "romanization": "kang-keng"
+  },
+  {
+    "id": "d_19",
+    "word": "หมวก",
+    "pronunciation": "หมวก",
+    "category": "daily",
+    "partOfSpeech": "คำนาม",
+    "meaning": "เครื่องสวมใส่บนศีรษะเพื่อกันแดดกันลมหรือเพื่อความสวยงาม",
+    "exampleSentence": "สวมหมวกปีกกว้างเพื่อกันแสงแดดจ้า",
+    "romanization": "muak"
+  },
+  {
+    "id": "d_20",
+    "word": "แว่นตา",
+    "pronunciation": "แว่น - ตา",
+    "category": "daily",
+    "partOfSpeech": "คำนาม",
+    "meaning": "กรอบเลนส์สวมหน้าดวงตา เพื่อปรับสายตาหรือกันแดด",
+    "exampleSentence": "สวมแว่นตากันแดดเมื่อต้องออกไปกลางแจ้ง",
+    "romanization": "waen-ta"
+  },
+  {
+    "id": "d_21",
+    "word": "ร่ม",
+    "pronunciation": "ร่ม",
+    "category": "daily",
+    "partOfSpeech": "คำนาม",
+    "meaning": "อุปกรณ์กางออกเพื่อกันแดดหรือฝน พับเก็บได้",
+    "exampleSentence": "พกร่มคันเล็กติดกระเป๋าไว้เผื่อฝนตก",
+    "romanization": "rom"
+  },
+  {
+    "id": "d_22",
+    "word": "ผ้าเช็ดตัว",
+    "pronunciation": "ผ้า - เช็ด - ตัว",
+    "category": "daily",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผ้าผืนใหญ่ซับน้ำได้ดี ใช้เช็ดตัวหลังอาบน้ำ",
+    "exampleSentence": "ผึ่งผ้าเช็ดตัวในที่ที่มีลมโกรกหลังใช้งาน",
+    "romanization": "pha-chet-tua"
+  },
+  {
+    "id": "d_23",
+    "word": "สบู่",
+    "pronunciation": "สะ - บู่",
+    "category": "daily",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สารทำความสะอาดร่างกาย ขจัดคราบไคลและสิ่งสกปรก",
+    "exampleSentence": "ฟอกสบู่จนเกิดฟองนุ่มกลิ่นหอมสะอาด",
+    "romanization": "sa-bu"
+  },
+  {
+    "id": "d_24",
+    "word": "ยาสระผม",
+    "pronunciation": "ยา - สระ - ผม",
+    "category": "daily",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผลิตภัณฑ์ทำความสะอาดเส้นผมและหนังศีรษะ",
+    "exampleSentence": "ใช้ยาสระผมสูตรอ่อนโยนสระผมสัปดาห์ละสามครั้ง",
+    "romanization": "ya-sa-phom"
+  },
+  {
+    "id": "d_25",
+    "word": "ยาสีฟัน",
+    "pronunciation": "ยา - สี - ฟัน",
+    "category": "daily",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สารผสมฟลูออไรด์ใช้คู่กับแปรง เพื่อทำความสะอาดช่องปาก",
+    "exampleSentence": "บีบยาสีฟันขนาดเท่าเมล็ดถั่วเขียวลงบนแปรง",
+    "romanization": "ya-si-fan"
+  },
+  {
+    "id": "d_26",
+    "word": "หวี",
+    "pronunciation": "หวี",
+    "category": "daily",
+    "partOfSpeech": "คำนาม",
+    "meaning": "อุปกรณ์มีซี่ถี่ ใช้จัดแต่งทรงผมให้เรียบร้อย",
+    "exampleSentence": "ใช้หวีสางผมเบาๆ เพื่อไม่ให้เส้นผมขาดหลุดร่วง",
+    "romanization": "wi"
+  },
+  {
+    "id": "d_27",
+    "word": "กระจก",
+    "pronunciation": "กระ - จก",
+    "category": "daily",
+    "partOfSpeech": "คำนาม",
+    "meaning": "แผ่นแก้วสะท้อนภาพ ใช้ส่องสำรวจบุคลิกภาพ",
+    "exampleSentence": "ส่องกระจกตรวจดูความเรียบร้อยของเสื้อผ้า",
+    "romanization": "kra-chok"
+  },
+  {
+    "id": "d_28",
+    "word": "เตียงนอน",
+    "pronunciation": "เตียง - นอน",
+    "category": "daily",
+    "partOfSpeech": "คำนาม",
+    "meaning": "เฟอร์นิเจอร์ยกพื้นสำหรับปูฟูกใช้นอนหลับ",
+    "exampleSentence": "จัดเตียงนอนให้สะอาดน่านอนทุกเช้า",
+    "romanization": "tiang-non"
+  },
+  {
+    "id": "d_29",
+    "word": "หมอน",
+    "pronunciation": "หมอน",
+    "category": "daily",
+    "partOfSpeech": "คำนาม",
+    "meaning": "เครื่องนอนนุ่มๆ สำหรับหนุนศีรษะยามนอนหลับ",
+    "exampleSentence": "เลือกหมอนที่มีความสูงพอดีช่วยลดอาการปวดคอ",
+    "romanization": "mon"
+  },
+  {
+    "id": "d_30",
+    "word": "ผ้าห่ม",
+    "pronunciation": "ผ้า - ห่ม",
+    "category": "daily",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผืนผ้าหนาใช้คลุมตัวเพื่อให้ความอบอุ่นยามหลับ",
+    "exampleSentence": "ห่มผ้าห่มนุ่มอุ่นสบายในคืนที่อากาศหนาว",
+    "romanization": "pha-hom"
+  },
+  {
+    "id": "d_31",
+    "word": "โต๊ะ",
+    "pronunciation": "โต๊ะ",
+    "category": "daily",
+    "partOfSpeech": "คำนาม",
+    "meaning": "เฟอร์นิเจอร์มีพื้นราบและขาตั้ง ใช้ทำงานหรือวางของ",
+    "exampleSentence": "จัดโต๊ะทำงานให้เป็นระเบียบช่วยให้มีสมาธิมากขึ้น",
+    "romanization": "to"
+  },
+  {
+    "id": "d_32",
+    "word": "เก้าอี้",
+    "pronunciation": "เก้า - อี้",
+    "category": "daily",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ที่นั่งมีพนักพิงและขาตั้ง สำหรับนั่งคนเดียว",
+    "exampleSentence": "นั่งบนเก้าอี้หลังตรงเพื่อสุขภาพที่ดีของกระดูกสันหลัง",
+    "romanization": "kao-i"
+  },
+  {
+    "id": "d_33",
+    "word": "โซฟา",
+    "pronunciation": "โซ - ฟา",
+    "category": "daily",
+    "partOfSpeech": "คำนาม",
+    "meaning": "เก้าอี้นวมตัวยาว นั่งหรือเอนหลังพักผ่อนได้อย่างสบาย",
+    "exampleSentence": "นั่งพักผ่อนดูหนังบนโซฟาในห้องนั่งเล่น",
+    "romanization": "so-fa"
+  },
+  {
+    "id": "d_34",
+    "word": "ประตู",
+    "pronunciation": "ประ - ตู",
+    "category": "daily",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ช่องทางเข้าออกของอาคารหรือห้อง มีบานเปิดปิด",
+    "exampleSentence": "ปิดประตูล็อกกลอนให้เรียบร้อยก่อนเข้านอน",
+    "romanization": "pra-tu"
+  },
+  {
+    "id": "d_35",
+    "word": "หน้าต่าง",
+    "pronunciation": "หน้า - ต่าง",
+    "category": "daily",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ช่องเปิดที่ผนังเพื่อรับแสงและให้อากาศถ่ายเท",
+    "exampleSentence": "เปิดหน้าต่างรับลมธรรมชาติและระบายอากาศ",
+    "romanization": "na-tang"
+  },
+  {
+    "id": "d_36",
+    "word": "กุญแจ",
+    "pronunciation": "กุน - แจ",
+    "category": "daily",
+    "partOfSpeech": "คำนาม",
+    "meaning": "อุปกรณ์โลหะใช้ไขเปิดหรือล็อกแม่กุญแจ",
+    "exampleSentence": "พวงกุญแจบ้านเก็บไว้ในกระเป๋าอย่างปลอดภัย",
+    "romanization": "kun-chae"
+  },
+  {
+    "id": "d_37",
+    "word": "โคมไฟ",
+    "pronunciation": "โคม - ไฟ",
+    "category": "daily",
+    "partOfSpeech": "คำนาม",
+    "meaning": "เครื่องกำเนิดแสงสว่าง มีที่ครอบเพื่อกระจายแสง",
+    "exampleSentence": "เปิดโคมไฟหัวเตียงอ่านหนังสือก่อนนอน",
+    "romanization": "khom-fai"
+  },
+  {
+    "id": "d_38",
+    "word": "พัดลม",
+    "pronunciation": "พัด - ลม",
+    "category": "daily",
+    "partOfSpeech": "คำนาม",
+    "meaning": "เครื่องใช้ไฟฟ้ามีใบพัดหมุนเพื่อสร้างลมเย็น",
+    "exampleSentence": "เปิดพัดลมส่ายไปมาช่วยให้อากาศหมุนเวียน",
+    "romanization": "phat-lom"
+  },
+  {
+    "id": "d_39",
+    "word": "เครื่องปรับอากาศ",
+    "pronunciation": "เคฺรื่อง - ปรับ - อา - กาด",
+    "category": "daily",
+    "partOfSpeech": "คำนาม",
+    "meaning": "อุปกรณ์ปรับอุณหภูมิและความชื้นในห้องให้เย็นสบาย",
+    "exampleSentence": "ตั้งอุณหภูมิเครื่องปรับอากาศที่ 25 องศาเพื่อประหยัดพลังงาน",
+    "romanization": "khrueang-prap-a-kat"
+  },
+  {
+    "id": "d_40",
+    "word": "ตู้เย็น",
+    "pronunciation": "ตู้ - เย็น",
+    "category": "daily",
+    "partOfSpeech": "คำนาม",
+    "meaning": "เครื่องใช้ไฟฟ้าสำหรับเก็บถนอมอาหารด้วยความเย็น",
+    "exampleSentence": "แช่นมสดและผลไม้ไว้ในตู้เย็นเพื่อคงความสด",
+    "romanization": "tu-yen"
+  },
+  {
+    "id": "d_41",
+    "word": "ไมโครเวฟ",
+    "pronunciation": "ไม - โคร - เวบ",
+    "category": "daily",
+    "partOfSpeech": "คำนาม",
+    "meaning": "เตาอุ่นอาหารด้วยคลื่นแม่เหล็กไฟฟ้า สะดวกรวดเร็ว",
+    "exampleSentence": "อุ่นกับข้าวด้วยไมโครเวฟเพียงสองนาทีก็ร้อนพร้อมทาน",
+    "romanization": "mai-khro-wep"
+  },
+  {
+    "id": "d_42",
+    "word": "โทรทัศน์",
+    "pronunciation": "โท - ระ - ทัด",
+    "category": "daily",
+    "partOfSpeech": "คำนาม",
+    "meaning": "เครื่องรับสัญญาณภาพและเสียงเพื่อความบันเทิงและข่าวสาร",
+    "exampleSentence": "ครอบครัวนั่งดูข่าวสารพร้อมหน้ากันทางโทรทัศน์",
+    "romanization": "tho-ra-that"
+  },
+  {
+    "id": "d_43",
+    "word": "โทรศัพท์",
+    "pronunciation": "โท - ระ - สับ",
+    "category": "daily",
+    "partOfSpeech": "คำนาม",
+    "meaning": "อุปกรณ์สื่อสารระยะไกล ใช้โทร ส่งข้อความ และท่องเน็ต",
+    "exampleSentence": "ใช้โทรศัพท์ติดต่อสอบถามข้อมูลอย่างสะดวกสบาย",
+    "romanization": "tho-ra-sap"
+  },
+  {
+    "id": "d_44",
+    "word": "คอมพิวเตอร์",
+    "pronunciation": "คอม - พิว - เต้อ",
+    "category": "daily",
+    "partOfSpeech": "คำนาม",
+    "meaning": "เครื่องอิเล็กทรอนิกส์ประมวลผลข้อมูลและใช้ทำงาน",
+    "exampleSentence": "เขาใช้คอมพิวเตอร์พิมพ์รายงานส่งคุณครู",
+    "romanization": "khom-phiu-toe"
+  },
+  {
+    "id": "d_45",
+    "word": "หูฟัง",
+    "pronunciation": "หู - ฟัง",
+    "category": "daily",
+    "partOfSpeech": "คำนาม",
+    "meaning": "อุปกรณ์แนบหูสำหรับฟังเสียงโดยไม่รบกวนผู้อื่น",
+    "exampleSentence": "เสียบหูฟังเพื่อฟังบทเรียนเสียงภาษาไทย",
+    "romanization": "hu-fang"
+  },
+  {
+    "id": "d_46",
+    "word": "ปากกา",
+    "pronunciation": "ปาก - กา",
+    "category": "daily",
+    "partOfSpeech": "คำนาม",
+    "meaning": "เครื่องมือเขียนใช้น้ำหมึก เขียนติดทนนาน",
+    "exampleSentence": "ใช้ปากกาหมึกสีน้ำเงินเซ็นชื่อในเอกสาร",
+    "romanization": "pak-ka"
+  },
+  {
+    "id": "d_47",
+    "word": "ดินสอ",
+    "pronunciation": "ดิน - สอ",
+    "category": "daily",
+    "partOfSpeech": "คำนาม",
+    "meaning": "เครื่องมือเขียนมีไส้แกรไฟต์ ลบออกได้ด้วยยางลบ",
+    "exampleSentence": "เด็กๆ ใช้ดินสอวาดภาพระบายสีอย่างเพลิดเพลิน",
+    "romanization": "din-so"
+  },
+  {
+    "id": "d_48",
+    "word": "ยางลบ",
+    "pronunciation": "ยาง - ลบ",
+    "category": "daily",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ก้อนยางใช้ลบรอยดินสอให้สะอาดเรียบร้อย",
+    "exampleSentence": "ใช้ยางลบคุณภาพดีลบรอยขีดเขียนโดยไม่ทำให้กระดาษขาด",
+    "romanization": "yang-lop"
+  },
+  {
+    "id": "d_49",
+    "word": "ไม้บรรทัด",
+    "pronunciation": "ไม้ - บัน - ทัด",
+    "category": "daily",
+    "partOfSpeech": "คำนาม",
+    "meaning": "แถบตรงมีขีดบอกระยะ ใช้ขีดเส้นตรงหรือวัดความยาว",
+    "exampleSentence": "ใช้ไม้บรรทัดตีเส้นใต้คำศัพท์สำคัญในสมุด",
+    "romanization": "mai-ban-that"
+  },
+  {
+    "id": "d_50",
+    "word": "สมุด",
+    "pronunciation": "สะ - หมุด",
+    "category": "daily",
+    "partOfSpeech": "คำนาม",
+    "meaning": "เล่มกระดาษเย็บติดกัน ใช้สำหรับจดบันทึกข้อความ",
+    "exampleSentence": "จดบันทึกคำศัพท์ใหม่ลงในสมุดทบทวน",
+    "romanization": "sa-mut"
+  },
+  {
+    "id": "d_51",
+    "word": "กรรไกร",
+    "pronunciation": "กัน - ไกร",
+    "category": "daily",
+    "partOfSpeech": "คำนาม",
+    "meaning": "เครื่องมือตัดมีใบมีดคู่ไขว้กัน ใช้ตัดกระดาษหรือผ้า",
+    "exampleSentence": "ใช้กรรไกรตัดกระดาษตามรอยปรุอย่างระมัดระวัง",
+    "romanization": "kan-krai"
+  },
+  {
+    "id": "d_52",
+    "word": "กาว",
+    "pronunciation": "กาว",
+    "category": "daily",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สารเหนียวใช้ทาเพื่อยึดติดสิ่งของเข้าด้วยกัน",
+    "exampleSentence": "ทากาวบางๆ ติดภาพวาดลงบนกระดาษแข็ง",
+    "romanization": "kao"
+  },
+  {
+    "id": "d_53",
+    "word": "กระดาษ",
+    "pronunciation": "กระ - ดาด",
+    "category": "daily",
+    "partOfSpeech": "คำนาม",
+    "meaning": "แผ่นบางทำจากเยื่อไม้ ใช้เขียน พิมพ์ หรือห่อของ",
+    "exampleSentence": "ใช้กระดาษรีไซเคิลเพื่อช่วยอนุรักษ์สิ่งแวดล้อม",
+    "romanization": "kra-dat"
+  },
+  {
+    "id": "d_54",
+    "word": "จาน",
+    "pronunciation": "จาน",
+    "category": "daily",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ภาชนะก้นตื้นทรงกลม สำหรับใส่อาหารคาวหวาน",
+    "exampleSentence": "ตักข้าวสวยร้อนๆ ใส่จานพร้อมเสิร์ฟ",
+    "romanization": "chan"
+  },
+  {
+    "id": "d_55",
+    "word": "ชาม",
+    "pronunciation": "ชาม",
+    "category": "daily",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ภาชนะก้นลึก สำหรับใส่อาหารประเภทน้ำ เช่น ต้มยำ หรือก๋วยเตี๋ยว",
+    "exampleSentence": "ตักแกงจืดใส่ชามกระเบื้องใบใหญ่",
+    "romanization": "cham"
+  },
+  {
+    "id": "d_56",
+    "word": "ช้อน",
+    "pronunciation": "ช้อน",
+    "category": "daily",
+    "partOfSpeech": "คำนาม",
+    "meaning": "เครื่องใช้สำหรับตักอาหารเข้าปากหรือชิมรส",
+    "exampleSentence": "ใช้ช้อนกลางตักอาหารร่วมกับผู้อื่นเพื่อสุขอนามัย",
+    "romanization": "chon"
+  },
+  {
+    "id": "d_57",
+    "word": "ส้อม",
+    "pronunciation": "ส้อม",
+    "category": "daily",
+    "partOfSpeech": "คำนาม",
+    "meaning": "เครื่องใช้มีปลายแหลมเป็นซี่ ใช้คู่กับช้อนจิ้มอาหาร",
+    "exampleSentence": "ใช้ช้อนส้อมรับประทานอาหารอย่างสุภาพ",
+    "romanization": "som"
+  },
+  {
+    "id": "d_58",
+    "word": "แก้วน้ำ",
+    "pronunciation": "แก้ว - น้ำ",
+    "category": "daily",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ภาชนะทรงกระบอกสำหรับใส่เครื่องดื่มดื่มกิน",
+    "exampleSentence": "รินน้ำเย็นใส่แก้วน้ำดื่มชื่นใจ",
+    "romanization": "kaeo-nam"
+  },
+  {
+    "id": "d_59",
+    "word": "ทำความสะอาด",
+    "pronunciation": "ทำ - ความ - สะ - อาด",
+    "category": "daily",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "เก็บกวาด เช็ดถู กำจัดสิ่งสกปรกให้เรียบร้อย",
+    "exampleSentence": "ร่วมมือกันทำความสะอาดห้องเรียนให้น่าอยู่",
+    "romanization": "tham-khwam-sa-at"
+  },
+  {
+    "id": "d_60",
+    "word": "จัดระเบียบ",
+    "pronunciation": "จัด - ระ - เบียบ",
+    "category": "daily",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "วางสิ่งของให้เข้าที่เรียบร้อย สะดวกแก่การค้นหา",
+    "exampleSentence": "จัดระเบียบโต๊ะทำงานช่วยให้ค้นหาเอกสารได้รวดเร็ว",
+    "romanization": "chat-ra-biap"
+  },
+  {
+    "id": "t_1",
+    "word": "รถยนต์",
+    "pronunciation": "รด - ยน",
+    "category": "travel",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ยานพาหนะสี่ล้อขับเคลื่อนด้วยเครื่องยนต์ สำหรับการเดินทาง",
+    "exampleSentence": "ตรวจเช็กสภาพรถยนต์ก่อนออกเดินทางไกลเสมอ",
+    "romanization": "rot-yon"
+  },
+  {
+    "id": "t_2",
+    "word": "รถจักรยานยนต์",
+    "pronunciation": "รด - จัก - กระ - ยาน - ยน",
+    "category": "travel",
+    "partOfSpeech": "คำนาม",
+    "meaning": "รถสองล้อขับเคลื่อนด้วยเครื่องยนต์ สะดวกในเมือง (มอเตอร์ไซค์)",
+    "exampleSentence": "สวมหมวกกันน็อกทุกครั้งเมื่อขับขี่รถจักรยานยนต์",
+    "romanization": "rot-chak-kra-yan-yon"
+  },
+  {
+    "id": "t_3",
+    "word": "รถจักรยาน",
+    "pronunciation": "รด - จัก - กระ - ยาน",
+    "category": "travel",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ยานพาหนะสองล้อ ขับเคลื่อนด้วยแรงถีบ ช่วยออกกำลังกาย",
+    "exampleSentence": "ปั่นรถจักรยานชมวิวทิวทัศน์ริมชายหาดยามเย็น",
+    "romanization": "rot-chak-kra-yan"
+  },
+  {
+    "id": "t_4",
+    "word": "รถโดยสาร",
+    "pronunciation": "รด - โดย - สาน",
+    "category": "travel",
+    "partOfSpeech": "คำนาม",
+    "meaning": "รถขนาดใหญ่รับส่งผู้โดยสารทั่วไปตามเส้นทางที่กำหนด (รถเมล์)",
+    "exampleSentence": "ขึ้นรถโดยสารประจำทางไปโรงเรียนทุกเช้า",
+    "romanization": "rot-doi-san"
+  },
+  {
+    "id": "t_5",
+    "word": "รถไฟฟ้า",
+    "pronunciation": "รด - ไฟ - ฟ้า",
+    "category": "travel",
+    "partOfSpeech": "คำนาม",
+    "meaning": "รถไฟขับเคลื่อนด้วยกระแสไฟฟ้า วิ่งบนรางยกระดับหรือใต้ดิน รวดเร็ว",
+    "exampleSentence": "เดินทางด้วยรถไฟฟ้าช่วยหลีกเลี่ยงปัญหาการจราจรติดขัด",
+    "romanization": "rot-fai-fa"
+  },
+  {
+    "id": "t_6",
+    "word": "รถไฟใต้ดิน",
+    "pronunciation": "รด - ไฟ - ใต้ - ดิน",
+    "category": "travel",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ระบบรถไฟฟ้าที่วิ่งในอุโมงค์ใต้ดิน สะดวกและตรงเวลา",
+    "exampleSentence": "ลงสถานีรถไฟใต้ดินเพื่อต่อการเดินทางไปยังศูนย์การค้า",
+    "romanization": "rot-fai-tai-din"
+  },
+  {
+    "id": "t_7",
+    "word": "รถไฟ",
+    "pronunciation": "รด - ไฟ",
+    "category": "travel",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ขบวนตู้โดยสารแล่นบนรางเหล็ก เดินทางเชื่อมระหว่างจังหวัด",
+    "exampleSentence": "นั่งรถไฟชมทิวทัศน์ธรรมชาติสองข้างทางอย่างเพลิดเพลิน",
+    "romanization": "rot-fai"
+  },
+  {
+    "id": "t_8",
+    "word": "เรือหางยาว",
+    "pronunciation": "เรือ - หาง - ยาว",
+    "category": "travel",
+    "partOfSpeech": "คำนาม",
+    "meaning": "เรือไม้ยาวติดเครื่องยนต์ท้ายลำ นิยมใช้สัญจรตามแม่น้ำลำคลอง",
+    "exampleSentence": "นั่งเรือหางยาวล่องชมวิถีชีวิตริมคลองอัมพวา",
+    "romanization": "ruea-hang-yao"
+  },
+  {
+    "id": "t_9",
+    "word": "เรือสำราญ",
+    "pronunciation": "เรือ - สำ - ราน",
+    "category": "travel",
+    "partOfSpeech": "คำนาม",
+    "meaning": "เรือโดยสารขนาดใหญ่ มีสิ่งอำนวยความสะดวกครบครันสำหรับการพักผ่อน",
+    "exampleSentence": "เรือสำราญล่องผ่านอ่าวไทยในยามค่ำคืน",
+    "romanization": "ruea-sam-ran"
+  },
+  {
+    "id": "t_10",
+    "word": "เครื่องบิน",
+    "pronunciation": "เคฺรื่อง - บิน",
+    "category": "travel",
+    "partOfSpeech": "คำนาม",
+    "meaning": "อากาศยานขับเคลื่อนด้วยเครื่องยนต์ เดินทางบนฟ้าได้รวดเร็ว",
+    "exampleSentence": "เดินทางด้วยเครื่องบินช่วยประหยัดเวลาในการเดินทางไกล",
+    "romanization": "khrueang-bin"
+  },
+  {
+    "id": "t_11",
+    "word": "เฮลิคอปเตอร์",
+    "pronunciation": "เฮ - ลิ - ขอบ - เต้อ",
+    "category": "travel",
+    "partOfSpeech": "คำนาม",
+    "meaning": "อากาศยานปีกหมุน บินขึ้นลงในแนวดิ่งได้สะดวก",
+    "exampleSentence": "เฮลิคอปเตอร์บินสำรวจพื้นที่ป่าไม้อย่างปลอดภัย",
+    "romanization": "he-li-khop-toe"
+  },
+  {
+    "id": "t_12",
+    "word": "ท่าอากาศยาน",
+    "pronunciation": "ท่า - อา - กาด - สะ - ยาน",
+    "category": "travel",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สนามบิน สถานที่ขึ้นลงของเครื่องบินและบริการผู้โดยสาร",
+    "exampleSentence": "ท่าอากาศยานสุวรรณภูมิรองรับนักท่องเที่ยวจากทั่วโลก",
+    "romanization": "tha-a-kat-sa-yan"
+  },
+  {
+    "id": "t_13",
+    "word": "สถานีรถไฟ",
+    "pronunciation": "สะ - ทา - นี - รด - ไฟ",
+    "category": "travel",
+    "partOfSpeech": "คำนาม",
+    "meaning": "จุดจอดเทียบขบวนรถไฟเพื่อรับส่งผู้โดยสารและขนถ่ายสินค้า",
+    "exampleSentence": "ผู้โดยสารนั่งรอขึ้นรถไฟที่ชานชาลาสถานีรถไฟ",
+    "romanization": "sa-tha-ni-rot-fai"
+  },
+  {
+    "id": "t_14",
+    "word": "ท่าเรือ",
+    "pronunciation": "ท่า - เรือ",
+    "category": "travel",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สถานที่จอดเทียบเรือริมน้ำ สำหรับขึ้นลงเรือและขนส่ง",
+    "exampleSentence": "ยืนรอเรือโดยสารที่ท่าเรือข้ามฟากแม่น้ำเจ้าพระยา",
+    "romanization": "tha-ruea"
+  },
+  {
+    "id": "t_15",
+    "word": "ป้ายรถเมล์",
+    "pronunciation": "ป้าย - รด - เมล์",
+    "category": "travel",
+    "partOfSpeech": "คำนาม",
+    "meaning": "จุดจอดรับส่งผู้โดยสารของรถประจำทางริมถนน",
+    "exampleSentence": "ยืนเข้าแถวรอรถโดยสารที่ป้ายรถเมล์อย่างเป็นระเบียบ",
+    "romanization": "pai-rot-me"
+  },
+  {
+    "id": "t_16",
+    "word": "ทางด่วน",
+    "pronunciation": "ทาง - ด่วน",
+    "category": "travel",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ถนนพิเศษที่สร้างขึ้นเพื่อให้สัญจรได้รวดเร็วโดยเก็บค่าผ่านทาง",
+    "exampleSentence": "ใช้ทางด่วนเพื่อเดินทางไปสนามบินได้รวดเร็วยิ่งขึ้น",
+    "romanization": "thang-duan"
+  },
+  {
+    "id": "t_17",
+    "word": "สะพาน",
+    "pronunciation": "สะ - พาน",
+    "category": "travel",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สิ่งก่อสร้างข้ามแม่น้ำ ถนน หรือหุบเขา เพื่อให้สัญจรข้ามไปได้",
+    "exampleSentence": "สะพานพระรามแปดมีความงดงามโดดเด่นยามค่ำคืน",
+    "romanization": "sa-phan"
+  },
+  {
+    "id": "t_18",
+    "word": "อุโมงค์",
+    "pronunciation": "อุ - โมง",
+    "category": "travel",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ทางลอดใต้ดินหรือใต้ภูเขา เพื่อให้ยานพาหนะแล่นผ่าน",
+    "exampleSentence": "รถแล่นลอดผ่านอุโมงค์ขุนตานอย่างปลอดภัย",
+    "romanization": "u-mong"
+  },
+  {
+    "id": "t_19",
+    "word": "สี่แยก",
+    "pronunciation": "สี่ - แยก",
+    "category": "travel",
+    "partOfSpeech": "คำนาม",
+    "meaning": "จุดตัดของถนนสองสายที่มีทางแยกไปได้สี่ทิศ",
+    "exampleSentence": "ระมัดระวังเป็นพิเศษเมื่อขับขี่ยานพาหนะผ่านสี่แยก",
+    "romanization": "si-yaek"
+  },
+  {
+    "id": "t_20",
+    "word": "ทางม้าลาย",
+    "pronunciation": "ทาง - ม้า - ลาย",
+    "category": "travel",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ทางข้ามถนนทาสีขาวสลับดำ ให้คนเดินข้ามถนนได้อย่างปลอดภัย",
+    "exampleSentence": "ชะลอความเร็วเพื่อให้คนเดินข้ามถนนตรงทางม้าลาย",
+    "romanization": "thang-ma-lai"
+  },
+  {
+    "id": "t_21",
+    "word": "ทางเท้า",
+    "pronunciation": "ทาง - เท้า",
+    "category": "travel",
+    "partOfSpeech": "คำนาม",
+    "meaning": "พื้นที่ข้างถนนยกสูงขึ้นสำหรับให้คนเดินสัญจร (ฟุตบาท)",
+    "exampleSentence": "เดินบนทางเท้าอย่างระมัดระวังไม่ลงไปเดินบนผิวจราจร",
+    "romanization": "thang-thao"
+  },
+  {
+    "id": "t_22",
+    "word": "สัญญาณไฟ",
+    "pronunciation": "สัน - ยาน - ไฟ",
+    "category": "travel",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ไฟสัญญาณจราจรบอกให้หยุด รอ หรือไป (แดง เหลือง เขียว)",
+    "exampleSentence": "ปฏิบัติตามสัญญาณไฟจราจรเพื่อความปลอดภัยบนท้องถนน",
+    "romanization": "san-yan-fai"
+  },
+  {
+    "id": "t_23",
+    "word": "ตั๋วเดินทาง",
+    "pronunciation": "ตั๋ว - เดิน - ทาง",
+    "category": "travel",
+    "partOfSpeech": "คำนาม",
+    "meaning": "บัตรหรือเอกสารแสดงสิทธิในการโดยสารยานพาหนะ",
+    "exampleSentence": "แสดงตั๋วเดินทางต่อเจ้าหน้าที่ก่อนขึ้นขบวนรถไฟ",
+    "romanization": "tua-doen-thang"
+  },
+  {
+    "id": "t_24",
+    "word": "หนังสือเดินทาง",
+    "pronunciation": "หนัง - สือ - เดิน - ทาง",
+    "category": "travel",
+    "partOfSpeech": "คำนาม",
+    "meaning": "เอกสารราชการรับรองสัญชาติ ใช้เดินทางระหว่างประเทศ (พาสปอร์ต)",
+    "exampleSentence": "เก็บรักษาหนังสือเดินทางไว้อย่างปลอดภัยขณะเดินทางต่างแดน",
+    "romanization": "nang-sue-doen-thang"
+  },
+  {
+    "id": "t_25",
+    "word": "โรงแรม",
+    "pronunciation": "โรง - แรม",
+    "category": "travel",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สถานที่ให้บริการห้องพักและสิ่งอำนวยความสะดวกแก่นักท่องเที่ยว",
+    "exampleSentence": "จองห้องพักโรงแรมริมทะเลล่วงหน้าสำหรับวันหยุดพักผ่อน",
+    "romanization": "rong-raem"
+  },
+  {
+    "id": "t_26",
+    "word": "ที่พัก",
+    "pronunciation": "ที่ - พัก",
+    "category": "travel",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สถานที่สำหรับอยู่อาศัยหรือพักผ่อนชั่วคราวขณะเดินทาง",
+    "exampleSentence": "ที่พักสไตล์โฮมสเตย์ให้บรรยากาศอบอุ่นเป็นกันเอง",
+    "romanization": "thi-phak"
+  },
+  {
+    "id": "t_27",
+    "word": "รีสอร์ต",
+    "pronunciation": "รี - สอด",
+    "category": "travel",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สถานที่พักตากอากาศท่ามกลางธรรมชาติ มีสิ่งอำนวยความสะดวกครบครัน",
+    "exampleSentence": "พักผ่อนในรีสอร์ตริมภูเขาที่เงียบสงบและร่มรื่น",
+    "romanization": "ri-sot"
+  },
+  {
+    "id": "t_28",
+    "word": "ชายหาด",
+    "pronunciation": "ชาย - หาด",
+    "category": "travel",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ริมฝั่งทะเลที่เป็นพื้นทรายนุ่มลาดลงสู่น้ำ",
+    "exampleSentence": "เดินเล่นรับลมเย็นและฟังเสียงคลื่นกระทบชายหาด",
+    "romanization": "chai-hat"
+  },
+  {
+    "id": "t_29",
+    "word": "จุดชมวิว",
+    "pronunciation": "จุด - ชม - วิว",
+    "category": "travel",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สถานที่ที่ตั้งอยู่บนที่สูง สามารถมองเห็นทิวทัศน์ได้กว้างไกล",
+    "exampleSentence": "ขึ้นไปชมพระอาทิตย์ตกดินที่จุดชมวิวแหลมพรหมเทพ",
+    "romanization": "chut-chom-wio"
+  },
+  {
+    "id": "t_30",
+    "word": "วัด",
+    "pronunciation": "วัด",
+    "category": "travel",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ศาสนสถานของพุทธศาสนา เป็นศูนย์รวมจิตใจและศิลปวัฒนธรรม",
+    "exampleSentence": "ไหว้พระขอพรที่วัดพระแก้วเพื่อความเป็นสิริมงคล",
+    "romanization": "wat"
+  },
+  {
+    "id": "t_31",
+    "word": "โบสถ์",
+    "pronunciation": "โบด",
+    "category": "travel",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ศาสนสถานสำคัญในวัดหรือในคริสต์ศาสนาสำหรับประกอบพิธีกรรม",
+    "exampleSentence": "ชมจิตรกรรมฝาผนังอันวิจิตรตระการตาภายในโบสถ์",
+    "romanization": "bot"
+  },
+  {
+    "id": "t_32",
+    "word": "มัสยิด",
+    "pronunciation": "มัด - สะ - ยิด",
+    "category": "travel",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ศาสนสถานของศาสนาอิสลาม สำหรับละหมาดและประกอบศาสนกิจ",
+    "exampleSentence": "มัสยิดกลางประจำจังหวัดมีความงดงามทางสถาปัตยกรรม",
+    "romanization": "mat-sa-yit"
+  },
+  {
+    "id": "t_33",
+    "word": "พิพิธภัณฑ์",
+    "pronunciation": "พิ - พิด - ทะ - พัน",
+    "category": "travel",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สถานที่เก็บรวบรวมและจัดแสดงโบราณวัตถุ ศิลปะ และประวัติศาสตร์",
+    "exampleSentence": "ชมนิทรรศการประวัติศาสตร์ชาติไทยที่พิพิธภัณฑสถานแห่งชาติ",
+    "romanization": "phi-phit-tha-phan"
+  },
+  {
+    "id": "t_34",
+    "word": "หอศิลป์",
+    "pronunciation": "หอ - สิน",
+    "category": "travel",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สถานที่จัดแสดงผลงานศิลปะ ภาพวาด และงานประติมากรรม",
+    "exampleSentence": "เดินชมนิทรรศการภาพถ่ายสร้างสรรค์ที่หอศิลปกรุงเทพฯ",
+    "romanization": "ho-sin"
+  },
+  {
+    "id": "t_35",
+    "word": "สวนสัตว์",
+    "pronunciation": "สวน - สัด",
+    "category": "travel",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สถานที่รวบรวมสัตว์นานาชนิดไว้เพื่อการศึกษา อนุรักษ์ และพักผ่อน",
+    "exampleSentence": "พาเด็กๆ ไปศึกษาวิถีชีวิตของสัตว์นานาพันธุ์ที่สวนสัตว์",
+    "romanization": "suan-sat"
+  },
+  {
+    "id": "t_36",
+    "word": "สวนสนุก",
+    "pronunciation": "สวน - สะ - หนุก",
+    "category": "travel",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สถานที่รวบรวมเครื่องเล่นและกิจกรรมสร้างความบันเทิงตื่นเต้น",
+    "exampleSentence": "เล่นรถไฟเหาะและม้าหมุนอย่างเพลิดเพลินในสวนสนุก",
+    "romanization": "suan-sa-nuk"
+  },
+  {
+    "id": "t_37",
+    "word": "สวนสาธารณะ",
+    "pronunciation": "สวน - สา - ทา - ระ - นะ",
+    "category": "travel",
+    "partOfSpeech": "คำนาม",
+    "meaning": "พื้นที่สีเขียวเปิดให้ประชาชนทั่วไปเข้าไปพักผ่อนและออกกำลังกาย",
+    "exampleSentence": "วิ่งออกกำลังกายรอบสระน้ำในสวนสาธารณะยามเช้า",
+    "romanization": "suan-sa-tha-ra-na"
+  },
+  {
+    "id": "t_38",
+    "word": "ตลาด",
+    "pronunciation": "ตะ - หลาด",
+    "category": "travel",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สถานที่ชุมนุมซื้อขายสินค้า อาหารสด และของใช้",
+    "exampleSentence": "ไปจับจ่ายซื้อผักผลไม้สดแต่เช้าตรู่ที่ตลาดสด",
+    "romanization": "ta-lat"
+  },
+  {
+    "id": "t_39",
+    "word": "ซูเปอร์มาร์เก็ต",
+    "pronunciation": "ซู - เป้อ - ม้า - เก็ด",
+    "category": "travel",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ร้านค้าขนาดใหญ่แบบบริการตนเอง จำหน่ายอาหารและของใช้ครบครัน",
+    "exampleSentence": "เลือกซื้อของใช้เข้าบ้านที่ซูเปอร์มาร์เก็ตในวันหยุด",
+    "romanization": "su-poe-ma-ket"
+  },
+  {
+    "id": "t_40",
+    "word": "ห้างสรรพสินค้า",
+    "pronunciation": "ห้าง - สับ - พะ - สิน - ค้า",
+    "category": "travel",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ศูนย์การค้าขนาดใหญ่รวบรวมร้านค้า ร้านอาหาร และความบันเทิง",
+    "exampleSentence": "เดินเลือกซื้อเสื้อผ้าและรับประทานอาหารที่ห้างสรรพสินค้า",
+    "romanization": "hang-sap-pha-sin-kha"
+  },
+  {
+    "id": "t_41",
+    "word": "ธนาคาร",
+    "pronunciation": "ทะ - นา - คาน",
+    "category": "travel",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สถาบันการเงินที่ให้บริการรับฝากเงิน ถอนเงิน และให้สินเชื่อ",
+    "exampleSentence": "ติดต่อทำธุรกรรมทางการเงินที่สาขาของธนาคาร",
+    "romanization": "tha-na-khan"
+  },
+  {
+    "id": "t_42",
+    "word": "ที่ทำการไปรษณีย์",
+    "pronunciation": "ที่ - ทำ - กาน - ไปฺร - สะ - นี",
+    "category": "travel",
+    "partOfSpeech": "คำนาม",
+    "meaning": "หน่วยงานให้บริการรับส่งจดหมาย พัสดุ และบริการไปรษณีย์",
+    "exampleSentence": "ส่งพัสดุของขวัญให้เพื่อนทางไกลที่ที่ทำการไปรษณีย์",
+    "romanization": "thi-tham-kan-prai-sa-ni"
+  },
+  {
+    "id": "t_43",
+    "word": "สถานีตำรวจ",
+    "pronunciation": "สะ - ทา - นี - ตำ - หรวด",
+    "category": "travel",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ที่ทำการของตำรวจในการดูแลความสงบเรียบร้อยและรับแจ้งความ",
+    "exampleSentence": "ติดต่อแจ้งเอกสารสูญหายที่สถานีตำรวจในท้องที่",
+    "romanization": "sa-tha-ni-tam-ruat"
+  },
+  {
+    "id": "t_44",
+    "word": "ดับเพลิง",
+    "pronunciation": "ดับ - เพลิง",
+    "category": "travel",
+    "partOfSpeech": "คำนาม",
+    "meaning": "หน่วยงานและเจ้าหน้าที่ระงับอัคคีภัยและกู้ภัยฉุกเฉิน",
+    "exampleSentence": "เจ้าหน้าที่ดับเพลิงเข้าควบคุมสถานการณ์เพลิงไหม้อย่างรวดเร็ว",
+    "romanization": "dap-phloeng"
+  },
+  {
+    "id": "t_45",
+    "word": "ร้านอาหาร",
+    "pronunciation": "ร้าน - อา - หาน",
+    "category": "travel",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สถานที่จำหน่ายอาหารและเครื่องดื่มปรุงสำเร็จพร้อมบริการ",
+    "exampleSentence": "จองโต๊ะร้านอาหารริมแม่น้ำเพื่อฉลองวันเกิด",
+    "romanization": "ran-a-han"
+  },
+  {
+    "id": "t_46",
+    "word": "ร้านกาแฟ",
+    "pronunciation": "ร้าน - กา - แฟ",
+    "category": "travel",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ร้านจำหน่ายกาแฟ เครื่องดื่ม และขนม สำหรับนั่งพักผ่อนหรือทำงาน",
+    "exampleSentence": "นั่งจิบกาแฟอ่านหนังสือในร้านกาแฟบรรยากาศร่มรื่น",
+    "romanization": "ran-ka-fae"
+  },
+  {
+    "id": "t_47",
+    "word": "ห้องสมุด",
+    "pronunciation": "ห้อง - สะ - หมุด",
+    "category": "travel",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สถานที่เก็บรวบรวมหนังสือและแหล่งข้อมูลเพื่อการค้นคว้าและอ่าน",
+    "exampleSentence": "ค้นคว้าข้อมูลทำรายงานในห้องสมุดประชาชนที่เงียบสงบ",
+    "romanization": "hong-sa-mut"
+  },
+  {
+    "id": "t_48",
+    "word": "โรงภาพยนตร์",
+    "pronunciation": "โรง - พาบ - พะ - ยน",
+    "category": "travel",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สถานที่ฉายภาพยนตร์บนจอขนาดใหญ่พร้อมระบบเสียงสมบูรณ์แบบ",
+    "exampleSentence": "ชมภาพยนตร์แอนิเมชันเรื่องใหม่ในโรงภาพยนตร์",
+    "romanization": "rong-phap-pha-yon"
+  },
+  {
+    "id": "t_49",
+    "word": "สนามกีฬา",
+    "pronunciation": "สะ - นาม - กี - ลา",
+    "category": "travel",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สถานที่สำหรับแข่งขันและฝึกซ้อมกีฬาประเภทต่างๆ",
+    "exampleSentence": "ชมการแข่งขันฟุตบอลนัดกระชับมิตรในสนามกีฬาแห่งชาติ",
+    "romanization": "sa-nam-ki-la"
+  },
+  {
+    "id": "t_50",
+    "word": "สถานทูต",
+    "pronunciation": "สะ - ถาน - ทูด",
+    "category": "travel",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ที่ทำการของเอกอัครราชทูตและคณะผู้แทนทางการทูตในต่างแดน",
+    "exampleSentence": "ยื่นคำร้องขอวีซ่าเข้าประเทศที่สถานทูต",
+    "romanization": "sa-than-thut"
+  },
+  {
+    "id": "t_51",
+    "word": "ศาลากลาง",
+    "pronunciation": "สา - ลา - กลาง",
+    "category": "travel",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ที่ทำการบริหารราชการส่วนภูมิภาคของแต่ละจังหวัด",
+    "exampleSentence": "ติดต่อราชการงานทะเบียนราษฎร์ที่ศาลากลางจังหวัด",
+    "romanization": "sa-la-klang"
+  },
+  {
+    "id": "t_52",
+    "word": "แผนที่",
+    "pronunciation": "แผน - ที่",
+    "category": "travel",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ภาพแสดงลักษณะพื้นผิวโลก ย่อส่วนและมีสัญลักษณ์บอกทิศทาง",
+    "exampleSentence": "กางแผนที่วางแผนเส้นทางการท่องเที่ยวรอบเมือง",
+    "romanization": "phaen-thi"
+  },
+  {
+    "id": "t_53",
+    "word": "เข็มทิศ",
+    "pronunciation": "เข็ม - ทิด",
+    "category": "travel",
+    "partOfSpeech": "คำนาม",
+    "meaning": "อุปกรณ์ชี้ทิศทางด้วยแม่เหล็ก ชี้ไปทางทิศเหนือเสมอ",
+    "exampleSentence": "ใช้เข็มทิศและแผนที่นำทางในการเดินป่าระยะไกล",
+    "romanization": "khem-thit"
+  },
+  {
+    "id": "t_54",
+    "word": "กระเป๋าเดินทาง",
+    "pronunciation": "กระ - เป๋า - เดิน - ทาง",
+    "category": "travel",
+    "partOfSpeech": "คำนาม",
+    "meaning": "กระเป๋าขนาดใหญ่มีล้อลากสำหรับใส่เสื้อผ้าและของใช้ขณะเดินทาง",
+    "exampleSentence": "จัดเก็บเสื้อผ้าสัมภาระลงในกระเป๋าเดินทางล่วงหน้า",
+    "romanization": "kra-pao-doen-thang"
+  },
+  {
+    "id": "t_55",
+    "word": "เช็คอิน",
+    "pronunciation": "เช็ก - อิน",
+    "category": "travel",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "ลงทะเบียนเข้าพักโรงแรมหรือยืนยันที่นั่งก่อนขึ้นเครื่องบิน",
+    "exampleSentence": "ทำการเช็คอินออนไลน์เพื่อความสะดวกรวดเร็วก่อนขึ้นเครื่อง",
+    "romanization": "chek-in"
+  },
+  {
+    "id": "t_56",
+    "word": "ออกเดินทาง",
+    "pronunciation": "ออก - เดิน - ทาง",
+    "category": "travel",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "เริ่มเคลื่อนที่ออกจากจุดตั้งต้นเพื่อไปยังจุดหมายปลายทาง",
+    "exampleSentence": "ครอบครัวออกเดินทางท่องเที่ยวแต่เช้ามืดเพื่อเลี่ยงรถติด",
+    "romanization": "ok-doen-thang"
+  },
+  {
+    "id": "t_57",
+    "word": "ถึงที่หมาย",
+    "pronunciation": "ถึง - ที่ - หมาย",
+    "category": "travel",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "บรรลุสู่จุดหมายปลายทางการเดินทางโดยสวัสดิภาพ",
+    "exampleSentence": "ทุกคนเดินทางถึงที่หมายอย่างปลอดภัยและพร้อมพักผ่อน",
+    "romanization": "thueng-thi-mai"
+  },
+  {
+    "id": "t_58",
+    "word": "ท่องเที่ยว",
+    "pronunciation": "ท่อง - เที่ยว",
+    "category": "travel",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "เดินทางไปยังสถานที่ต่างๆ เพื่อพักผ่อนหย่อนใจและเปิดหูเปิดตา",
+    "exampleSentence": "การท่องเที่ยวเปิดโอกาสให้เราได้เรียนรู้วัฒนธรรมใหม่ๆ",
+    "romanization": "thong-thiao"
+  },
+  {
+    "id": "t_59",
+    "word": "นักท่องเที่ยว",
+    "pronunciation": "นัก - ท่อง - เที่ยว",
+    "category": "travel",
+    "partOfSpeech": "คำนาม",
+    "meaning": "บุคคลที่เดินทางไปเยือนสถานที่ต่างถิ่นเพื่อการพักผ่อน",
+    "exampleSentence": "นักท่องเที่ยวประทับใจในมิตรไมตรีและรอยยิ้มของคนไทย",
+    "romanization": "nak-thong-thiao"
+  },
+  {
+    "id": "t_60",
+    "word": "มัคคุเทศก์",
+    "pronunciation": "มัก - คุ - เทด",
+    "category": "travel",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผู้นำเที่ยวและให้ข้อมูลแนะนำสถานที่แก่นักท่องเที่ยว (ไกด์)",
+    "exampleSentence": "มัคคุเทศก์อธิบายประวัติศาสตร์ความเป็นมาของพระราชวังอย่างละเอียด",
+    "romanization": "mak-khu-thet"
+  },
+  {
+    "id": "e_1",
+    "word": "มีความสุข",
+    "pronunciation": "มี - ความ - สุก",
+    "category": "emotions",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "รู้สึกอิ่มเอมใจ สบายใจ ปราศจากความทุกข์",
+    "exampleSentence": "การได้อยู่พร้อมหน้าครอบครัวทำให้เขามีความสุขมาก",
+    "romanization": "mi-khwam-suk"
+  },
+  {
+    "id": "e_2",
+    "word": "ดีใจ",
+    "pronunciation": "ดี - ใจ",
+    "category": "emotions",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "รู้สึกยินดีเมื่อได้รับสิ่งดีงามหรือสมหวังในสิ่งที่รอคอย",
+    "exampleSentence": "เด็กๆ ดีใจมากที่ได้รับของขวัญวันเกิดชิ้นพิเศษ",
+    "romanization": "di-chai"
+  },
+  {
+    "id": "e_3",
+    "word": "ร่าเริง",
+    "pronunciation": "ร่า - เริง",
+    "category": "emotions",
+    "partOfSpeech": "คำคุณศัพท์",
+    "meaning": "มีอารมณ์แจ่มใส เบิกบาน สนุกสนาน ไม่หม่นหมอง",
+    "exampleSentence": "เธอเป็นเด็กร่าเริงแจ่มใสและมีมนุษยสัมพันธ์ดี",
+    "romanization": "ra-roeng"
+  },
+  {
+    "id": "e_4",
+    "word": "เพลิดเพลิน",
+    "pronunciation": "เพลิด - เพลิน",
+    "category": "emotions",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "รู้สึกสนุกสนานจนลืมเวลา สนุกไปกับกิจกรรมที่ทำ",
+    "exampleSentence": "เขาฟังดนตรีคลาสสิกอย่างเพลิดเพลินตลอดช่วงบ่าย",
+    "romanization": "phloet-phloen"
+  },
+  {
+    "id": "e_5",
+    "word": "เบิกบาน",
+    "pronunciation": "เบิก - บาน",
+    "category": "emotions",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "จิตใจสดชื่นแจ่มใส ปลอดโปร่ง",
+    "exampleSentence": "รอยยิ้มที่เบิกบานของเด็กๆ ช่วยสร้างความสดใสให้ทุกคน",
+    "romanization": "boek-ban"
+  },
+  {
+    "id": "e_6",
+    "word": "หัวเราะ",
+    "pronunciation": "หัว - เราะ",
+    "category": "emotions",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "เปล่งเสียงแสดงความขบขัน ดีใจ หรือชอบใจ",
+    "exampleSentence": "ทุกคนหัวเราะอย่างมีความสุขเมื่อฟังเรื่องเล่าตลกขบขัน",
+    "romanization": "hua-ro"
+  },
+  {
+    "id": "e_7",
+    "word": "สบายใจ",
+    "pronunciation": "สะ - บาย - ใจ",
+    "category": "emotions",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "หมดกังวล จิตใจสงบ ไม่มีความตึงเครียด",
+    "exampleSentence": "เมื่อส่งรายงานครบทุกวิชาแล้วเขาก็รู้สึกสบายใจ",
+    "romanization": "sa-bai-chai"
+  },
+  {
+    "id": "e_8",
+    "word": "อบอุ่น",
+    "pronunciation": "อบ - อุ่น",
+    "category": "emotions",
+    "partOfSpeech": "คำคุณศัพท์",
+    "meaning": "รู้สึกได้รับความรัก ความคุ้มครอง และความเอาใจใส่",
+    "exampleSentence": "การต้อนรับที่แสนอบอุ่นทำให้แขกผู้มาเยือนประทับใจ",
+    "romanization": "op-un"
+  },
+  {
+    "id": "e_9",
+    "word": "สงบสุข",
+    "pronunciation": "สะ - หงบ - สุก",
+    "category": "emotions",
+    "partOfSpeech": "คำคุณศัพท์",
+    "meaning": "ปราศจากความวุ่นวาย มีสันติภาพและความราบรื่น",
+    "exampleSentence": "หมู่บ้านในหุบเขาแห่งนี้มีวิถีชีวิตที่สงบสุขและเรียบง่าย",
+    "romanization": "sa-ngop-suk"
+  },
+  {
+    "id": "e_10",
+    "word": "ตื่นเต้น",
+    "pronunciation": "ตื่น - เต้น",
+    "category": "emotions",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "รู้สึกกระตือรือร้น ใจระทึกต่อเหตุการณ์สำคัญหรือสิ่งใหม่",
+    "exampleSentence": "เขารู้สึกตื่นเต้นมากก่อนขึ้นพูดบนเวทีใหญ่",
+    "romanization": "tuen-ten"
+  },
+  {
+    "id": "e_11",
+    "word": "ประทับใจ",
+    "pronunciation": "ประ - ทับ - ใจ",
+    "category": "emotions",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "รู้สึกซาบซึ้งและจดจำได้อย่างมิรู้ลืมต่อสิ่งที่ดีงาม",
+    "exampleSentence": "พวกเราประทับใจในน้ำใจอันดีงามของชาวบ้านในท้องถิ่น",
+    "romanization": "pra-thap-chai"
+  },
+  {
+    "id": "e_12",
+    "word": "ภาคภูมิใจ",
+    "pronunciation": "พาก - พูม - ใจ",
+    "category": "emotions",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "รู้สึกกระหยิ่มใจ อิ่มเอมใจในความสำเร็จหรือคุณความดี",
+    "exampleSentence": "พ่อแม่รู้สึกภาคภูมิใจที่ลูกตั้งใจศึกษาเล่าเรียนจนสำเร็จ",
+    "romanization": "phak-phum-chai"
+  },
+  {
+    "id": "e_13",
+    "word": "มั่นใจ",
+    "pronunciation": "มั่น - ใจ",
+    "category": "emotions",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "เชื่อมั่นในความรู้ ความสามารถ หรือการตัดสินใจของตนเอง",
+    "exampleSentence": "เขาตอบคำถามของคณะกรรมการด้วยความมั่นใจและชัดถ้อยชัดคำ",
+    "romanization": "man-chai"
+  },
+  {
+    "id": "e_14",
+    "word": "ศรัทธา",
+    "pronunciation": "สัด - ทา",
+    "category": "emotions",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ความเชื่อถือ เลื่อมใส ในคุณความดีหรือหลักธรรม",
+    "exampleSentence": "ชาวบ้านมีความศรัทธาอย่างลึกซึ้งต่อคำสอนของพระพุทธองค์",
+    "romanization": "sat-tha"
+  },
+  {
+    "id": "e_15",
+    "word": "กตัญญู",
+    "pronunciation": "กะ - ตัน - ยู",
+    "category": "emotions",
+    "partOfSpeech": "คำคุณศัพท์",
+    "meaning": "รู้คุณและพร้อมที่จะตอบแทนบุญคุณแก่ผู้มีพระคุณ",
+    "exampleSentence": "ความกตัญญูต่อบิดามารดาเป็นเครื่องหมายของคนดี",
+    "romanization": "ka-tan-yu"
+  },
+  {
+    "id": "e_16",
+    "word": "เมตตา",
+    "pronunciation": "เมด - ตา",
+    "category": "emotions",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ความรักใคร่ ปรารถนาดีอยากให้ผู้อื่นมีความสุข",
+    "exampleSentence": "คุณครูมีความเมตตากรุณาต่อลูกศิษย์ทุกคนอย่างเท่าเทียม",
+    "romanization": "met-ta"
+  },
+  {
+    "id": "e_17",
+    "word": "กรุณา",
+    "pronunciation": "กะ - รุ - นา",
+    "category": "emotions",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ความสงสาร คิดจะช่วยให้ผู้อื่นพ้นจากความทุกข์",
+    "exampleSentence": "แพทย์และพยาบาลให้การดูแลรักษาผู้ยากไร้ด้วยความกรุณา",
+    "romanization": "ka-ru-na"
+  },
+  {
+    "id": "e_18",
+    "word": "เสียสละ",
+    "pronunciation": "เสีย - สะ - ละ",
+    "category": "emotions",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "ยอมสละความสุขหรือผลประโยชน์ส่วนตนเพื่อประโยชน์ส่วนรวม",
+    "exampleSentence": "ทหารและตำรวจเสียสละความสุขส่วนตัวเพื่อปกป้องความสงบของชาติ",
+    "romanization": "sia-sa-la"
+  },
+  {
+    "id": "e_19",
+    "word": "ซื่อสัตย์",
+    "pronunciation": "ซื่อ - สัด",
+    "category": "emotions",
+    "partOfSpeech": "คำคุณศัพท์",
+    "meaning": "ประพฤติตรง ไม่คดโกง พูดความจริง จริงใจต่อหน้าที่",
+    "exampleSentence": "ความซื่อสัตย์สุจริตเป็นคุณธรรมพื้นฐานที่ทุกคนควรยึดถือ",
+    "romanization": "sue-sat"
+  },
+  {
+    "id": "e_20",
+    "word": "เกรงใจ",
+    "pronunciation": "เกรง - ใจ",
+    "category": "emotions",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "ไม่ต้องการรบกวนหรือทำให้ผู้อื่นต้องลำบากใจ",
+    "exampleSentence": "คนไทยมีอุปนิสัยขี้เกรงใจและให้เกียรติผู้อื่นเสมอ",
+    "romanization": "kreng-chai"
+  },
+  {
+    "id": "e_21",
+    "word": "อ่อนน้อม",
+    "pronunciation": "อ่อน - น้อม",
+    "category": "emotions",
+    "partOfSpeech": "คำคุณศัพท์",
+    "meaning": "สุภาพ ไม่เย่อหยิ่ง ถ่อมตนและเคารพผู้อาวุโส",
+    "exampleSentence": "กิริยาอ่อนน้อมถ่อมตนทำให้ผู้ใหญ่รักใคร่และเอ็นดู",
+    "romanization": "on-nom"
+  },
+  {
+    "id": "e_22",
+    "word": "โอบอ้อมอารี",
+    "pronunciation": "โอบ - อ้อม - อา - รี",
+    "category": "emotions",
+    "partOfSpeech": "คำคุณศัพท์",
+    "meaning": "มีน้ำใจเผื่อแผ่ เอื้อเฟื้อช่วยเหลือผู้อื่นอยู่เสมอ",
+    "exampleSentence": "คุณยายเป็นคนโอบอ้อมอารีชอบแบ่งปันอาหารให้เพื่อนบ้าน",
+    "romanization": "op-om-a-ri"
+  },
+  {
+    "id": "e_23",
+    "word": "เห็นอกเห็นใจ",
+    "pronunciation": "เห็น - อก - เห็น - ใจ",
+    "category": "emotions",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "เข้าใจความรู้สึกและร่วมรับรู้ความยากลำบากของผู้อื่น",
+    "exampleSentence": "เพื่อนๆ ร่วมแสดงความเห็นอกเห็นใจและให้กำลังใจเขาในยามยาก",
+    "romanization": "hen-ok-hen-chai"
+  },
+  {
+    "id": "e_24",
+    "word": "เสียใจ",
+    "pronunciation": "เสีย - ใจ",
+    "category": "emotions",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "รู้สึกเป็นทุกข์ ไม่สบายใจเมื่อเกิดเรื่องไม่ดีหรือสูญเสีย",
+    "exampleSentence": "เขารู้สึกเสียใจที่ไม่ได้ไปร่วมงานเลี้ยงอำลาเพื่อนสนิท",
+    "romanization": "sia-chai"
+  },
+  {
+    "id": "e_25",
+    "word": "ร้องไห้",
+    "pronunciation": "ร้อง - ไห้",
+    "category": "emotions",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "หลั่งน้ำตาและส่งเสียงสะอื้นเมื่อเสียใจ เจ็บปวด หรือซาบซึ้ง",
+    "exampleSentence": "เด็กน้อยร้องไห้เมื่อทำลูกโป่งหลุดลอยขึ้นฟ้า",
+    "romanization": "rong-hai"
+  },
+  {
+    "id": "e_26",
+    "word": "โศกเศร้า",
+    "pronunciation": "โสก - เส้า",
+    "category": "emotions",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "มีความทุกข์ใจอย่างหนัก อาลัยอาวรณ์ จิตใจหม่นหมอง",
+    "exampleSentence": "ทุกคนร่วมไว้อาลัยด้วยความโศกเศร้าอย่างสุดซึ้ง",
+    "romanization": "sok-sao"
+  },
+  {
+    "id": "e_27",
+    "word": "เหงา",
+    "pronunciation": "เหงา",
+    "category": "emotions",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "รู้สึกโดดเดี่ยว อ้างว้าง ขาดเพื่อนหรือคนที่เข้าใจ",
+    "exampleSentence": "การอยู่คนเดียวในบ้านกว้างทำให้เขารู้สึกเหงาบ้างบางเวลา",
+    "romanization": "ngao"
+  },
+  {
+    "id": "e_28",
+    "word": "ผิดหวัง",
+    "pronunciation": "ผิด - หวัง",
+    "category": "emotions",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "ไม่เป็นไปตามความคาดหมายหรือสิ่งที่ตั้งใจไว้",
+    "exampleSentence": "แม้จะผิดหวังจากการแข่งขันแต่เขาก็ไม่ยอมแพ้และจะฝึกฝนต่อไป",
+    "romanization": "phit-wang"
+  },
+  {
+    "id": "e_29",
+    "word": "เสียดาย",
+    "pronunciation": "เสีย - ดาย",
+    "category": "emotions",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "รู้สึกอาลัยในสิ่งที่พลาดไปหรือไม่อาจย้อนคืนมาได้",
+    "exampleSentence": "เขารู้สึกเสียดายที่ไม่ได้ซื้อหนังสือน่าอ่านเล่มนั้นไว้",
+    "romanization": "sia-dai"
+  },
+  {
+    "id": "e_30",
+    "word": "ท้อแท้",
+    "pronunciation": "ท้อ - แท้",
+    "category": "emotions",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "หมดกำลังใจ รู้สึกหมดหวังที่จะสู้ต่อไป",
+    "exampleSentence": "อย่าเพิ่งท้อแท้กับอุปสรรค จงลุกขึ้นสู้ใหม่อีกครั้ง",
+    "romanization": "tho-thae"
+  },
+  {
+    "id": "e_31",
+    "word": "โกรธ",
+    "pronunciation": "โกฺรด",
+    "category": "emotions",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "ขุ่นเคืองใจอย่างแรง ไม่พอใจอย่างยิ่งเมื่อถูกล่วงละเมิด",
+    "exampleSentence": "นับหนึ่งถึงสิบในใจเพื่อระงับอารมณ์โกรธที่เกิดขึ้น",
+    "romanization": "krot"
+  },
+  {
+    "id": "e_32",
+    "word": "โมโห",
+    "pronunciation": "โม - โห",
+    "category": "emotions",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "มีอารมณ์ฉุนเฉียว โกรธจัดอย่างกะทันหัน",
+    "exampleSentence": "การพูดจาประชดประชันรังแต่จะทำให้เกิดความโมโหใส่กัน",
+    "romanization": "mo-ho"
+  },
+  {
+    "id": "e_33",
+    "word": "หงุดหงิด",
+    "pronunciation": "หงุด - หงิด",
+    "category": "emotions",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "อารมณ์เสีย ไม่สบอารมณ์ มีความรำคาญใจง่าย",
+    "exampleSentence": "เสียงรบกวนตลอดทั้งวันทำให้เขารู้สึกหงุดหงิดใจ",
+    "romanization": "ngut-ngit"
+  },
+  {
+    "id": "e_34",
+    "word": "ขุ่นเคือง",
+    "pronunciation": "ขุ่น - เคือง",
+    "category": "emotions",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "ไม่พอใจ ค้างคาใจ เจ็บแค้นใจอยู่ลึกๆ",
+    "exampleSentence": "การเปิดอกพูดคุยช่วยคลี่คลายความขุ่นเคืองระหว่างเพื่อน",
+    "romanization": "khun-khueang"
+  },
+  {
+    "id": "e_35",
+    "word": "อิจฉา",
+    "pronunciation": "อิด - ฉา",
+    "category": "emotions",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "ริษยา ไม่พอใจเมื่อเห็นผู้อื่นได้ดีกว่าตนเอง",
+    "exampleSentence": "ควรมุทิตาจิตยินดีในความสำเร็จของผู้อื่นแทนที่จะอิจฉา",
+    "romanization": "it-cha"
+  },
+  {
+    "id": "e_36",
+    "word": "หึงหวง",
+    "pronunciation": "หึง - หวง",
+    "category": "emotions",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "ไม่อยากให้คนรักหรือของรักไปเกี่ยวข้องกับผู้อื่น",
+    "exampleSentence": "ความไว้เนื้อเชื่อใจกันช่วยลดความรู้สึกหึงหวงลงได้",
+    "romanization": "hueng-huang"
+  },
+  {
+    "id": "e_37",
+    "word": "หวาดกลัว",
+    "pronunciation": "หวาด - กลัว",
+    "category": "emotions",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "รู้สึกตระหนกตกใจ กลัวอันตรายหรือสิ่งที่มองไม่เห็น",
+    "exampleSentence": "เด็กๆ มักหวาดกลัวเสียงฟ้าร้องคำรามในคืนฝนตก",
+    "romanization": "wat-klua"
+  },
+  {
+    "id": "e_38",
+    "word": "ตกใจ",
+    "pronunciation": "ตก - ใจ",
+    "category": "emotions",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "สะดุ้ง สะเทือนใจอย่างกะทันหันเมื่อเจอสิ่งไม่คาดคิด",
+    "exampleSentence": "เขาสะดุ้งตกใจเมื่อมีเสียงแก้วหล่นแตกเสียงดัง",
+    "romanization": "tok-chai"
+  },
+  {
+    "id": "e_39",
+    "word": "กังวล",
+    "pronunciation": "กัง - วน",
+    "category": "emotions",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "มีความห่วงกังวล จิตใจพะวงอยู่กับเรื่องใดเรื่องหนึ่ง",
+    "exampleSentence": "คุณแม่อดเป็นกังวลไม่ได้เมื่อลูกกลับบ้านช้ากว่าเวลาปกติ",
+    "romanization": "kang-won"
+  },
+  {
+    "id": "e_40",
+    "word": "หวาดระแวง",
+    "pronunciation": "หวาด - ระ - แวง",
+    "category": "emotions",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "ไม่ไว้วางใจ สงสัยว่าจะมีภัยมาถึงตัวตลอดเวลา",
+    "exampleSentence": "การอยู่ร่วมกันด้วยความจริงใจช่วยขจัดความหวาดระแวง",
+    "romanization": "wat-ra-waeng"
+  },
+  {
+    "id": "e_41",
+    "word": "เครียด",
+    "pronunciation": "เครียด",
+    "category": "emotions",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "สภาวะตึงเครียดทางอารมณ์ จิตใจ และร่างกายจากแรงกดดัน",
+    "exampleSentence": "ฝึกนั่งสมาธิและหายใจช้าๆ เพื่อช่วยลดความเครียดจากการทำงาน",
+    "romanization": "khriat"
+  },
+  {
+    "id": "e_42",
+    "word": "เหน็ดเหนื่อย",
+    "pronunciation": "เหน็ด - เหนื่อย",
+    "category": "emotions",
+    "partOfSpeech": "คำคุณศัพท์",
+    "meaning": "หมดเรี่ยวแรง ล้าทั้งร่างกายและจิตใจจากการตรากตรำ",
+    "exampleSentence": "หลังจากทำงานหนักมาทั้งวันเขารู้สึกเหน็ดเหนื่อยมาก",
+    "romanization": "net-nueai"
+  },
+  {
+    "id": "e_43",
+    "word": "อ่อนเพลีย",
+    "pronunciation": "อ่อน - เพลีย",
+    "category": "emotions",
+    "partOfSpeech": "คำคุณศัพท์",
+    "meaning": "ไม่มีแรง อิดโรย จากการพักผ่อนไม่เพียงพอหรือเจ็บป่วย",
+    "exampleSentence": "ดื่มน้ำเกลือแร่เพื่อชดเชยอาการอ่อนเพลียของร่างกาย",
+    "romanization": "on-phlia"
+  },
+  {
+    "id": "e_44",
+    "word": "เบื่อหน่าย",
+    "pronunciation": "เบื่อ - หน่าย",
+    "category": "emotions",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "หมดความสนใจ จำเจ ไม่อยากทำสิ่งเดิมๆ ซ้ำๆ",
+    "exampleSentence": "หากรู้สึกเบื่อหน่ายลองหาเวลาไปทำงานอดิเรกใหม่ๆ ดู",
+    "romanization": "buea-nhai"
+  },
+  {
+    "id": "e_45",
+    "word": "สับสน",
+    "pronunciation": "สับ - สน",
+    "category": "emotions",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "งุนงง คิดไม่ตก ไม่รู้จะตัดสินใจอย่างไรดี",
+    "exampleSentence": "ข้อมูลที่ขัดแย้งกันทำให้ผู้ฟังรู้สึกสับสนในข้อเท็จจริง",
+    "romanization": "sap-son"
+  },
+  {
+    "id": "e_46",
+    "word": "ลังเล",
+    "pronunciation": "ลัง - เล",
+    "category": "emotions",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "ไม่แน่ใจ ตัดสินใจไม่เด็ดขาด เปลี่ยนไปเปลี่ยนมา",
+    "exampleSentence": "เขาลังเลว่าจะเลือกศึกษาต่อในสาขาใดดี",
+    "romanization": "lang-le"
+  },
+  {
+    "id": "e_47",
+    "word": "ประหม่า",
+    "pronunciation": "ประ - หม่า",
+    "category": "emotions",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "สะเทิ้น สะท้าน ตื่นเต้นจนทำตัวไม่ถูกเมื่ออยู่ต่อหน้าธารกำนัล",
+    "exampleSentence": "สูดหายใจลึกๆ เพื่อคลายความประหม่าก่อนขึ้นกล่าวสุนทรพจน์",
+    "romanization": "pra-ma"
+  },
+  {
+    "id": "e_48",
+    "word": "เขินอาย",
+    "pronunciation": "เขิน - อาย",
+    "category": "emotions",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "กระดากอาย หน้าแดง ไม่กล้าสบตาเมื่อถูกหยอกล้อหรือชมเชย",
+    "exampleSentence": "เธอรู้สึกเขินอายเมื่อทุกคนร้องเพลงอวยพรวันเกิดให้",
+    "romanization": "khoen-ai"
+  },
+  {
+    "id": "e_49",
+    "word": "อัศจรรย์ใจ",
+    "pronunciation": "อัด - สะ - จัน - ใจ",
+    "category": "emotions",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "แปลกใจอย่างยิ่ง ทึ่งในสิ่งมหัศจรรย์ที่ไม่คาดฝัน",
+    "exampleSentence": "นักท่องเที่ยวอัศจรรย์ใจในความงดงามของปรากฏการณ์แสงเหนือ",
+    "romanization": "at-sa-chan-chai"
+  },
+  {
+    "id": "e_50",
+    "word": "ประหลาดใจ",
+    "pronunciation": "ประ - หลาด - ใจ",
+    "category": "emotions",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "รู้สึกแปลกใจ คาดไม่ถึงกับสิ่งที่เพิ่งได้พบเห็น",
+    "exampleSentence": "เขาประหลาดใจที่เพื่อนเก่าแวะมาหาถึงบ้านโดยไม่ได้นัดหมาย",
+    "romanization": "pra-lat-chai"
+  },
+  {
+    "id": "e_51",
+    "word": "ซาบซึ้ง",
+    "pronunciation": "ซาบ - ซึ้ง",
+    "category": "emotions",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "ตื้นตันใจอย่างลึกซึ้งต่อความปรารถนาดีและน้ำใจ",
+    "exampleSentence": "ทุกคนรู้สึกซาบซึ้งในพระมหากรุณาธิคุณอย่างหาที่สุดมิได้",
+    "romanization": "sap-sueng"
+  },
+  {
+    "id": "e_52",
+    "word": "ห่วงใย",
+    "pronunciation": "ห่วง - ใย",
+    "category": "emotions",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "มีความคิดถึง คอยดูแล และอยากให้ผู้อื่นปลอดภัย",
+    "exampleSentence": "คุณยายโทรศัพท์มาถามไถ่ด้วยความห่วงใยในสุขภาพของหลาน",
+    "romanization": "huang-yai"
+  },
+  {
+    "id": "e_53",
+    "word": "คิดถึง",
+    "pronunciation": "คิด - ถึง",
+    "category": "emotions",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "นึกถึงด้วยความผูกพัน อาลัย และปรารถนาจะได้พบเจอ",
+    "exampleSentence": "เมื่อต้องไกลบ้าน เขายังคงคิดถึงกับข้าวฝีมือแม่อยู่เสมอ",
+    "romanization": "khit-thueng"
+  },
+  {
+    "id": "e_54",
+    "word": "ปลอดภัย",
+    "pronunciation": "ปลอด - ไพ",
+    "category": "emotions",
+    "partOfSpeech": "คำคุณศัพท์",
+    "meaning": "พ้นจากภัยอันตราย ปราศจากสิ่งคุกคาม",
+    "exampleSentence": "เดินทางถึงที่หมายโดยสวัสดิภาพและปลอดภัยในทุกเส้นทาง",
+    "romanization": "plot-phai"
+  },
+  {
+    "id": "e_55",
+    "word": "ไว้ใจ",
+    "pronunciation": "ไว้ - ใจ",
+    "category": "emotions",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "มอบความเชื่อถือและไว้วางใจให้แก่ผู้อื่น",
+    "exampleSentence": "เพื่อนที่ซื่อสัตย์คือบุคคลที่สามารถไว้ใจได้เสมอ",
+    "romanization": "wai-chai"
+  },
+  {
+    "id": "e_56",
+    "word": "จริงใจ",
+    "pronunciation": "จริง - ใจ",
+    "category": "emotions",
+    "partOfSpeech": "คำคุณศัพท์",
+    "meaning": "แสดงออกตรงกับความรู้สึกภายใน ปราศจากการเสแสร้ง",
+    "exampleSentence": "มิตรภาพที่ยั่งยืนเริ่มต้นจากความจริงใจต่อกัน",
+    "romanization": "ching-chai"
+  },
+  {
+    "id": "e_57",
+    "word": "อดทน",
+    "pronunciation": "อด - ทน",
+    "category": "emotions",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "ทนทานต่อความยากลำบาก ไม่ยอมแพ้ต่ออุปสรรค",
+    "exampleSentence": "ความอดทนเป็นกุญแจสำคัญสู่ความสำเร็จในชีวิต",
+    "romanization": "ot-thon"
+  },
+  {
+    "id": "e_58",
+    "word": "พยายาม",
+    "pronunciation": "พะ - ยา - ยาม",
+    "category": "emotions",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "มุ่งมั่นตั้งใจทำสิ่งใดสิ่งหนึ่งอย่างเต็มกำลัง",
+    "exampleSentence": "ความพยายามอยู่ที่ไหน ความสำเร็จย่อมอยู่ที่นั่น",
+    "romanization": "pha-ya-yam"
+  },
+  {
+    "id": "e_59",
+    "word": "ตั้งใจ",
+    "pronunciation": "ตั้ง - ใจ",
+    "category": "emotions",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "จดจ่อ มีสมาธิ และมุ่งมั่นทำสิ่งใดสิ่งหนึ่งให้ดีที่สุด",
+    "exampleSentence": "เขาตั้งใจอ่านหนังสือเพื่อเตรียมตัวสอบเข้ามหาวิทยาลัย",
+    "romanization": "tang-chai"
+  },
+  {
+    "id": "e_60",
+    "word": "หวังดี",
+    "pronunciation": "หวัง - ดี",
+    "category": "emotions",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "ปรารถนาดี อยากให้ผู้อื่นได้รับสิ่งที่ดีงามและมีความสุข",
+    "exampleSentence": "คำตักเตือนของผู้ใหญ่ล้วนมาจากความหวังดีต่อเยาวชน",
+    "romanization": "wang-di"
+  },
+  {
+    "id": "j_1",
+    "word": "คุณครู",
+    "pronunciation": "คุน - ครู",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผู้สั่งสอนและถ่ายทอดความรู้ อบรมบ่มเพาะศิษย์ให้เป็นคนดี",
+    "exampleSentence": "คุณครูตั้งใจสอนและเอาใจใส่ดูแลนักเรียนทุกคน",
+    "romanization": "khun-khru"
+  },
+  {
+    "id": "j_2",
+    "word": "อาจารย์",
+    "pronunciation": "อา - จาน",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผู้สั่งสอนวิชาความรู้ในระดับวิทยาลัยหรือมหาวิทยาลัย",
+    "exampleSentence": "อาจารย์ให้คำปรึกษาแก่นักศึกษาในการทำวิทยานิพนธ์",
+    "romanization": "a-chan"
+  },
+  {
+    "id": "j_3",
+    "word": "นักเรียน",
+    "pronunciation": "นัก - เรียน",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผู้เข้ารับการศึกษาในโรงเรียนระดับประถมและมัธยม",
+    "exampleSentence": "นักเรียนตั้งใจฟังคำบรรยายและร่วมตอบคำถามในห้องเรียน",
+    "romanization": "nak-rian"
+  },
+  {
+    "id": "j_4",
+    "word": "นักศึกษา",
+    "pronunciation": "นัก - สึก - สา",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผู้กำลังศึกษาเล่าเรียนในระดับอุดมศึกษาหรือมหาวิทยาลัย",
+    "exampleSentence": "นักศึกษาร่วมกันทำกิจกรรมบำเพ็ญประโยชน์เพื่อสังคม",
+    "romanization": "nak-suek-sa"
+  },
+  {
+    "id": "j_5",
+    "word": "แพทย์",
+    "pronunciation": "แพด",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผู้ประกอบวิชาชีพตรวจรักษาและป้องกันโรคแก่ผู้ป่วย (หมอ)",
+    "exampleSentence": "แพทย์ทำการตรวจวินิจฉัยโรคอย่างละเอียดรอบคอบ",
+    "romanization": "phaet"
+  },
+  {
+    "id": "j_6",
+    "word": "ทันตแพทย์",
+    "pronunciation": "ทัน - ตะ - แพด",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "แพทย์ผู้เชี่ยวชาญการดูแลและรักษาโรคเกี่ยวกับฟันและช่องปาก",
+    "exampleSentence": "ควรไปพบทันตแพทย์เพื่อขูดหินปูนและตรวจสุขภาพฟันทุก 6 เดือน",
+    "romanization": "than-ta-phaet"
+  },
+  {
+    "id": "j_7",
+    "word": "เภสัชกร",
+    "pronunciation": "เพ - สัด - ชะ - กอน",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผู้เชี่ยวชาญด้านยา ปรุงยา และให้คำแนะนำการใช้ยาอย่างถูกต้อง",
+    "exampleSentence": "เภสัชกรอธิบายวิธีการรับประทานยาและข้อควรระวังแก่คนไข้",
+    "romanization": "phe-sat-cha-kon"
+  },
+  {
+    "id": "j_8",
+    "word": "พยาบาล",
+    "pronunciation": "พะ - ยา - บาน",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผู้ประกอบวิชาชีพให้การพยาบาลและดูแลฟื้นฟูสุขภาพผู้ป่วย",
+    "exampleSentence": "พยาบาลคอยวัดไข้และดูแลผู้ป่วยอย่างใกล้ชิดตลอดคืน",
+    "romanization": "pha-ya-ban"
+  },
+  {
+    "id": "j_9",
+    "word": "สัตวแพทย์",
+    "pronunciation": "สัด - ตะ - วะ - แพด",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "แพทย์ผู้ตรวจรักษาและดูแลสุขภาพของสัตว์ (หมอรักษาสัตว์)",
+    "exampleSentence": "พาสุนัขไปฉีดวัคซีนป้องกันโรคพิษสุนัขบ้ากับสัตวแพทย์",
+    "romanization": "sat-ta-wa-phaet"
+  },
+  {
+    "id": "j_10",
+    "word": "วิศวกร",
+    "pronunciation": "วิด - สะ - วะ - กอน",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผู้ประกอบวิชาชีพด้านการออกแบบ คำนวณ ควบคุมการก่อสร้างและเครื่องจักร",
+    "exampleSentence": "วิศวกรตรวจสอบความปลอดภัยของโครงสร้างสะพานอย่างเข้มงวด",
+    "romanization": "wit-sa-wa-kon"
+  },
+  {
+    "id": "j_11",
+    "word": "สถาปนิก",
+    "pronunciation": "สะ - ถา - ปะ - นิก",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผู้ออกแบบอาคาร สิ่งก่อสร้าง และผังเมืองให้สวยงามและใช้สอยได้ดี",
+    "exampleSentence": "สถาปนิกออกแบบอาคารโดยคำนึงถึงการประหยัดพลังงานแสงแดด",
+    "romanization": "sa-tha-pa-nik"
+  },
+  {
+    "id": "j_12",
+    "word": "ช่างไม้",
+    "pronunciation": "ช่าง - ไม้",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ช่างผู้ชำนาญการสร้าง ซ่อมแซม หรือประกอบเครื่องเรือนจากไม้",
+    "exampleSentence": "ช่างไม้บรรจงแกะสลักลวดลายบานประตูไม้อย่างประณีต",
+    "romanization": "chang-mai"
+  },
+  {
+    "id": "j_13",
+    "word": "ช่างไฟ",
+    "pronunciation": "ช่าง - ไฟ",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ช่างผู้ชำนาญการติดตั้ง ซ่อมแซม และดูแลระบบสายไฟและอุปกรณ์ไฟฟ้า",
+    "exampleSentence": "ช่างไฟตรวจเช็กแผงวงจรไฟฟ้าในบ้านเพื่อความปลอดภัย",
+    "romanization": "chang-fai"
+  },
+  {
+    "id": "j_14",
+    "word": "ช่างประปา",
+    "pronunciation": "ช่าง - ประ - ปา",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ช่างผู้ชำนาญการติดตั้งและซ่อมแซมท่อน้ำ ก๊อกน้ำ และสุขภัณฑ์",
+    "exampleSentence": "ติดต่อช่างประปามาซ่อมท่อน้ำที่รั่วซึมใต้พื้นห้องน้ำ",
+    "romanization": "chang-pra-pa"
+  },
+  {
+    "id": "j_15",
+    "word": "ช่างก่อสร้าง",
+    "pronunciation": "ช่าง - ก่อ - สร้าง",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผู้ปฏิบัติงานในงานก่อสร้างอาคาร ถนน หรือสะพาน",
+    "exampleSentence": "ช่างก่อสร้างร่วมแรงร่วมใจกันเทปูนหล่อเสาอาคาร",
+    "romanization": "chang-ko-sang"
+  },
+  {
+    "id": "j_16",
+    "word": "นักบิน",
+    "pronunciation": "นัก - บิน",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผู้ทำหน้าที่ขับขี่และควบคุมอากาศยาน เช่น เครื่องบิน หรือเฮลิคอปเตอร์",
+    "exampleSentence": "นักบินนำเครื่องบินลงจอดอย่างนุ่มนวลและปลอดภัย",
+    "romanization": "nak-bin"
+  },
+  {
+    "id": "j_17",
+    "word": "แอร์โฮสเตส",
+    "pronunciation": "แอ - โฮส - เตด",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "พนักงานต้อนรับบนเครื่องบิน คอยดูแลความปลอดภัยและความสะดวกของผู้โดยสาร",
+    "exampleSentence": "พนักงานต้อนรับบนเครื่องบินให้บริการผู้โดยสารด้วยรอยยิ้ม",
+    "romanization": "ae-hot-tet"
+  },
+  {
+    "id": "j_18",
+    "word": "กัปตันเรือ",
+    "pronunciation": "กับ - ตัน - เรือ",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผู้บังคับบัญชาและควบคุมการเดินเรือทะเลหรือเรือโดยสาร",
+    "exampleSentence": "กัปตันเรือสั่งการนำเรือสำราญออกจากท่าอย่างชำนาญ",
+    "romanization": "kap-tan-ruea"
+  },
+  {
+    "id": "j_19",
+    "word": "คนขับรถ",
+    "pronunciation": "คน - ขับ - รด",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผู้ทำหน้าที่ขับขี่ยานพาหนะรับส่งผู้โดยสารหรือสินค้า",
+    "exampleSentence": "คนขับรถโดยสารปฏิบัติตามกฎจราจรอย่างเคร่งครัด",
+    "romanization": "khon-khap-rot"
+  },
+  {
+    "id": "j_20",
+    "word": "ตำรวจ",
+    "pronunciation": "ตำ - หรวด",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "เจ้าหน้าที่ของรัฐ มีหน้าที่รักษาความสงบเรียบร้อยและปราบปรามอาชญากรรม",
+    "exampleSentence": "ตำรวจจราจรคอยอำนวยความสะดวกในชั่วโมงเร่งด่วน",
+    "romanization": "tam-ruat"
+  },
+  {
+    "id": "j_21",
+    "word": "ทหาร",
+    "pronunciation": "ทะ - หาน",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผู้มีหน้าที่ป้องกันอธิปไตยและความมั่นคงของประเทศชาติ",
+    "exampleSentence": "ทหารปฏิบัติหน้าที่รักษาความสงบตามแนวชายแดนอย่างเข้มแข็ง",
+    "romanization": "tha-han"
+  },
+  {
+    "id": "j_22",
+    "word": "นักดับเพลิง",
+    "pronunciation": "นัก - ดับ - เพลิง",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผู้ทำหน้าที่ระงับอัคคีภัย ช่วยเหลือผู้ประสบภัย และกู้ภัย",
+    "exampleSentence": "นักดับเพลิงสวมชุดป้องกันลุยเข้าไปช่วยชีวิตผู้ประสบภัย",
+    "romanization": "nak-dap-phloeng"
+  },
+  {
+    "id": "j_23",
+    "word": "ทนายความ",
+    "pronunciation": "ทะ - นาย - ความ",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผู้ได้รับอนุญาตให้ว่าต่างแก้ต่างในคดีความทางกฎหมาย",
+    "exampleSentence": "ทนายความให้คำปรึกษาทางกฎหมายแก่ลูกความอย่างเป็นธรรม",
+    "romanization": "tha-nai-khwam"
+  },
+  {
+    "id": "j_24",
+    "word": "ผู้พิพากษา",
+    "pronunciation": "ผู้ - พิ - พาก - สา",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "เจ้าหน้าที่ตุลาการมีอำนาจพิจารณาและพิพากษาคดีตามกฎหมาย",
+    "exampleSentence": "ผู้พิพากษาตัดสินคดีความด้วยความบริสุทธิ์ยุติธรรม",
+    "romanization": "phu-phi-phak-sa"
+  },
+  {
+    "id": "j_25",
+    "word": "อัยการ",
+    "pronunciation": "ไอ - ยะ - กาน",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "เจ้าหน้าที่ฟ้องคดีอาญาต่อศาลในนามของรัฐ",
+    "exampleSentence": "พนักงานอัยการรวบรวมพยานหลักฐานเพื่อยื่นฟ้องต่อศาล",
+    "romanization": "ai-ya-kan"
+  },
+  {
+    "id": "j_26",
+    "word": "นักการทูต",
+    "pronunciation": "นัก - กาน - ทูด",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผู้แทนของประเทศในการเจรจาและสานสัมพันธ์ไมตรีกับต่างชาติ",
+    "exampleSentence": "นักการทูตเจรจาข้อตกลงทางการค้าระหว่างประเทศด้วยความสุขุม",
+    "romanization": "nak-kan-thut"
+  },
+  {
+    "id": "j_27",
+    "word": "นักการเมือง",
+    "pronunciation": "นัก - กาน - เมือง",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผู้มีบทบาทในการบริหารนโยบายสาธารณะและการปกครองประเทศ",
+    "exampleSentence": "นักการเมืองที่ดีต้องคำนึงถึงประโยชน์สุขของประชาชนเป็นหลัก",
+    "romanization": "nak-kan-mueang"
+  },
+  {
+    "id": "j_28",
+    "word": "พ่อค้า",
+    "pronunciation": "พ่อ - ค้า",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผู้ประกอบอาชีพซื้อขายสินค้าเพื่อแสวงหากำไร (เพศชาย)",
+    "exampleSentence": "พ่อค้าในตลาดทักทายลูกค้าด้วยความสุภาพและเป็นกันเอง",
+    "romanization": "pho-kha"
+  },
+  {
+    "id": "j_29",
+    "word": "แม่ค้า",
+    "pronunciation": "แม่ - ค้า",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผู้ประกอบอาชีพซื้อขายสินค้าเพื่อแสวงหากำไร (เพศหญิง)",
+    "exampleSentence": "แม่ค้าขายผลไม้คัดเลือกมะม่วงสุกหอมหวานมาวางจำหน่าย",
+    "romanization": "mae-kha"
+  },
+  {
+    "id": "j_30",
+    "word": "นักธุรกิจ",
+    "pronunciation": "นัก - ทุ - ระ - กิด",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผู้ดำเนินกิจการพาณิชย์ อุตสาหกรรม หรือการบริการ",
+    "exampleSentence": "นักธุรกิจรุ่นใหม่นำเทคโนโลยีดิจิทัลมาพัฒนายอดขาย",
+    "romanization": "nak-thu-ra-kit"
+  },
+  {
+    "id": "j_31",
+    "word": "ผู้จัดการ",
+    "pronunciation": "ผู้ - จัด - กาน",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผู้บริหารงานและดูแลควบคุมการปฏิบัติงานในหน่วยงานหรือบริษัท",
+    "exampleSentence": "ผู้จัดการประชุมมอบหมายงานแก่พนักงานในแผนก",
+    "romanization": "phu-chat-kan"
+  },
+  {
+    "id": "j_32",
+    "word": "พนักงานบัญชี",
+    "pronunciation": "พะ - นัก - งาน - บัน - ชี",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผู้บันทึก ตรวจสอบ และจัดทำรายงานทางการเงินขององค์กร",
+    "exampleSentence": "พนักงานบัญชีจัดทำงบดุลประจำปีอย่างถูกต้องแม่นยำ",
+    "romanization": "pha-nak-ngan-ban-chi"
+  },
+  {
+    "id": "j_33",
+    "word": "เลขานุการ",
+    "pronunciation": "เล - ขา - นุ - กาน",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผู้ช่วยงานธุรการ ประสานงาน และจัดการนัดหมายแก่ผู้บริหาร",
+    "exampleSentence": "เลขานุการจัดเตรียมเอกสารการประชุมให้พร้อมล่วงหน้า",
+    "romanization": "le-kha-nu-kan"
+  },
+  {
+    "id": "j_34",
+    "word": "โปรแกรมเมอร์",
+    "pronunciation": "โปร - แกฺรม - เม้อ",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผู้เขียนโค้ดและพัฒนาซอฟต์แวร์หรือแอปพลิเคชันคอมพิวเตอร์",
+    "exampleSentence": "โปรแกรมเมอร์กำลังพัฒนาและทดสอบระบบเว็บแอปพลิเคชันใหม่",
+    "romanization": "pro-kraem-moe"
+  },
+  {
+    "id": "j_35",
+    "word": "นักออกแบบ",
+    "pronunciation": "นัก - ออก - แบบ",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผู้สร้างสรรค์รูปลักษณ์ ผลิตภัณฑ์ หรืองานกราฟิกให้สวยงามและตอบโจทย์",
+    "exampleSentence": "นักออกแบบสร้างสรรค์โลโก้ที่มีเอกลักษณ์โดดเด่น",
+    "romanization": "nak-ok-baep"
+  },
+  {
+    "id": "j_36",
+    "word": "ช่างภาพ",
+    "pronunciation": "ช่าง - พาบ",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผู้ชำนาญการถ่ายภาพด้วยกล้อง ทั้งภาพนิ่งและภาพเคลื่อนไหว",
+    "exampleSentence": "ช่างภาพเก็บภาพบรรยากาศแสงยามเย็นได้อย่างงดงาม",
+    "romanization": "chang-phap"
+  },
+  {
+    "id": "j_37",
+    "word": "ศิลปิน",
+    "pronunciation": "สิน - ละ - ปิน",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผู้สร้างสรรค์งานศิลปะ เช่น จิตรกรรม ประติมากรรม หรือดนตรี",
+    "exampleSentence": "ศิลปินถ่ายทอดอารมณ์ความรู้สึกผ่านภาพวาดสีน้ำมัน",
+    "romanization": "sin-la-pin"
+  },
+  {
+    "id": "j_38",
+    "word": "นักดนตรี",
+    "pronunciation": "นัก - ดน - ตรี",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผู้เล่นเครื่องดนตรี บรรเลงเพลงด้วยทักษะความชำนาญ",
+    "exampleSentence": "นักดนตรีบรรเลงเปียโนด้วยความไพเราะจับใจผู้ฟัง",
+    "romanization": "nak-don-tri"
+  },
+  {
+    "id": "j_39",
+    "word": "นักร้อง",
+    "pronunciation": "นัก - ร้อง",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผู้ขับร้องบทเพลงด้วยน้ำเสียงไพเราะสื่อสารอารมณ์",
+    "exampleSentence": "นักร้องขับกล่อมบทเพลงอันซาบซึ้งตรึงใจผู้ชมทั่วฮอลล์",
+    "romanization": "nak-rong"
+  },
+  {
+    "id": "j_40",
+    "word": "นักแสดง",
+    "pronunciation": "นัก - สะ - แดง",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผู้แสดงบทบาทในละคร ภาพยนตร์ หรือละครเวที",
+    "exampleSentence": "นักแสดงเข้าถึงบทบาทและถ่ายทอดอารมณ์ตัวละครได้อย่างยอดเยี่ยม",
+    "romanization": "nak-sa-daeng"
+  },
+  {
+    "id": "j_41",
+    "word": "ผู้กำกับ",
+    "pronunciation": "ผู้ - กำ - กับ",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผู้ควบคุมและชี้นำการสร้างภาพยนตร์ ละคร หรือการแสดง",
+    "exampleSentence": "ผู้กำกับดูแลการถ่ายทำฉากสำคัญอย่างพิถีพิถัน",
+    "romanization": "phu-kam-kap"
+  },
+  {
+    "id": "j_42",
+    "word": "นักเขียน",
+    "pronunciation": "นัก - เขียน",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผู้ประพันธ์หนังสือ นวนิยาย บทความ หรือบทกวี",
+    "exampleSentence": "นักเขียนใช้จินตนาการรังสรรค์นวนิยายแฟนตาซีเรื่องใหม่",
+    "romanization": "nak-khian"
+  },
+  {
+    "id": "j_43",
+    "word": "นักข่าว",
+    "pronunciation": "นัก - ข่าว",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผู้ค้นหา สัมภาษณ์ และรายงานข้อเท็จจริงสู่สาธารณชน",
+    "exampleSentence": "นักข่าวลงพื้นที่รายงานสถานการณ์น้ำท่วมอย่างทันท่วงที",
+    "romanization": "nak-khao"
+  },
+  {
+    "id": "j_44",
+    "word": "บรรณาธิการ",
+    "pronunciation": "บัน - นา - ทิ - กาน",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผู้ดูแล คัดเลือก และตรวจแก้เนื้อหาก่อนตีพิมพ์เผยแพร่",
+    "exampleSentence": "บรรณาธิการตรวจทานความถูกต้องของต้นฉบับอย่างละเอียด",
+    "romanization": "ban-na-thi-kan"
+  },
+  {
+    "id": "j_45",
+    "word": "ล่าม",
+    "pronunciation": "ล่าม",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผู้แปลคำพูดจากภาษาหนึ่งเป็นอีกภาษาหนึ่งแบบทันที",
+    "exampleSentence": "ล่ามแปลคำกล่าวสุนทรพจน์ในการประชุมระดับนานาชาติ",
+    "romanization": "lam"
+  },
+  {
+    "id": "j_46",
+    "word": "นักแปล",
+    "pronunciation": "นัก - แปล",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผู้แปลงานเขียนหรือวรรณกรรมจากภาษาต่างประเทศเป็นภาษาไทย",
+    "exampleSentence": "นักแปลถ่ายทอดวรรณกรรมคลาสสิกด้วยภาษาที่สละสลวย",
+    "romanization": "nak-plae"
+  },
+  {
+    "id": "j_47",
+    "word": "พ่อครัว",
+    "pronunciation": "พ่อ - ครัว",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผู้เชี่ยวชาญการปรุงอาหารประจำภัตตาคารหรือร้านอาหาร (เชฟ)",
+    "exampleSentence": "พ่อครัวรังสรรค์เมนูจานเด็ดด้วยวัตถุดิบสดใหม่จากฟาร์ม",
+    "romanization": "pho-khrua"
+  },
+  {
+    "id": "j_48",
+    "word": "บริกร",
+    "pronunciation": "บอ - ริ - กอน",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "พนักงานเสิร์ฟและคอยบริการอาหารเครื่องดื่มแก่ลูกค้า",
+    "exampleSentence": "บริกรเสิร์ฟอาหารด้วยความสุภาพและคล่องแคล่ว",
+    "romanization": "bo-ri-kon"
+  },
+  {
+    "id": "j_49",
+    "word": "บาริสต้า",
+    "pronunciation": "บา - ริด - ส้า",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผู้เชี่ยวชาญการชงและรังสรรค์กาแฟสดชนิดต่างๆ",
+    "exampleSentence": "บาริสต้าบรรจงทำลาเต้อาร์ตรูปใบไม้บนฟองนมอย่างสวยงาม",
+    "romanization": "ba-rit-ta"
+  },
+  {
+    "id": "j_50",
+    "word": "เกษตรกร",
+    "pronunciation": "กะ - เสด - ตฺระ - กอน",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผู้ประกอบอาชีพเพาะปลูกพืช เลี้ยงสัตว์ หรือทำไร่ทำสวน",
+    "exampleSentence": "เกษตรกรนำแนวคิดเกษตรทฤษฎีใหม่มาปรับใช้ในไร่นา",
+    "romanization": "ka-set-tra-kon"
+  },
+  {
+    "id": "j_51",
+    "word": "ชาวนา",
+    "pronunciation": "ชาว - นา",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผู้ปลูกข้าวเป็นอาชีพหลัก ถือเป็นกระดูกสันหลังของชาติ",
+    "exampleSentence": "ชาวนาเกี่ยวข้าวในรวงสีเหลืองทองอร่ามเต็มท้องทุ่ง",
+    "romanization": "chao-na"
+  },
+  {
+    "id": "j_52",
+    "word": "ชาวสวน",
+    "pronunciation": "ชาว - สวน",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผู้ปลูกไม้ผล ไม้ดอก หรือพืชผักสวนครัว",
+    "exampleSentence": "ชาวสวนเก็บเกี่ยวทุเรียนและมังคุดส่งออกสู่ตลาด",
+    "romanization": "chao-suan"
+  },
+  {
+    "id": "j_53",
+    "word": "ชาวประมง",
+    "pronunciation": "ชาว - ประ - มง",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผู้ประกอบอาชีพจับสัตว์น้ำในทะเลหรือแม่น้ำลำคลอง",
+    "exampleSentence": "ชาวประมงนำเรือออกหาปลาตั้งแต่ยามค่ำคืนและกลับเข้าฝั่งยามเช้า",
+    "romanization": "chao-pra-mong"
+  },
+  {
+    "id": "j_54",
+    "word": "นักวิทยาศาสตร์",
+    "pronunciation": "นัก - วิด - ทะ - ยา - สาด",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผู้ศึกษา ค้นคว้า และทดลองเพื่อแสวงหาความจริงทางวิทยาศาสตร์",
+    "exampleSentence": "นักวิทยาศาสตร์ค้นพบวัคซีนสูตรใหม่ที่มีประสิทธิภาพสูง",
+    "romanization": "nak-wit-tha-ya-sat"
+  },
+  {
+    "id": "j_55",
+    "word": "นักวิจัย",
+    "pronunciation": "นัก - วิ - ไจ",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผู้ทำการค้นคว้าและเก็บรวบรวมข้อมูลอย่างเป็นระบบเพื่อสร้างความรู้ใหม่",
+    "exampleSentence": "นักวิจัยกำลังศึกษาผลกระทบของสภาวะโลกร้อนต่อระบบนิเวศ",
+    "romanization": "nak-wi-chai"
+  },
+  {
+    "id": "j_56",
+    "word": "นักโบราณคดี",
+    "pronunciation": "นัก - โบ - ราน - นะ - คะ - ดี",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผู้ศึกษาประวัติศาสตร์และอารยธรรมมนุษย์จากหลักฐานซากโบราณวัตถุ",
+    "exampleSentence": "นักโบราณคดีขุดค้นพบเครื่องปั้นดินเผาโบราณอายุกว่าพันปี",
+    "romanization": "nak-bo-ran-na-kha-di"
+  },
+  {
+    "id": "j_57",
+    "word": "นักบินอวกาศ",
+    "pronunciation": "นัก - บิน - อะ - วะ - กาด",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผู้เดินทางไปปฏิบัติภารกิจบนยานอวกาศหรือสถานีอวกาศนอกโลก",
+    "exampleSentence": "นักบินอวกาศทำการทดลองทางวิทยาศาสตร์บนสถานีอวกาศนานาชาติ",
+    "romanization": "nak-bin-a-wa-kat"
+  },
+  {
+    "id": "j_58",
+    "word": "นักกีฬา",
+    "pronunciation": "นัก - กี - ลา",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผู้ฝึกซ้อมและเข้าร่วมการแข่งขันกีฬาด้วยน้ำใจนักกีฬา",
+    "exampleSentence": "นักกีฬาฝึกซ้อมอย่างหนักเพื่อเข้าร่วมการแข่งขันโอลิมปิก",
+    "romanization": "nak-ki-la"
+  },
+  {
+    "id": "j_59",
+    "word": "ผู้ฝึกสอน",
+    "pronunciation": "ผู้ - ฝึก - สอน",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผู้วางแผนและฝึกทักษะให้แก่นักกีฬาหรือทีม (โค้ช)",
+    "exampleSentence": "ผู้ฝึกสอนวางแผนกลยุทธ์การเล่นอย่างรัดกุมก่อนลงสนาม",
+    "romanization": "phu-fuek-son"
+  },
+  {
+    "id": "j_60",
+    "word": "จิตอาสา",
+    "pronunciation": "จิด - อา - สา",
+    "category": "jobs",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผู้ทำงานด้วยความสมัครใจ เสียสละเพื่อประโยชน์สุขของสังคม",
+    "exampleSentence": "กลุ่มจิตอาสาร่วมกันเก็บขยะและปลูกป่าชายเลน",
+    "romanization": "chit-a-sa"
+  },
+  {
+    "id": "edu_1",
+    "word": "โรงเรียน",
+    "pronunciation": "โรง - เรียน",
+    "category": "education",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สถานศึกษาสำหรับให้การศึกษาอบรมแก่นักเรียน",
+    "exampleSentence": "โรงเรียนจัดกิจกรรมวันไหว้ครูเพื่อรำลึกถึงพระคุณครู",
+    "romanization": "rong-rian"
+  },
+  {
+    "id": "edu_2",
+    "word": "มหาวิทยาลัย",
+    "pronunciation": "มะ - หา - วิด - ทะ - ยา - ลัย",
+    "category": "education",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สถาบันการศึกษาระดับสูงสุด ให้การสอนและวิจัยในสาขาวิชาชีพต่างๆ",
+    "exampleSentence": "เขาเข้าศึกษาต่อในคณะวิศวกรรมศาสตร์ของมหาวิทยาลัยชื่อดัง",
+    "romanization": "ma-ha-wit-tha-ya-lai"
+  },
+  {
+    "id": "edu_3",
+    "word": "ห้องเรียน",
+    "pronunciation": "ห้อง - เรียน",
+    "category": "education",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ห้องสำหรับใช้จัดการเรียนการสอนในโรงเรียน",
+    "exampleSentence": "จัดโต๊ะและเก้าอี้ในห้องเรียนให้เอื้อต่อการทำงานกลุ่ม",
+    "romanization": "hong-rian"
+  },
+  {
+    "id": "edu_4",
+    "word": "ห้องทดลอง",
+    "pronunciation": "ห้อง - ทด - ลอง",
+    "category": "education",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สถานที่ติดตั้งอุปกรณ์สำหรับการทดลองทางวิทยาศาสตร์",
+    "exampleSentence": "นักเรียนสวมแว่นนิรภัยขณะทำการทดลองในห้องทดลองเคมี",
+    "romanization": "hong-thot-long"
+  },
+  {
+    "id": "edu_5",
+    "word": "การศึกษา",
+    "pronunciation": "กาน - สึก - สา",
+    "category": "education",
+    "partOfSpeech": "คำนาม",
+    "meaning": "กระบวนการเรียนรู้เพื่อความเจริญงอกงามทางปัญญา จริยธรรม และทักษะ",
+    "exampleSentence": "การศึกษาที่มีคุณภาพเป็นรากฐานสำคัญของการพัฒนาประเทศ",
+    "romanization": "kan-suek-sa"
+  },
+  {
+    "id": "edu_6",
+    "word": "ปัญญา",
+    "pronunciation": "ปัน - ยา",
+    "category": "education",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ความรู้แจ้งเห็นจริง ความเฉลียวฉลาดรอบรู้",
+    "exampleSentence": "การอ่านและคิดวิเคราะห์ช่วยเพิ่มพูนปัญญาให้แก่ผู้เรียน",
+    "romanization": "pan-ya"
+  },
+  {
+    "id": "edu_7",
+    "word": "ความรู้",
+    "pronunciation": "ความ - รู้",
+    "category": "education",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สิ่งที่สั่งสมมาจากการศึกษา ค้นคว้า และประสบการณ์",
+    "exampleSentence": "ความรู้ไม่มีวันหมด ยิ่งเรียนรู้ยิ่งเข้าใจโลกมากขึ้น",
+    "romanization": "khwam-ru"
+  },
+  {
+    "id": "edu_8",
+    "word": "บทเรียน",
+    "pronunciation": "บท - เรียน",
+    "category": "education",
+    "partOfSpeech": "คำนาม",
+    "meaning": "เนื้อหาวิชาการที่กำหนดไว้ให้อ่านหรือเรียนในแต่ละครั้ง",
+    "exampleSentence": "ทบทวนบทเรียนอย่างสม่ำเสมอช่วยให้จำเนื้อหาได้แม่นยำ",
+    "romanization": "bot-rian"
+  },
+  {
+    "id": "edu_9",
+    "word": "ตำรา",
+    "pronunciation": "ตำ - รา",
+    "category": "education",
+    "partOfSpeech": "คำนาม",
+    "meaning": "หนังสือที่รวบรวมวิชาความรู้อย่างเป็นระเบียบสำหรับใช้เรียนหรืออ้างอิง",
+    "exampleSentence": "ตำราวิชาการเล่มนี้อธิบายหลักการวิทยาศาสตร์ได้อย่างเข้าใจง่าย",
+    "romanization": "tam-ra"
+  },
+  {
+    "id": "edu_10",
+    "word": "วิทยานิพนธ์",
+    "pronunciation": "วิด - ทะ - ยา - นิ - พน",
+    "category": "education",
+    "partOfSpeech": "คำนาม",
+    "meaning": "งานวิจัยเรียบเรียงขึ้นเพื่อเสนอขอรับปริญญาบัตร",
+    "exampleSentence": "เขาทุ่มเทค้นคว้าข้อมูลเพื่อเขียนวิทยานิพนธ์ระดับปริญญาโท",
+    "romanization": "wit-tha-ya-ni-phon"
+  },
+  {
+    "id": "edu_11",
+    "word": "ข้อสอบ",
+    "pronunciation": "ข้อ - สอบ",
+    "category": "education",
+    "partOfSpeech": "คำนาม",
+    "meaning": "คำถามที่ตั้งขึ้นเพื่อวัดความรู้ความสามารถของผู้เรียน",
+    "exampleSentence": "อ่านคำสั่งในข้อสอบให้เข้าใจก่อนลงมือเขียนคำตอบ",
+    "romanization": "kho-sop"
+  },
+  {
+    "id": "edu_12",
+    "word": "การสอบ",
+    "pronunciation": "กาน - สอบ",
+    "category": "education",
+    "partOfSpeech": "คำนาม",
+    "meaning": "การทดสอบเพื่อประเมินผลสัมฤทธิ์ทางการเรียน",
+    "exampleSentence": "เตรียมนั่งสมาธิและพักผ่อนให้เพียงพอก่อนวันสอบไล่",
+    "romanization": "kan-sop"
+  },
+  {
+    "id": "edu_13",
+    "word": "คะแนน",
+    "pronunciation": "คะ - แนน",
+    "category": "education",
+    "partOfSpeech": "คำนาม",
+    "meaning": "แต้มที่ได้จากการตอบถูกหรือการประเมินผลงาน",
+    "exampleSentence": "เขาทำคะแนนสอบวิชาคณิตศาสตร์ได้ยอดเยี่ยม",
+    "romanization": "kha-naen"
+  },
+  {
+    "id": "edu_14",
+    "word": "ประกาศนียบัตร",
+    "pronunciation": "ประ - กาด - สะ - นี - ยะ - บัด",
+    "category": "education",
+    "partOfSpeech": "คำนาม",
+    "meaning": "เอกสารรับรองว่าสำเร็จการศึกษาหรือผ่านการอบรมหลักสูตร",
+    "exampleSentence": "ได้รับประกาศนียบัตรหลังผ่านการอบรมหลักสูตรการเขียนโปรแกรม",
+    "romanization": "pra-kat-sa-ni-ya-bat"
+  },
+  {
+    "id": "edu_15",
+    "word": "ปริญญาบัตร",
+    "pronunciation": "ปะ - ริน - ยา - บัด",
+    "category": "education",
+    "partOfSpeech": "คำนาม",
+    "meaning": "หนังสือรับรองวิทยฐานะขั้นปริญญาที่มหาวิทยาลัยมอบให้",
+    "exampleSentence": "พิธีพระราชทานปริญญาบัตรนำความปลื้มปีติมาสู่ครอบครัว",
+    "romanization": "pa-rin-ya-bat"
+  },
+  {
+    "id": "edu_16",
+    "word": "ภาษาศาสตร์",
+    "pronunciation": "พา - สา - สาด",
+    "category": "education",
+    "partOfSpeech": "คำนาม",
+    "meaning": "วิชาว่าด้วยการศึกษาภาษา ทั้งโครงสร้าง เสียง และความหมาย",
+    "exampleSentence": "การเรียนภาษาศาสตร์ช่วยให้เข้าใจพัฒนาการของภาษาไทย",
+    "romanization": "pha-sa-sat"
+  },
+  {
+    "id": "edu_17",
+    "word": "วรรณคดี",
+    "pronunciation": "วัน - นะ - คะ - ดี",
+    "category": "education",
+    "partOfSpeech": "คำนาม",
+    "meaning": "หนังสือที่ได้รับยกย่องว่าแต่งดี มีคุณค่าทางศิลปะและเนื้อหา",
+    "exampleSentence": "วรรณคดีเรื่องพระอภัยมณีแสดงถึงจินตนาการอันล้ำเลิศของสุนทรภู่",
+    "romanization": "wan-na-kha-di"
+  },
+  {
+    "id": "edu_18",
+    "word": "ประวัติศาสตร์",
+    "pronunciation": "ประ - วัด - ติ - สาด",
+    "category": "education",
+    "partOfSpeech": "คำนาม",
+    "meaning": "วิชาว่าด้วยเหตุการณ์ในอดีตของมนุษยชาติและสังคม",
+    "exampleSentence": "การเรียนรู้ประวัติศาสตร์ช่วยให้เราเข้าใจปัจจุบันและไม่ทำผิดซ้ำ",
+    "romanization": "pra-wat-ti-sat"
+  },
+  {
+    "id": "edu_19",
+    "word": "ภูมิศาสตร์",
+    "pronunciation": "พู - มิ - สาด",
+    "category": "education",
+    "partOfSpeech": "คำนาม",
+    "meaning": "วิชาว่าด้วยลักษณะทางกายภาพ ทรัพยากร และสภาพแวดล้อมของโลก",
+    "exampleSentence": "แผนที่ภูมิศาสตร์แสดงเขตภูมิอากาศและแนวเทือกเขาสำคัญ",
+    "romanization": "phu-mi-sat"
+  },
+  {
+    "id": "edu_20",
+    "word": "คณิตศาสตร์",
+    "pronunciation": "คะ - นิด - ตะ - สาด",
+    "category": "education",
+    "partOfSpeech": "คำนาม",
+    "meaning": "วิชาว่าด้วยการคำนวณ จำนวน ปริมาณ และรูปทรงเรขาคณิต",
+    "exampleSentence": "คณิตศาสตร์เป็นพื้นฐานสำคัญของวิทยาการคอมพิวเตอร์",
+    "romanization": "kha-nit-ta-sat"
+  },
+  {
+    "id": "edu_21",
+    "word": "วิทยาศาสตร์",
+    "pronunciation": "วิด - ทะ - ยา - สาด",
+    "category": "education",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ความรู้ที่ได้จากการสังเกต ทดลอง และหาเหตุผลอย่างเป็นระบบ",
+    "exampleSentence": "วิทยาศาสตร์ช่วยให้มนุษย์เข้าใจปรากฏการณ์ธรรมชาติ",
+    "romanization": "wit-tha-ya-sat"
+  },
+  {
+    "id": "edu_22",
+    "word": "ฟิสิกส์",
+    "pronunciation": "ฟิ - สิก",
+    "category": "education",
+    "partOfSpeech": "คำนาม",
+    "meaning": "วิทยาศาสตร์ที่ศึกษาเกี่ยวกับสสาร พลังงาน แรง และการเคลื่อนที่",
+    "exampleSentence": "กฎการเคลื่อนที่ของนิวตันเป็นพื้นฐานสำคัญของวิชาฟิสิกส์",
+    "romanization": "fi-sik"
+  },
+  {
+    "id": "edu_23",
+    "word": "เคมี",
+    "pronunciation": "เค - มี",
+    "category": "education",
+    "partOfSpeech": "คำนาม",
+    "meaning": "วิทยาศาสตร์ที่ศึกษาเกี่ยวกับองค์ประกอบ โครงสร้าง และสมบัติของสาร",
+    "exampleSentence": "การทดลองเคมีแสดงปฏิกิริยาการเปลี่ยนสีของสารละลาย",
+    "romanization": "khe-mi"
+  },
+  {
+    "id": "edu_24",
+    "word": "ชีววิทยา",
+    "pronunciation": "ชี - วะ - วิด - ทะ - ยา",
+    "category": "education",
+    "partOfSpeech": "คำนาม",
+    "meaning": "วิทยาศาสตร์ที่ศึกษาเกี่ยวกับสิ่งมีชีวิตและวิวัฒนาการ",
+    "exampleSentence": "การศึกษากล้องจุลทรรศน์ในวิชาชีววิทยาเผยให้เห็นโครงสร้างเซลล์",
+    "romanization": "chi-wa-wit-tha-ya"
+  },
+  {
+    "id": "edu_25",
+    "word": "ดาราศาสตร์",
+    "pronunciation": "ดา - รา - สาด",
+    "category": "education",
+    "partOfSpeech": "คำนาม",
+    "meaning": "วิชาว่าด้วยดวงดาว วัตถุท้องฟ้า และเอกภพ",
+    "exampleSentence": "ใช้กล้องโทรทรรศน์ส่องดูวงแหวนดาวเสาร์ในวิชาดาราศาสตร์",
+    "romanization": "da-ra-sat"
+  },
+  {
+    "id": "edu_26",
+    "word": "สิ่งแวดล้อม",
+    "pronunciation": "สิ่ง - แวด - ล้อม",
+    "category": "education",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สิ่งต่างๆ ทั้งธรรมชาติและที่มนุษย์สร้างขึ้นรอบตัวเรา",
+    "exampleSentence": "การคัดแยกขยะช่วยลดมลพิษและรักษาสิ่งแวดล้อม",
+    "romanization": "sing-waet-lom"
+  },
+  {
+    "id": "edu_27",
+    "word": "เทคโนโลยี",
+    "pronunciation": "เทก - โน - โล - ยี",
+    "category": "education",
+    "partOfSpeech": "คำนาม",
+    "meaning": "การประยุกต์ใช้วิทยาการเพื่อตอบสนองความต้องการและอำนวยความสะดวก",
+    "exampleSentence": "เทคโนโลยีปัญญาประดิษฐ์กำลังเข้ามาเปลี่ยนแปลงวิถีชีวิตผู้คน",
+    "romanization": "thek-no-lo-yi"
+  },
+  {
+    "id": "edu_28",
+    "word": "คอมพิวเตอร์",
+    "pronunciation": "คอม - พิว - เต้อ",
+    "category": "education",
+    "partOfSpeech": "คำนาม",
+    "meaning": "อุปกรณ์ประมวลผลอิเล็กทรอนิกส์สำหรับคำนวณและจัดเก็บข้อมูล",
+    "exampleSentence": "เรียนรู้วิธีการเขียนโปรแกรมคอมพิวเตอร์ตั้งแต่ระดับพื้นฐาน",
+    "romanization": "khom-phiu-toe"
+  },
+  {
+    "id": "edu_29",
+    "word": "นวัตกรรม",
+    "pronunciation": "นะ - วัด - ตะ - กำ",
+    "category": "education",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ความคิด สิ่งประดิษฐ์ หรือวิธีการใหม่ๆ ที่สร้างมูลค่าและประโยชน์",
+    "exampleSentence": "นวัตกรรมทางการแพทย์ช่วยให้การรักษาผู้ป่วยมีประสิทธิภาพสูงขึ้น",
+    "romanization": "na-wat-ta-kam"
+  },
+  {
+    "id": "edu_30",
+    "word": "จินตนาการ",
+    "pronunciation": "จิน - ตะ - นา - กาน",
+    "category": "education",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ความสามารถในการสร้างภาพ ความคิด หรือเรื่องราวขึ้นในใจ",
+    "exampleSentence": "จินตนาการสำคัญยิ่งกว่าความรู้ เพราะนำไปสู่การค้นพบสิ่งใหม่",
+    "romanization": "chin-ta-na-kan"
+  },
+  {
+    "id": "edu_31",
+    "word": "ความคิดสร้างสรรค์",
+    "pronunciation": "ความ - คิด - สร้าง - สัน",
+    "category": "education",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ความสามารถในการคิดริเริ่มสิ่งใหม่ที่แปลกและมีประโยชน์",
+    "exampleSentence": "ออกแบบผลงานศิลปะด้วยความคิดสร้างสรรค์ที่ไม่ซ้ำใคร",
+    "romanization": "khwam-khit-sang-san"
+  },
+  {
+    "id": "edu_32",
+    "word": "การทดลอง",
+    "pronunciation": "กาน - ทด - ลอง",
+    "category": "education",
+    "partOfSpeech": "คำนาม",
+    "meaning": "การปฏิบัติการทางวิทยาศาสตร์เพื่อพิสูจน์ข้อเท็จจริงหรือสมมติฐาน",
+    "exampleSentence": "บันทึกผลการทดลองอย่างตรงไปตรงมาตามความเป็นจริง",
+    "romanization": "kan-thot-long"
+  },
+  {
+    "id": "edu_33",
+    "word": "สมมติฐาน",
+    "pronunciation": "สม - มุด - ติ - ถาน",
+    "category": "education",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ข้อคิดเห็นหรือข้อสันนิษฐานที่ตั้งขึ้นเพื่อใช้ทดสอบหาความจริง",
+    "exampleSentence": "ตั้งสมมติฐานก่อนเริ่มทำการทดลองเพื่อกำหนดทิศทางการวิจัย",
+    "romanization": "som-mut-ti-than"
+  },
+  {
+    "id": "edu_34",
+    "word": "ทฤษฎี",
+    "pronunciation": "ทฺริด - สะ - ดี",
+    "category": "education",
+    "partOfSpeech": "คำนาม",
+    "meaning": "หลักการทางวิชาการที่ผ่านการพิสูจน์และยอมรับว่าอธิบายปรากฏการณ์ได้",
+    "exampleSentence": "ทฤษฎีสัมพัทธภาพของไอน์สไตน์ปฏิวัติวงการฟิสิกส์สมัยใหม่",
+    "romanization": "thrit-sa-di"
+  },
+  {
+    "id": "edu_35",
+    "word": "บทสรุป",
+    "pronunciation": "บท - สะ - หรุบ",
+    "category": "education",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ข้อความย่อหรือผลสุดท้ายที่ได้จากการพิจารณาเรื่องราวทั้งหมด",
+    "exampleSentence": "เขียนบทสรุปรายงานให้กระชับและครอบคลุมประเด็นสำคัญ",
+    "romanization": "bot-sa-rup"
+  },
+  {
+    "id": "edu_36",
+    "word": "สถิติ",
+    "pronunciation": "สะ - ถิ - ติ",
+    "category": "education",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ข้อมูลตัวเลขที่รวบรวมขึ้น หรือวิชาว่าด้วยการวิเคราะห์ข้อมูลตัวเลข",
+    "exampleSentence": "นำเสนอผลการวิจัยด้วยกราฟและแผนภูมิทางสถิติ",
+    "romanization": "sa-thi-ti"
+  },
+  {
+    "id": "edu_37",
+    "word": "ข้อมูล",
+    "pronunciation": "ข้อ - มูน",
+    "category": "education",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ข้อเท็จจริงหรือตัวเลขที่ใช้เป็นหลักในการคำนวณหรือวิเคราะห์",
+    "exampleSentence": "ตรวจสอบความถูกต้องของแหล่งที่มาของข้อมูลก่อนนำมาอ้างอิง",
+    "romanization": "kho-mun"
+  },
+  {
+    "id": "edu_38",
+    "word": "ประดิษฐ์",
+    "pronunciation": "ประ - ดิด",
+    "category": "education",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "คิดทำสิ่งของใหม่ๆ ขึ้นมาด้วยความรู้และความคิดสร้างสรรค์",
+    "exampleSentence": "นักเรียนประดิษฐ์หุ่นยนต์เก็บขยะอัตโนมัติส่งเข้าประกวด",
+    "romanization": "pra-dit"
+  },
+  {
+    "id": "edu_39",
+    "word": "ค้นคว้า",
+    "pronunciation": "ค้น - คว้า",
+    "category": "education",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "สืบเสาะหาข้อมูลและความรู้อย่างละเอียดถี่ถ้วน",
+    "exampleSentence": "ค้นคว้าเอกสารทางวิชาการจากหอสมุดแห่งชาติ",
+    "romanization": "khon-khwa"
+  },
+  {
+    "id": "edu_40",
+    "word": "วิจัย",
+    "pronunciation": "วิ - ไจ",
+    "category": "education",
+    "partOfSpeech": "คำนาม",
+    "meaning": "การศึกษาค้นคว้าอย่างมีระเบียบแบบแผนเพื่อสร้างองค์ความรู้ใหม่",
+    "exampleSentence": "ทำงานวิจัยเกี่ยวกับการใช้พลังงานแสงอาทิตย์ในภาคการเกษตร",
+    "romanization": "wi-chai"
+  },
+  {
+    "id": "rel_1",
+    "word": "พระภิกษุ",
+    "pronunciation": "พฺระ - พิก - สุ",
+    "category": "buddhism",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ชายที่ได้รับการอุปสมบทเป็นนักบวชในพระพุทธศาสนา ถือศีล 227 ข้อ",
+    "exampleSentence": "พระภิกษุออกรับบิณฑบาตโปรดญาติโยมในยามเช้าตรู่",
+    "romanization": "phra-phik-su"
+  },
+  {
+    "id": "rel_2",
+    "word": "สามเณร",
+    "pronunciation": "สาม - มะ - เนน",
+    "category": "buddhism",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผู้บวชในพระพุทธศาสนาที่มีอายุต่ำกว่า 20 ปี ถือศีล 10 ข้อ",
+    "exampleSentence": "สามเณรภาคฤดูร้อนตั้งใจสวดมนต์และศึกษาพระธรรม",
+    "romanization": "sam-ma-nen"
+  },
+  {
+    "id": "rel_3",
+    "word": "อุปสมบท",
+    "pronunciation": "อุบ - ปะ - สม - บด",
+    "category": "buddhism",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "พิธีบวชเป็นพระภิกษุสงฆ์ตามพระธรรมวินัย",
+    "exampleSentence": "ชายไทยนิยมอุปสมบทเพื่อทดแทนพระคุณบิดามารดา",
+    "romanization": "up-pa-som-bot"
+  },
+  {
+    "id": "rel_4",
+    "word": "บรรพชา",
+    "pronunciation": "บัน - พะ - ชา",
+    "category": "buddhism",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "การบวชเป็นสามเณรหรือนักบวชเบื้องต้น",
+    "exampleSentence": "เด็กชายเข้ารับการบรรพชาเป็นสามเณรภาคฤดูร้อน",
+    "romanization": "ban-pha-cha"
+  },
+  {
+    "id": "rel_5",
+    "word": "บิณฑบาต",
+    "pronunciation": "บิน - ทะ - บาด",
+    "category": "buddhism",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "กิริยาที่พระภิกษุสามเณรเดินรับอาหารจากพุทธศาสนิกชน (บาต ไม่มี ร)",
+    "exampleSentence": "คุณยายตื่นแต่เช้าเพื่อมารอใส่บาตรพระภิกษุที่มาบิณฑบาต",
+    "romanization": "bin-tha-bat"
+  },
+  {
+    "id": "rel_6",
+    "word": "จีวร",
+    "pronunciation": "จี - วอน",
+    "category": "buddhism",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผ้าสำหรับนุ่งห่มของพระภิกษุสามเณร สีย้อมจากเปลือกไม้หรือแก่นขนุน",
+    "exampleSentence": "พระภิกษุครองจีวรสีส้มทองอย่างเรียบร้อยและสำรวม",
+    "romanization": "chi-won"
+  },
+  {
+    "id": "rel_7",
+    "word": "สบง",
+    "pronunciation": "สะ - บง",
+    "category": "buddhism",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผ้านุ่งชั้นในของพระภิกษุสามเณร เป็นหนึ่งในผ้าไตรจีวร",
+    "exampleSentence": "พระภิกษุผลัดเปลี่ยนสบงผืนใหม่ก่อนลงทำวัตรเย็น",
+    "romanization": "sa-bong"
+  },
+  {
+    "id": "rel_8",
+    "word": "สังฆาฏิ",
+    "pronunciation": "สัง - คา - ติ",
+    "category": "buddhism",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ผ้าทาบบ่าหรือผ้าพาดบ่าผืนใหญ่ เป็นผ้าซ้อนสองชั้นของพระสงฆ์",
+    "exampleSentence": "พระเถระพาดผ้าสังฆาฏิบนบ่าซ้ายในพิธีสงฆ์สำคัญ",
+    "romanization": "sang-kha-ti"
+  },
+  {
+    "id": "rel_9",
+    "word": "บาตร",
+    "pronunciation": "บาด",
+    "category": "buddhism",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ภาชนะกลมทำจากเหล็กหรือดินเผา สำหรับพระสงฆ์ใช้รับภัตตาหาร (สะกด ตร)",
+    "exampleSentence": "พระภิกษุเปิดฝาบาตรรับข้าวสุกจากญาติโยมด้วยความสงบ",
+    "romanization": "bat"
+  },
+  {
+    "id": "rel_10",
+    "word": "กุฏิ",
+    "pronunciation": "กุด - ติ",
+    "category": "buddhism",
+    "partOfSpeech": "คำนาม",
+    "meaning": "เรือนนอนหรือที่พักอาศัยของพระภิกษุสามเณรภายในวัด",
+    "exampleSentence": "กุฏิสงฆ์สร้างขึ้นอย่างเรียบง่ายท่ามกลางความสงบร่มรื่นของแมกไม้",
+    "romanization": "kut-ti"
+  },
+  {
+    "id": "rel_11",
+    "word": "จำวัด",
+    "pronunciation": "จำ - วัด",
+    "category": "buddhism",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "นอนหลับ (คำกริยาสำหรับพระภิกษุสงฆ์)",
+    "exampleSentence": "หลังจากสวดมนต์ทำวัตรค่ำเสร็จสิ้น พระสงฆ์จึงแยกย้ายกันไปจำวัด",
+    "romanization": "cham-wat"
+  },
+  {
+    "id": "rel_12",
+    "word": "ภัตตาหาร",
+    "pronunciation": "พัด - ตา - หาน",
+    "category": "buddhism",
+    "partOfSpeech": "คำนาม",
+    "meaning": "อาหารสำหรับพระภิกษุสามเณร",
+    "exampleSentence": "ชาวบ้านร่วมกันถวายภัตตาหารเพลแด่พระสงฆ์ทั้งวัด",
+    "romanization": "phat-ta-han"
+  },
+  {
+    "id": "rel_13",
+    "word": "ฉัน",
+    "pronunciation": "ฉัน",
+    "category": "buddhism",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "รับประทานอาหารหรือดื่มน้ำ (คำกริยาสำหรับพระสงฆ์)",
+    "exampleSentence": "พระภิกษุสงฆ์ฉันภัตตาหารมื้อเช้าอย่างสงบและสำรวม",
+    "romanization": "chan"
+  },
+  {
+    "id": "rel_14",
+    "word": "ประเคน",
+    "pronunciation": "ประ - เคน",
+    "category": "buddhism",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "ยกสิ่งของส่งมอบให้พระสงฆ์ด้วยมือในระยะหัตถบาส",
+    "exampleSentence": "ญาติโยมประเคนถวายสังฆทานแด่เจ้าอาวาส",
+    "romanization": "pra-khen"
+  },
+  {
+    "id": "rel_15",
+    "word": "อาพาธ",
+    "pronunciation": "อา - พาด",
+    "category": "buddhism",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "ป่วย เจ็บไข้ได้ป่วย (คำสำหรับพระภิกษุสงฆ์)",
+    "exampleSentence": "คณะศิษย์นิมนต์แพทย์มารักษาหลวงตาที่กำลังอาพาธ",
+    "romanization": "a-phat"
+  },
+  {
+    "id": "rel_16",
+    "word": "มรณภาพ",
+    "pronunciation": "มอ - ระ - นะ - พาบ",
+    "category": "buddhism",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "มรณะ สิ้นชีพ หรือตาย (คำสำหรับพระภิกษุสงฆ์)",
+    "exampleSentence": "หลวงปู่ผู้เป็นที่เคารพศรัทธาของชาวบ้านได้ถึงแก่มรณภาพอย่างสงบ",
+    "romanization": "mo-ra-na-phap"
+  },
+  {
+    "id": "rel_17",
+    "word": "ปลงผม",
+    "pronunciation": "ปลง - ผม",
+    "category": "buddhism",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "โกนผมและคิ้วเพื่อเตรียมเข้าพิธีอุปสมบทหรือรักษาศีล",
+    "exampleSentence": "ผู้ขอบวชเข้าพิธีปลงผมท่ามกลางความปลื้มปีติของบิดามารดา",
+    "romanization": "plong-phom"
+  },
+  {
+    "id": "rel_18",
+    "word": "สวดมนต์",
+    "pronunciation": "สวด - มน",
+    "category": "buddhism",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "ท่องบทสวดสรรเสริญคุณพระรัตนตรัยเพื่อชำระจิตใจให้บริสุทธิ์",
+    "exampleSentence": "ครอบครัวร่วมกันสวดมนต์ไหว้พระก่อนเข้านอนทุกคืน",
+    "romanization": "suat-mon"
+  },
+  {
+    "id": "rel_19",
+    "word": "พระรัตนตรัย",
+    "pronunciation": "พฺระ - รัด - ตะ - นะ - ไตร",
+    "category": "buddhism",
+    "partOfSpeech": "คำนาม",
+    "meaning": "แก้วอันประเสริฐ 3 ประการ ได้แก่ พระพุทธ พระธรรม และพระสงฆ์",
+    "exampleSentence": "พุทธศาสนิกชนกราบไหว้ระลึกถึงพระคุณของพระรัตนตรัย",
+    "romanization": "phra-rat-ta-na-trai"
+  },
+  {
+    "id": "rel_20",
+    "word": "พระพุทธเจ้า",
+    "pronunciation": "พฺระ - พุด - ทะ - เจ้า",
+    "category": "buddhism",
+    "partOfSpeech": "คำนาม",
+    "meaning": "พระบรมศาสดาผู้ตรัสรู้ชอบได้โดยพระองค์เองและก่อตั้งพระพุทธศาสนา",
+    "exampleSentence": "พระพุทธเจ้าทรงแสดงธรรมโปรดเวไนยสัตว์ด้วยพระมหากรุณาธิคุณ",
+    "romanization": "phra-phut-tha-chao"
+  },
+  {
+    "id": "rel_21",
+    "word": "พระธรรม",
+    "pronunciation": "พฺระ - ทำ",
+    "category": "buddhism",
+    "partOfSpeech": "คำนาม",
+    "meaning": "คำสั่งสอนของพระพุทธเจ้า ชี้แนวทางแห่งความจริงและความดับทุกข์",
+    "exampleSentence": "การน้อมนำพระธรรมมาปรับใช้ในชีวิตช่วยให้จิตใจสงบสุข",
+    "romanization": "phra-tham"
+  },
+  {
+    "id": "rel_22",
+    "word": "พระสงฆ์",
+    "pronunciation": "พฺระ - สง",
+    "category": "buddhism",
+    "partOfSpeech": "คำนาม",
+    "meaning": "หมู่สาวกของพระพุทธเจ้า ผู้ปฏิบัติตามพระธรรมวินัยและสืบทอดศาสนา",
+    "exampleSentence": "พระสงฆ์ทำหน้าที่เผยแผ่หลักธรรมคำสอนแก่พุทธศาสนิกชน",
+    "romanization": "phra-song"
+  },
+  {
+    "id": "rel_23",
+    "word": "ไตรปิฎก",
+    "pronunciation": "ไตร - ปิ - ดก",
+    "category": "buddhism",
+    "partOfSpeech": "คำนาม",
+    "meaning": "คัมภีร์บันทึกคำสอนในพระพุทธศาสนา แบ่งเป็น วินัยปิฎก สุตตันตปิฎก และอภิธรรมปิฎก",
+    "exampleSentence": "พระไตรปิฎกเป็นแหล่งรวบรวมหลักธรรมคำสอนที่สมบูรณ์ที่สุด",
+    "romanization": "trai-pi-dok"
+  },
+  {
+    "id": "rel_24",
+    "word": "ศีล",
+    "pronunciation": "สีน",
+    "category": "buddhism",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ข้อประพฤติปฏิบัติเพื่อละเว้นความชั่วและรักษากายวาจาให้บริสุทธิ์",
+    "exampleSentence": "การรักษาศีล 5 ช่วยให้สังคมสงบสุขและอยู่ร่วมกันอย่างปลอดภัย",
+    "romanization": "sin"
+  },
+  {
+    "id": "rel_25",
+    "word": "สมาธิ",
+    "pronunciation": "สะ - มา - ทิ",
+    "category": "buddhism",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ความตั้งมั่นแห่งจิต จิตใจแน่วแน่ สงบนิ่ง ปราศจากความฟุ้งซ่าน",
+    "exampleSentence": "การฝึกนั่งสมาธิวันละ 15 นาทีช่วยเพิ่มสติและคลายความเครียด",
+    "romanization": "sa-ma-thi"
+  },
+  {
+    "id": "rel_26",
+    "word": "ปัญญา",
+    "pronunciation": "ปัน - ยา",
+    "category": "buddhism",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ความรอบรู้ ความรู้แจ้งเห็นจริงตามเหตุและผล",
+    "exampleSentence": "ศีลนำมาซึ่งสมาธิ และสมาธินำมาซึ่งปัญญาอันบริสุทธิ์",
+    "romanization": "pan-ya"
+  },
+  {
+    "id": "rel_27",
+    "word": "อริยสัจ",
+    "pronunciation": "อะ - ริ - ยะ - สัด",
+    "category": "buddhism",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ความจริงอันประเสริฐ 4 ประการ ได้แก่ ทุกข์ สมุทัย นิโรธ มรรค",
+    "exampleSentence": "พระพุทธองค์ทรงแสดงธรรมเรื่องอริยสัจสี่ประการในปฐมเทศนา",
+    "romanization": "a-ri-ya-sat"
+  },
+  {
+    "id": "rel_28",
+    "word": "นิพพาน",
+    "pronunciation": "นิบ - พาน",
+    "category": "buddhism",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สภาวะความดับสนิทแห่งกิเลสและความทุกข์ทั้งปวง เป้าหมายสูงสุด",
+    "exampleSentence": "พระอรหันต์ทั้งหลายบรรลุถึงซึ่งพระนิพพานอันบรมสุข",
+    "romanization": "nip-phan"
+  },
+  {
+    "id": "rel_29",
+    "word": "ทำบุญ",
+    "pronunciation": "ทำ - บุน",
+    "category": "buddhism",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "สร้างคุณงามความดี บำเพ็ญกุศล เพื่อความเจริญใจและประโยชน์สุข",
+    "exampleSentence": "ชาวพุทธนิยมไปทำบุญตักบาตรที่วัดในวันพระและวันสำคัญ",
+    "romanization": "tham-bun"
+  },
+  {
+    "id": "rel_30",
+    "word": "ตักบาตร",
+    "pronunciation": "ตัก - บาด",
+    "category": "buddhism",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "นำข้าวสุกและอาหารคาวหวานใส่ลงในบาตรพระสงฆ์ยามเช้า",
+    "exampleSentence": "คุณแม่เตรียมข้าวสวยร้อนๆ และดอกไม้เพื่อไปตักบาตรยามเช้า",
+    "romanization": "tak-bat"
+  },
+  {
+    "id": "rel_31",
+    "word": "กรวดน้ำ",
+    "pronunciation": "กรวด - น้ำ",
+    "category": "buddhism",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "รินน้ำลงบนพื้นดินพร้อมตั้งจิตอุทิศส่วนบุญกุศลให้ผู้ล่วงลับ",
+    "exampleSentence": "หลังจากพระสงฆ์ให้พร เราจะร่วมกันกรวดน้ำอุทิศบุญ",
+    "romanization": "kruat-nam"
+  },
+  {
+    "id": "rel_32",
+    "word": "เวียนเทียน",
+    "pronunciation": "เวียน - เทียน",
+    "category": "buddhism",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "เดินประนมมือถือดอกไม้ธูปเทียนเวียนรอบปูชนียสถาน 3 รอบ",
+    "exampleSentence": "พุทธศาสนิกชนร่วมเวียนเทียนในคืนวันวิสาขบูชาอย่างพร้อมเพรียง",
+    "romanization": "wian-thian"
+  },
+  {
+    "id": "rel_33",
+    "word": "อนุโมทนา",
+    "pronunciation": "อะ - นุ - โม - ทะ - นา",
+    "category": "buddhism",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "แสดงความยินดีและชื่นชมในบุญกุศลที่ผู้อื่นได้กระทำ",
+    "exampleSentence": "ขอร่วมอนุโมทนาบุญกับทุกท่านที่ร่วมสร้างโรงทานในครั้งนี้",
+    "romanization": "a-nu-mo-tha-na"
+  },
+  {
+    "id": "rel_34",
+    "word": "สังฆทาน",
+    "pronunciation": "สัง - คะ - ทาน",
+    "category": "buddhism",
+    "partOfSpeech": "คำนาม",
+    "meaning": "การถวายทานแด่สงฆ์ส่วนรวม โดยไม่เจาะจงรูปใดรูปหนึ่ง",
+    "exampleSentence": "ครอบครัวนำชุดสังฆทานและยารักษาโรคไปถวายที่วัด",
+    "romanization": "sang-kha-than"
+  },
+  {
+    "id": "rel_35",
+    "word": "กฐิน",
+    "pronunciation": "กะ - ถิน",
+    "category": "buddhism",
+    "partOfSpeech": "คำนาม",
+    "meaning": "พิธีถวายผ้ากฐินแด่พระสงฆ์ที่จำพรรษาครบสามเดือน มีกำหนดปีละครั้ง",
+    "exampleSentence": "ชาวบ้านร่วมกันเป็นเจ้าภาพทอดกฐินสามัคคีเพื่อบูรณะวัด",
+    "romanization": "ka-thin"
+  },
+  {
+    "id": "rel_36",
+    "word": "ผ้าป่า",
+    "pronunciation": "ผ้า - ป่า",
+    "category": "buddhism",
+    "partOfSpeech": "คำนาม",
+    "meaning": "พิธีถวายผ้าบังสุกุลและปัจจัยโดยไม่จำกัดกาลเวลา เพื่อบำรุงพระพุทธศาสนา",
+    "exampleSentence": "ขบวนแห่กองผ้าป่าเดินทางมาถึงวัดด้วยความรื่นเริงและอิ่มบุญ",
+    "romanization": "pha-pa"
+  },
+  {
+    "id": "rel_37",
+    "word": "ปัจจัย",
+    "pronunciation": "ปัด - ไจ",
+    "category": "buddhism",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สิ่งของจำเป็นสำหรับดำรงชีพ หรือเงินทองที่ถวายบำรุงวัดและพระสงฆ์",
+    "exampleSentence": "ญาติโยมร่วมบริจาคปัจจัยสมทบทุนสร้างศาลาการเปรียญหลังใหม่",
+    "romanization": "pat-chai"
+  },
+  {
+    "id": "rel_38",
+    "word": "อุโบสถ",
+    "pronunciation": "อุ - โบ - สด",
+    "category": "buddhism",
+    "partOfSpeech": "คำนาม",
+    "meaning": "โบสถ์ อาคารที่พระสงฆ์ใช้ประชุมทำสังฆกรรม เช่น การบวชหรือสวดปาฏิโมกข์",
+    "exampleSentence": "พระสงฆ์ลงประชุมพร้อมเพรียงกันในอุโบสถเพื่อทำสังฆกรรม",
+    "romanization": "u-bo-sot"
+  },
+  {
+    "id": "rel_39",
+    "word": "วิหาร",
+    "pronunciation": "วิ - หาน",
+    "category": "buddhism",
+    "partOfSpeech": "คำนาม",
+    "meaning": "อาคารในวัดที่ประดิษฐานพระพุทธรูปสำคัญ เป็นที่สักการะของประชาชน",
+    "exampleSentence": "นักท่องเที่ยวเข้ากราบสักการะพระพุทธชินราชในวิหารหลวง",
+    "romanization": "wi-han"
+  },
+  {
+    "id": "rel_40",
+    "word": "เจดีย์",
+    "pronunciation": "เจ - ดี",
+    "category": "buddhism",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สิ่งก่อสร้างยอดแหลมสูง บรรจุพระบรมสารีริกธาตุหรืออัฐิของบูรพาจารย์",
+    "exampleSentence": "พระมหาเจดีย์สีทองส่องประกายอร่ามตระการตายามต้องแสงแดด",
+    "romanization": "che-di"
+  },
+  {
+    "id": "rel_41",
+    "word": "ธรรมาสน์",
+    "pronunciation": "ทำ - มาด",
+    "category": "buddhism",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ที่นั่งยกพื้นสูงสำหรับพระภิกษุขึ้นนั่งแสดงธรรมเทศนา",
+    "exampleSentence": "พระเถระขึ้นนั่งบนธรรมาสน์เพื่อแสดงพระธรรมเทศนาแก่ญาติโยม",
+    "romanization": "tham-mat"
+  },
+  {
+    "id": "rel_42",
+    "word": "เทศนา",
+    "pronunciation": "เทด - สะ - นา",
+    "category": "buddhism",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "แสดงธรรม สั่งสอนและชี้แนะหลักธรรมคำสอน (เทศน์)",
+    "exampleSentence": "เจ้าอาวาสเทศนาสั่งสอนให้ทุกคนยึดมั่นในความกตัญญูและความเพียร",
+    "romanization": "thet-sa-na"
+  },
+  {
+    "id": "rel_43",
+    "word": "วิปัสสนา",
+    "pronunciation": "วิ - ปัด - สะ - นา",
+    "category": "buddhism",
+    "partOfSpeech": "คำนาม",
+    "meaning": "การฝึกเจริญภาวนาเพื่อให้จิตรู้แจ้งเห็นจริงในไตรลักษณ์",
+    "exampleSentence": "พุทธศาสนิกชนเข้าคอร์สอบรมวิปัสสนากรรมฐานเป็นเวลา 7 วัน",
+    "romanization": "wi-pat-sa-na"
+  },
+  {
+    "id": "rel_44",
+    "word": "อาสนะ",
+    "pronunciation": "อา - สะ - นะ",
+    "category": "buddhism",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ที่นั่งหรือเบาะรองนั่งสำหรับพระภิกษุสงฆ์",
+    "exampleSentence": "ปูลาดอาสนะสีขาวสะอาดจัดเตรียมไว้สำหรับพระสงฆ์เจริญพระพุทธมนต์",
+    "romanization": "at-sa-na"
+  },
+  {
+    "id": "rel_45",
+    "word": "พรรษา",
+    "pronunciation": "พัน - สา",
+    "category": "buddhism",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ช่วงฤดูฝน 3 เดือนที่พระสงฆ์ต้องอยู่ประจำที่วัด และใช้เป็นหน่วยนับอายุการบวช",
+    "exampleSentence": "พระภิกษุรูปนี้บวชเรียนมาแล้วเป็นเวลาถึง 10 พรรษา",
+    "romanization": "phan-sa"
+  },
+  {
+    "id": "rel_46",
+    "word": "จำพรรษา",
+    "pronunciation": "จำ - พัน - สา",
+    "category": "buddhism",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "พระสงฆ์พักอยู่ประจำวัดแห่งเดียวตลอดฤดูฝน 3 เดือน ไม่ไปค้างแรมที่อื่น",
+    "exampleSentence": "พระสงฆ์จำพรรษาตลอดไตรมาสเพื่อปฏิบัติธรรมอย่างเคร่งครัด",
+    "romanization": "cham-phan-sa"
+  },
+  {
+    "id": "rel_47",
+    "word": "สมณสารูป",
+    "pronunciation": "สะ - มะ - นะ - สา - รูบ",
+    "category": "buddhism",
+    "partOfSpeech": "คำนาม",
+    "meaning": "กิริยาอาการ ความประพฤติ และท่วงท่าที่เหมาะสมเรียบร้อยแก่สมณะ",
+    "exampleSentence": "พระภิกษุสำรวมกิริยาวาจาอย่างงดงามถูกต้องตามสมณสารูป",
+    "romanization": "sa-ma-na-sa-rup"
+  },
+  {
+    "id": "rel_48",
+    "word": "เจริญพระพุทธมนต์",
+    "pronunciation": "เจอะ - ริน - พฺระ - พุด - ทะ - มน",
+    "category": "buddhism",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "พระสงฆ์สวดบทสวดพระปริตรเพื่อความเป็นสิริมงคลและขจัดปัดเป่าภัย",
+    "exampleSentence": "นิมนต์พระสงฆ์ 9 รูปมาเจริญพระพุทธมนต์ในพิธีขึ้นบ้านใหม่",
+    "romanization": "choe-rin-phra-phut-tha-mon"
+  },
+  {
+    "id": "rel_49",
+    "word": "ศาลาการเปรียญ",
+    "pronunciation": "สา - ลา - กาน - ปะ - เรียน",
+    "category": "buddhism",
+    "partOfSpeech": "คำนาม",
+    "meaning": "อาคารโถงใหญ่ในวัดสำหรับประกอบพิธีทำบุญ ฟังเทศน์ และเรียนธรรม",
+    "exampleSentence": "พุทธศาสนิกชนมารวมตัวกันที่ศาลาการเปรียญเพื่อรับศีลรับพร",
+    "romanization": "sa-la-kan-pa-rian"
+  },
+  {
+    "id": "rel_50",
+    "word": "สาธุ",
+    "pronunciation": "สา - ทุ",
+    "category": "buddhism",
+    "partOfSpeech": "คำอุทาน",
+    "meaning": "คำเปล่งแสดงความเห็นชอบ ความยินดีในความดี หรือน้อมรับพร",
+    "exampleSentence": "ทุกคนกล่าวคำว่า สาธุ พร้อมกันอย่างกึกก้องด้วยความเลื่อมใส",
+    "romanization": "sa-thu"
+  },
+  {
+    "id": "s_1",
+    "word": "กาลเทศะ",
+    "pronunciation": "กา - ละ - เท - สะ",
+    "category": "tricky",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ความเหมาะสมแก่เวลาและสถานที่ในการปฏิบัติตน",
+    "exampleSentence": "การแต่งกายสุภาพถูกกาลเทศะเป็นการให้เกียรติสถานที่",
+    "romanization": "ka-la-the-sa"
+  },
+  {
+    "id": "s_2",
+    "word": "มโนภาพ",
+    "pronunciation": "มะ - โน - พาบ",
+    "category": "tricky",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ภาพที่นึกคิดขึ้นในใจ จินตภาพ",
+    "exampleSentence": "สร้างมโนภาพของฉากในนิยายก่อนลงมือเขียนบทบรรยาย",
+    "romanization": "ma-no-phap"
+  },
+  {
+    "id": "s_3",
+    "word": "อัศจรรย์",
+    "pronunciation": "อัด - สะ - จัน",
+    "category": "tricky",
+    "partOfSpeech": "คำคุณศัพท์",
+    "meaning": "แปลกประหลาด น่าพิศวง มหัศจรรย์ใจ",
+    "exampleSentence": "ปรากฏการณ์สุริยุปราคาเต็มดวงเป็นภาพที่อัศจรรย์ยิ่ง",
+    "romanization": "at-sa-chan"
+  },
+  {
+    "id": "s_4",
+    "word": "ปรากฏ",
+    "pronunciation": "ปรา - กด",
+    "category": "tricky",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "สำแดงออกมาให้เห็นชัดเจน (สะกดด้วย ฏ ปฏัก)",
+    "exampleSentence": "รุ้งกินน้ำปรากฏขึ้นบนท้องฟ้าหลังสายฝนโปรยปราย",
+    "romanization": "pra-kot"
+  },
+  {
+    "id": "s_5",
+    "word": "อนุญาต",
+    "pronunciation": "อะ - นุ - ยาด",
+    "category": "tricky",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "ยินยอม ยอมให้ (ไม่มีสระอิบน ต เต่า ไม่เหมือน ญาติ)",
+    "exampleSentence": "คุณครูอนุญาตให้นักเรียนออกไปดื่มน้ำได้",
+    "romanization": "a-nu-yat"
+  },
+  {
+    "id": "s_6",
+    "word": "สังเกต",
+    "pronunciation": "สัง - เกด",
+    "category": "tricky",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "ตั้งใจมองเพื่อหาข้อเท็จจริง (ไม่มีสระอุใต้ ต เต่า)",
+    "exampleSentence": "นักวิทยาศาสตร์ต้องเป็นคนช่างสังเกตการเปลี่ยนแปลงรอบตัว",
+    "romanization": "sang-ket"
+  },
+  {
+    "id": "s_7",
+    "word": "รสชาติ",
+    "pronunciation": "รด - ชาด",
+    "category": "tricky",
+    "partOfSpeech": "คำนาม",
+    "meaning": "รสที่สัมผัสได้ด้วยลิ้น (คำว่า ชาติ มีสระอิ)",
+    "exampleSentence": "อาหารจานนี้มีรสชาติกลมกล่อมเข้มข้นกำลังดี",
+    "romanization": "rot-chat"
+  },
+  {
+    "id": "s_8",
+    "word": "สัปดาห์",
+    "pronunciation": "สับ - ปะ - ดา (หรือ สับ - ดา)",
+    "category": "tricky",
+    "partOfSpeech": "คำนาม",
+    "meaning": "รอบระยะเวลา 7 วัน",
+    "exampleSentence": "ในหนึ่งสัปดาห์เรามีวันหยุดเรียนสองวัน",
+    "romanization": "sap-da"
+  },
+  {
+    "id": "s_9",
+    "word": "บรรยากาศ",
+    "pronunciation": "บัน - ยา - กาด",
+    "category": "tricky",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ชั้นอากาศที่ห่อหุ้มโลก หรือความรู้สึกรอบตัวในขณะนั้น",
+    "exampleSentence": "ร้านกาแฟริมแม่น้ำมีบรรยากาศสงบและร่มรื่น",
+    "romanization": "ban-ya-kat"
+  },
+  {
+    "id": "s_10",
+    "word": "กิจการ",
+    "pronunciation": "กิด - จะ - กาน",
+    "category": "tricky",
+    "partOfSpeech": "คำนาม",
+    "meaning": "การงาน ธุรกิจ หรือหน่วยงานที่ดำเนินการอยู่",
+    "exampleSentence": "เขาบริหารกิจการครอบครัวให้เจริญก้าวหน้าอย่างมั่นคง",
+    "romanization": "kit-cha-kan"
+  },
+  {
+    "id": "s_11",
+    "word": "โอกาส",
+    "pronunciation": "โอ - กาด",
+    "category": "tricky",
+    "partOfSpeech": "คำนาม",
+    "meaning": "เวลาที่เหมาะ จังหวะอันควร (สะกดด้วย ส เสือ)",
+    "exampleSentence": "เมื่อมีโอกาสที่ดีเข้ามาจงรีบคว้าและลงมือทำอย่างเต็มที่",
+    "romanization": "o-kat"
+  },
+  {
+    "id": "s_12",
+    "word": "อากาศ",
+    "pronunciation": "อา - กาด",
+    "category": "tricky",
+    "partOfSpeech": "คำนาม",
+    "meaning": "แก๊สที่ล้อมรอบตัวเรา หรือสภาพลมฟ้าในแต่ละวัน (สะกดด้วย ศ ศาลา)",
+    "exampleSentence": "ยามเช้าอากาศบริสุทธิ์สดชื่นเหมาะแก่การเดินเล่น",
+    "romanization": "a-kat"
+  },
+  {
+    "id": "s_13",
+    "word": "มารยาท",
+    "pronunciation": "มา - ระ - ยาด",
+    "category": "tricky",
+    "partOfSpeech": "คำนาม",
+    "meaning": "กิริยาวาจาที่เรียบร้อยและถูกต้องตามธรรมเนียมสังคม",
+    "exampleSentence": "การกล่าวคำขอบคุณและขอโทษถือเป็นมารยาทพื้นฐานที่ดี",
+    "romanization": "ma-ra-yat"
+  },
+  {
+    "id": "s_14",
+    "word": "ปาฏิหาริย์",
+    "pronunciation": "ปา - ติ - หาน",
+    "category": "tricky",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สิ่งที่น่าอัศจรรย์เหนือธรรมชาติ เกินความคาดหมาย",
+    "exampleSentence": "ผู้รอดชีวิตจากอุบัติเหตุราวกับมีปาฏิหาริย์เกิดขึ้น",
+    "romanization": "pa-ti-han"
+  },
+  {
+    "id": "s_15",
+    "word": "พรรณนา",
+    "pronunciation": "พัน - นะ - นา",
+    "category": "tricky",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "กล่าวเป็นเรื่องราวอย่างละเอียดถี่ถ้วน ชี้ให้เห็นภาพชัดเจน",
+    "exampleSentence": "กวีพรรณนาความงดงามของแสงจันทร์ในคืนวันเพ็ญได้อย่างจับใจ",
+    "romanization": "phan-na-na"
+  },
+  {
+    "id": "s_16",
+    "word": "วิจิตร",
+    "pronunciation": "วิ - จิด",
+    "category": "tricky",
+    "partOfSpeech": "คำคุณศัพท์",
+    "meaning": "งามหยดย้อย งามประณีตบรรจง",
+    "exampleSentence": "ลวดลายแกะสลักบนหน้าบันพระอุโบสถมีความวิจิตรตระการตา",
+    "romanization": "wi-chit"
+  },
+  {
+    "id": "s_17",
+    "word": "ทัศนียภาพ",
+    "pronunciation": "ทัด - สะ - นี - ยะ - พาบ",
+    "category": "tricky",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ทิวทัศน์ ภาพทัศน์ที่มองเห็นได้กว้างไกลและสวยงาม",
+    "exampleSentence": "โรงแรมตั้งอยู่บนหน้าผาสามารถชมทัศนียภาพท้องทะเลได้รอบทิศ",
+    "romanization": "that-sa-ni-ya-phap"
+  },
+  {
+    "id": "s_18",
+    "word": "ปรารถนา",
+    "pronunciation": "ปฺราด - ถะ - หนา",
+    "category": "tricky",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "ต้องการ มุ่งหวัง มีใจอยากได้สิ่งดีงาม",
+    "exampleSentence": "ขอให้ทุกคนสมปรารถนาในสิ่งที่ตั้งใจไว้ทุกประการ",
+    "romanization": "prat-tha-na"
+  },
+  {
+    "id": "s_19",
+    "word": "วัฒนธรรม",
+    "pronunciation": "วัด - ทะ - นะ - ทำ",
+    "category": "tricky",
+    "partOfSpeech": "คำนาม",
+    "meaning": "วิถีชีวิตและความเจริญงอกงามที่สืบทอดกันมาของกลุ่มชน",
+    "exampleSentence": "การไหว้เป็นวัฒนธรรมไทยที่สะท้อนถึงความเคารพและอ่อนน้อม",
+    "romanization": "wat-tha-na-tham"
+  },
+  {
+    "id": "s_20",
+    "word": "ประเพณี",
+    "pronunciation": "ประ - เพ - นี",
+    "category": "tricky",
+    "partOfSpeech": "คำนาม",
+    "meaning": "สิ่งที่นิยมประพฤติปฏิบัติสืบต่อกันมาจนเป็นแบบแผน",
+    "exampleSentence": "ประเพณีลอยกระทงจัดขึ้นเพื่อขอขมาพระแม่คงคา",
+    "romanization": "pra-phe-ni"
+  },
+  {
+    "id": "s_21",
+    "word": "เอกลักษณ์",
+    "pronunciation": "เอก - กะ - ลัก",
+    "category": "tricky",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ลักษณะเด่นเฉพาะตัวที่ไม่เหมือนผู้อื่น",
+    "exampleSentence": "รอยยิ้มและการไหว้ถือเป็นเอกลักษณ์สำคัญของคนไทย",
+    "romanization": "ek-ka-lak"
+  },
+  {
+    "id": "s_22",
+    "word": "สัมพันธภาพ",
+    "pronunciation": "สำ - พัน - ทะ - พาบ",
+    "category": "tricky",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ความผูกพัน ความสัมพันธ์อันดีระหว่างบุคคลหรือกลุ่มชน",
+    "exampleSentence": "การทำกิจกรรมร่วมกันช่วยสร้างสัมพันธภาพอันดีในครอบครัว",
+    "romanization": "sam-phan-tha-phap"
+  },
+  {
+    "id": "s_23",
+    "word": "อัธยาศัย",
+    "pronunciation": "อัด - ทะ - ยา - ไส",
+    "category": "tricky",
+    "partOfSpeech": "คำนาม",
+    "meaning": "นิสัยใจคอ ความเป็นมิตรและความมีน้ำใจ",
+    "exampleSentence": "เจ้าของบ้านมีอัธยาศัยไมตรีดีและต้อนรับแขกอย่างอบอุ่น",
+    "romanization": "at-tha-ya-sai"
+  },
+  {
+    "id": "s_24",
+    "word": "ประสบการณ์",
+    "pronunciation": "ประ - สบ - กาน",
+    "category": "tricky",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ความรู้หรือความชำนาญที่เกิดจากการลงมือปฏิบัติจริง",
+    "exampleSentence": "การเดินทางท่องเที่ยวช่วยเปิดโลกทัศน์และเพิ่มพูนประสบการณ์",
+    "romanization": "pra-sop-kan"
+  },
+  {
+    "id": "s_25",
+    "word": "ทัศนคติ",
+    "pronunciation": "ทัด - สะ -นะ - คะ - ติ",
+    "category": "tricky",
+    "partOfSpeech": "คำนาม",
+    "meaning": "แนวคิด ท่าที หรือมุมมองที่มีต่อสิ่งต่างๆ",
+    "exampleSentence": "การมองโลกในแง่ดีช่วยสร้างทัศนคติเชิงบวกในการทำงาน",
+    "romanization": "that-sa-na-kha-ti"
+  },
+  {
+    "id": "s_26",
+    "word": "ประสิทธิภาพ",
+    "pronunciation": "ประ - สิด - ทิ - พาบ",
+    "category": "tricky",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ความสามารถในการทำงานให้สำเร็จอย่างรวดเร็วและคุ้มค่าที่สุด",
+    "exampleSentence": "การวางแผนล่วงหน้าช่วยเพิ่มประสิทธิภาพในการทำงาน",
+    "romanization": "pra-sit-thi-phap"
+  },
+  {
+    "id": "s_27",
+    "word": "สุภาษิต",
+    "pronunciation": "สุ - พา - สิด",
+    "category": "tricky",
+    "partOfSpeech": "คำนาม",
+    "meaning": "ถ้อยคำที่มีคติสอนใจ ชี้แนะแนวทางความประพฤติที่ดีงาม",
+    "exampleSentence": "สุภาษิตสอนใจเป็นมรดกทางปัญญาที่สืบทอดมายาวนาน",
+    "romanization": "su-pha-sit"
+  },
+  {
+    "id": "s_28",
+    "word": "น้ำขึ้นให้รีบตัก",
+    "pronunciation": "น้ำ - ขึ้น - ให้ - รีบ - ตัก",
+    "category": "tricky",
+    "partOfSpeech": "สำนวน",
+    "meaning": "เมื่อมีโอกาสดีมาถึง ควรรีบลงมือทำทันทีอย่าปล่อยให้หลุดลอย",
+    "exampleSentence": "เมื่อลูกค้าสนใจสั่งซื้อสินค้าจำนวนมาก น้ำขึ้นให้รีบตัก",
+    "romanization": "nam-khuen-hai-rip-tak"
+  },
+  {
+    "id": "s_29",
+    "word": "ไก่งามเพราะขน",
+    "pronunciation": "ไก่ - งาม - เพราะ - ขน",
+    "category": "tricky",
+    "partOfSpeech": "สำนวน",
+    "meaning": "คนจะดูดีได้ก็ด้วยการแต่งตัวและการปฏิบัติตนที่เหมาะสม",
+    "exampleSentence": "การแต่งกายสุภาพสะอาดสะอ้านช่วยเสริมบุคลิกภาพ ดังคำว่า ไก่งามเพราะขน คนงามเพราะแต่ง",
+    "romanization": "kai-ngam-phro-khon"
+  },
+  {
+    "id": "s_30",
+    "word": "เข้าเมืองตาหลิ่ว",
+    "pronunciation": "เข้า - เมือง - ตา - หลิ่ว",
+    "category": "tricky",
+    "partOfSpeech": "สำนวน",
+    "meaning": "ประพฤติตนให้กลมกลืนตามขนบธรรมเนียมของสถานที่ที่ไปเยือน",
+    "exampleSentence": "ไปอยู่ต่างแดนต้องเรียนรู้วัฒนธรรมท้องถิ่น เข้าเมืองตาหลิ่วต้องหลิ่วตาตาม",
+    "romanization": "khao-mueang-ta-lio"
+  },
+  {
+    "id": "s_31",
+    "word": "น้ำพึ่งเรือเสือพึ่งป่า",
+    "pronunciation": "น้ำ - พึ่ง - เรือ - เสือ - พึ่ง - ป่า",
+    "category": "tricky",
+    "partOfSpeech": "สำนวน",
+    "meaning": "การพึ่งพาอาศัยซึ่งกันและกันเพื่อประโยชน์ร่วมกัน",
+    "exampleSentence": "เพื่อนร่วมงานต้องช่วยเหลือเกื้อกูลกันแบบ น้ำพึ่งเรือเสือพึ่งป่า",
+    "romanization": "nam-phueng-ruea-suea-phueng-pa"
+  },
+  {
+    "id": "s_32",
+    "word": "ช้าๆได้พร้าสองเล่มงาม",
+    "pronunciation": "ช้า - ช้า - ได้ - พร้า - สอง - เล่ม - งาม",
+    "category": "tricky",
+    "partOfSpeech": "สำนวน",
+    "meaning": "ค่อยๆ คิด ค่อยๆ ทำอย่างรอบคอบ ย่อมได้ผลงานที่ดีเลิศ",
+    "exampleSentence": "อย่าใจร้อนรีบส่งงาน ตรวจทานให้ถี่ถ้วนก่อน ช้าๆ ได้พร้าเล่มงาม",
+    "romanization": "cha-cha-dai-phra-song-lem-ngam"
+  },
+  {
+    "id": "s_33",
+    "word": "รู้ไว้ใช่ว่า",
+    "pronunciation": "รู้ - ไว้ - ใช่ - ว่า",
+    "category": "tricky",
+    "partOfSpeech": "สำนวน",
+    "meaning": "การเรียนรู้สิ่งต่างๆ ไว้ไม่เสียหาย มีแต่จะได้ประโยชน์ในวันข้างหน้า",
+    "exampleSentence": "เรียนรู้คำศัพท์เพิ่มเติมไว้ รู้ไว้ใช่ว่า ใส่บ่าแบกหาม",
+    "romanization": "ru-wai-chai-wa"
+  },
+  {
+    "id": "s_34",
+    "word": "ปากหวานก้นเปรี้ยว",
+    "pronunciation": "ปาก - หวาน - ก้น - เปรี้ยว",
+    "category": "tricky",
+    "partOfSpeech": "สำนวน",
+    "meaning": "พูดจาอ่อนหวานน่าฟังแต่ในใจคิดไม่ดี ไม่จริงใจ",
+    "exampleSentence": "ควรระวังคนที่มีลักษณะปากหวานก้นเปรี้ยว พูดจาดีแต่หวังร้าย",
+    "romanization": "pak-wan-kon-prieo"
+  },
+  {
+    "id": "s_35",
+    "word": "วัวหายล้อมคอก",
+    "pronunciation": "วัว - หาย - ล้อม - คอก",
+    "category": "tricky",
+    "partOfSpeech": "สำนวน",
+    "meaning": "เกิดเรื่องเสียหายขึ้นแล้วจึงค่อยคิดหาทางป้องกัน",
+    "exampleSentence": "ติดตั้งกล้องวงจรปิดก่อนเกิดเหตุขโมย อย่าปล่อยให้เป็นแบบ วัวหายล้อมคอก",
+    "romanization": "wua-hai-lom-khok"
+  },
+  {
+    "id": "s_36",
+    "word": "ชี้โพรงให้กระรอก",
+    "pronunciation": "ชี้ - โพรง - ให้ - กระ - รอก",
+    "category": "tricky",
+    "partOfSpeech": "สำนวน",
+    "meaning": "บอกลู่ทางหรือแนะแนวทางให้คนทำผิดโดยไม่ได้ตั้งใจ",
+    "exampleSentence": "อย่าบอกวิธีแอบเล่นเกมในห้องเรียนให้เพื่อน เหมือนชี้โพรงให้กระรอก",
+    "romanization": "chi-phrong-hai-kra-rok"
+  },
+  {
+    "id": "s_37",
+    "word": "จับปลาสองมือ",
+    "pronunciation": "จับ - ปลา - สอง - มือ",
+    "category": "tricky",
+    "partOfSpeech": "สำนวน",
+    "meaning": "มุ่งหวังจะทำสองสิ่งพร้อมๆ กันในคราวเดียวจนอาจล้มเหลวทั้งคู่",
+    "exampleSentence": "ตั้งใจโฟกัสทำโครงงานทีละชิ้นให้สำเร็จ ดีกว่าจับปลาสองมือแล้วไม่เสร็จสักอย่าง",
+    "romanization": "chap-pla-song-mue"
+  },
+  {
+    "id": "s_38",
+    "word": "กบในกะลาครอบ",
+    "pronunciation": "กบ - ใน - กะ - ลา - ครอบ",
+    "category": "tricky",
+    "partOfSpeech": "สำนวน",
+    "meaning": "ผู้มีความรู้น้อยหรือโลกทัศน์แคบ แต่นึกว่าตนเองรอบรู้ทุกอย่าง",
+    "exampleSentence": "การเปิดใจรับฟังผู้อื่นช่วยป้องกันไม่ให้เราเป็นกบในกะลาครอบ",
+    "romanization": "kop-nai-ka-la-khrop"
+  },
+  {
+    "id": "s_39",
+    "word": "เอาใจใส่",
+    "pronunciation": "เอา - ใจ - ใส่",
+    "category": "tricky",
+    "partOfSpeech": "คำกริยา",
+    "meaning": "ให้ความสนใจ ทุ่มเทดูแลอย่างใกล้ชิดและสม่ำเสมอ",
+    "exampleSentence": "คุณหมอเอาใจใส่ตรวจคนไข้ทุกคนด้วยความละเอียดรอบคอบ",
+    "romanization": "ao-chai-sai"
+  },
+  {
+    "id": "s_40",
+    "word": "ซื่อสัตย์สุจริต",
+    "pronunciation": "ซื่อ - สัด - สุจ - จะ - ริด",
+    "category": "tricky",
+    "partOfSpeech": "คำคุณศัพท์",
+    "meaning": "ประพฤติตรง ไม่คดโกง ปฏิบัติหน้าที่ด้วยความโปร่งใส",
+    "exampleSentence": "ความซื่อสัตย์สุจริตเป็นเกียรติยศสูงสุดในการทำงาน",
+    "romanization": "sue-sat-sut-cha-rit"
+  }
+];
