@@ -1,4 +1,4 @@
-// คลังคำศัพท์ภาษาไทย 500 คำแบ่งตามหมวดหมู่ (Thai Vocabulary Dataset - 500 Words)
+// คลังคำศัพท์ภาษาไทย 550 คำแบ่งตาม 10 หมวดหมู่ (Thai Vocabulary Dataset with English Translations)
 // ออกแบบมาเพื่อการเรียนรู้ การออกเสียง และการฝึกทบทวนบนแท็บเล็ตและคอมพิวเตอร์
 
 const INITIAL_CATEGORIES = [
@@ -90,7 +90,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ไม้ล้มลุกใบมีกลิ่นหอม รสเผ็ดร้อน นิยมนำมาผัด (มักสะกดผิดเป็น กระเพรา)",
     "exampleSentence": "เมนูยอดนิยมคือผัดกะเพราไก่ไข่ดาว",
-    "romanization": "ka-phrao"
+    "romanization": "ka-phrao",
+    "english": "Holy Basil"
   },
   {
     "id": "f_2",
@@ -100,7 +101,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "อาหารประเภทเส้นทำจากแป้งข้าวเจ้า ลวกในน้ำร้อน",
     "exampleSentence": "ตอนเที่ยงเราไปกินก๋วยเตี๋ยวน้ำใสกัน",
-    "romanization": "kuai-tiao"
+    "romanization": "kuai-tiao",
+    "english": "Noodles"
   },
   {
     "id": "f_3",
@@ -110,7 +112,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "แกงรสเปรี้ยวเผ็ด ปรุงด้วยข่า ตะไคร้ ใบมะกรูด และมะนาว",
     "exampleSentence": "ต้มยำกุ้งเป็นอาหารไทยที่มีชื่อเสียงไปทั่วโลก",
-    "romanization": "tom-yam"
+    "romanization": "tom-yam",
+    "english": "Tom Yum Soup"
   },
   {
     "id": "f_4",
@@ -120,7 +123,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผลไม้รสเปรี้ยวเมื่อดิบ และรสหวานหอมเมื่อสุก",
     "exampleSentence": "ข้าวเหนียวมะม่วงเป็นของหวานที่ชาวต่างชาติโปรดปราน",
-    "romanization": "ma-muang"
+    "romanization": "ma-muang",
+    "english": "Mango"
   },
   {
     "id": "f_5",
@@ -130,7 +134,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผลไม้เปลือกมีหนาม เนื้อสีเหลืองนวล กลิ่นหอมแรง ราชาแห่งผลไม้",
     "exampleSentence": "ทุเรียนหมอนทองรสชาติหวานมันอร่อย",
-    "romanization": "thu-rian"
+    "romanization": "thu-rian",
+    "english": "Durian"
   },
   {
     "id": "f_6",
@@ -140,7 +145,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "อาหารคาวทำจากเส้นมะละกอดิบ ตำคลุกเคล้ากับพริกและเครื่องปรุง",
     "exampleSentence": "ส้มตำไทยรสชาติเปรี้ยวหวานกลมกล่อม",
-    "romanization": "som-tam"
+    "romanization": "som-tam",
+    "english": "Papaya Salad"
   },
   {
     "id": "f_7",
@@ -150,7 +156,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "เครื่องจิ้มรสเผ็ด ปรุงจากพริก กะปิ หรือเนื้อปลา รับประทานกับผัก",
     "exampleSentence": "คุณยายชอบรับประทานน้ำพริกกะปิกับปลาทูทอด",
-    "romanization": "nam-phrik"
+    "romanization": "nam-phrik",
+    "english": "Chili Paste"
   },
   {
     "id": "f_8",
@@ -160,7 +167,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "เครื่องดื่มชงจากใบชาสด ไม่ผ่านการหมัก มีสารต้านอนุมูลอิสระ",
     "exampleSentence": "เขาดื่มชาเขียวร้อนทุกเช้าหลังตื่นนอน",
-    "romanization": "cha-khiao"
+    "romanization": "cha-khiao",
+    "english": "Green Tea"
   },
   {
     "id": "f_9",
@@ -170,7 +178,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ข้าวที่หุงด้วยน้ำต้มกระดูกและมันไก่ เสิร์ฟพร้อมเนื้อไก่ต้มและน้ำจิ้มเต้าเจี้ยว",
     "exampleSentence": "ร้านข้าวมันไก่นี้มีน้ำซุปหวานกระดูกไก่มาก",
-    "romanization": "khao-man-kai"
+    "romanization": "khao-man-kai",
+    "english": "Hainanese Chicken Rice"
   },
   {
     "id": "f_10",
@@ -180,7 +189,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "อาหารพื้นเมืองทางภาคเหนือ เป็นเส้นบะหมี่ในน้ำแกงกะทิรสเข้มข้น",
     "exampleSentence": "เมื่อไปเที่ยวเชียงใหม่ต้องไม่พลาดชิมข้าวซอยไก่",
-    "romanization": "khao-soi"
+    "romanization": "khao-soi",
+    "english": "Khao Soi (Northern Curry Noodles)"
   },
   {
     "id": "f_11",
@@ -190,7 +200,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "แกงกะทิใส่พริกแกงสีเขียว รสเผ็ดหอมหวานมัน",
     "exampleSentence": "แกงเขียวหวานไก่กินคู่กับขนมจีนเข้ากันได้ดีมาก",
-    "romanization": "kaeng-khiao-wan"
+    "romanization": "kaeng-khiao-wan",
+    "english": "Green Curry"
   },
   {
     "id": "f_12",
@@ -200,7 +211,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "แกงคั่วกะทิข้น รสเค็มหวานหอมกลิ่นใบมะกรูดซอย",
     "exampleSentence": "พะแนงหมูจานนี้มีน้ำแกงขลุกขลิกเข้มข้น",
-    "romanization": "pha-naeng"
+    "romanization": "pha-naeng",
+    "english": "Panang Curry"
   },
   {
     "id": "f_13",
@@ -210,7 +222,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ก๋วยเตี๋ยวเส้นเล็กผัดกับเต้าหู้ ถั่วงอก กุ้งแห้ง และไข่ ปรุงรสด้วยน้ำมะขามเปียก",
     "exampleSentence": "ผัดไทยกุ้งสดบีบมะนาวเพิ่มความเปรี้ยวสดชื่น",
-    "romanization": "phat-thai"
+    "romanization": "phat-thai",
+    "english": "Pad Thai"
   },
   {
     "id": "f_14",
@@ -220,7 +233,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "แกงกะทิรสชาติเข้มข้น ใส่เครื่องเทศ ถั่วลิสง และมันฝรั่ง",
     "exampleSentence": "แกงมัสมั่นเนื้อได้รับการยกย่องว่าเป็นอาหารอร่อยระดับโลก",
-    "romanization": "mat-sa-man"
+    "romanization": "mat-sa-man",
+    "english": "Massaman Curry"
   },
   {
     "id": "f_15",
@@ -230,7 +244,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "เนื้อปลาหรือกุ้งนวดกับพริกแกง นำไปทอดเป็นแผ่นกลม",
     "exampleSentence": "ทอดมันปลากรายเหนียวนุ่มจิ้มกับน้ำจิ้มแตงกวา",
-    "romanization": "thot-man"
+    "romanization": "thot-man",
+    "english": "Fried Fish Cakes"
   },
   {
     "id": "f_16",
@@ -240,7 +255,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ไข่ที่ตีให้เข้ากันแล้วนำไปทอดในน้ำมันร้อนจนฟูกรอบ",
     "exampleSentence": "ไข่เจียวหมูสับร้อนๆ ทานกับข้าวสวยอร่อยที่สุด",
-    "romanization": "khai-chiao"
+    "romanization": "khai-chiao",
+    "english": "Thai Omelet"
   },
   {
     "id": "f_17",
@@ -250,7 +266,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "แกงกะทิใส่ข่าอ่อน ตะไคร้ และเนื้อไก่ รสเปรี้ยวเค็มมัน",
     "exampleSentence": "ต้มข่าไก่มีกลิ่นหอมของข่าและใบมะกรูด",
-    "romanization": "tom-kha-kai"
+    "romanization": "tom-kha-kai",
+    "english": "Chicken Coconut Soup"
   },
   {
     "id": "f_18",
@@ -260,7 +277,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "อาหารปิ้งย่างที่ใช้กระทะโค้งมีช่องใส่น้ำซุป ล้อมวงกินกันอย่างอบอุ่น",
     "exampleSentence": "เย็นวันศุกร์เพื่อนๆ ชวนกันไปกินหมูกระทะ",
-    "romanization": "mu-kra-tha"
+    "romanization": "mu-kra-tha",
+    "english": "Thai BBQ & Hotpot"
   },
   {
     "id": "f_19",
@@ -270,7 +288,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ปลาน้ำกร่อยและน้ำเค็ม เนื้อแน่น นิยมนำมาทอดน้ำปลาหรือนึ่งมะนาว",
     "exampleSentence": "ปลากะพงทอดน้ำปลาจานนี้กรอบนอกนุ่มใน",
-    "romanization": "pla-ka-phong"
+    "romanization": "pla-ka-phong",
+    "english": "Asian Sea Bass"
   },
   {
     "id": "f_20",
@@ -280,7 +299,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "หอยทะเลสองฝา เนื้อนุ่ม รสหวาน นิยมรับประทานสดหรือทำออส่วน",
     "exampleSentence": "หอยนางรมสดเสิร์ฟพร้อมยอดกระถินและน้ำพริกเผา",
-    "romanization": "hoi-nang-rom"
+    "romanization": "hoi-nang-rom",
+    "english": "Oyster"
   },
   {
     "id": "f_21",
@@ -290,7 +310,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "กุ้งแม่น้ำตัวใหญ่นำมาย่างบนเตาถ่านจนมันกุ้งเยิ้ม",
     "exampleSentence": "กุ้งเผาอยุธยามีเนื้อแน่นเด้งและมันเยิ้ม",
-    "romanization": "kung-phao"
+    "romanization": "kung-phao",
+    "english": "Grilled River Prawn"
   },
   {
     "id": "f_22",
@@ -300,7 +321,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "เครื่องดื่มทำจากเมล็ดกาแฟคั่ว มีคาเฟอีนช่วยให้ตื่นตัว",
     "exampleSentence": "เขาชอบดื่มกาแฟดำไม่ใส่น้ำตาลในตอนเช้า",
-    "romanization": "ka-fae"
+    "romanization": "ka-fae",
+    "english": "Coffee"
   },
   {
     "id": "f_23",
@@ -310,7 +332,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "น้ำนมวัวแท้ที่มีคุณค่าทางอาหารสูง มีแคลเซียมช่วยบำรุงกระดูก",
     "exampleSentence": "ดื่มนมสดอุ่นๆ ก่อนนอนช่วยให้นอนหลับสบาย",
-    "romanization": "nom-sot"
+    "romanization": "nom-sot",
+    "english": "Fresh Milk"
   },
   {
     "id": "f_24",
@@ -320,7 +343,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "เครื่องดื่มที่ได้จากการบดถั่วเหลืองต้มกับน้ำ",
     "exampleSentence": "คุณแม่ซื้อน้ำเต้าหู้ไม่หวานและปาท่องโก๋มาฝาก",
-    "romanization": "nam-tao-hu"
+    "romanization": "nam-tao-hu",
+    "english": "Soy Milk"
   },
   {
     "id": "f_25",
@@ -330,7 +354,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ขนมไทยทำจากแป้งใบเตยเป็นตัวเรียว รับประทานกับน้ำกะทิน้ำตาลปี๊บ",
     "exampleSentence": "ลอดช่องน้ำกะทิหอมควันเทียนและหวานชื่นใจ",
-    "romanization": "lot-chong"
+    "romanization": "lot-chong",
+    "english": "Pandan Cendol in Coconut Milk"
   },
   {
     "id": "f_26",
@@ -340,7 +365,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ขนมไทยทำจากแป้งปั้นเป็นเม็ดกลมต้มในกะทิหวานเค็ม",
     "exampleSentence": "บัวลอยไข่หวานถ้วยนี้มีสีสันจากพืชธรรมชาติ",
-    "romanization": "bua-loi"
+    "romanization": "bua-loi",
+    "english": "Rice Balls in Sweet Coconut Milk"
   },
   {
     "id": "f_27",
@@ -350,7 +376,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ขนมทำจากแป้งข้าวเจ้าและกะทิ หยอดในเตาหลุมจนขอบกรอบ",
     "exampleSentence": "ขนมครกชาววังหน้าต้นหอมและข้าวโพดหวานมันกำลังดี",
-    "romanization": "kha-nom-khrok"
+    "romanization": "kha-nom-khrok",
+    "english": "Coconut Rice Pancakes"
   },
   {
     "id": "f_28",
@@ -360,7 +387,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ข้าวที่ต้มในน้ำซุปจนเม็ดข้าวนุ่ม นิยมรับประทานเป็นอาหารเช้า",
     "exampleSentence": "เช้านี้อากาศเย็นสบายเหมาะกับข้าวต้มปลาร้อนๆ",
-    "romanization": "khao-tom"
+    "romanization": "khao-tom",
+    "english": "Rice Soup / Porridge"
   },
   {
     "id": "f_29",
@@ -370,7 +398,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ข้าวต้มบดละเอียดจนเนื้อเนียนนุ่ม รับประทานกับไข่ลวกและหมูสับ",
     "exampleSentence": "โจ๊กหมูใส่ตับและขิงซอยช่วยให้ร่างกายอบอุ่น",
-    "romanization": "chok"
+    "romanization": "chok",
+    "english": "Congee"
   },
   {
     "id": "f_30",
@@ -380,7 +409,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "อาหารประเภทเส้นแป้งม้วนกลม ต้มในน้ำซุปพะโล้หรือน้ำใส",
     "exampleSentence": "กวยจั๊บน้ำข้นชามนี้หอมกลิ่นพริกไทยดำ",
-    "romanization": "kuai-chap"
+    "romanization": "kuai-chap",
+    "english": "Rolled Rice Noodle Soup"
   },
   {
     "id": "f_31",
@@ -390,7 +420,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ขนมนึ่งทำจากแป้งสาลีสอดไส้หมูสับหรือไส้ครีม",
     "exampleSentence": "ซาลาเปาไส้หมูแดงแป้งนุ่มฟูอร่อย",
-    "romanization": "sa-la-pao"
+    "romanization": "sa-la-pao",
+    "english": "Steamed Bun (Baozi)"
   },
   {
     "id": "f_32",
@@ -400,7 +431,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "แผ่นแป้งห่อไส้หมูและผัก นำไปทอดหรือนึ่ง",
     "exampleSentence": "เกี๊ยวซ่าทอดกรอบด้านหนึ่งและนุ่มอีกด้านหนึ่ง",
-    "romanization": "kiao-sa"
+    "romanization": "kiao-sa",
+    "english": "Gyoza (Dumpling)"
   },
   {
     "id": "f_33",
@@ -410,7 +442,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "แป้งทอดบนกระทะแบน ราดนมข้นหวานและน้ำตาล",
     "exampleSentence": "โรตีกรอบราดนมข้นเป็นของว่างยามดึกยอดฮิต",
-    "romanization": "ro-ti"
+    "romanization": "ro-ti",
+    "english": "Roti"
   },
   {
     "id": "f_34",
@@ -420,7 +453,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผลไม้ผลกลมโต เปลือกเขียว เนื้อสีแดงฉ่ำน้ำ รสหวานชื่นใจ",
     "exampleSentence": "กินแตงโมแช่เย็นในวันอากาศร้อนช่วยคลายร้อนได้ดี",
-    "romanization": "taeng-mo"
+    "romanization": "taeng-mo",
+    "english": "Watermelon"
   },
   {
     "id": "f_35",
@@ -430,7 +464,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผลไม้มีตาหนาแน่น รสเปรี้ยวอมหวาน มีเอนไซม์ช่วยย่อยอาหาร",
     "exampleSentence": "สับปะรดภูแลมีรสหวานกรอบและแกนรับประทานได้",
-    "romanization": "sap-pa-rot"
+    "romanization": "sap-pa-rot",
+    "english": "Pineapple"
   },
   {
     "id": "f_36",
@@ -440,7 +475,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผลไม้เปลือกมีขนสีแดง เนื้อขาวใส รสหวานอร่อย",
     "exampleSentence": "เงาะโรงเรียนจากสุราษฎร์ธานีขึ้นชื่อเรื่องความหวานกรอบ",
-    "romanization": "ngo"
+    "romanization": "ngo",
+    "english": "Rambutan"
   },
   {
     "id": "f_37",
@@ -450,7 +486,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผลไม้เปลือกสีม่วงเข้ม เนื้อสีขาวเป็นกลีบ ได้รับฉายาราชินีแห่งผลไม้",
     "exampleSentence": "มังคุดมีรสหวานอมเปรี้ยวสดชื่น",
-    "romanization": "mang-khut"
+    "romanization": "mang-khut",
+    "english": "Mangosteen"
   },
   {
     "id": "f_38",
@@ -460,7 +497,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผลไม้เปลือกสีน้ำตาลบาง เนื้อใส รสหวานฉ่ำ",
     "exampleSentence": "ลำไยอบแห้งนำมาต้มทำน้ำสมุนไพรดับกระหาย",
-    "romanization": "lam-yai"
+    "romanization": "lam-yai",
+    "english": "Longan"
   },
   {
     "id": "f_39",
@@ -470,7 +508,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผลไม้เปลือกเขียว เนื้อสีขาวกรอบ อุดมด้วยวิตามินซีสูงมาก",
     "exampleSentence": "ฝรั่งกิมจูเนื้อแน่นกรอบและไม่มีเมล็ด",
-    "romanization": "fa-rang"
+    "romanization": "fa-rang",
+    "english": "Guava"
   },
   {
     "id": "f_40",
@@ -480,7 +519,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผลไม้ตระกูลส้มผลใหญ่ กลีบเนื้อแน่นฉ่ำ รสหวานอมเปรี้ยว",
     "exampleSentence": "ส้มโอขาวน้ำผึ้งจากนครปฐมมีรสชาติหวานอร่อย",
-    "romanization": "som-o"
+    "romanization": "som-o",
+    "english": "Pomelo"
   },
   {
     "id": "f_41",
@@ -490,7 +530,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผลไม้ผลยาวโค้ง กลิ่นหอมหวาน ให้พลังงานสูงแก่นักกีฬา",
     "exampleSentence": "เขากินกล้วยหอมหนึ่งผลก่อนไปวิ่งออกกำลังกาย",
-    "romanization": "kluai-hom"
+    "romanization": "kluai-hom",
+    "english": "Cavendish Banana"
   },
   {
     "id": "f_42",
@@ -500,7 +541,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "พืชยืนต้น ผลมีน้ำหวานหอมและเนื้อมัน นิยมนำมาคั้นกะทิ",
     "exampleSentence": "น้ำมะพร้าวน้ำหอมดื่มแล้วสดชื่นดับกระหาย",
-    "romanization": "ma-phrao"
+    "romanization": "ma-phrao",
+    "english": "Coconut"
   },
   {
     "id": "f_43",
@@ -510,7 +552,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผลไม้ขนาดใหญ่ เปลือกมีหนามถี่ เนื้อสีเหลืองทองรสหวานจัด",
     "exampleSentence": "ขนุนสุกมีกลิ่นหอมหวานชวนรับประทาน",
-    "romanization": "kha-nun"
+    "romanization": "kha-nun",
+    "english": "Jackfruit"
   },
   {
     "id": "f_44",
@@ -520,7 +563,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผลไม้ผลยาวรี ผลดิบใช้ตำส้มตำ ผลสุกเนื้อสีส้มรสหวาน",
     "exampleSentence": "มะละกอสุกช่วยให้ระบบขับถ่ายทำงานได้ดี",
-    "romanization": "ma-la-ko"
+    "romanization": "ma-la-ko",
+    "english": "Papaya"
   },
   {
     "id": "f_45",
@@ -530,7 +574,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผลไม้รูปคล้ายระฆัง เนื้อฉ่ำน้ำ กรอบ รสหวานอ่อนๆ",
     "exampleSentence": "ชมพู่ทับทิมจันทร์ผลสีแดงสดและรสหวานกรอบ",
-    "romanization": "chom-phu"
+    "romanization": "chom-phu",
+    "english": "Rose Apple"
   },
   {
     "id": "f_46",
@@ -540,7 +585,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผลไม้เปลือกสีชมพูมีเกล็ด เนื้อสีขาวหรือแดงมีเมล็ดงาเล็กๆ",
     "exampleSentence": "แก้วมังกรมีแคลอรีต่ำและกากใยสูงเหมาะกับผู้รักสุขภาพ",
-    "romanization": "kaeo-mang-kon"
+    "romanization": "kaeo-mang-kon",
+    "english": "Dragon Fruit"
   },
   {
     "id": "f_47",
@@ -550,7 +596,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผลไม้เนื้อใสเป็นกลีบ รสหวานหอม เปลือกมียางน้อย",
     "exampleSentence": "ลองกองตันหยงมัสมีรสหวานชื่นใจ",
-    "romanization": "long-kong"
+    "romanization": "long-kong",
+    "english": "Longkong"
   },
   {
     "id": "f_48",
@@ -560,7 +607,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "พืชหัวใต้ดิน กลิ่นฉุนฉุน ใช้แต่งกลิ่นรสในอาหารและบำรุงสุขภาพ",
     "exampleSentence": "กระเทียมเจียวสีเหลืองทองช่วยให้อาหารหอมน่ากิน",
-    "romanization": "kra-thiam"
+    "romanization": "kra-thiam",
+    "english": "Garlic"
   },
   {
     "id": "f_49",
@@ -570,7 +618,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "พืชหัวสีม่วงแดง ใช้เป็นเครื่องแกงและซอยใส่ยำ",
     "exampleSentence": "หอมแดงซอยช่วยเพิ่มรสชาติในต้มยำและลาบ",
-    "romanization": "hom-daeng"
+    "romanization": "hom-daeng",
+    "english": "Shallot"
   },
   {
     "id": "f_50",
@@ -580,7 +629,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "พืชล้มลุก กลิ่นหอมสดชื่น ลำต้นใช้ดับคาวในต้มยำ",
     "exampleSentence": "กลิ่นตะไคร้ช่วยให้อาหารไทยมีเอกลักษณ์เฉพาะตัว",
-    "romanization": "ta-khrai"
+    "romanization": "ta-khrai",
+    "english": "Lemongrass"
   },
   {
     "id": "f_51",
@@ -590,7 +640,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "พืชตระกูลขิง มีเหง้าใต้ดิน รสเผ็ดปร่า ใช้ใส่ในต้มยำและต้มข่า",
     "exampleSentence": "ข่าแก่ช่วยดับกลิ่นคาวเนื้อสัตว์ได้เป็นอย่างดี",
-    "romanization": "kha"
+    "romanization": "kha",
+    "english": "Galangal"
   },
   {
     "id": "f_52",
@@ -600,7 +651,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ใบไม้รูปคอดกลาง กลิ่นหอมระเหยสดชื่น นิยมฉีกใส่แกง",
     "exampleSentence": "ฉีกใบมะกรูดใส่ในแกงเผ็ดช่วยเพิ่มความหอม",
-    "romanization": "bai-ma-krut"
+    "romanization": "bai-ma-krut",
+    "english": "Kaffir Lime Leaves"
   },
   {
     "id": "f_53",
@@ -610,7 +662,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผลไม้รสเปรี้ยวจัด ใช้แต่งรสเปรี้ยวในอาหารไทยเกือบทุกชนิด",
     "exampleSentence": "น้ำมะนาวคั้นสดช่วยชูรสให้อาหารกลมกล่อม",
-    "romanization": "ma-nao"
+    "romanization": "ma-nao",
+    "english": "Lime"
   },
   {
     "id": "f_54",
@@ -620,7 +673,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "พริกเม็ดเล็กแต่มีรสเผ็ดร้อนจัดจ้าน",
     "exampleSentence": "พริกขี้หนูสวนมีกลิ่นหอมและรสเผ็ดมาก",
-    "romanization": "phrik-khi-nu"
+    "romanization": "phrik-khi-nu",
+    "english": "Bird's Eye Chili"
   },
   {
     "id": "f_55",
@@ -630,7 +684,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "เครื่องปรุงรสเค็มจากการหมักปลา ให้กลิ่นหอมและรสอูมามิ",
     "exampleSentence": "น้ำปลาแท้จากการหมักปลากะตักมีคุณภาพดี",
-    "romanization": "nam-pla"
+    "romanization": "nam-pla",
+    "english": "Fish Sauce"
   },
   {
     "id": "f_56",
@@ -640,7 +695,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "เครื่องปรุงรสเค็มทำจากการหมักถั่วเหลือง",
     "exampleSentence": "เหยาะซีอิ๊วขาวลงในข้าวต้มช่วยเพิ่มรสเค็มกลมกล่อม",
-    "romanization": "si-io"
+    "romanization": "si-io",
+    "english": "Soy Sauce"
   },
   {
     "id": "f_57",
@@ -650,7 +706,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "เครื่องปรุงรสเค็มทำจากเคยหมักกับเกลือ ใช้ทำน้ำพริกและแกง",
     "exampleSentence": "กะปิระนองมีกลิ่นหอมและรสชาติเค็มมัน",
-    "romanization": "ka-pi"
+    "romanization": "ka-pi",
+    "english": "Shrimp Paste"
   },
   {
     "id": "f_58",
@@ -660,7 +717,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "น้ำตาลมะพร้าวหรือน้ำตาลโตนด รสหวานนวลละมุน",
     "exampleSentence": "ใช้น้ำตาลปี๊บปรุงส้มตำทำให้รสหวานนุ่มนวลไม่แหลม",
-    "romanization": "nam-tan-pip"
+    "romanization": "nam-tan-pip",
+    "english": "Palm Sugar"
   },
   {
     "id": "f_59",
@@ -670,7 +728,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "พืชเหง้าสีเหลืองส้ม กลิ่นหอมเฉพาะตัว ใช้แต่งสีและดับคาว",
     "exampleSentence": "ไก่ทอดขมิ้นมีสีเหลืองทองและกลิ่นหอมน่ารับประทาน",
-    "romanization": "kha-min"
+    "romanization": "kha-min",
+    "english": "Turmeric"
   },
   {
     "id": "f_60",
@@ -680,7 +739,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "น้ำคั้นสีขาวข้นจากเนื้อมะพร้าวขูด ใช้ทำแกงและขนมไทย",
     "exampleSentence": "แกงกะทิของไทยมีรสชาติเข้มข้นและหอมมัน",
-    "romanization": "ka-thi"
+    "romanization": "ka-thi",
+    "english": "Coconut Milk"
   },
   {
     "id": "a_1",
@@ -690,7 +750,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สัตว์เลี้ยงลูกด้วยนมบนบกขนาดใหญ่ที่สุด มีงวงและงา สัตว์คู่บ้านคู่เมืองไทย",
     "exampleSentence": "ช้างไทยมีความฉลาดและเป็นมิตรกับผู้ดูแล",
-    "romanization": "chang"
+    "romanization": "chang",
+    "english": "Elephant"
   },
   {
     "id": "a_2",
@@ -700,7 +761,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สัตว์สี่เท้ากีบเดียว วิ่งได้รวดเร็ว มนุษย์ใช้เป็นพาหนะมาแต่อดีต",
     "exampleSentence": "ม้าวิ่งควบอย่างสง่างามบนทุ่งหญ้ากว้าง",
-    "romanization": "ma"
+    "romanization": "ma",
+    "english": "Horse"
   },
   {
     "id": "a_3",
@@ -710,7 +772,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สัตว์เคี้ยวเอื้องสี่เท้า เลี้ยงไว้เพื่อเอานมและเนื้อ",
     "exampleSentence": "ฝูงวัวกำลังเล็มหญ้าเขียวขจีในฟาร์ม",
-    "romanization": "wua"
+    "romanization": "wua",
+    "english": "Cow"
   },
   {
     "id": "a_4",
@@ -720,7 +783,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สัตว์เคี้ยวเอื้อง ผิวสีเทาเข้มหรือดำ ในอดีตช่วยชาวนาไถนา",
     "exampleSentence": "ควายชอบลงไปแช่ปลักโคลนเพื่อคลายความร้อน",
-    "romanization": "khwai"
+    "romanization": "khwai",
+    "english": "Water Buffalo"
   },
   {
     "id": "a_5",
@@ -730,7 +794,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สัตว์กินเนื้อตระกูลแมว มีลายพาดกลอนหรือจุด ล่าเหยื่ออย่างว่องไว",
     "exampleSentence": "เสือโคร่งเป็นผู้ล่าที่มีความสำคัญต่อระบบนิเวศในป่า",
-    "romanization": "suea"
+    "romanization": "suea",
+    "english": "Tiger"
   },
   {
     "id": "a_6",
@@ -740,7 +805,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สัตว์กินเนื้อขนาดใหญ่ ตัวผู้มีแผงคอหนา ได้รับฉายาเจ้าป่า",
     "exampleSentence": "สิงโตนอนพักผ่อนใต้ร่มไม้ในทุ่งหญ้าสะวันนา",
-    "romanization": "sing-to"
+    "romanization": "sing-to",
+    "english": "Lion"
   },
   {
     "id": "a_7",
@@ -750,7 +816,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สัตว์เลี้ยงลูกด้วยนมตัวใหญ่ ขนหนา เดินสี่เท้า ชอบกินน้ำผึ้งและปลา",
     "exampleSentence": "หมีควายอาศัยอยู่ในป่าดิบชื้นของไทย",
-    "romanization": "mi"
+    "romanization": "mi",
+    "english": "Bear"
   },
   {
     "id": "a_8",
@@ -760,7 +827,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สัตว์เลี้ยงลูกด้วยนม มีความคล่องแคล่วว่องไว ชอบปีนป่ายต้นไม้",
     "exampleSentence": "ฝูงลิงกระโดดข้ามกิ่งไม้อย่างสนุกสนาน",
-    "romanization": "ling"
+    "romanization": "ling",
+    "english": "Monkey"
   },
   {
     "id": "a_9",
@@ -770,7 +838,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สัตว์ฟันแทะขนาดเล็ก มีหางเป็นพวงฟูสวยงาม ชอบกินผลไม้และถั่ว",
     "exampleSentence": "กระรอกน้อยวิ่งไต่ไปตามสายไฟอย่างคล่องแคล่ว",
-    "romanization": "kra-rok"
+    "romanization": "kra-rok",
+    "english": "Squirrel"
   },
   {
     "id": "a_10",
@@ -780,7 +849,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สัตว์เลี้ยงลูกด้วยนมขนาดเล็ก หูยาว ขนปุกปุย กระโดดได้รวดเร็ว",
     "exampleSentence": "กระต่ายขาวแทะแครอทอย่างเอร็ดอร่อย",
-    "romanization": "kra-tai"
+    "romanization": "kra-tai",
+    "english": "Rabbit"
   },
   {
     "id": "a_11",
@@ -790,7 +860,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สัตว์เคี้ยวเอื้อง ตัวผู้มักมีเขาแตกกิ่งก้านสง่างาม ตื่นตัวตลอดเวลา",
     "exampleSentence": "กวางป่าเล็มหญ้าอยู่ริมโป่งดินเค็มในอุทยาน",
-    "romanization": "kwang"
+    "romanization": "kwang",
+    "english": "Deer"
   },
   {
     "id": "a_12",
@@ -800,7 +871,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สัตว์เลี้ยงที่ซื่อสัตย์ต่อเจ้าของ เป็นเพื่อนที่ดีของมนุษย์",
     "exampleSentence": "สุนัขวิ่งกระดิกหางต้อนรับเจ้านายกลับบ้าน",
-    "romanization": "su-nak"
+    "romanization": "su-nak",
+    "english": "Dog"
   },
   {
     "id": "a_13",
@@ -810,7 +882,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สัตว์เลี้ยงขนาดเล็ก ตระกูลเสือ รักอิสระ ชอบคลอเคลีย",
     "exampleSentence": "แมวสีส้มนอนหลับตาพริ้มบนตักของเจ้าของ",
-    "romanization": "maeo"
+    "romanization": "maeo",
+    "english": "Cat"
   },
   {
     "id": "a_14",
@@ -820,7 +893,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "นกขนาดกลาง ขนสีเทา มักอาศัยอยู่ตามจัตุรัสและสวนสาธารณะ",
     "exampleSentence": "ฝูงนกพิราบบินลงมากินเศษขนมปังในลานกว้าง",
-    "romanization": "nok-phi-rap"
+    "romanization": "nok-phi-rap",
+    "english": "Pigeon"
   },
   {
     "id": "a_15",
@@ -830,7 +904,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "นกขนาดใหญ่ ตัวผู้สามารถรำแพนหางเป็นรูปพัดอันงดงาม",
     "exampleSentence": "นกยูงรำแพนอวดขนหางสีเขียวมรกตอย่างน่าทึ่ง",
-    "romanization": "nok-yung"
+    "romanization": "nok-yung",
+    "english": "Peacock"
   },
   {
     "id": "a_16",
@@ -840,7 +915,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "นกล่าเหยื่อออกหากินเวลากลางคืน ตาโต คอหมุนได้รอบทิศ",
     "exampleSentence": "นกฮูกเกาะกิ่งไม้เงียบกริบเพื่อรอจับหนูในยามค่ำคืน",
-    "romanization": "nok-huk"
+    "romanization": "nok-huk",
+    "english": "Owl"
   },
   {
     "id": "a_17",
@@ -850,7 +926,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "นกล่าเหยื่อ มีสายตาคมกริบ กรงเล็บแหลมคม บินร่อนได้สูง",
     "exampleSentence": "เหยี่ยวร่อนลงมาจับปลาในน้ำได้อย่างแม่นยำ",
-    "romanization": "yiao"
+    "romanization": "yiao",
+    "english": "Hawk"
   },
   {
     "id": "a_18",
@@ -860,7 +937,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สัตว์ปีกว่ายน้ำได้ ปากแบน ขนกันน้ำ",
     "exampleSentence": "ฝูงเป็ดว่ายน้ำเรียงแถวในคลองหลังบ้าน",
-    "romanization": "pet"
+    "romanization": "pet",
+    "english": "Duck"
   },
   {
     "id": "a_19",
@@ -870,7 +948,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สัตว์ปีกเลี้ยงไว้เพื่อกินไข่และเนื้อ ตัวผู้ขันบอกเวลาในตอนเช้า",
     "exampleSentence": "ไก่แจ้ตัวผู้ขันเสียงดังกังวานยามรุ่งอรุณ",
-    "romanization": "kai"
+    "romanization": "kai",
+    "english": "Chicken"
   },
   {
     "id": "a_20",
@@ -880,7 +959,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สัตว์ปีกคอยาว ตัวใหญ่กว่าเป็ด ส่งเสียงร้องดังและคอยเฝ้าบ้านได้",
     "exampleSentence": "ห่านเดินเป็นฝูงคอยช่วยกินหญ้าในสวนผลไม้",
-    "romanization": "han"
+    "romanization": "han",
+    "english": "Goose"
   },
   {
     "id": "a_21",
@@ -890,7 +970,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ปลาสวยงามขนาดเล็ก สีส้มทอง ว่ายน้ำช้าๆ นิยมเลี้ยงในตู้",
     "exampleSentence": "ปลาทองว่ายน้ำกระดิกหางพริ้วไหวในอ่างบัว",
-    "romanization": "pla-thong"
+    "romanization": "pla-thong",
+    "english": "Goldfish"
   },
   {
     "id": "a_22",
@@ -900,7 +981,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สัตว์เลี้ยงลูกด้วยนมในทะเลขนาดมหึมา (ทางวิทยาศาสตร์เรียก วาฬ)",
     "exampleSentence": "วาฬบรูด้าอ้าปากฮุบฝูงปลากะตักในอ่าวไทย",
-    "romanization": "pla-wan"
+    "romanization": "pla-wan",
+    "english": "Whale"
   },
   {
     "id": "a_23",
@@ -910,7 +992,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สัตว์เลี้ยงลูกด้วยนมในทะเล ฉลาด ขี้เล่น ชอบกระโดดเหนือน้ำ",
     "exampleSentence": "ฝูงโลมากระโดดเล่นคลื่นเคียงข้างเรือของนักท่องเที่ยว",
-    "romanization": "lo-ma"
+    "romanization": "lo-ma",
+    "english": "Dolphin"
   },
   {
     "id": "a_24",
@@ -920,7 +1003,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ปลากระดูกอ่อนขนาดใหญ่ มีฟันแหลมคม เป็นผู้ล่าแห่งท้องทะเล",
     "exampleSentence": "ฉลามวาฬยักษ์ใหญ่ใจดีว่ายผ่านนักดำน้ำอย่างสงบนิ่ง",
-    "romanization": "cha-lam"
+    "romanization": "cha-lam",
+    "english": "Shark"
   },
   {
     "id": "a_25",
@@ -930,7 +1014,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สัตว์เลื้อยคลานมีกระดองแข็งหุ้มตัว เคลื่อนไหวช้า อายุยืนยาว",
     "exampleSentence": "เต่าทะเลคลานขึ้นมาวางไข่บนชายหาดยามดึก",
-    "romanization": "tao"
+    "romanization": "tao",
+    "english": "Turtle"
   },
   {
     "id": "a_26",
@@ -940,7 +1025,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สัตว์เลื้อยคลานขนาดใหญ่ อาศัยในน้ำ ปากกว้าง ฟันแหลมคม",
     "exampleSentence": "จระเข้นอนผึ่งแดดอยู่ริมตลิ่งอย่างนิ่งสงบ",
-    "romanization": "cho-ra-khe"
+    "romanization": "cho-ra-khe",
+    "english": "Crocodile"
   },
   {
     "id": "a_27",
@@ -950,7 +1036,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สัตว์สะเทินน้ำสะเทินบก ขาหลังยาวกระโดดได้ไกล ร้องเสียงดังเมื่อฝนตก",
     "exampleSentence": "กบร้องประสานเสียงหลังฝนตกพรำๆ ยามค่ำ",
-    "romanization": "kop"
+    "romanization": "kop",
+    "english": "Frog"
   },
   {
     "id": "a_28",
@@ -960,7 +1047,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สัตว์สะเทินน้ำสะเทินบก ลำตัวป้อม พองตัวได้เมื่อตกใจ",
     "exampleSentence": "อึ่งอ่างพองลมจนตัวกลมเพื่อข่มขู่ศัตรู",
-    "romanization": "ueng-ang"
+    "romanization": "ueng-ang",
+    "english": "Bullfrog"
   },
   {
     "id": "a_29",
@@ -970,7 +1058,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "แมลงปีกสวยงาม กินน้ำหวานจากดอกไม้ ช่วยผสมเกสร",
     "exampleSentence": "ผีเสื้อบินตอมดอกเข็มในสวนดอกไม้อย่างเพลิดเพลิน",
-    "romanization": "phi-suea"
+    "romanization": "phi-suea",
+    "english": "Butterfly"
   },
   {
     "id": "a_30",
@@ -980,7 +1069,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "แมลงขยัน ช่วยผสมเกสร สร้างรังและผลิตน้ำผึ้งแสนหวาน",
     "exampleSentence": "ผึ้งงานบินเก็บเกสรดอกไม้กลับไปที่รัง",
-    "romanization": "phueng"
+    "romanization": "phueng",
+    "english": "Bee"
   },
   {
     "id": "a_31",
@@ -990,7 +1080,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "แมลงตัวเล็กที่มีความสามัคคีและขยันขันแข็ง แบกของหนักได้หลายเท่าตัว",
     "exampleSentence": "แถวมดเดินขนเศษอาหารกลับเข้ารังอย่างเป็นระเบียบ",
-    "romanization": "mot"
+    "romanization": "mot",
+    "english": "Ant"
   },
   {
     "id": "a_32",
@@ -1000,7 +1091,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "แมลงอาศัยรวมกันเป็นรังใหญ่ กินเนื้อไม้เป็นอาหาร",
     "exampleSentence": "ปลวกสร้างจอมปลวกสูงตระหง่านกลางทุ่งนา",
-    "romanization": "pluak"
+    "romanization": "pluak",
+    "english": "Termite"
   },
   {
     "id": "a_33",
@@ -1010,7 +1102,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "แมลงปีกบางใส ตาโต บินร่อนและเปลี่ยนทิศทางได้รวดเร็ว",
     "exampleSentence": "แมลงปอบินโฉบผิวน้ำในสระบัวยามบ่าย",
-    "romanization": "ma-laeng-po"
+    "romanization": "ma-laeng-po",
+    "english": "Dragonfly"
   },
   {
     "id": "a_34",
@@ -1020,7 +1113,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "แมลงตัวเล็กที่สามารถเปล่งแสงกะพริบได้ในยามค่ำคืน",
     "exampleSentence": "ต้นลำพูริมน้ำสว่างไสวด้วยแสงระยิบระยับของหิ่งห้อย",
-    "romanization": "hing-hoi"
+    "romanization": "hing-hoi",
+    "english": "Firefly"
   },
   {
     "id": "a_35",
@@ -1030,7 +1124,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "แมลงขนาดเล็ก ตัวเมียดูดเลือดและเป็นพาหะนำโรคไข้เลือดออก",
     "exampleSentence": "ควรคว่ำภาชนะที่มีน้ำขังเพื่อป้องกันการเพาะพันธุ์ของยุง",
-    "romanization": "yung"
+    "romanization": "yung",
+    "english": "Mosquito"
   },
   {
     "id": "a_36",
@@ -1040,7 +1135,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "พื้นที่ดินหรือหินที่สูงเด่นขึ้นมาจากพื้นราบอย่างชัดเจน",
     "exampleSentence": "เราเดินขึ้นสู่ยอดภูเขาเพื่อชมทะเลหมอกยามเช้า",
-    "romanization": "phu-khao"
+    "romanization": "phu-khao",
+    "english": "Mountain"
   },
   {
     "id": "a_37",
@@ -1050,7 +1146,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สายน้ำที่ไหลตกลงมาจากหน้าผาสูงสู่แอ่งน้ำเบื้องล่าง",
     "exampleSentence": "เสียงน้ำตกดังกึกก้องสร้างความสดชื่นให้กับป่าเขา",
-    "romanization": "nam-tok"
+    "romanization": "nam-tok",
+    "english": "Waterfall"
   },
   {
     "id": "a_38",
@@ -1060,7 +1157,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผืนน้ำเค็มขนาดใหญ่ที่ปกคลุมพื้นที่ส่วนใหญ่ของโลก",
     "exampleSentence": "ลมทะเลพัดพาคลื่นซัดเข้าหาฝั่งอย่างต่อเนื่อง",
-    "romanization": "tha-le"
+    "romanization": "tha-le",
+    "english": "Sea"
   },
   {
     "id": "a_39",
@@ -1070,7 +1168,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ห้วงน้ำเค็มกว้างใหญ่ไพศาลที่เชื่อมต่อทวีปต่างๆ",
     "exampleSentence": "มหาสมุทรแปซิฟิกเป็นมหาสมุทรที่กว้างใหญ่ที่สุดในโลก",
-    "romanization": "ma-ha-sa-mut"
+    "romanization": "ma-ha-sa-mut",
+    "english": "Ocean"
   },
   {
     "id": "a_40",
@@ -1080,7 +1179,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผืนแผ่นดินที่มีน้ำล้อมรอบอยู่ทุกด้าน",
     "exampleSentence": "เกาะพีพีมีน้ำทะเลใสราวกระจกและหาดทรายขาวละเอียด",
-    "romanization": "ko"
+    "romanization": "ko",
+    "english": "Island"
   },
   {
     "id": "a_41",
@@ -1090,7 +1190,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "พื้นที่ริมฝั่งน้ำที่ปกคลุมด้วยเม็ดทรายนุ่มละเอียด",
     "exampleSentence": "เด็กๆ วิ่งเล่นเก็บเปลือกหอยบนหาดทรายขาว",
-    "romanization": "hat-sai"
+    "romanization": "hat-sai",
+    "english": "Sandy Beach"
   },
   {
     "id": "a_42",
@@ -1100,7 +1201,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "โพรงธรรมชาติใต้ดินหรือในภูเขา มีหินงอกหินย้อยสวยงาม",
     "exampleSentence": "ภายในถ้ำมีหินงอกหินย้อยที่ส่องประกายระยิบระยับ",
-    "romanization": "tham"
+    "romanization": "tham",
+    "english": "Cave"
   },
   {
     "id": "a_43",
@@ -1110,7 +1212,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ทางน้ำธรรมชาติขนาดใหญ่ ไหลหล่อเลี้ยงชุมชนและบ้านเมือง",
     "exampleSentence": "แม่น้ำเจ้าพระยาเปรียบเสมือนเส้นเลือดใหญ่ของคนไทย",
-    "romanization": "mae-nam"
+    "romanization": "mae-nam",
+    "english": "River"
   },
   {
     "id": "a_44",
@@ -1120,7 +1223,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สายน้ำธรรมชาติขนาดเล็ก น้ำใสสะอาด ไหลรินผ่านโขดหิน",
     "exampleSentence": "น้ำในลำธารเย็นเฉียบจนมองเห็นฝูงปลาแหวกว่าย",
-    "romanization": "lam-than"
+    "romanization": "lam-than",
+    "english": "Stream"
   },
   {
     "id": "a_45",
@@ -1130,7 +1234,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ทางน้ำที่ขุดขึ้นหรือเกิดตามธรรมชาติ ใช้สัญจรและระบายน้ำ",
     "exampleSentence": "บ้านริมคลองยังคงมีเรือพายขายขนมหวานในยามเช้า",
-    "romanization": "khlong"
+    "romanization": "khlong",
+    "english": "Canal"
   },
   {
     "id": "a_46",
@@ -1140,7 +1245,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ป่าไม้เขียวชอุ่มตลอดทั้งปี มีความชื้นสูงและอุดมด้วยสิ่งมีชีวิต",
     "exampleSentence": "ป่าดงดิบเป็นแหล่งต้นน้ำลำธารที่สำคัญยิ่ง",
-    "romanization": "pa-dong-dip"
+    "romanization": "pa-dong-dip",
+    "english": "Rainforest"
   },
   {
     "id": "a_47",
@@ -1150,7 +1256,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ดวงดาวศูนย์กลางของระบบสุริยะ ให้แสงสว่างและความอบอุ่นแก่โลก",
     "exampleSentence": "แสงพระอาทิตย์ยามเช้าสาดส่องทาทาบยอดไม้",
-    "romanization": "phra-a-thit"
+    "romanization": "phra-a-thit",
+    "english": "Sun"
   },
   {
     "id": "a_48",
@@ -1160,7 +1267,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ดาวบริวารของโลก ส่องแสงนวลเย็นตายามค่ำคืน",
     "exampleSentence": "คืนวันเพ็ญพระจันทร์เต็มดวงสว่างสุกใส",
-    "romanization": "phra-chan"
+    "romanization": "phra-chan",
+    "english": "Moon"
   },
   {
     "id": "a_49",
@@ -1170,7 +1278,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "วัตถุท้องฟ้าที่ส่องแสงระยิบระยับบนฟากฟ้ายามราตรี",
     "exampleSentence": "บนยอดดอยสูงมองเห็นดวงดาวเกลื่อนท้องฟ้า",
-    "romanization": "duang-dao"
+    "romanization": "duang-dao",
+    "english": "Star"
   },
   {
     "id": "a_50",
@@ -1180,7 +1289,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "กลุ่มละอองน้ำหรือเกล็ดน้ำแข็งที่ลอยอยู่ในชั้นบรรยากาศ",
     "exampleSentence": "ก้อนเมฆสีขาวลอยล่องอยู่บนท้องฟ้าสีคราม",
-    "romanization": "kon-mek"
+    "romanization": "kon-mek",
+    "english": "Cloud"
   },
   {
     "id": "a_51",
@@ -1190,7 +1300,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "แนวแสงเจ็ดสีโค้งบนท้องฟ้า เกิดจากการหักเหของแสงแดดผ่านละอองฝน",
     "exampleSentence": "สายรุ้งทอดโค้งสวยงามหลังฝนซาเม็ด",
-    "romanization": "sai-rung"
+    "romanization": "sai-rung",
+    "english": "Rainbow"
   },
   {
     "id": "a_52",
@@ -1200,7 +1311,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "ละอองน้ำในเมฆรวมตัวกันหนักขึ้นแล้วตกลงมาสู่พื้นดิน",
     "exampleSentence": "ฝนตกช่วยคลายความร้อนอบอ้าวและทำให้ต้นไม้สดชื่น",
-    "romanization": "fon-tok"
+    "romanization": "fon-tok",
+    "english": "Rain"
   },
   {
     "id": "a_53",
@@ -1210,7 +1322,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ลมแรงจัดมักเกิดร่วมกับฝนตกหนัก คลื่นลมในทะเลปั่นป่วน",
     "exampleSentence": "ชาวประมงนำเรือเข้าฝั่งเพื่อหลบพายุฝน",
-    "romanization": "pha-yu"
+    "romanization": "pha-yu",
+    "english": "Storm"
   },
   {
     "id": "a_54",
@@ -1220,7 +1333,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "เสียงดังกึกก้องบนท้องฟ้าที่เกิดจากการขยายตัวของอากาศเมื่อเกิดฟ้าแลบ",
     "exampleSentence": "เสียงฟ้าร้องคำรามบอกเตือนว่าฝนกำลังจะตกหนัก",
-    "romanization": "fa-rong"
+    "romanization": "fa-rong",
+    "english": "Thunder"
   },
   {
     "id": "a_55",
@@ -1230,7 +1344,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "การคายประจุไฟฟ้าจากก้อนเมฆลงสู่พื้นดิน มีพลังงานมหาศาล",
     "exampleSentence": "ไม่ควรหลบฝนใต้ต้นไม้ใหญ่เพื่อป้องกันอันตรายจากฟ้าผ่า",
-    "romanization": "fa-pha"
+    "romanization": "fa-pha",
+    "english": "Lightning"
   },
   {
     "id": "a_56",
@@ -1240,7 +1355,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ไม้น้ำมีดอกงดงาม สัญลักษณ์แห่งความบริสุทธิ์และธรรมะ",
     "exampleSentence": "ดอกบัวหลวงสีชมพูบานรับแสงแดดในสระน้ำ",
-    "romanization": "dok-bua"
+    "romanization": "dok-bua",
+    "english": "Lotus"
   },
   {
     "id": "a_57",
@@ -1250,7 +1366,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ดอกไม้สีขาวบริสุทธิ์ กลิ่นหอมชื่นใจ สัญลักษณ์ของวันแม่แห่งชาติ",
     "exampleSentence": "ร้อยพวงมาลัยดอกมะลิกราบคุณแม่ด้วยความกตัญญู",
-    "romanization": "dok-ma-li"
+    "romanization": "dok-ma-li",
+    "english": "Jasmine"
   },
   {
     "id": "a_58",
@@ -1260,7 +1377,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ดอกไม้มีกลีบสวยงาม หลากสีสัน บานทนทาน",
     "exampleSentence": "ประเทศไทยส่งออกดอกกล้วยไม้ไปยังหลายประเทศทั่วโลก",
-    "romanization": "dok-kluai-mai"
+    "romanization": "dok-kluai-mai",
+    "english": "Orchid"
   },
   {
     "id": "a_59",
@@ -1270,7 +1388,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ดอกไม้มีหนามแหลม กลิ่นหอม นิยมมอบให้เพื่อแสดงความรัก",
     "exampleSentence": "ดอกกุหลาบสีแดงบานสะพรั่งส่งกลิ่นหอมฟุ้ง",
-    "romanization": "dok-ku-lap"
+    "romanization": "dok-ku-lap",
+    "english": "Rose"
   },
   {
     "id": "a_60",
@@ -1280,7 +1399,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ไม้ยืนต้นขนาดใหญ่ มีรากอากาศห้อยย้อย ร่มเงากว้างขวาง",
     "exampleSentence": "นกนานาชนิดพากันมากินลูกไทรรวมกันบนกิ่งไม้ใหญ่",
-    "romanization": "ton-sai"
+    "romanization": "ton-sai",
+    "english": "Banyan Tree"
   },
   {
     "id": "b_1",
@@ -1290,7 +1410,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ส่วนบนสุดของร่างกาย เป็นที่อยู่ของสมอง (มักสะกดผิดเป็น ศรีษะ)",
     "exampleSentence": "สวมหมวกกันน็อกทุกครั้งเพื่อปกป้องศีรษะ",
-    "romanization": "si-sa"
+    "romanization": "si-sa",
+    "english": "Head"
   },
   {
     "id": "b_2",
@@ -1300,7 +1421,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ส่วนหน้าของศีรษะ ประกอบด้วยตา จมูก ปาก",
     "exampleSentence": "ล้างใบหน้าด้วยน้ำสะอาดช่วยให้รู้สึกสดชื่น",
-    "romanization": "bai-na"
+    "romanization": "bai-na",
+    "english": "Face"
   },
   {
     "id": "b_3",
@@ -1310,7 +1432,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "อวัยวะรับแสงและการมองเห็น ช่วยให้เราสัมผัสความงามรอบตัว",
     "exampleSentence": "พักสายตาจากหน้าจอโทรศัพท์เป็นระยะเพื่อถนอมดวงตา",
-    "romanization": "duang-ta"
+    "romanization": "duang-ta",
+    "english": "Eye"
   },
   {
     "id": "b_4",
@@ -1320,7 +1443,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "แนวขนเหนือเบ้าตา ช่วยป้องกันเหงื่อไหลเข้าตา",
     "exampleSentence": "เขาเลิกคิ้วขึ้นด้วยความสงสัยในคำตอบ",
-    "romanization": "khiu"
+    "romanization": "khiu",
+    "english": "Eyebrow"
   },
   {
     "id": "b_5",
@@ -1330,7 +1454,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "เส้นขนที่ริมขอบตา ช่วยป้องกันฝุ่นละอองเข้าสู่ดวงตา",
     "exampleSentence": "ขนตายาวช่วยปกป้องดวงตาจากลมและละอองฝุ่น",
-    "romanization": "khon-ta"
+    "romanization": "khon-ta",
+    "english": "Eyelash"
   },
   {
     "id": "b_6",
@@ -1340,7 +1465,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "อวัยวะรับฟังเสียงและการทรงตัวของร่างกาย",
     "exampleSentence": "ไม่ควรเปิดเสียงหูฟังดังเกินไปเพราะอาจทำลายประสาทหู",
-    "romanization": "hu"
+    "romanization": "hu",
+    "english": "Ear"
   },
   {
     "id": "b_7",
@@ -1350,7 +1476,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "อวัยวะรับกลิ่นและเป็นทางผ่านของลมหายใจ",
     "exampleSentence": "สูดกลิ่นหอมของดอกไม้เข้าเต็มจมูก",
-    "romanization": "cha-muk"
+    "romanization": "cha-muk",
+    "english": "Nose"
   },
   {
     "id": "b_8",
@@ -1360,7 +1487,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "เนื้อนุ่มรอบช่องปาก ช่วยในการพูดและการรับประทานอาหาร",
     "exampleSentence": "ทาลิปมันเพื่อป้องกันริมฝีปากแห้งแตกในฤดูหนาว",
-    "romanization": "rim-fi-pak"
+    "romanization": "rim-fi-pak",
+    "english": "Lips"
   },
   {
     "id": "b_9",
@@ -1370,7 +1498,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "กระดูกแข็งในปาก ทำหน้าที่บดเคี้ยวอาหารให้ละเอียด",
     "exampleSentence": "แปรงฟันอย่างน้อยวันละสองครั้งเพื่อป้องกันฟันผุ",
-    "romanization": "fan"
+    "romanization": "fan",
+    "english": "Tooth / Teeth"
   },
   {
     "id": "b_10",
@@ -1380,7 +1509,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "กล้ามเนื้อในปาก รับรู้รสชาติและช่วยในการออกเสียง",
     "exampleSentence": "ลิ้นสามารถรับรสหวาน เปรี้ยว เค็ม ขม และอูมามิ",
-    "romanization": "lin"
+    "romanization": "lin",
+    "english": "Tongue"
   },
   {
     "id": "b_11",
@@ -1390,7 +1520,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ส่วนล่างสุดของใบหน้า อยู่ใต้ริมฝีปากล่าง",
     "exampleSentence": "เขานั่งเท้าคางครุ่นคิดปัญหาอย่างตั้งใจ",
-    "romanization": "khang"
+    "romanization": "khang",
+    "english": "Chin"
   },
   {
     "id": "b_12",
@@ -1400,7 +1531,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ส่วนที่เชื่อมต่อระหว่างศีรษะกับลำตัว ภายในมีหลอดลมและหลอดอาหาร",
     "exampleSentence": "จิบน้ำอุ่นผสมมะนาวช่วยบรรเทาอาการระคายเคืองลำคอ",
-    "romanization": "lam-kho"
+    "romanization": "lam-kho",
+    "english": "Neck / Throat"
   },
   {
     "id": "b_13",
@@ -1410,7 +1542,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ส่วนที่ต่อระหว่างคอกับต้นแขน",
     "exampleSentence": "ยืดเส้นยืดสายบริหารหัวไหล่เพื่อลดอาการเมื่อยล้า",
-    "romanization": "hua-lai"
+    "romanization": "hua-lai",
+    "english": "Shoulder"
   },
   {
     "id": "b_14",
@@ -1420,7 +1553,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "อวัยวะจากหัวไหล่ถึงข้อมือ ช่วยในการยกและหยิบจับสิ่งของ",
     "exampleSentence": "เขาอ้าแขนโอบกอดลูกด้วยความรัก",
-    "romanization": "khaen"
+    "romanization": "khaen",
+    "english": "Arm"
   },
   {
     "id": "b_15",
@@ -1430,7 +1564,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ข้อต่อระหว่างต้นแขนกับปลายแขน พับงอได้",
     "exampleSentence": "วางข้อศอกบนโต๊ะทำงานในท่าที่ผ่อนคลาย",
-    "romanization": "kho-sok"
+    "romanization": "kho-sok",
+    "english": "Elbow"
   },
   {
     "id": "b_16",
@@ -1440,7 +1575,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ข้อต่อระหว่างแขนกับมือ หมุนและขยับได้หลายทิศทาง",
     "exampleSentence": "สวมใส่นาฬิกาข้อมือเรือนโปรดก่อนออกจากบ้าน",
-    "romanization": "kho-mue"
+    "romanization": "kho-mue",
+    "english": "Wrist"
   },
   {
     "id": "b_17",
@@ -1450,7 +1586,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "อวัยวะส่วนปลายของแขน มีนิ้วมือสำหรับหยิบจับสร้างสรรค์สิ่งต่างๆ",
     "exampleSentence": "ล้างมือด้วยสบู่ให้สะอาดก่อนรับประทานอาหารเสมอ",
-    "romanization": "mue"
+    "romanization": "mue",
+    "english": "Hand"
   },
   {
     "id": "b_18",
@@ -1460,7 +1597,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ส่วนยื่นออกจากฝ่ามือ มีข้างละห้านิ้ว ช่วยในการสัมผัสและหยิบของ",
     "exampleSentence": "ปลายนิ้วมือมีความไวต่อการสัมผัสเป็นพิเศษ",
-    "romanization": "nio-mue"
+    "romanization": "nio-mue",
+    "english": "Finger"
   },
   {
     "id": "b_19",
@@ -1470,7 +1608,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "แผ่นแข็งที่ปลายนิ้ว ช่วยปกป้องเนื้อเยื่อและหยิบสิ่งของเล็กๆ",
     "exampleSentence": "ตัดเล็บให้สั้นและสะอาดอยู่เสมอเพื่อสุขอนามัยที่ดี",
-    "romanization": "lep"
+    "romanization": "lep",
+    "english": "Nail"
   },
   {
     "id": "b_20",
@@ -1480,7 +1619,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ส่วนหน้าของลำตัวตั้งแต่คอลงมาถึงกะบังลม ภายในมีปอดและหัวใจ",
     "exampleSentence": "สูดลมหายใจเข้าลึกๆ จนหน้าอกขยาย",
-    "romanization": "na-ok"
+    "romanization": "na-ok",
+    "english": "Chest"
   },
   {
     "id": "b_21",
@@ -1490,7 +1630,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ส่วนของลำตัวระหว่างหน้าอกกับกระดูกเชิงกราน บรรจุอวัยวะย่อยอาหาร",
     "exampleSentence": "อย่าปล่อยให้ท้องว่างนานจนเกินไปเพราะอาจเป็นโรคกระเพาะ",
-    "romanization": "thong"
+    "romanization": "thong",
+    "english": "Belly / Stomach"
   },
   {
     "id": "b_22",
@@ -1500,7 +1641,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "อวัยวะสูบฉีดเลือดไปเลี้ยงร่างกาย เต้นสม่ำเสมอตลอดชีวิต",
     "exampleSentence": "การออกกำลังกายแบบคาร์ดิโอช่วยเสริมสร้างความแข็งแรงของหัวใจ",
-    "romanization": "hua-chai"
+    "romanization": "hua-chai",
+    "english": "Heart"
   },
   {
     "id": "b_23",
@@ -1510,7 +1652,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "อวัยวะแลกเปลี่ยนก๊าซออกซิเจนและคาร์บอนไดออกไซด์ในการหายใจ",
     "exampleSentence": "หลีกเลี่ยงควันบุหรี่และฝุ่นละอองเพื่อรักษาปอดให้แข็งแรง",
-    "romanization": "pot"
+    "romanization": "pot",
+    "english": "Lung"
   },
   {
     "id": "b_24",
@@ -1520,7 +1663,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "อวัยวะขนาดใหญ่ในช่องท้อง ขับสารพิษและผลิตน้ำดีช่วยย่อยไขมัน",
     "exampleSentence": "ตับมีหน้าที่สำคัญในการกำจัดของเสียออกจากร่างกาย",
-    "romanization": "tap"
+    "romanization": "tap",
+    "english": "Liver"
   },
   {
     "id": "b_25",
@@ -1530,7 +1674,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "อวัยวะคู่รูปถั่ว กรองของเสียออกจากเลือดและขับออกทางปัสสาวะ",
     "exampleSentence": "ดื่มน้ำสะอาดวันละ 8 แก้วเพื่อช่วยให้ไตทำงานได้มีประสิทธิภาพ",
-    "romanization": "tai"
+    "romanization": "tai",
+    "english": "Kidney"
   },
   {
     "id": "b_26",
@@ -1540,7 +1685,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "อวัยวะรองรับและย่อยอาหารเบื้องต้นด้วยกรดและเอนไซม์",
     "exampleSentence": "รับประทานอาหารให้ตรงเวลาเพื่อป้องกันอาการปวดกระเพาะ",
-    "romanization": "kra-pho"
+    "romanization": "kra-pho",
+    "english": "Stomach"
   },
   {
     "id": "b_27",
@@ -1550,7 +1696,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ทางเดินอาหารต่อจากกระเพาะ ย่อยและดูดซึมสารอาหารเข้าสู่กระแสเลือด",
     "exampleSentence": "การรับประทานผักผลไม้ช่วยเพิ่มกากใยในลำไส้",
-    "romanization": "lam-sai"
+    "romanization": "lam-sai",
+    "english": "Intestines"
   },
   {
     "id": "b_28",
@@ -1560,7 +1707,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "โครงร่างแข็งภายในร่างกาย ค้ำจุนและปกป้องอวัยวะภายใน",
     "exampleSentence": "นมและปลาตัวเล็กมีแคลเซียมสูงช่วยบำรุงกระดูก",
-    "romanization": "kra-duk"
+    "romanization": "kra-duk",
+    "english": "Bone"
   },
   {
     "id": "b_29",
@@ -1570,7 +1718,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "เนื้อเยื่อที่หดตัวได้ ทำให้เกิดแรงและการเคลื่อนไหวของร่างกาย",
     "exampleSentence": "ออกกำลังกายแบบยกน้ำหนักช่วยเสริมสร้างมวลกล้ามเนื้อ",
-    "romanization": "klam-nuea"
+    "romanization": "klam-nuea",
+    "english": "Muscle"
   },
   {
     "id": "b_30",
@@ -1580,7 +1729,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ใยส่งสัญญาณความรู้สึกและคำสั่งระหว่างสมองกับอวัยวะต่างๆ",
     "exampleSentence": "การนอนหลับพักผ่อนช่วยฟื้นฟูระบบประสาท",
-    "romanization": "sen-pra-sat"
+    "romanization": "sen-pra-sat",
+    "english": "Nerve"
   },
   {
     "id": "b_31",
@@ -1590,7 +1740,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ของเหลวสีแดงหมุนเวียนในหลอดเลือด นำพาสารอาหารและออกซิเจน",
     "exampleSentence": "การตรวจเลือดประจำปีช่วยให้ทราบสภาวะสุขภาพเบื้องต้น",
-    "romanization": "lueat"
+    "romanization": "lueat",
+    "english": "Blood"
   },
   {
     "id": "b_32",
@@ -1600,7 +1751,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ชั้นปกคลุมภายนอกร่างกาย ควบคุมอุณหภูมิและป้องกันเชื้อโรค",
     "exampleSentence": "ทาครีมกันแดดเพื่อปกป้องผิวหนังจากรังสีอัลตราไวโอเลต",
-    "romanization": "fiu-nang"
+    "romanization": "fiu-nang",
+    "english": "Skin"
   },
   {
     "id": "b_33",
@@ -1610,7 +1762,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ภาวะความสมบูรณ์ทั้งร่างกายและจิตใจ ปราศจากโรคภัย",
     "exampleSentence": "การไม่มีโรคเป็นลาภอันประเสริฐ สุขภาพดีเริ่มต้นที่ตัวเรา",
-    "romanization": "suk-kha-phap"
+    "romanization": "suk-kha-phap",
+    "english": "Health"
   },
   {
     "id": "b_34",
@@ -1620,7 +1773,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำคุณศัพท์",
     "meaning": "มีพละกำลัง ร่างกายสมบูรณ์ ไม่เจ็บป่วยง่าย",
     "exampleSentence": "เขามีสุขภาพแข็งแรงเพราะออกกำลังกายเป็นประจำ",
-    "romanization": "khaeng-raeng"
+    "romanization": "khaeng-raeng",
+    "english": "Strong / Healthy"
   },
   {
     "id": "b_35",
@@ -1630,7 +1784,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "บริหารร่างกายเพื่อให้กล้ามเนื้อและระบบไหลเวียนโลหิตทำงานดีขึ้น",
     "exampleSentence": "ชวนกันไปเดินเร็วออกกำลังกายที่สวนสาธารณะ",
-    "romanization": "ok-kam-lang-kai"
+    "romanization": "ok-kam-lang-kai",
+    "english": "Exercise"
   },
   {
     "id": "b_36",
@@ -1640,7 +1795,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สารอินทรีย์ที่จำเป็นต่อการเจริญเติบโตและการทำงานของร่างกาย",
     "exampleSentence": "ส้มและฝรั่งอุดมไปด้วยวิตามินซีที่ช่วยเสริมภูมิคุ้มกัน",
-    "romanization": "wi-ta-min"
+    "romanization": "wi-ta-min",
+    "english": "Vitamin"
   },
   {
     "id": "b_37",
@@ -1650,7 +1806,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "ได้รับอันตรายจนเนื้อตัวเป็นแผลหรือฟกช้ำ",
     "exampleSentence": "ปฐมพยาบาลเบื้องต้นอย่างถูกวิธีเมื่อมีผู้ได้รับบาดเจ็บ",
-    "romanization": "bat-chep"
+    "romanization": "bat-chep",
+    "english": "Injured"
   },
   {
     "id": "b_38",
@@ -1660,7 +1817,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "โรคติดเชื้อไวรัสทางเดินหายใจ มีอาการคัดจมูก มีน้ำมูก และตัวร้อน",
     "exampleSentence": "สวมหน้ากากอนามัยเมื่อเป็นไข้หวัดเพื่อไม่ให้แพร่เชื้อสู่ผู้อื่น",
-    "romanization": "khai-wat"
+    "romanization": "khai-wat",
+    "english": "Cold / Flu"
   },
   {
     "id": "b_39",
@@ -1670,7 +1828,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "ขับลมออกจากลำคออย่างแรงและมีเสียง เพื่อขจัดสิ่งระคายเคือง",
     "exampleSentence": "ใช้ทิชชูปิดปากเวลาไอเพื่อสุขอนามัยที่ดี",
-    "romanization": "ai"
+    "romanization": "ai",
+    "english": "Cough"
   },
   {
     "id": "b_40",
@@ -1680,7 +1839,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "พ่นลมหายใจออกทางจมูกและปากอย่างแรงและกะทันหัน",
     "exampleSentence": "ละอองเกสรดอกไม้ทำให้เขาเกิดอาการจามบ่อยครั้ง",
-    "romanization": "cham"
+    "romanization": "cham",
+    "english": "Sneeze"
   },
   {
     "id": "b_41",
@@ -1690,7 +1850,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "รู้สึกเจ็บหรือตึงบริเวณศีรษะ พักผ่อนไม่พอหรือเครียด",
     "exampleSentence": "นอนพักในห้องที่มืดและเงียบช่วยบรรเทาอาการปวดหัว",
-    "romanization": "puat-hua"
+    "romanization": "puat-hua",
+    "english": "Headache"
   },
   {
     "id": "b_42",
@@ -1700,7 +1861,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "รู้สึกเจ็บแน่นในช่องท้อง อาจเกิดจากอาหารไม่ย่อยหรือกระเพาะอักเสบ",
     "exampleSentence": "หากปวดท้องรุนแรงควรไปพบแพทย์เพื่อตรวจวินิจฉัย",
-    "romanization": "puat-thong"
+    "romanization": "puat-thong",
+    "english": "Stomachache"
   },
   {
     "id": "b_43",
@@ -1710,7 +1872,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "รู้สึกพะอืดพะอมอยากอาเจียน",
     "exampleSentence": "อาการเมารถทำให้เขารู้สึกคลื่นไส้และวิงเวียน",
-    "romanization": "khluen-sai"
+    "romanization": "khluen-sai",
+    "english": "Nausea"
   },
   {
     "id": "b_44",
@@ -1720,7 +1883,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "รู้สึกบ้านหมุน ทรงตัวไม่อยู่ ตาลาย",
     "exampleSentence": "นั่งพักนิ่งๆ และสูดดมยาดมเมื่อรู้สึกเวียนศีรษะ",
-    "romanization": "wian-si-sa"
+    "romanization": "wian-si-sa",
+    "english": "Dizziness"
   },
   {
     "id": "b_45",
@@ -1730,7 +1894,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "อาการปวด บวม แดง ร้อน ที่เนื้อเยื่อเนื่องจากบาดเจ็บหรือติดเชื้อ",
     "exampleSentence": "ทายาปฏิชีวนะเพื่อป้องกันแผลติดเชื้อและอักเสบ",
-    "romanization": "ak-sep"
+    "romanization": "ak-sep",
+    "english": "Inflamed"
   },
   {
     "id": "b_46",
@@ -1740,7 +1905,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "จุลินทรีย์ก่อโรคเข้าสู่ร่างกายและเพิ่มจำนวนจนเกิดอาการป่วย",
     "exampleSentence": "รักษาความสะอาดของบาดแผลเพื่อป้องกันการติดเชื้อ",
-    "romanization": "tit-chuea"
+    "romanization": "tit-chuea",
+    "english": "Infected"
   },
   {
     "id": "b_47",
@@ -1750,7 +1916,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ปฏิกิริยาของระบบภูมิคุ้มกันที่ตอบสนองไวเกินไปต่อสารก่อภูมิแพ้",
     "exampleSentence": "ผู้ที่เป็นภูมิแพ้อากาศควรทำความสะอาดห้องนอนเป็นประจำ",
-    "romanization": "phum-phae"
+    "romanization": "phum-phae",
+    "english": "Allergy"
   },
   {
     "id": "b_48",
@@ -1760,7 +1927,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผู้ประกอบวิชาชีพดูแลผู้ป่วยและฟื้นฟูสุขภาพ",
     "exampleSentence": "พยาบาลให้การดูแลผู้ป่วยด้วยความเมตตาและเอาใจใส่",
-    "romanization": "pha-ya-ban"
+    "romanization": "pha-ya-ban",
+    "english": "Nurse"
   },
   {
     "id": "b_49",
@@ -1770,7 +1938,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "หมอ ผู้ตรวจวินิจฉัยและรักษาอาการเจ็บป่วย",
     "exampleSentence": "แพทย์แนะนำให้ปรับเปลี่ยนพฤติกรรมการรับประทานอาหาร",
-    "romanization": "phaet"
+    "romanization": "phaet",
+    "english": "Doctor / Physician"
   },
   {
     "id": "b_50",
@@ -1780,7 +1949,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สารที่ใช้บรรเทา บำบัด หรือป้องกันโรคภัยไข้เจ็บ",
     "exampleSentence": "ควรอ่านฉลากยารักษาโรคให้ละเอียดก่อนรับประทานเสมอ",
-    "romanization": "ya-rak-sa-rok"
+    "romanization": "ya-rak-sa-rok",
+    "english": "Medicine"
   },
   {
     "id": "b_51",
@@ -1790,7 +1960,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สถานพยาบาลที่ให้การตรวจรักษาและดูแลผู้ป่วยตลอด 24 ชั่วโมง",
     "exampleSentence": "โรงพยาบาลมีอุปกรณ์ทางการแพทย์ที่ทันสมัยพร้อมให้การรักษา",
-    "romanization": "rong-pha-ya-ban"
+    "romanization": "rong-pha-ya-ban",
+    "english": "Hospital"
   },
   {
     "id": "b_52",
@@ -1800,7 +1971,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สถานพยาบาลขนาดเล็ก ให้การตรวจรักษาโรคทั่วไป",
     "exampleSentence": "เขาแวะไปหาหมอที่คลินิกใกล้บ้านหลังเลิกงาน",
-    "romanization": "khli-nik"
+    "romanization": "khli-nik",
+    "english": "Clinic"
   },
   {
     "id": "b_53",
@@ -1810,7 +1982,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สารสร้างภูมิคุ้มกันโรค ฉีดเพื่อป้องกันการเจ็บป่วยล่วงหน้า",
     "exampleSentence": "การฉีดวัคซีนป้องกันไข้หวัดใหญ่ช่วยลดความรุนแรงของโรค",
-    "romanization": "wak-sin"
+    "romanization": "wak-sin",
+    "english": "Vaccine"
   },
   {
     "id": "b_54",
@@ -1820,7 +1993,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "หยุดทำงานชั่วคราวเพื่อผ่อนคลายร่างกายและจิตใจ",
     "exampleSentence": "การพักผ่อนอย่างเพียงพอช่วยให้ร่างกายฟื้นฟูได้อย่างรวดเร็ว",
-    "romanization": "phak-phon"
+    "romanization": "phak-phon",
+    "english": "Rest"
   },
   {
     "id": "b_55",
@@ -1830,7 +2004,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "การแสดงออกบนใบหน้าที่มุมปากยกขึ้น แสดงความเป็นมิตรและมีความสุข",
     "exampleSentence": "รอยยิ้มที่สดใสช่วยสร้างบรรยากาศที่ดีให้กับคนรอบข้าง",
-    "romanization": "roi-yim"
+    "romanization": "roi-yim",
+    "english": "Smile"
   },
   {
     "id": "b_56",
@@ -1840,7 +2015,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "แรงดันของเลือดที่กระทบต่อผนังหลอดเลือดแดง",
     "exampleSentence": "ควรตรวจวัดความดันโลหิตเป็นประจำเพื่อเฝ้าระวังสุขภาพ",
-    "romanization": "khwam-dan"
+    "romanization": "khwam-dan",
+    "english": "Blood Pressure"
   },
   {
     "id": "b_57",
@@ -1850,7 +2026,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "จังหวะการเต้นของหลอดเลือดตามการบีบตัวของหัวใจ",
     "exampleSentence": "แพทย์จับชีพจรที่ข้อมือเพื่อตรวจจังหวะการเต้นของหัวใจ",
-    "romanization": "chip-pha-chon"
+    "romanization": "chip-pha-chon",
+    "english": "Pulse"
   },
   {
     "id": "b_58",
@@ -1860,7 +2037,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ความสามารถในการมองเห็นของดวงตา",
     "exampleSentence": "ตรวจวัดสายตาประกอบแว่นเพื่อให้มองเห็นได้ชัดเจนยิ่งขึ้น",
-    "romanization": "sai-ta"
+    "romanization": "sai-ta",
+    "english": "Eyesight"
   },
   {
     "id": "b_59",
@@ -1870,7 +2048,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "สูดอากาศเข้าและขับอากาศออกจากปอดเพื่อดำรงชีวิต",
     "exampleSentence": "สูดลมหายใจเข้าลึกๆ ช่วยให้จิตใจสงบและผ่อนคลาย",
-    "romanization": "hai-chai"
+    "romanization": "hai-chai",
+    "english": "Breathe"
   },
   {
     "id": "b_60",
@@ -1880,7 +2059,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "อวัยวะควบคุมการคิด ความจำ อารมณ์ และการทำงานของทั้งร่างกาย",
     "exampleSentence": "การเรียนรู้สิ่งใหม่ๆ เป็นประจำช่วยกระตุ้นการทำงานของสมอง",
-    "romanization": "sa-mong"
+    "romanization": "sa-mong",
+    "english": "Brain"
   },
   {
     "id": "d_1",
@@ -1890,7 +2070,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "ฟื้นจากการหลับ เริ่มต้นกิจกรรมของวันใหม่",
     "exampleSentence": "ตื่นนอนแต่เช้าตรู่เพื่อสูดอากาศบริสุทธิ์",
-    "romanization": "tuen-non"
+    "romanization": "tuen-non",
+    "english": "Wake up"
   },
   {
     "id": "d_2",
@@ -1900,7 +2081,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "ทำความสะอาดใบหน้าด้วยน้ำและโฟมล้างหน้า",
     "exampleSentence": "ล้างหน้าด้วยน้ำเย็นช่วยให้รู้สึกกระปรี้กระเปร่า",
-    "romanization": "lang-na"
+    "romanization": "lang-na",
+    "english": "Wash face"
   },
   {
     "id": "d_3",
@@ -1910,7 +2092,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "ทำความสะอาดฟันด้วยแปรงและยาสีฟัน",
     "exampleSentence": "แปรงฟันให้ทั่วถึงอย่างน้อยสองนาที",
-    "romanization": "praeng-fan"
+    "romanization": "praeng-fan",
+    "english": "Brush teeth"
   },
   {
     "id": "d_4",
@@ -1920,7 +2103,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "ชำระร่างกายด้วยน้ำเพื่อความสะอาดสดชื่น",
     "exampleSentence": "อาบน้ำอุ่นช่วยให้กล้ามเนื้อผ่อนคลาย",
-    "romanization": "ap-nam"
+    "romanization": "ap-nam",
+    "english": "Take a shower"
   },
   {
     "id": "d_5",
@@ -1930,7 +2114,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "สวมใส่เสื้อผ้าและจัดระเบียบเครื่องแต่งกายให้เรียบร้อย",
     "exampleSentence": "แต่งตัวสุภาพเรียบร้อยเพื่อไปสัมภาษณ์งาน",
-    "romanization": "taeng-tua"
+    "romanization": "taeng-tua",
+    "english": "Get dressed"
   },
   {
     "id": "d_6",
@@ -1940,7 +2125,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "กินหรือดื่ม (คำสุภาพเป็นทางการ)",
     "exampleSentence": "ทุกคนพร้อมหน้ากันรับประทานอาหารเย็น",
-    "romanization": "rap-pra-than"
+    "romanization": "rap-pra-than",
+    "english": "Eat / Dine"
   },
   {
     "id": "d_7",
@@ -1950,7 +2136,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "กวาดสายตาทำความเข้าใจข้อความเพื่อความรู้และความเพลิดเพลิน",
     "exampleSentence": "อ่านหนังสือก่อนนอนช่วยให้จิตใจสงบนิ่ง",
-    "romanization": "an-nang-sue"
+    "romanization": "an-nang-sue",
+    "english": "Read a book"
   },
   {
     "id": "d_8",
@@ -1960,7 +2147,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "ทำแบบฝึกหัดที่ได้รับมอบหมายจากครู",
     "exampleSentence": "ทำการบ้านให้เสร็จเรียบร้อยก่อนไปเล่นเกม",
-    "romanization": "tham-kan-ban"
+    "romanization": "tham-kan-ban",
+    "english": "Do homework"
   },
   {
     "id": "d_9",
@@ -1970,7 +2158,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "ประกอบอาชีพหรือปฏิบัติหน้าที่ตามที่ได้รับมอบหมาย",
     "exampleSentence": "เขาตั้งใจทำงานด้วยความมุ่งมั่นและรับผิดชอบ",
-    "romanization": "tham-ngan"
+    "romanization": "tham-ngan",
+    "english": "Work"
   },
   {
     "id": "d_10",
@@ -1980,7 +2169,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "เตรียมตัวขึ้นเตียงเพื่อพักผ่อนในยามค่ำคืน",
     "exampleSentence": "เข้านอนแต่หัวค่ำเพื่อให้ร่างกายได้พักผ่อนเต็มที่",
-    "romanization": "khao-non"
+    "romanization": "khao-non",
+    "english": "Go to bed"
   },
   {
     "id": "d_11",
@@ -1990,7 +2180,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "นอนหลับสนิทและเห็นเรื่องราวในจินตนาการ",
     "exampleSentence": "ขอให้หลับฝันดีและตื่นมาด้วยความสดชื่น",
-    "romanization": "lap-fan"
+    "romanization": "lap-fan",
+    "english": "Dream"
   },
   {
     "id": "d_12",
@@ -2000,7 +2191,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "เครื่องมือบอกเวลา (ใช้ ฬ จุฬา สะกด)",
     "exampleSentence": "นาฬิกาปลุกส่งเสียงเตือนเมื่อถึงเวลาหกโมงเช้า",
-    "romanization": "na-li-ka"
+    "romanization": "na-li-ka",
+    "english": "Clock / Watch"
   },
   {
     "id": "d_13",
@@ -2010,7 +2202,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ตารางแสดงวัน สัปดาห์ และเดือนของแต่ละปี",
     "exampleSentence": "จดบันทึกวันนัดหมายสำคัญลงในปฏิทิน",
-    "romanization": "pa-ti-thin"
+    "romanization": "pa-ti-thin",
+    "english": "Calendar"
   },
   {
     "id": "d_14",
@@ -2020,7 +2213,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "เครื่องใช้สำหรับใส่สิ่งของ สัมภาระ หรือเงิน",
     "exampleSentence": "เก็บหนังสือและกล่องดินสอใส่ในกระเป๋านักเรียน",
-    "romanization": "kra-pao"
+    "romanization": "kra-pao",
+    "english": "Bag"
   },
   {
     "id": "d_15",
@@ -2030,7 +2224,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "เครื่องสวมใส่หุ้มเท้าเพื่อความสะดวกและป้องกันอันตราย",
     "exampleSentence": "ถอดรองเท้าและจัดวางให้เป็นระเบียบหน้าประตู",
-    "romanization": "rong-thao"
+    "romanization": "rong-thao",
+    "english": "Shoes"
   },
   {
     "id": "d_16",
@@ -2040,7 +2235,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผ้าที่สวมใส่หุ้มเท้าก่อนใส่รองเท้า",
     "exampleSentence": "สวมถุงเท้าเพื่อป้องกันรองเท้ากัดและซับเหงื่อ",
-    "romanization": "thung-thao"
+    "romanization": "thung-thao",
+    "english": "Socks"
   },
   {
     "id": "d_17",
@@ -2050,7 +2246,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "เครื่องนุ่งห่มร่างกายเพื่อความอบอุ่นและสุภาพ",
     "exampleSentence": "ซักเสื้อผ้าและตากแดดให้แห้งสนิท",
-    "romanization": "suea-pha"
+    "romanization": "suea-pha",
+    "english": "Clothes"
   },
   {
     "id": "d_18",
@@ -2060,7 +2257,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "เครื่องนุ่งห่มส่วนล่าง มีสองขาสวมใส่",
     "exampleSentence": "สวมกางเกงขายาวผ้าฝรั่งที่ใส่สบาย",
-    "romanization": "kang-keng"
+    "romanization": "kang-keng",
+    "english": "Pants / Trousers"
   },
   {
     "id": "d_19",
@@ -2070,7 +2268,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "เครื่องสวมใส่บนศีรษะเพื่อกันแดดกันลมหรือเพื่อความสวยงาม",
     "exampleSentence": "สวมหมวกปีกกว้างเพื่อกันแสงแดดจ้า",
-    "romanization": "muak"
+    "romanization": "muak",
+    "english": "Hat / Cap"
   },
   {
     "id": "d_20",
@@ -2080,7 +2279,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "กรอบเลนส์สวมหน้าดวงตา เพื่อปรับสายตาหรือกันแดด",
     "exampleSentence": "สวมแว่นตากันแดดเมื่อต้องออกไปกลางแจ้ง",
-    "romanization": "waen-ta"
+    "romanization": "waen-ta",
+    "english": "Glasses"
   },
   {
     "id": "d_21",
@@ -2090,7 +2290,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "อุปกรณ์กางออกเพื่อกันแดดหรือฝน พับเก็บได้",
     "exampleSentence": "พกร่มคันเล็กติดกระเป๋าไว้เผื่อฝนตก",
-    "romanization": "rom"
+    "romanization": "rom",
+    "english": "Umbrella"
   },
   {
     "id": "d_22",
@@ -2100,7 +2301,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผ้าผืนใหญ่ซับน้ำได้ดี ใช้เช็ดตัวหลังอาบน้ำ",
     "exampleSentence": "ผึ่งผ้าเช็ดตัวในที่ที่มีลมโกรกหลังใช้งาน",
-    "romanization": "pha-chet-tua"
+    "romanization": "pha-chet-tua",
+    "english": "Towel"
   },
   {
     "id": "d_23",
@@ -2110,7 +2312,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สารทำความสะอาดร่างกาย ขจัดคราบไคลและสิ่งสกปรก",
     "exampleSentence": "ฟอกสบู่จนเกิดฟองนุ่มกลิ่นหอมสะอาด",
-    "romanization": "sa-bu"
+    "romanization": "sa-bu",
+    "english": "Soap"
   },
   {
     "id": "d_24",
@@ -2120,7 +2323,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผลิตภัณฑ์ทำความสะอาดเส้นผมและหนังศีรษะ",
     "exampleSentence": "ใช้ยาสระผมสูตรอ่อนโยนสระผมสัปดาห์ละสามครั้ง",
-    "romanization": "ya-sa-phom"
+    "romanization": "ya-sa-phom",
+    "english": "Shampoo"
   },
   {
     "id": "d_25",
@@ -2130,7 +2334,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สารผสมฟลูออไรด์ใช้คู่กับแปรง เพื่อทำความสะอาดช่องปาก",
     "exampleSentence": "บีบยาสีฟันขนาดเท่าเมล็ดถั่วเขียวลงบนแปรง",
-    "romanization": "ya-si-fan"
+    "romanization": "ya-si-fan",
+    "english": "Toothpaste"
   },
   {
     "id": "d_26",
@@ -2140,7 +2345,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "อุปกรณ์มีซี่ถี่ ใช้จัดแต่งทรงผมให้เรียบร้อย",
     "exampleSentence": "ใช้หวีสางผมเบาๆ เพื่อไม่ให้เส้นผมขาดหลุดร่วง",
-    "romanization": "wi"
+    "romanization": "wi",
+    "english": "Comb"
   },
   {
     "id": "d_27",
@@ -2150,7 +2356,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "แผ่นแก้วสะท้อนภาพ ใช้ส่องสำรวจบุคลิกภาพ",
     "exampleSentence": "ส่องกระจกตรวจดูความเรียบร้อยของเสื้อผ้า",
-    "romanization": "kra-chok"
+    "romanization": "kra-chok",
+    "english": "Mirror"
   },
   {
     "id": "d_28",
@@ -2160,7 +2367,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "เฟอร์นิเจอร์ยกพื้นสำหรับปูฟูกใช้นอนหลับ",
     "exampleSentence": "จัดเตียงนอนให้สะอาดน่านอนทุกเช้า",
-    "romanization": "tiang-non"
+    "romanization": "tiang-non",
+    "english": "Bed"
   },
   {
     "id": "d_29",
@@ -2170,7 +2378,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "เครื่องนอนนุ่มๆ สำหรับหนุนศีรษะยามนอนหลับ",
     "exampleSentence": "เลือกหมอนที่มีความสูงพอดีช่วยลดอาการปวดคอ",
-    "romanization": "mon"
+    "romanization": "mon",
+    "english": "Pillow"
   },
   {
     "id": "d_30",
@@ -2180,7 +2389,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผืนผ้าหนาใช้คลุมตัวเพื่อให้ความอบอุ่นยามหลับ",
     "exampleSentence": "ห่มผ้าห่มนุ่มอุ่นสบายในคืนที่อากาศหนาว",
-    "romanization": "pha-hom"
+    "romanization": "pha-hom",
+    "english": "Blanket"
   },
   {
     "id": "d_31",
@@ -2190,7 +2400,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "เฟอร์นิเจอร์มีพื้นราบและขาตั้ง ใช้ทำงานหรือวางของ",
     "exampleSentence": "จัดโต๊ะทำงานให้เป็นระเบียบช่วยให้มีสมาธิมากขึ้น",
-    "romanization": "to"
+    "romanization": "to",
+    "english": "Table / Desk"
   },
   {
     "id": "d_32",
@@ -2200,7 +2411,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ที่นั่งมีพนักพิงและขาตั้ง สำหรับนั่งคนเดียว",
     "exampleSentence": "นั่งบนเก้าอี้หลังตรงเพื่อสุขภาพที่ดีของกระดูกสันหลัง",
-    "romanization": "kao-i"
+    "romanization": "kao-i",
+    "english": "Chair"
   },
   {
     "id": "d_33",
@@ -2210,7 +2422,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "เก้าอี้นวมตัวยาว นั่งหรือเอนหลังพักผ่อนได้อย่างสบาย",
     "exampleSentence": "นั่งพักผ่อนดูหนังบนโซฟาในห้องนั่งเล่น",
-    "romanization": "so-fa"
+    "romanization": "so-fa",
+    "english": "Sofa"
   },
   {
     "id": "d_34",
@@ -2220,7 +2433,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ช่องทางเข้าออกของอาคารหรือห้อง มีบานเปิดปิด",
     "exampleSentence": "ปิดประตูล็อกกลอนให้เรียบร้อยก่อนเข้านอน",
-    "romanization": "pra-tu"
+    "romanization": "pra-tu",
+    "english": "Door"
   },
   {
     "id": "d_35",
@@ -2230,7 +2444,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ช่องเปิดที่ผนังเพื่อรับแสงและให้อากาศถ่ายเท",
     "exampleSentence": "เปิดหน้าต่างรับลมธรรมชาติและระบายอากาศ",
-    "romanization": "na-tang"
+    "romanization": "na-tang",
+    "english": "Window"
   },
   {
     "id": "d_36",
@@ -2240,7 +2455,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "อุปกรณ์โลหะใช้ไขเปิดหรือล็อกแม่กุญแจ",
     "exampleSentence": "พวงกุญแจบ้านเก็บไว้ในกระเป๋าอย่างปลอดภัย",
-    "romanization": "kun-chae"
+    "romanization": "kun-chae",
+    "english": "Key"
   },
   {
     "id": "d_37",
@@ -2250,7 +2466,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "เครื่องกำเนิดแสงสว่าง มีที่ครอบเพื่อกระจายแสง",
     "exampleSentence": "เปิดโคมไฟหัวเตียงอ่านหนังสือก่อนนอน",
-    "romanization": "khom-fai"
+    "romanization": "khom-fai",
+    "english": "Lamp"
   },
   {
     "id": "d_38",
@@ -2260,7 +2477,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "เครื่องใช้ไฟฟ้ามีใบพัดหมุนเพื่อสร้างลมเย็น",
     "exampleSentence": "เปิดพัดลมส่ายไปมาช่วยให้อากาศหมุนเวียน",
-    "romanization": "phat-lom"
+    "romanization": "phat-lom",
+    "english": "Fan"
   },
   {
     "id": "d_39",
@@ -2270,7 +2488,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "อุปกรณ์ปรับอุณหภูมิและความชื้นในห้องให้เย็นสบาย",
     "exampleSentence": "ตั้งอุณหภูมิเครื่องปรับอากาศที่ 25 องศาเพื่อประหยัดพลังงาน",
-    "romanization": "khrueang-prap-a-kat"
+    "romanization": "khrueang-prap-a-kat",
+    "english": "Air Conditioner"
   },
   {
     "id": "d_40",
@@ -2280,7 +2499,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "เครื่องใช้ไฟฟ้าสำหรับเก็บถนอมอาหารด้วยความเย็น",
     "exampleSentence": "แช่นมสดและผลไม้ไว้ในตู้เย็นเพื่อคงความสด",
-    "romanization": "tu-yen"
+    "romanization": "tu-yen",
+    "english": "Refrigerator"
   },
   {
     "id": "d_41",
@@ -2290,7 +2510,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "เตาอุ่นอาหารด้วยคลื่นแม่เหล็กไฟฟ้า สะดวกรวดเร็ว",
     "exampleSentence": "อุ่นกับข้าวด้วยไมโครเวฟเพียงสองนาทีก็ร้อนพร้อมทาน",
-    "romanization": "mai-khro-wep"
+    "romanization": "mai-khro-wep",
+    "english": "Microwave"
   },
   {
     "id": "d_42",
@@ -2300,7 +2521,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "เครื่องรับสัญญาณภาพและเสียงเพื่อความบันเทิงและข่าวสาร",
     "exampleSentence": "ครอบครัวนั่งดูข่าวสารพร้อมหน้ากันทางโทรทัศน์",
-    "romanization": "tho-ra-that"
+    "romanization": "tho-ra-that",
+    "english": "Television"
   },
   {
     "id": "d_43",
@@ -2310,7 +2532,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "อุปกรณ์สื่อสารระยะไกล ใช้โทร ส่งข้อความ และท่องเน็ต",
     "exampleSentence": "ใช้โทรศัพท์ติดต่อสอบถามข้อมูลอย่างสะดวกสบาย",
-    "romanization": "tho-ra-sap"
+    "romanization": "tho-ra-sap",
+    "english": "Telephone / Phone"
   },
   {
     "id": "d_44",
@@ -2320,7 +2543,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "เครื่องอิเล็กทรอนิกส์ประมวลผลข้อมูลและใช้ทำงาน",
     "exampleSentence": "เขาใช้คอมพิวเตอร์พิมพ์รายงานส่งคุณครู",
-    "romanization": "khom-phiu-toe"
+    "romanization": "khom-phiu-toe",
+    "english": "Computer"
   },
   {
     "id": "d_45",
@@ -2330,7 +2554,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "อุปกรณ์แนบหูสำหรับฟังเสียงโดยไม่รบกวนผู้อื่น",
     "exampleSentence": "เสียบหูฟังเพื่อฟังบทเรียนเสียงภาษาไทย",
-    "romanization": "hu-fang"
+    "romanization": "hu-fang",
+    "english": "Headphones"
   },
   {
     "id": "d_46",
@@ -2340,7 +2565,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "เครื่องมือเขียนใช้น้ำหมึก เขียนติดทนนาน",
     "exampleSentence": "ใช้ปากกาหมึกสีน้ำเงินเซ็นชื่อในเอกสาร",
-    "romanization": "pak-ka"
+    "romanization": "pak-ka",
+    "english": "Pen"
   },
   {
     "id": "d_47",
@@ -2350,7 +2576,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "เครื่องมือเขียนมีไส้แกรไฟต์ ลบออกได้ด้วยยางลบ",
     "exampleSentence": "เด็กๆ ใช้ดินสอวาดภาพระบายสีอย่างเพลิดเพลิน",
-    "romanization": "din-so"
+    "romanization": "din-so",
+    "english": "Pencil"
   },
   {
     "id": "d_48",
@@ -2360,7 +2587,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ก้อนยางใช้ลบรอยดินสอให้สะอาดเรียบร้อย",
     "exampleSentence": "ใช้ยางลบคุณภาพดีลบรอยขีดเขียนโดยไม่ทำให้กระดาษขาด",
-    "romanization": "yang-lop"
+    "romanization": "yang-lop",
+    "english": "Eraser"
   },
   {
     "id": "d_49",
@@ -2370,7 +2598,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "แถบตรงมีขีดบอกระยะ ใช้ขีดเส้นตรงหรือวัดความยาว",
     "exampleSentence": "ใช้ไม้บรรทัดตีเส้นใต้คำศัพท์สำคัญในสมุด",
-    "romanization": "mai-ban-that"
+    "romanization": "mai-ban-that",
+    "english": "Ruler"
   },
   {
     "id": "d_50",
@@ -2380,7 +2609,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "เล่มกระดาษเย็บติดกัน ใช้สำหรับจดบันทึกข้อความ",
     "exampleSentence": "จดบันทึกคำศัพท์ใหม่ลงในสมุดทบทวน",
-    "romanization": "sa-mut"
+    "romanization": "sa-mut",
+    "english": "Notebook"
   },
   {
     "id": "d_51",
@@ -2390,7 +2620,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "เครื่องมือตัดมีใบมีดคู่ไขว้กัน ใช้ตัดกระดาษหรือผ้า",
     "exampleSentence": "ใช้กรรไกรตัดกระดาษตามรอยปรุอย่างระมัดระวัง",
-    "romanization": "kan-krai"
+    "romanization": "kan-krai",
+    "english": "Scissors"
   },
   {
     "id": "d_52",
@@ -2400,7 +2631,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สารเหนียวใช้ทาเพื่อยึดติดสิ่งของเข้าด้วยกัน",
     "exampleSentence": "ทากาวบางๆ ติดภาพวาดลงบนกระดาษแข็ง",
-    "romanization": "kao"
+    "romanization": "kao",
+    "english": "Glue"
   },
   {
     "id": "d_53",
@@ -2410,7 +2642,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "แผ่นบางทำจากเยื่อไม้ ใช้เขียน พิมพ์ หรือห่อของ",
     "exampleSentence": "ใช้กระดาษรีไซเคิลเพื่อช่วยอนุรักษ์สิ่งแวดล้อม",
-    "romanization": "kra-dat"
+    "romanization": "kra-dat",
+    "english": "Paper"
   },
   {
     "id": "d_54",
@@ -2420,7 +2653,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ภาชนะก้นตื้นทรงกลม สำหรับใส่อาหารคาวหวาน",
     "exampleSentence": "ตักข้าวสวยร้อนๆ ใส่จานพร้อมเสิร์ฟ",
-    "romanization": "chan"
+    "romanization": "chan",
+    "english": "Plate"
   },
   {
     "id": "d_55",
@@ -2430,7 +2664,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ภาชนะก้นลึก สำหรับใส่อาหารประเภทน้ำ เช่น ต้มยำ หรือก๋วยเตี๋ยว",
     "exampleSentence": "ตักแกงจืดใส่ชามกระเบื้องใบใหญ่",
-    "romanization": "cham"
+    "romanization": "cham",
+    "english": "Bowl"
   },
   {
     "id": "d_56",
@@ -2440,7 +2675,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "เครื่องใช้สำหรับตักอาหารเข้าปากหรือชิมรส",
     "exampleSentence": "ใช้ช้อนกลางตักอาหารร่วมกับผู้อื่นเพื่อสุขอนามัย",
-    "romanization": "chon"
+    "romanization": "chon",
+    "english": "Spoon"
   },
   {
     "id": "d_57",
@@ -2450,7 +2686,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "เครื่องใช้มีปลายแหลมเป็นซี่ ใช้คู่กับช้อนจิ้มอาหาร",
     "exampleSentence": "ใช้ช้อนส้อมรับประทานอาหารอย่างสุภาพ",
-    "romanization": "som"
+    "romanization": "som",
+    "english": "Fork"
   },
   {
     "id": "d_58",
@@ -2460,7 +2697,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ภาชนะทรงกระบอกสำหรับใส่เครื่องดื่มดื่มกิน",
     "exampleSentence": "รินน้ำเย็นใส่แก้วน้ำดื่มชื่นใจ",
-    "romanization": "kaeo-nam"
+    "romanization": "kaeo-nam",
+    "english": "Drinking Glass"
   },
   {
     "id": "d_59",
@@ -2470,7 +2708,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "เก็บกวาด เช็ดถู กำจัดสิ่งสกปรกให้เรียบร้อย",
     "exampleSentence": "ร่วมมือกันทำความสะอาดห้องเรียนให้น่าอยู่",
-    "romanization": "tham-khwam-sa-at"
+    "romanization": "tham-khwam-sa-at",
+    "english": "Clean up"
   },
   {
     "id": "d_60",
@@ -2480,7 +2719,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "วางสิ่งของให้เข้าที่เรียบร้อย สะดวกแก่การค้นหา",
     "exampleSentence": "จัดระเบียบโต๊ะทำงานช่วยให้ค้นหาเอกสารได้รวดเร็ว",
-    "romanization": "chat-ra-biap"
+    "romanization": "chat-ra-biap",
+    "english": "Organize"
   },
   {
     "id": "t_1",
@@ -2490,7 +2730,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ยานพาหนะสี่ล้อขับเคลื่อนด้วยเครื่องยนต์ สำหรับการเดินทาง",
     "exampleSentence": "ตรวจเช็กสภาพรถยนต์ก่อนออกเดินทางไกลเสมอ",
-    "romanization": "rot-yon"
+    "romanization": "rot-yon",
+    "english": "Car / Automobile"
   },
   {
     "id": "t_2",
@@ -2500,7 +2741,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "รถสองล้อขับเคลื่อนด้วยเครื่องยนต์ สะดวกในเมือง (มอเตอร์ไซค์)",
     "exampleSentence": "สวมหมวกกันน็อกทุกครั้งเมื่อขับขี่รถจักรยานยนต์",
-    "romanization": "rot-chak-kra-yan-yon"
+    "romanization": "rot-chak-kra-yan-yon",
+    "english": "Motorcycle"
   },
   {
     "id": "t_3",
@@ -2510,7 +2752,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ยานพาหนะสองล้อ ขับเคลื่อนด้วยแรงถีบ ช่วยออกกำลังกาย",
     "exampleSentence": "ปั่นรถจักรยานชมวิวทิวทัศน์ริมชายหาดยามเย็น",
-    "romanization": "rot-chak-kra-yan"
+    "romanization": "rot-chak-kra-yan",
+    "english": "Bicycle"
   },
   {
     "id": "t_4",
@@ -2520,7 +2763,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "รถขนาดใหญ่รับส่งผู้โดยสารทั่วไปตามเส้นทางที่กำหนด (รถเมล์)",
     "exampleSentence": "ขึ้นรถโดยสารประจำทางไปโรงเรียนทุกเช้า",
-    "romanization": "rot-doi-san"
+    "romanization": "rot-doi-san",
+    "english": "Bus"
   },
   {
     "id": "t_5",
@@ -2530,7 +2774,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "รถไฟขับเคลื่อนด้วยกระแสไฟฟ้า วิ่งบนรางยกระดับหรือใต้ดิน รวดเร็ว",
     "exampleSentence": "เดินทางด้วยรถไฟฟ้าช่วยหลีกเลี่ยงปัญหาการจราจรติดขัด",
-    "romanization": "rot-fai-fa"
+    "romanization": "rot-fai-fa",
+    "english": "Skytrain (BTS)"
   },
   {
     "id": "t_6",
@@ -2540,7 +2785,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ระบบรถไฟฟ้าที่วิ่งในอุโมงค์ใต้ดิน สะดวกและตรงเวลา",
     "exampleSentence": "ลงสถานีรถไฟใต้ดินเพื่อต่อการเดินทางไปยังศูนย์การค้า",
-    "romanization": "rot-fai-tai-din"
+    "romanization": "rot-fai-tai-din",
+    "english": "Subway (MRT)"
   },
   {
     "id": "t_7",
@@ -2550,7 +2796,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ขบวนตู้โดยสารแล่นบนรางเหล็ก เดินทางเชื่อมระหว่างจังหวัด",
     "exampleSentence": "นั่งรถไฟชมทิวทัศน์ธรรมชาติสองข้างทางอย่างเพลิดเพลิน",
-    "romanization": "rot-fai"
+    "romanization": "rot-fai",
+    "english": "Train"
   },
   {
     "id": "t_8",
@@ -2560,7 +2807,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "เรือไม้ยาวติดเครื่องยนต์ท้ายลำ นิยมใช้สัญจรตามแม่น้ำลำคลอง",
     "exampleSentence": "นั่งเรือหางยาวล่องชมวิถีชีวิตริมคลองอัมพวา",
-    "romanization": "ruea-hang-yao"
+    "romanization": "ruea-hang-yao",
+    "english": "Long-tail Boat"
   },
   {
     "id": "t_9",
@@ -2570,7 +2818,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "เรือโดยสารขนาดใหญ่ มีสิ่งอำนวยความสะดวกครบครันสำหรับการพักผ่อน",
     "exampleSentence": "เรือสำราญล่องผ่านอ่าวไทยในยามค่ำคืน",
-    "romanization": "ruea-sam-ran"
+    "romanization": "ruea-sam-ran",
+    "english": "Cruise Ship"
   },
   {
     "id": "t_10",
@@ -2580,7 +2829,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "อากาศยานขับเคลื่อนด้วยเครื่องยนต์ เดินทางบนฟ้าได้รวดเร็ว",
     "exampleSentence": "เดินทางด้วยเครื่องบินช่วยประหยัดเวลาในการเดินทางไกล",
-    "romanization": "khrueang-bin"
+    "romanization": "khrueang-bin",
+    "english": "Airplane"
   },
   {
     "id": "t_11",
@@ -2590,7 +2840,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "อากาศยานปีกหมุน บินขึ้นลงในแนวดิ่งได้สะดวก",
     "exampleSentence": "เฮลิคอปเตอร์บินสำรวจพื้นที่ป่าไม้อย่างปลอดภัย",
-    "romanization": "he-li-khop-toe"
+    "romanization": "he-li-khop-toe",
+    "english": "Helicopter"
   },
   {
     "id": "t_12",
@@ -2600,7 +2851,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สนามบิน สถานที่ขึ้นลงของเครื่องบินและบริการผู้โดยสาร",
     "exampleSentence": "ท่าอากาศยานสุวรรณภูมิรองรับนักท่องเที่ยวจากทั่วโลก",
-    "romanization": "tha-a-kat-sa-yan"
+    "romanization": "tha-a-kat-sa-yan",
+    "english": "Airport"
   },
   {
     "id": "t_13",
@@ -2610,7 +2862,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "จุดจอดเทียบขบวนรถไฟเพื่อรับส่งผู้โดยสารและขนถ่ายสินค้า",
     "exampleSentence": "ผู้โดยสารนั่งรอขึ้นรถไฟที่ชานชาลาสถานีรถไฟ",
-    "romanization": "sa-tha-ni-rot-fai"
+    "romanization": "sa-tha-ni-rot-fai",
+    "english": "Train Station"
   },
   {
     "id": "t_14",
@@ -2620,7 +2873,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สถานที่จอดเทียบเรือริมน้ำ สำหรับขึ้นลงเรือและขนส่ง",
     "exampleSentence": "ยืนรอเรือโดยสารที่ท่าเรือข้ามฟากแม่น้ำเจ้าพระยา",
-    "romanization": "tha-ruea"
+    "romanization": "tha-ruea",
+    "english": "Pier / Harbor"
   },
   {
     "id": "t_15",
@@ -2630,7 +2884,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "จุดจอดรับส่งผู้โดยสารของรถประจำทางริมถนน",
     "exampleSentence": "ยืนเข้าแถวรอรถโดยสารที่ป้ายรถเมล์อย่างเป็นระเบียบ",
-    "romanization": "pai-rot-me"
+    "romanization": "pai-rot-me",
+    "english": "Bus Stop"
   },
   {
     "id": "t_16",
@@ -2640,7 +2895,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ถนนพิเศษที่สร้างขึ้นเพื่อให้สัญจรได้รวดเร็วโดยเก็บค่าผ่านทาง",
     "exampleSentence": "ใช้ทางด่วนเพื่อเดินทางไปสนามบินได้รวดเร็วยิ่งขึ้น",
-    "romanization": "thang-duan"
+    "romanization": "thang-duan",
+    "english": "Expressway"
   },
   {
     "id": "t_17",
@@ -2650,7 +2906,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สิ่งก่อสร้างข้ามแม่น้ำ ถนน หรือหุบเขา เพื่อให้สัญจรข้ามไปได้",
     "exampleSentence": "สะพานพระรามแปดมีความงดงามโดดเด่นยามค่ำคืน",
-    "romanization": "sa-phan"
+    "romanization": "sa-phan",
+    "english": "Bridge"
   },
   {
     "id": "t_18",
@@ -2660,7 +2917,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ทางลอดใต้ดินหรือใต้ภูเขา เพื่อให้ยานพาหนะแล่นผ่าน",
     "exampleSentence": "รถแล่นลอดผ่านอุโมงค์ขุนตานอย่างปลอดภัย",
-    "romanization": "u-mong"
+    "romanization": "u-mong",
+    "english": "Tunnel"
   },
   {
     "id": "t_19",
@@ -2670,7 +2928,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "จุดตัดของถนนสองสายที่มีทางแยกไปได้สี่ทิศ",
     "exampleSentence": "ระมัดระวังเป็นพิเศษเมื่อขับขี่ยานพาหนะผ่านสี่แยก",
-    "romanization": "si-yaek"
+    "romanization": "si-yaek",
+    "english": "Intersection"
   },
   {
     "id": "t_20",
@@ -2680,7 +2939,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ทางข้ามถนนทาสีขาวสลับดำ ให้คนเดินข้ามถนนได้อย่างปลอดภัย",
     "exampleSentence": "ชะลอความเร็วเพื่อให้คนเดินข้ามถนนตรงทางม้าลาย",
-    "romanization": "thang-ma-lai"
+    "romanization": "thang-ma-lai",
+    "english": "Zebra Crossing"
   },
   {
     "id": "t_21",
@@ -2690,7 +2950,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "พื้นที่ข้างถนนยกสูงขึ้นสำหรับให้คนเดินสัญจร (ฟุตบาท)",
     "exampleSentence": "เดินบนทางเท้าอย่างระมัดระวังไม่ลงไปเดินบนผิวจราจร",
-    "romanization": "thang-thao"
+    "romanization": "thang-thao",
+    "english": "Sidewalk / Pavement"
   },
   {
     "id": "t_22",
@@ -2700,7 +2961,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ไฟสัญญาณจราจรบอกให้หยุด รอ หรือไป (แดง เหลือง เขียว)",
     "exampleSentence": "ปฏิบัติตามสัญญาณไฟจราจรเพื่อความปลอดภัยบนท้องถนน",
-    "romanization": "san-yan-fai"
+    "romanization": "san-yan-fai",
+    "english": "Traffic Light"
   },
   {
     "id": "t_23",
@@ -2710,7 +2972,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "บัตรหรือเอกสารแสดงสิทธิในการโดยสารยานพาหนะ",
     "exampleSentence": "แสดงตั๋วเดินทางต่อเจ้าหน้าที่ก่อนขึ้นขบวนรถไฟ",
-    "romanization": "tua-doen-thang"
+    "romanization": "tua-doen-thang",
+    "english": "Travel Ticket"
   },
   {
     "id": "t_24",
@@ -2720,7 +2983,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "เอกสารราชการรับรองสัญชาติ ใช้เดินทางระหว่างประเทศ (พาสปอร์ต)",
     "exampleSentence": "เก็บรักษาหนังสือเดินทางไว้อย่างปลอดภัยขณะเดินทางต่างแดน",
-    "romanization": "nang-sue-doen-thang"
+    "romanization": "nang-sue-doen-thang",
+    "english": "Passport"
   },
   {
     "id": "t_25",
@@ -2730,7 +2994,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สถานที่ให้บริการห้องพักและสิ่งอำนวยความสะดวกแก่นักท่องเที่ยว",
     "exampleSentence": "จองห้องพักโรงแรมริมทะเลล่วงหน้าสำหรับวันหยุดพักผ่อน",
-    "romanization": "rong-raem"
+    "romanization": "rong-raem",
+    "english": "Hotel"
   },
   {
     "id": "t_26",
@@ -2740,7 +3005,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สถานที่สำหรับอยู่อาศัยหรือพักผ่อนชั่วคราวขณะเดินทาง",
     "exampleSentence": "ที่พักสไตล์โฮมสเตย์ให้บรรยากาศอบอุ่นเป็นกันเอง",
-    "romanization": "thi-phak"
+    "romanization": "thi-phak",
+    "english": "Accommodation"
   },
   {
     "id": "t_27",
@@ -2750,7 +3016,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สถานที่พักตากอากาศท่ามกลางธรรมชาติ มีสิ่งอำนวยความสะดวกครบครัน",
     "exampleSentence": "พักผ่อนในรีสอร์ตริมภูเขาที่เงียบสงบและร่มรื่น",
-    "romanization": "ri-sot"
+    "romanization": "ri-sot",
+    "english": "Resort"
   },
   {
     "id": "t_28",
@@ -2760,7 +3027,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ริมฝั่งทะเลที่เป็นพื้นทรายนุ่มลาดลงสู่น้ำ",
     "exampleSentence": "เดินเล่นรับลมเย็นและฟังเสียงคลื่นกระทบชายหาด",
-    "romanization": "chai-hat"
+    "romanization": "chai-hat",
+    "english": "Beach"
   },
   {
     "id": "t_29",
@@ -2770,7 +3038,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สถานที่ที่ตั้งอยู่บนที่สูง สามารถมองเห็นทิวทัศน์ได้กว้างไกล",
     "exampleSentence": "ขึ้นไปชมพระอาทิตย์ตกดินที่จุดชมวิวแหลมพรหมเทพ",
-    "romanization": "chut-chom-wio"
+    "romanization": "chut-chom-wio",
+    "english": "Viewpoint"
   },
   {
     "id": "t_30",
@@ -2780,7 +3049,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ศาสนสถานของพุทธศาสนา เป็นศูนย์รวมจิตใจและศิลปวัฒนธรรม",
     "exampleSentence": "ไหว้พระขอพรที่วัดพระแก้วเพื่อความเป็นสิริมงคล",
-    "romanization": "wat"
+    "romanization": "wat",
+    "english": "Temple"
   },
   {
     "id": "t_31",
@@ -2790,7 +3060,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ศาสนสถานสำคัญในวัดหรือในคริสต์ศาสนาสำหรับประกอบพิธีกรรม",
     "exampleSentence": "ชมจิตรกรรมฝาผนังอันวิจิตรตระการตาภายในโบสถ์",
-    "romanization": "bot"
+    "romanization": "bot",
+    "english": "Church / Chapel"
   },
   {
     "id": "t_32",
@@ -2800,7 +3071,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ศาสนสถานของศาสนาอิสลาม สำหรับละหมาดและประกอบศาสนกิจ",
     "exampleSentence": "มัสยิดกลางประจำจังหวัดมีความงดงามทางสถาปัตยกรรม",
-    "romanization": "mat-sa-yit"
+    "romanization": "mat-sa-yit",
+    "english": "Mosque"
   },
   {
     "id": "t_33",
@@ -2810,7 +3082,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สถานที่เก็บรวบรวมและจัดแสดงโบราณวัตถุ ศิลปะ และประวัติศาสตร์",
     "exampleSentence": "ชมนิทรรศการประวัติศาสตร์ชาติไทยที่พิพิธภัณฑสถานแห่งชาติ",
-    "romanization": "phi-phit-tha-phan"
+    "romanization": "phi-phit-tha-phan",
+    "english": "Museum"
   },
   {
     "id": "t_34",
@@ -2820,7 +3093,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สถานที่จัดแสดงผลงานศิลปะ ภาพวาด และงานประติมากรรม",
     "exampleSentence": "เดินชมนิทรรศการภาพถ่ายสร้างสรรค์ที่หอศิลปกรุงเทพฯ",
-    "romanization": "ho-sin"
+    "romanization": "ho-sin",
+    "english": "Art Gallery"
   },
   {
     "id": "t_35",
@@ -2830,7 +3104,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สถานที่รวบรวมสัตว์นานาชนิดไว้เพื่อการศึกษา อนุรักษ์ และพักผ่อน",
     "exampleSentence": "พาเด็กๆ ไปศึกษาวิถีชีวิตของสัตว์นานาพันธุ์ที่สวนสัตว์",
-    "romanization": "suan-sat"
+    "romanization": "suan-sat",
+    "english": "Zoo"
   },
   {
     "id": "t_36",
@@ -2840,7 +3115,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สถานที่รวบรวมเครื่องเล่นและกิจกรรมสร้างความบันเทิงตื่นเต้น",
     "exampleSentence": "เล่นรถไฟเหาะและม้าหมุนอย่างเพลิดเพลินในสวนสนุก",
-    "romanization": "suan-sa-nuk"
+    "romanization": "suan-sa-nuk",
+    "english": "Amusement Park"
   },
   {
     "id": "t_37",
@@ -2850,7 +3126,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "พื้นที่สีเขียวเปิดให้ประชาชนทั่วไปเข้าไปพักผ่อนและออกกำลังกาย",
     "exampleSentence": "วิ่งออกกำลังกายรอบสระน้ำในสวนสาธารณะยามเช้า",
-    "romanization": "suan-sa-tha-ra-na"
+    "romanization": "suan-sa-tha-ra-na",
+    "english": "Public Park"
   },
   {
     "id": "t_38",
@@ -2860,7 +3137,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สถานที่ชุมนุมซื้อขายสินค้า อาหารสด และของใช้",
     "exampleSentence": "ไปจับจ่ายซื้อผักผลไม้สดแต่เช้าตรู่ที่ตลาดสด",
-    "romanization": "ta-lat"
+    "romanization": "ta-lat",
+    "english": "Market"
   },
   {
     "id": "t_39",
@@ -2870,7 +3148,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ร้านค้าขนาดใหญ่แบบบริการตนเอง จำหน่ายอาหารและของใช้ครบครัน",
     "exampleSentence": "เลือกซื้อของใช้เข้าบ้านที่ซูเปอร์มาร์เก็ตในวันหยุด",
-    "romanization": "su-poe-ma-ket"
+    "romanization": "su-poe-ma-ket",
+    "english": "Supermarket"
   },
   {
     "id": "t_40",
@@ -2880,7 +3159,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ศูนย์การค้าขนาดใหญ่รวบรวมร้านค้า ร้านอาหาร และความบันเทิง",
     "exampleSentence": "เดินเลือกซื้อเสื้อผ้าและรับประทานอาหารที่ห้างสรรพสินค้า",
-    "romanization": "hang-sap-pha-sin-kha"
+    "romanization": "hang-sap-pha-sin-kha",
+    "english": "Department Store"
   },
   {
     "id": "t_41",
@@ -2890,7 +3170,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สถาบันการเงินที่ให้บริการรับฝากเงิน ถอนเงิน และให้สินเชื่อ",
     "exampleSentence": "ติดต่อทำธุรกรรมทางการเงินที่สาขาของธนาคาร",
-    "romanization": "tha-na-khan"
+    "romanization": "tha-na-khan",
+    "english": "Bank"
   },
   {
     "id": "t_42",
@@ -2900,7 +3181,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "หน่วยงานให้บริการรับส่งจดหมาย พัสดุ และบริการไปรษณีย์",
     "exampleSentence": "ส่งพัสดุของขวัญให้เพื่อนทางไกลที่ที่ทำการไปรษณีย์",
-    "romanization": "thi-tham-kan-prai-sa-ni"
+    "romanization": "thi-tham-kan-prai-sa-ni",
+    "english": "Post Office"
   },
   {
     "id": "t_43",
@@ -2910,7 +3192,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ที่ทำการของตำรวจในการดูแลความสงบเรียบร้อยและรับแจ้งความ",
     "exampleSentence": "ติดต่อแจ้งเอกสารสูญหายที่สถานีตำรวจในท้องที่",
-    "romanization": "sa-tha-ni-tam-ruat"
+    "romanization": "sa-tha-ni-tam-ruat",
+    "english": "Police Station"
   },
   {
     "id": "t_44",
@@ -2920,7 +3203,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "หน่วยงานและเจ้าหน้าที่ระงับอัคคีภัยและกู้ภัยฉุกเฉิน",
     "exampleSentence": "เจ้าหน้าที่ดับเพลิงเข้าควบคุมสถานการณ์เพลิงไหม้อย่างรวดเร็ว",
-    "romanization": "dap-phloeng"
+    "romanization": "dap-phloeng",
+    "english": "Fire Station"
   },
   {
     "id": "t_45",
@@ -2930,7 +3214,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สถานที่จำหน่ายอาหารและเครื่องดื่มปรุงสำเร็จพร้อมบริการ",
     "exampleSentence": "จองโต๊ะร้านอาหารริมแม่น้ำเพื่อฉลองวันเกิด",
-    "romanization": "ran-a-han"
+    "romanization": "ran-a-han",
+    "english": "Restaurant"
   },
   {
     "id": "t_46",
@@ -2940,7 +3225,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ร้านจำหน่ายกาแฟ เครื่องดื่ม และขนม สำหรับนั่งพักผ่อนหรือทำงาน",
     "exampleSentence": "นั่งจิบกาแฟอ่านหนังสือในร้านกาแฟบรรยากาศร่มรื่น",
-    "romanization": "ran-ka-fae"
+    "romanization": "ran-ka-fae",
+    "english": "Cafe / Coffee Shop"
   },
   {
     "id": "t_47",
@@ -2950,7 +3236,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สถานที่เก็บรวบรวมหนังสือและแหล่งข้อมูลเพื่อการค้นคว้าและอ่าน",
     "exampleSentence": "ค้นคว้าข้อมูลทำรายงานในห้องสมุดประชาชนที่เงียบสงบ",
-    "romanization": "hong-sa-mut"
+    "romanization": "hong-sa-mut",
+    "english": "Library"
   },
   {
     "id": "t_48",
@@ -2960,7 +3247,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สถานที่ฉายภาพยนตร์บนจอขนาดใหญ่พร้อมระบบเสียงสมบูรณ์แบบ",
     "exampleSentence": "ชมภาพยนตร์แอนิเมชันเรื่องใหม่ในโรงภาพยนตร์",
-    "romanization": "rong-phap-pha-yon"
+    "romanization": "rong-phap-pha-yon",
+    "english": "Cinema / Movie Theater"
   },
   {
     "id": "t_49",
@@ -2970,7 +3258,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สถานที่สำหรับแข่งขันและฝึกซ้อมกีฬาประเภทต่างๆ",
     "exampleSentence": "ชมการแข่งขันฟุตบอลนัดกระชับมิตรในสนามกีฬาแห่งชาติ",
-    "romanization": "sa-nam-ki-la"
+    "romanization": "sa-nam-ki-la",
+    "english": "Stadium"
   },
   {
     "id": "t_50",
@@ -2980,7 +3269,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ที่ทำการของเอกอัครราชทูตและคณะผู้แทนทางการทูตในต่างแดน",
     "exampleSentence": "ยื่นคำร้องขอวีซ่าเข้าประเทศที่สถานทูต",
-    "romanization": "sa-than-thut"
+    "romanization": "sa-than-thut",
+    "english": "Embassy"
   },
   {
     "id": "t_51",
@@ -2990,7 +3280,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ที่ทำการบริหารราชการส่วนภูมิภาคของแต่ละจังหวัด",
     "exampleSentence": "ติดต่อราชการงานทะเบียนราษฎร์ที่ศาลากลางจังหวัด",
-    "romanization": "sa-la-klang"
+    "romanization": "sa-la-klang",
+    "english": "City Hall / Provincial Hall"
   },
   {
     "id": "t_52",
@@ -3000,7 +3291,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ภาพแสดงลักษณะพื้นผิวโลก ย่อส่วนและมีสัญลักษณ์บอกทิศทาง",
     "exampleSentence": "กางแผนที่วางแผนเส้นทางการท่องเที่ยวรอบเมือง",
-    "romanization": "phaen-thi"
+    "romanization": "phaen-thi",
+    "english": "Map"
   },
   {
     "id": "t_53",
@@ -3010,7 +3302,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "อุปกรณ์ชี้ทิศทางด้วยแม่เหล็ก ชี้ไปทางทิศเหนือเสมอ",
     "exampleSentence": "ใช้เข็มทิศและแผนที่นำทางในการเดินป่าระยะไกล",
-    "romanization": "khem-thit"
+    "romanization": "khem-thit",
+    "english": "Compass"
   },
   {
     "id": "t_54",
@@ -3020,7 +3313,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "กระเป๋าขนาดใหญ่มีล้อลากสำหรับใส่เสื้อผ้าและของใช้ขณะเดินทาง",
     "exampleSentence": "จัดเก็บเสื้อผ้าสัมภาระลงในกระเป๋าเดินทางล่วงหน้า",
-    "romanization": "kra-pao-doen-thang"
+    "romanization": "kra-pao-doen-thang",
+    "english": "Luggage / Suitcase"
   },
   {
     "id": "t_55",
@@ -3030,7 +3324,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "ลงทะเบียนเข้าพักโรงแรมหรือยืนยันที่นั่งก่อนขึ้นเครื่องบิน",
     "exampleSentence": "ทำการเช็คอินออนไลน์เพื่อความสะดวกรวดเร็วก่อนขึ้นเครื่อง",
-    "romanization": "chek-in"
+    "romanization": "chek-in",
+    "english": "Check-in"
   },
   {
     "id": "t_56",
@@ -3040,7 +3335,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "เริ่มเคลื่อนที่ออกจากจุดตั้งต้นเพื่อไปยังจุดหมายปลายทาง",
     "exampleSentence": "ครอบครัวออกเดินทางท่องเที่ยวแต่เช้ามืดเพื่อเลี่ยงรถติด",
-    "romanization": "ok-doen-thang"
+    "romanization": "ok-doen-thang",
+    "english": "Depart"
   },
   {
     "id": "t_57",
@@ -3050,7 +3346,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "บรรลุสู่จุดหมายปลายทางการเดินทางโดยสวัสดิภาพ",
     "exampleSentence": "ทุกคนเดินทางถึงที่หมายอย่างปลอดภัยและพร้อมพักผ่อน",
-    "romanization": "thueng-thi-mai"
+    "romanization": "thueng-thi-mai",
+    "english": "Arrive"
   },
   {
     "id": "t_58",
@@ -3060,7 +3357,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "เดินทางไปยังสถานที่ต่างๆ เพื่อพักผ่อนหย่อนใจและเปิดหูเปิดตา",
     "exampleSentence": "การท่องเที่ยวเปิดโอกาสให้เราได้เรียนรู้วัฒนธรรมใหม่ๆ",
-    "romanization": "thong-thiao"
+    "romanization": "thong-thiao",
+    "english": "Travel / Tour"
   },
   {
     "id": "t_59",
@@ -3070,7 +3368,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "บุคคลที่เดินทางไปเยือนสถานที่ต่างถิ่นเพื่อการพักผ่อน",
     "exampleSentence": "นักท่องเที่ยวประทับใจในมิตรไมตรีและรอยยิ้มของคนไทย",
-    "romanization": "nak-thong-thiao"
+    "romanization": "nak-thong-thiao",
+    "english": "Tourist"
   },
   {
     "id": "t_60",
@@ -3080,7 +3379,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผู้นำเที่ยวและให้ข้อมูลแนะนำสถานที่แก่นักท่องเที่ยว (ไกด์)",
     "exampleSentence": "มัคคุเทศก์อธิบายประวัติศาสตร์ความเป็นมาของพระราชวังอย่างละเอียด",
-    "romanization": "mak-khu-thet"
+    "romanization": "mak-khu-thet",
+    "english": "Tour Guide"
   },
   {
     "id": "e_1",
@@ -3090,7 +3390,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "รู้สึกอิ่มเอมใจ สบายใจ ปราศจากความทุกข์",
     "exampleSentence": "การได้อยู่พร้อมหน้าครอบครัวทำให้เขามีความสุขมาก",
-    "romanization": "mi-khwam-suk"
+    "romanization": "mi-khwam-suk",
+    "english": "Happy"
   },
   {
     "id": "e_2",
@@ -3100,7 +3401,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "รู้สึกยินดีเมื่อได้รับสิ่งดีงามหรือสมหวังในสิ่งที่รอคอย",
     "exampleSentence": "เด็กๆ ดีใจมากที่ได้รับของขวัญวันเกิดชิ้นพิเศษ",
-    "romanization": "di-chai"
+    "romanization": "di-chai",
+    "english": "Glad / Delighted"
   },
   {
     "id": "e_3",
@@ -3110,7 +3412,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำคุณศัพท์",
     "meaning": "มีอารมณ์แจ่มใส เบิกบาน สนุกสนาน ไม่หม่นหมอง",
     "exampleSentence": "เธอเป็นเด็กร่าเริงแจ่มใสและมีมนุษยสัมพันธ์ดี",
-    "romanization": "ra-roeng"
+    "romanization": "ra-roeng",
+    "english": "Cheerful"
   },
   {
     "id": "e_4",
@@ -3120,7 +3423,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "รู้สึกสนุกสนานจนลืมเวลา สนุกไปกับกิจกรรมที่ทำ",
     "exampleSentence": "เขาฟังดนตรีคลาสสิกอย่างเพลิดเพลินตลอดช่วงบ่าย",
-    "romanization": "phloet-phloen"
+    "romanization": "phloet-phloen",
+    "english": "Enjoyable"
   },
   {
     "id": "e_5",
@@ -3130,7 +3434,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "จิตใจสดชื่นแจ่มใส ปลอดโปร่ง",
     "exampleSentence": "รอยยิ้มที่เบิกบานของเด็กๆ ช่วยสร้างความสดใสให้ทุกคน",
-    "romanization": "boek-ban"
+    "romanization": "boek-ban",
+    "english": "Joyful"
   },
   {
     "id": "e_6",
@@ -3140,7 +3445,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "เปล่งเสียงแสดงความขบขัน ดีใจ หรือชอบใจ",
     "exampleSentence": "ทุกคนหัวเราะอย่างมีความสุขเมื่อฟังเรื่องเล่าตลกขบขัน",
-    "romanization": "hua-ro"
+    "romanization": "hua-ro",
+    "english": "Laugh"
   },
   {
     "id": "e_7",
@@ -3150,7 +3456,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "หมดกังวล จิตใจสงบ ไม่มีความตึงเครียด",
     "exampleSentence": "เมื่อส่งรายงานครบทุกวิชาแล้วเขาก็รู้สึกสบายใจ",
-    "romanization": "sa-bai-chai"
+    "romanization": "sa-bai-chai",
+    "english": "At ease / Relieved"
   },
   {
     "id": "e_8",
@@ -3160,7 +3467,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำคุณศัพท์",
     "meaning": "รู้สึกได้รับความรัก ความคุ้มครอง และความเอาใจใส่",
     "exampleSentence": "การต้อนรับที่แสนอบอุ่นทำให้แขกผู้มาเยือนประทับใจ",
-    "romanization": "op-un"
+    "romanization": "op-un",
+    "english": "Warm"
   },
   {
     "id": "e_9",
@@ -3170,7 +3478,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำคุณศัพท์",
     "meaning": "ปราศจากความวุ่นวาย มีสันติภาพและความราบรื่น",
     "exampleSentence": "หมู่บ้านในหุบเขาแห่งนี้มีวิถีชีวิตที่สงบสุขและเรียบง่าย",
-    "romanization": "sa-ngop-suk"
+    "romanization": "sa-ngop-suk",
+    "english": "Peaceful"
   },
   {
     "id": "e_10",
@@ -3180,7 +3489,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "รู้สึกกระตือรือร้น ใจระทึกต่อเหตุการณ์สำคัญหรือสิ่งใหม่",
     "exampleSentence": "เขารู้สึกตื่นเต้นมากก่อนขึ้นพูดบนเวทีใหญ่",
-    "romanization": "tuen-ten"
+    "romanization": "tuen-ten",
+    "english": "Excited"
   },
   {
     "id": "e_11",
@@ -3190,7 +3500,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "รู้สึกซาบซึ้งและจดจำได้อย่างมิรู้ลืมต่อสิ่งที่ดีงาม",
     "exampleSentence": "พวกเราประทับใจในน้ำใจอันดีงามของชาวบ้านในท้องถิ่น",
-    "romanization": "pra-thap-chai"
+    "romanization": "pra-thap-chai",
+    "english": "Impressed"
   },
   {
     "id": "e_12",
@@ -3200,7 +3511,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "รู้สึกกระหยิ่มใจ อิ่มเอมใจในความสำเร็จหรือคุณความดี",
     "exampleSentence": "พ่อแม่รู้สึกภาคภูมิใจที่ลูกตั้งใจศึกษาเล่าเรียนจนสำเร็จ",
-    "romanization": "phak-phum-chai"
+    "romanization": "phak-phum-chai",
+    "english": "Proud"
   },
   {
     "id": "e_13",
@@ -3210,7 +3522,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "เชื่อมั่นในความรู้ ความสามารถ หรือการตัดสินใจของตนเอง",
     "exampleSentence": "เขาตอบคำถามของคณะกรรมการด้วยความมั่นใจและชัดถ้อยชัดคำ",
-    "romanization": "man-chai"
+    "romanization": "man-chai",
+    "english": "Confident"
   },
   {
     "id": "e_14",
@@ -3220,7 +3533,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ความเชื่อถือ เลื่อมใส ในคุณความดีหรือหลักธรรม",
     "exampleSentence": "ชาวบ้านมีความศรัทธาอย่างลึกซึ้งต่อคำสอนของพระพุทธองค์",
-    "romanization": "sat-tha"
+    "romanization": "sat-tha",
+    "english": "Faith"
   },
   {
     "id": "e_15",
@@ -3230,7 +3544,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำคุณศัพท์",
     "meaning": "รู้คุณและพร้อมที่จะตอบแทนบุญคุณแก่ผู้มีพระคุณ",
     "exampleSentence": "ความกตัญญูต่อบิดามารดาเป็นเครื่องหมายของคนดี",
-    "romanization": "ka-tan-yu"
+    "romanization": "ka-tan-yu",
+    "english": "Grateful"
   },
   {
     "id": "e_16",
@@ -3240,7 +3555,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ความรักใคร่ ปรารถนาดีอยากให้ผู้อื่นมีความสุข",
     "exampleSentence": "คุณครูมีความเมตตากรุณาต่อลูกศิษย์ทุกคนอย่างเท่าเทียม",
-    "romanization": "met-ta"
+    "romanization": "met-ta",
+    "english": "Loving-kindness"
   },
   {
     "id": "e_17",
@@ -3250,7 +3566,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ความสงสาร คิดจะช่วยให้ผู้อื่นพ้นจากความทุกข์",
     "exampleSentence": "แพทย์และพยาบาลให้การดูแลรักษาผู้ยากไร้ด้วยความกรุณา",
-    "romanization": "ka-ru-na"
+    "romanization": "ka-ru-na",
+    "english": "Compassion"
   },
   {
     "id": "e_18",
@@ -3260,7 +3577,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "ยอมสละความสุขหรือผลประโยชน์ส่วนตนเพื่อประโยชน์ส่วนรวม",
     "exampleSentence": "ทหารและตำรวจเสียสละความสุขส่วนตัวเพื่อปกป้องความสงบของชาติ",
-    "romanization": "sia-sa-la"
+    "romanization": "sia-sa-la",
+    "english": "Sacrifice"
   },
   {
     "id": "e_19",
@@ -3270,7 +3588,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำคุณศัพท์",
     "meaning": "ประพฤติตรง ไม่คดโกง พูดความจริง จริงใจต่อหน้าที่",
     "exampleSentence": "ความซื่อสัตย์สุจริตเป็นคุณธรรมพื้นฐานที่ทุกคนควรยึดถือ",
-    "romanization": "sue-sat"
+    "romanization": "sue-sat",
+    "english": "Honest"
   },
   {
     "id": "e_20",
@@ -3280,7 +3599,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "ไม่ต้องการรบกวนหรือทำให้ผู้อื่นต้องลำบากใจ",
     "exampleSentence": "คนไทยมีอุปนิสัยขี้เกรงใจและให้เกียรติผู้อื่นเสมอ",
-    "romanization": "kreng-chai"
+    "romanization": "kreng-chai",
+    "english": "Considerate"
   },
   {
     "id": "e_21",
@@ -3290,7 +3610,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำคุณศัพท์",
     "meaning": "สุภาพ ไม่เย่อหยิ่ง ถ่อมตนและเคารพผู้อาวุโส",
     "exampleSentence": "กิริยาอ่อนน้อมถ่อมตนทำให้ผู้ใหญ่รักใคร่และเอ็นดู",
-    "romanization": "on-nom"
+    "romanization": "on-nom",
+    "english": "Humble"
   },
   {
     "id": "e_22",
@@ -3300,7 +3621,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำคุณศัพท์",
     "meaning": "มีน้ำใจเผื่อแผ่ เอื้อเฟื้อช่วยเหลือผู้อื่นอยู่เสมอ",
     "exampleSentence": "คุณยายเป็นคนโอบอ้อมอารีชอบแบ่งปันอาหารให้เพื่อนบ้าน",
-    "romanization": "op-om-a-ri"
+    "romanization": "op-om-a-ri",
+    "english": "Generous"
   },
   {
     "id": "e_23",
@@ -3310,7 +3632,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "เข้าใจความรู้สึกและร่วมรับรู้ความยากลำบากของผู้อื่น",
     "exampleSentence": "เพื่อนๆ ร่วมแสดงความเห็นอกเห็นใจและให้กำลังใจเขาในยามยาก",
-    "romanization": "hen-ok-hen-chai"
+    "romanization": "hen-ok-hen-chai",
+    "english": "Empathetic"
   },
   {
     "id": "e_24",
@@ -3320,7 +3643,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "รู้สึกเป็นทุกข์ ไม่สบายใจเมื่อเกิดเรื่องไม่ดีหรือสูญเสีย",
     "exampleSentence": "เขารู้สึกเสียใจที่ไม่ได้ไปร่วมงานเลี้ยงอำลาเพื่อนสนิท",
-    "romanization": "sia-chai"
+    "romanization": "sia-chai",
+    "english": "Sad / Sorry"
   },
   {
     "id": "e_25",
@@ -3330,7 +3654,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "หลั่งน้ำตาและส่งเสียงสะอื้นเมื่อเสียใจ เจ็บปวด หรือซาบซึ้ง",
     "exampleSentence": "เด็กน้อยร้องไห้เมื่อทำลูกโป่งหลุดลอยขึ้นฟ้า",
-    "romanization": "rong-hai"
+    "romanization": "rong-hai",
+    "english": "Cry"
   },
   {
     "id": "e_26",
@@ -3340,7 +3665,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "มีความทุกข์ใจอย่างหนัก อาลัยอาวรณ์ จิตใจหม่นหมอง",
     "exampleSentence": "ทุกคนร่วมไว้อาลัยด้วยความโศกเศร้าอย่างสุดซึ้ง",
-    "romanization": "sok-sao"
+    "romanization": "sok-sao",
+    "english": "Sorrowful"
   },
   {
     "id": "e_27",
@@ -3350,7 +3676,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "รู้สึกโดดเดี่ยว อ้างว้าง ขาดเพื่อนหรือคนที่เข้าใจ",
     "exampleSentence": "การอยู่คนเดียวในบ้านกว้างทำให้เขารู้สึกเหงาบ้างบางเวลา",
-    "romanization": "ngao"
+    "romanization": "ngao",
+    "english": "Lonely"
   },
   {
     "id": "e_28",
@@ -3360,7 +3687,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "ไม่เป็นไปตามความคาดหมายหรือสิ่งที่ตั้งใจไว้",
     "exampleSentence": "แม้จะผิดหวังจากการแข่งขันแต่เขาก็ไม่ยอมแพ้และจะฝึกฝนต่อไป",
-    "romanization": "phit-wang"
+    "romanization": "phit-wang",
+    "english": "Disappointed"
   },
   {
     "id": "e_29",
@@ -3370,7 +3698,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "รู้สึกอาลัยในสิ่งที่พลาดไปหรือไม่อาจย้อนคืนมาได้",
     "exampleSentence": "เขารู้สึกเสียดายที่ไม่ได้ซื้อหนังสือน่าอ่านเล่มนั้นไว้",
-    "romanization": "sia-dai"
+    "romanization": "sia-dai",
+    "english": "Regretful"
   },
   {
     "id": "e_30",
@@ -3380,7 +3709,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "หมดกำลังใจ รู้สึกหมดหวังที่จะสู้ต่อไป",
     "exampleSentence": "อย่าเพิ่งท้อแท้กับอุปสรรค จงลุกขึ้นสู้ใหม่อีกครั้ง",
-    "romanization": "tho-thae"
+    "romanization": "tho-thae",
+    "english": "Discouraged"
   },
   {
     "id": "e_31",
@@ -3390,7 +3720,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "ขุ่นเคืองใจอย่างแรง ไม่พอใจอย่างยิ่งเมื่อถูกล่วงละเมิด",
     "exampleSentence": "นับหนึ่งถึงสิบในใจเพื่อระงับอารมณ์โกรธที่เกิดขึ้น",
-    "romanization": "krot"
+    "romanization": "krot",
+    "english": "Angry"
   },
   {
     "id": "e_32",
@@ -3400,7 +3731,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "มีอารมณ์ฉุนเฉียว โกรธจัดอย่างกะทันหัน",
     "exampleSentence": "การพูดจาประชดประชันรังแต่จะทำให้เกิดความโมโหใส่กัน",
-    "romanization": "mo-ho"
+    "romanization": "mo-ho",
+    "english": "Furious"
   },
   {
     "id": "e_33",
@@ -3410,7 +3742,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "อารมณ์เสีย ไม่สบอารมณ์ มีความรำคาญใจง่าย",
     "exampleSentence": "เสียงรบกวนตลอดทั้งวันทำให้เขารู้สึกหงุดหงิดใจ",
-    "romanization": "ngut-ngit"
+    "romanization": "ngut-ngit",
+    "english": "Irritated"
   },
   {
     "id": "e_34",
@@ -3420,7 +3753,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "ไม่พอใจ ค้างคาใจ เจ็บแค้นใจอยู่ลึกๆ",
     "exampleSentence": "การเปิดอกพูดคุยช่วยคลี่คลายความขุ่นเคืองระหว่างเพื่อน",
-    "romanization": "khun-khueang"
+    "romanization": "khun-khueang",
+    "english": "Resentful"
   },
   {
     "id": "e_35",
@@ -3430,7 +3764,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "ริษยา ไม่พอใจเมื่อเห็นผู้อื่นได้ดีกว่าตนเอง",
     "exampleSentence": "ควรมุทิตาจิตยินดีในความสำเร็จของผู้อื่นแทนที่จะอิจฉา",
-    "romanization": "it-cha"
+    "romanization": "it-cha",
+    "english": "Jealous / Envious"
   },
   {
     "id": "e_36",
@@ -3440,7 +3775,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "ไม่อยากให้คนรักหรือของรักไปเกี่ยวข้องกับผู้อื่น",
     "exampleSentence": "ความไว้เนื้อเชื่อใจกันช่วยลดความรู้สึกหึงหวงลงได้",
-    "romanization": "hueng-huang"
+    "romanization": "hueng-huang",
+    "english": "Possessive"
   },
   {
     "id": "e_37",
@@ -3450,7 +3786,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "รู้สึกตระหนกตกใจ กลัวอันตรายหรือสิ่งที่มองไม่เห็น",
     "exampleSentence": "เด็กๆ มักหวาดกลัวเสียงฟ้าร้องคำรามในคืนฝนตก",
-    "romanization": "wat-klua"
+    "romanization": "wat-klua",
+    "english": "Scared / Fearful"
   },
   {
     "id": "e_38",
@@ -3460,7 +3797,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "สะดุ้ง สะเทือนใจอย่างกะทันหันเมื่อเจอสิ่งไม่คาดคิด",
     "exampleSentence": "เขาสะดุ้งตกใจเมื่อมีเสียงแก้วหล่นแตกเสียงดัง",
-    "romanization": "tok-chai"
+    "romanization": "tok-chai",
+    "english": "Shocked"
   },
   {
     "id": "e_39",
@@ -3470,7 +3808,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "มีความห่วงกังวล จิตใจพะวงอยู่กับเรื่องใดเรื่องหนึ่ง",
     "exampleSentence": "คุณแม่อดเป็นกังวลไม่ได้เมื่อลูกกลับบ้านช้ากว่าเวลาปกติ",
-    "romanization": "kang-won"
+    "romanization": "kang-won",
+    "english": "Worried"
   },
   {
     "id": "e_40",
@@ -3480,7 +3819,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "ไม่ไว้วางใจ สงสัยว่าจะมีภัยมาถึงตัวตลอดเวลา",
     "exampleSentence": "การอยู่ร่วมกันด้วยความจริงใจช่วยขจัดความหวาดระแวง",
-    "romanization": "wat-ra-waeng"
+    "romanization": "wat-ra-waeng",
+    "english": "Suspicious"
   },
   {
     "id": "e_41",
@@ -3490,7 +3830,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "สภาวะตึงเครียดทางอารมณ์ จิตใจ และร่างกายจากแรงกดดัน",
     "exampleSentence": "ฝึกนั่งสมาธิและหายใจช้าๆ เพื่อช่วยลดความเครียดจากการทำงาน",
-    "romanization": "khriat"
+    "romanization": "khriat",
+    "english": "Stressed"
   },
   {
     "id": "e_42",
@@ -3500,7 +3841,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำคุณศัพท์",
     "meaning": "หมดเรี่ยวแรง ล้าทั้งร่างกายและจิตใจจากการตรากตรำ",
     "exampleSentence": "หลังจากทำงานหนักมาทั้งวันเขารู้สึกเหน็ดเหนื่อยมาก",
-    "romanization": "net-nueai"
+    "romanization": "net-nueai",
+    "english": "Tired / Exhausted"
   },
   {
     "id": "e_43",
@@ -3510,7 +3852,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำคุณศัพท์",
     "meaning": "ไม่มีแรง อิดโรย จากการพักผ่อนไม่เพียงพอหรือเจ็บป่วย",
     "exampleSentence": "ดื่มน้ำเกลือแร่เพื่อชดเชยอาการอ่อนเพลียของร่างกาย",
-    "romanization": "on-phlia"
+    "romanization": "on-phlia",
+    "english": "Fatigued / Weak"
   },
   {
     "id": "e_44",
@@ -3520,7 +3863,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "หมดความสนใจ จำเจ ไม่อยากทำสิ่งเดิมๆ ซ้ำๆ",
     "exampleSentence": "หากรู้สึกเบื่อหน่ายลองหาเวลาไปทำงานอดิเรกใหม่ๆ ดู",
-    "romanization": "buea-nhai"
+    "romanization": "buea-nhai",
+    "english": "Bored"
   },
   {
     "id": "e_45",
@@ -3530,7 +3874,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "งุนงง คิดไม่ตก ไม่รู้จะตัดสินใจอย่างไรดี",
     "exampleSentence": "ข้อมูลที่ขัดแย้งกันทำให้ผู้ฟังรู้สึกสับสนในข้อเท็จจริง",
-    "romanization": "sap-son"
+    "romanization": "sap-son",
+    "english": "Confused"
   },
   {
     "id": "e_46",
@@ -3540,7 +3885,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "ไม่แน่ใจ ตัดสินใจไม่เด็ดขาด เปลี่ยนไปเปลี่ยนมา",
     "exampleSentence": "เขาลังเลว่าจะเลือกศึกษาต่อในสาขาใดดี",
-    "romanization": "lang-le"
+    "romanization": "lang-le",
+    "english": "Hesitant"
   },
   {
     "id": "e_47",
@@ -3550,7 +3896,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "สะเทิ้น สะท้าน ตื่นเต้นจนทำตัวไม่ถูกเมื่ออยู่ต่อหน้าธารกำนัล",
     "exampleSentence": "สูดหายใจลึกๆ เพื่อคลายความประหม่าก่อนขึ้นกล่าวสุนทรพจน์",
-    "romanization": "pra-ma"
+    "romanization": "pra-ma",
+    "english": "Nervous"
   },
   {
     "id": "e_48",
@@ -3560,7 +3907,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "กระดากอาย หน้าแดง ไม่กล้าสบตาเมื่อถูกหยอกล้อหรือชมเชย",
     "exampleSentence": "เธอรู้สึกเขินอายเมื่อทุกคนร้องเพลงอวยพรวันเกิดให้",
-    "romanization": "khoen-ai"
+    "romanization": "khoen-ai",
+    "english": "Shy"
   },
   {
     "id": "e_49",
@@ -3570,7 +3918,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "แปลกใจอย่างยิ่ง ทึ่งในสิ่งมหัศจรรย์ที่ไม่คาดฝัน",
     "exampleSentence": "นักท่องเที่ยวอัศจรรย์ใจในความงดงามของปรากฏการณ์แสงเหนือ",
-    "romanization": "at-sa-chan-chai"
+    "romanization": "at-sa-chan-chai",
+    "english": "Amazed"
   },
   {
     "id": "e_50",
@@ -3580,7 +3929,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "รู้สึกแปลกใจ คาดไม่ถึงกับสิ่งที่เพิ่งได้พบเห็น",
     "exampleSentence": "เขาประหลาดใจที่เพื่อนเก่าแวะมาหาถึงบ้านโดยไม่ได้นัดหมาย",
-    "romanization": "pra-lat-chai"
+    "romanization": "pra-lat-chai",
+    "english": "Surprised"
   },
   {
     "id": "e_51",
@@ -3590,7 +3940,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "ตื้นตันใจอย่างลึกซึ้งต่อความปรารถนาดีและน้ำใจ",
     "exampleSentence": "ทุกคนรู้สึกซาบซึ้งในพระมหากรุณาธิคุณอย่างหาที่สุดมิได้",
-    "romanization": "sap-sueng"
+    "romanization": "sap-sueng",
+    "english": "Deeply touched"
   },
   {
     "id": "e_52",
@@ -3600,7 +3951,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "มีความคิดถึง คอยดูแล และอยากให้ผู้อื่นปลอดภัย",
     "exampleSentence": "คุณยายโทรศัพท์มาถามไถ่ด้วยความห่วงใยในสุขภาพของหลาน",
-    "romanization": "huang-yai"
+    "romanization": "huang-yai",
+    "english": "Caring"
   },
   {
     "id": "e_53",
@@ -3610,7 +3962,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "นึกถึงด้วยความผูกพัน อาลัย และปรารถนาจะได้พบเจอ",
     "exampleSentence": "เมื่อต้องไกลบ้าน เขายังคงคิดถึงกับข้าวฝีมือแม่อยู่เสมอ",
-    "romanization": "khit-thueng"
+    "romanization": "khit-thueng",
+    "english": "Miss / Think of"
   },
   {
     "id": "e_54",
@@ -3620,7 +3973,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำคุณศัพท์",
     "meaning": "พ้นจากภัยอันตราย ปราศจากสิ่งคุกคาม",
     "exampleSentence": "เดินทางถึงที่หมายโดยสวัสดิภาพและปลอดภัยในทุกเส้นทาง",
-    "romanization": "plot-phai"
+    "romanization": "plot-phai",
+    "english": "Safe"
   },
   {
     "id": "e_55",
@@ -3630,7 +3984,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "มอบความเชื่อถือและไว้วางใจให้แก่ผู้อื่น",
     "exampleSentence": "เพื่อนที่ซื่อสัตย์คือบุคคลที่สามารถไว้ใจได้เสมอ",
-    "romanization": "wai-chai"
+    "romanization": "wai-chai",
+    "english": "Trust"
   },
   {
     "id": "e_56",
@@ -3640,7 +3995,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำคุณศัพท์",
     "meaning": "แสดงออกตรงกับความรู้สึกภายใน ปราศจากการเสแสร้ง",
     "exampleSentence": "มิตรภาพที่ยั่งยืนเริ่มต้นจากความจริงใจต่อกัน",
-    "romanization": "ching-chai"
+    "romanization": "ching-chai",
+    "english": "Sincere"
   },
   {
     "id": "e_57",
@@ -3650,7 +4006,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "ทนทานต่อความยากลำบาก ไม่ยอมแพ้ต่ออุปสรรค",
     "exampleSentence": "ความอดทนเป็นกุญแจสำคัญสู่ความสำเร็จในชีวิต",
-    "romanization": "ot-thon"
+    "romanization": "ot-thon",
+    "english": "Patient / Enduring"
   },
   {
     "id": "e_58",
@@ -3660,7 +4017,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "มุ่งมั่นตั้งใจทำสิ่งใดสิ่งหนึ่งอย่างเต็มกำลัง",
     "exampleSentence": "ความพยายามอยู่ที่ไหน ความสำเร็จย่อมอยู่ที่นั่น",
-    "romanization": "pha-ya-yam"
+    "romanization": "pha-ya-yam",
+    "english": "Strive / Try"
   },
   {
     "id": "e_59",
@@ -3670,7 +4028,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "จดจ่อ มีสมาธิ และมุ่งมั่นทำสิ่งใดสิ่งหนึ่งให้ดีที่สุด",
     "exampleSentence": "เขาตั้งใจอ่านหนังสือเพื่อเตรียมตัวสอบเข้ามหาวิทยาลัย",
-    "romanization": "tang-chai"
+    "romanization": "tang-chai",
+    "english": "Determined"
   },
   {
     "id": "e_60",
@@ -3680,7 +4039,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "ปรารถนาดี อยากให้ผู้อื่นได้รับสิ่งที่ดีงามและมีความสุข",
     "exampleSentence": "คำตักเตือนของผู้ใหญ่ล้วนมาจากความหวังดีต่อเยาวชน",
-    "romanization": "wang-di"
+    "romanization": "wang-di",
+    "english": "Well-meaning"
   },
   {
     "id": "j_1",
@@ -3690,7 +4050,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผู้สั่งสอนและถ่ายทอดความรู้ อบรมบ่มเพาะศิษย์ให้เป็นคนดี",
     "exampleSentence": "คุณครูตั้งใจสอนและเอาใจใส่ดูแลนักเรียนทุกคน",
-    "romanization": "khun-khru"
+    "romanization": "khun-khru",
+    "english": "Teacher"
   },
   {
     "id": "j_2",
@@ -3700,7 +4061,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผู้สั่งสอนวิชาความรู้ในระดับวิทยาลัยหรือมหาวิทยาลัย",
     "exampleSentence": "อาจารย์ให้คำปรึกษาแก่นักศึกษาในการทำวิทยานิพนธ์",
-    "romanization": "a-chan"
+    "romanization": "a-chan",
+    "english": "Professor / Lecturer"
   },
   {
     "id": "j_3",
@@ -3710,7 +4072,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผู้เข้ารับการศึกษาในโรงเรียนระดับประถมและมัธยม",
     "exampleSentence": "นักเรียนตั้งใจฟังคำบรรยายและร่วมตอบคำถามในห้องเรียน",
-    "romanization": "nak-rian"
+    "romanization": "nak-rian",
+    "english": "School Student"
   },
   {
     "id": "j_4",
@@ -3720,7 +4083,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผู้กำลังศึกษาเล่าเรียนในระดับอุดมศึกษาหรือมหาวิทยาลัย",
     "exampleSentence": "นักศึกษาร่วมกันทำกิจกรรมบำเพ็ญประโยชน์เพื่อสังคม",
-    "romanization": "nak-suek-sa"
+    "romanization": "nak-suek-sa",
+    "english": "University Student"
   },
   {
     "id": "j_5",
@@ -3730,7 +4094,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผู้ประกอบวิชาชีพตรวจรักษาและป้องกันโรคแก่ผู้ป่วย (หมอ)",
     "exampleSentence": "แพทย์ทำการตรวจวินิจฉัยโรคอย่างละเอียดรอบคอบ",
-    "romanization": "phaet"
+    "romanization": "phaet",
+    "english": "Doctor / Physician"
   },
   {
     "id": "j_6",
@@ -3740,7 +4105,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "แพทย์ผู้เชี่ยวชาญการดูแลและรักษาโรคเกี่ยวกับฟันและช่องปาก",
     "exampleSentence": "ควรไปพบทันตแพทย์เพื่อขูดหินปูนและตรวจสุขภาพฟันทุก 6 เดือน",
-    "romanization": "than-ta-phaet"
+    "romanization": "than-ta-phaet",
+    "english": "Dentist"
   },
   {
     "id": "j_7",
@@ -3750,7 +4116,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผู้เชี่ยวชาญด้านยา ปรุงยา และให้คำแนะนำการใช้ยาอย่างถูกต้อง",
     "exampleSentence": "เภสัชกรอธิบายวิธีการรับประทานยาและข้อควรระวังแก่คนไข้",
-    "romanization": "phe-sat-cha-kon"
+    "romanization": "phe-sat-cha-kon",
+    "english": "Pharmacist"
   },
   {
     "id": "j_8",
@@ -3760,7 +4127,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผู้ประกอบวิชาชีพให้การพยาบาลและดูแลฟื้นฟูสุขภาพผู้ป่วย",
     "exampleSentence": "พยาบาลคอยวัดไข้และดูแลผู้ป่วยอย่างใกล้ชิดตลอดคืน",
-    "romanization": "pha-ya-ban"
+    "romanization": "pha-ya-ban",
+    "english": "Nurse"
   },
   {
     "id": "j_9",
@@ -3770,7 +4138,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "แพทย์ผู้ตรวจรักษาและดูแลสุขภาพของสัตว์ (หมอรักษาสัตว์)",
     "exampleSentence": "พาสุนัขไปฉีดวัคซีนป้องกันโรคพิษสุนัขบ้ากับสัตวแพทย์",
-    "romanization": "sat-ta-wa-phaet"
+    "romanization": "sat-ta-wa-phaet",
+    "english": "Veterinarian"
   },
   {
     "id": "j_10",
@@ -3780,7 +4149,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผู้ประกอบวิชาชีพด้านการออกแบบ คำนวณ ควบคุมการก่อสร้างและเครื่องจักร",
     "exampleSentence": "วิศวกรตรวจสอบความปลอดภัยของโครงสร้างสะพานอย่างเข้มงวด",
-    "romanization": "wit-sa-wa-kon"
+    "romanization": "wit-sa-wa-kon",
+    "english": "Engineer"
   },
   {
     "id": "j_11",
@@ -3790,7 +4160,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผู้ออกแบบอาคาร สิ่งก่อสร้าง และผังเมืองให้สวยงามและใช้สอยได้ดี",
     "exampleSentence": "สถาปนิกออกแบบอาคารโดยคำนึงถึงการประหยัดพลังงานแสงแดด",
-    "romanization": "sa-tha-pa-nik"
+    "romanization": "sa-tha-pa-nik",
+    "english": "Architect"
   },
   {
     "id": "j_12",
@@ -3800,7 +4171,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ช่างผู้ชำนาญการสร้าง ซ่อมแซม หรือประกอบเครื่องเรือนจากไม้",
     "exampleSentence": "ช่างไม้บรรจงแกะสลักลวดลายบานประตูไม้อย่างประณีต",
-    "romanization": "chang-mai"
+    "romanization": "chang-mai",
+    "english": "Carpenter"
   },
   {
     "id": "j_13",
@@ -3810,7 +4182,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ช่างผู้ชำนาญการติดตั้ง ซ่อมแซม และดูแลระบบสายไฟและอุปกรณ์ไฟฟ้า",
     "exampleSentence": "ช่างไฟตรวจเช็กแผงวงจรไฟฟ้าในบ้านเพื่อความปลอดภัย",
-    "romanization": "chang-fai"
+    "romanization": "chang-fai",
+    "english": "Electrician"
   },
   {
     "id": "j_14",
@@ -3820,7 +4193,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ช่างผู้ชำนาญการติดตั้งและซ่อมแซมท่อน้ำ ก๊อกน้ำ และสุขภัณฑ์",
     "exampleSentence": "ติดต่อช่างประปามาซ่อมท่อน้ำที่รั่วซึมใต้พื้นห้องน้ำ",
-    "romanization": "chang-pra-pa"
+    "romanization": "chang-pra-pa",
+    "english": "Plumber"
   },
   {
     "id": "j_15",
@@ -3830,7 +4204,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผู้ปฏิบัติงานในงานก่อสร้างอาคาร ถนน หรือสะพาน",
     "exampleSentence": "ช่างก่อสร้างร่วมแรงร่วมใจกันเทปูนหล่อเสาอาคาร",
-    "romanization": "chang-ko-sang"
+    "romanization": "chang-ko-sang",
+    "english": "Construction Worker"
   },
   {
     "id": "j_16",
@@ -3840,7 +4215,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผู้ทำหน้าที่ขับขี่และควบคุมอากาศยาน เช่น เครื่องบิน หรือเฮลิคอปเตอร์",
     "exampleSentence": "นักบินนำเครื่องบินลงจอดอย่างนุ่มนวลและปลอดภัย",
-    "romanization": "nak-bin"
+    "romanization": "nak-bin",
+    "english": "Pilot"
   },
   {
     "id": "j_17",
@@ -3850,7 +4226,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "พนักงานต้อนรับบนเครื่องบิน คอยดูแลความปลอดภัยและความสะดวกของผู้โดยสาร",
     "exampleSentence": "พนักงานต้อนรับบนเครื่องบินให้บริการผู้โดยสารด้วยรอยยิ้ม",
-    "romanization": "ae-hot-tet"
+    "romanization": "ae-hot-tet",
+    "english": "Flight Attendant"
   },
   {
     "id": "j_18",
@@ -3860,7 +4237,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผู้บังคับบัญชาและควบคุมการเดินเรือทะเลหรือเรือโดยสาร",
     "exampleSentence": "กัปตันเรือสั่งการนำเรือสำราญออกจากท่าอย่างชำนาญ",
-    "romanization": "kap-tan-ruea"
+    "romanization": "kap-tan-ruea",
+    "english": "Ship Captain"
   },
   {
     "id": "j_19",
@@ -3870,7 +4248,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผู้ทำหน้าที่ขับขี่ยานพาหนะรับส่งผู้โดยสารหรือสินค้า",
     "exampleSentence": "คนขับรถโดยสารปฏิบัติตามกฎจราจรอย่างเคร่งครัด",
-    "romanization": "khon-khap-rot"
+    "romanization": "khon-khap-rot",
+    "english": "Driver"
   },
   {
     "id": "j_20",
@@ -3880,7 +4259,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "เจ้าหน้าที่ของรัฐ มีหน้าที่รักษาความสงบเรียบร้อยและปราบปรามอาชญากรรม",
     "exampleSentence": "ตำรวจจราจรคอยอำนวยความสะดวกในชั่วโมงเร่งด่วน",
-    "romanization": "tam-ruat"
+    "romanization": "tam-ruat",
+    "english": "Police Officer"
   },
   {
     "id": "j_21",
@@ -3890,7 +4270,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผู้มีหน้าที่ป้องกันอธิปไตยและความมั่นคงของประเทศชาติ",
     "exampleSentence": "ทหารปฏิบัติหน้าที่รักษาความสงบตามแนวชายแดนอย่างเข้มแข็ง",
-    "romanization": "tha-han"
+    "romanization": "tha-han",
+    "english": "Soldier"
   },
   {
     "id": "j_22",
@@ -3900,7 +4281,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผู้ทำหน้าที่ระงับอัคคีภัย ช่วยเหลือผู้ประสบภัย และกู้ภัย",
     "exampleSentence": "นักดับเพลิงสวมชุดป้องกันลุยเข้าไปช่วยชีวิตผู้ประสบภัย",
-    "romanization": "nak-dap-phloeng"
+    "romanization": "nak-dap-phloeng",
+    "english": "Firefighter"
   },
   {
     "id": "j_23",
@@ -3910,7 +4292,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผู้ได้รับอนุญาตให้ว่าต่างแก้ต่างในคดีความทางกฎหมาย",
     "exampleSentence": "ทนายความให้คำปรึกษาทางกฎหมายแก่ลูกความอย่างเป็นธรรม",
-    "romanization": "tha-nai-khwam"
+    "romanization": "tha-nai-khwam",
+    "english": "Lawyer / Attorney"
   },
   {
     "id": "j_24",
@@ -3920,7 +4303,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "เจ้าหน้าที่ตุลาการมีอำนาจพิจารณาและพิพากษาคดีตามกฎหมาย",
     "exampleSentence": "ผู้พิพากษาตัดสินคดีความด้วยความบริสุทธิ์ยุติธรรม",
-    "romanization": "phu-phi-phak-sa"
+    "romanization": "phu-phi-phak-sa",
+    "english": "Judge"
   },
   {
     "id": "j_25",
@@ -3930,7 +4314,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "เจ้าหน้าที่ฟ้องคดีอาญาต่อศาลในนามของรัฐ",
     "exampleSentence": "พนักงานอัยการรวบรวมพยานหลักฐานเพื่อยื่นฟ้องต่อศาล",
-    "romanization": "ai-ya-kan"
+    "romanization": "ai-ya-kan",
+    "english": "Public Prosecutor"
   },
   {
     "id": "j_26",
@@ -3940,7 +4325,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผู้แทนของประเทศในการเจรจาและสานสัมพันธ์ไมตรีกับต่างชาติ",
     "exampleSentence": "นักการทูตเจรจาข้อตกลงทางการค้าระหว่างประเทศด้วยความสุขุม",
-    "romanization": "nak-kan-thut"
+    "romanization": "nak-kan-thut",
+    "english": "Diplomat"
   },
   {
     "id": "j_27",
@@ -3950,7 +4336,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผู้มีบทบาทในการบริหารนโยบายสาธารณะและการปกครองประเทศ",
     "exampleSentence": "นักการเมืองที่ดีต้องคำนึงถึงประโยชน์สุขของประชาชนเป็นหลัก",
-    "romanization": "nak-kan-mueang"
+    "romanization": "nak-kan-mueang",
+    "english": "Politician"
   },
   {
     "id": "j_28",
@@ -3960,7 +4347,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผู้ประกอบอาชีพซื้อขายสินค้าเพื่อแสวงหากำไร (เพศชาย)",
     "exampleSentence": "พ่อค้าในตลาดทักทายลูกค้าด้วยความสุภาพและเป็นกันเอง",
-    "romanization": "pho-kha"
+    "romanization": "pho-kha",
+    "english": "Merchant (Male)"
   },
   {
     "id": "j_29",
@@ -3970,7 +4358,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผู้ประกอบอาชีพซื้อขายสินค้าเพื่อแสวงหากำไร (เพศหญิง)",
     "exampleSentence": "แม่ค้าขายผลไม้คัดเลือกมะม่วงสุกหอมหวานมาวางจำหน่าย",
-    "romanization": "mae-kha"
+    "romanization": "mae-kha",
+    "english": "Merchant (Female)"
   },
   {
     "id": "j_30",
@@ -3980,7 +4369,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผู้ดำเนินกิจการพาณิชย์ อุตสาหกรรม หรือการบริการ",
     "exampleSentence": "นักธุรกิจรุ่นใหม่นำเทคโนโลยีดิจิทัลมาพัฒนายอดขาย",
-    "romanization": "nak-thu-ra-kit"
+    "romanization": "nak-thu-ra-kit",
+    "english": "Businessperson"
   },
   {
     "id": "j_31",
@@ -3990,7 +4380,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผู้บริหารงานและดูแลควบคุมการปฏิบัติงานในหน่วยงานหรือบริษัท",
     "exampleSentence": "ผู้จัดการประชุมมอบหมายงานแก่พนักงานในแผนก",
-    "romanization": "phu-chat-kan"
+    "romanization": "phu-chat-kan",
+    "english": "Manager"
   },
   {
     "id": "j_32",
@@ -4000,7 +4391,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผู้บันทึก ตรวจสอบ และจัดทำรายงานทางการเงินขององค์กร",
     "exampleSentence": "พนักงานบัญชีจัดทำงบดุลประจำปีอย่างถูกต้องแม่นยำ",
-    "romanization": "pha-nak-ngan-ban-chi"
+    "romanization": "pha-nak-ngan-ban-chi",
+    "english": "Accountant"
   },
   {
     "id": "j_33",
@@ -4010,7 +4402,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผู้ช่วยงานธุรการ ประสานงาน และจัดการนัดหมายแก่ผู้บริหาร",
     "exampleSentence": "เลขานุการจัดเตรียมเอกสารการประชุมให้พร้อมล่วงหน้า",
-    "romanization": "le-kha-nu-kan"
+    "romanization": "le-kha-nu-kan",
+    "english": "Secretary"
   },
   {
     "id": "j_34",
@@ -4020,7 +4413,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผู้เขียนโค้ดและพัฒนาซอฟต์แวร์หรือแอปพลิเคชันคอมพิวเตอร์",
     "exampleSentence": "โปรแกรมเมอร์กำลังพัฒนาและทดสอบระบบเว็บแอปพลิเคชันใหม่",
-    "romanization": "pro-kraem-moe"
+    "romanization": "pro-kraem-moe",
+    "english": "Programmer / Developer"
   },
   {
     "id": "j_35",
@@ -4030,7 +4424,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผู้สร้างสรรค์รูปลักษณ์ ผลิตภัณฑ์ หรืองานกราฟิกให้สวยงามและตอบโจทย์",
     "exampleSentence": "นักออกแบบสร้างสรรค์โลโก้ที่มีเอกลักษณ์โดดเด่น",
-    "romanization": "nak-ok-baep"
+    "romanization": "nak-ok-baep",
+    "english": "Designer"
   },
   {
     "id": "j_36",
@@ -4040,7 +4435,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผู้ชำนาญการถ่ายภาพด้วยกล้อง ทั้งภาพนิ่งและภาพเคลื่อนไหว",
     "exampleSentence": "ช่างภาพเก็บภาพบรรยากาศแสงยามเย็นได้อย่างงดงาม",
-    "romanization": "chang-phap"
+    "romanization": "chang-phap",
+    "english": "Photographer"
   },
   {
     "id": "j_37",
@@ -4050,7 +4446,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผู้สร้างสรรค์งานศิลปะ เช่น จิตรกรรม ประติมากรรม หรือดนตรี",
     "exampleSentence": "ศิลปินถ่ายทอดอารมณ์ความรู้สึกผ่านภาพวาดสีน้ำมัน",
-    "romanization": "sin-la-pin"
+    "romanization": "sin-la-pin",
+    "english": "Artist"
   },
   {
     "id": "j_38",
@@ -4060,7 +4457,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผู้เล่นเครื่องดนตรี บรรเลงเพลงด้วยทักษะความชำนาญ",
     "exampleSentence": "นักดนตรีบรรเลงเปียโนด้วยความไพเราะจับใจผู้ฟัง",
-    "romanization": "nak-don-tri"
+    "romanization": "nak-don-tri",
+    "english": "Musician"
   },
   {
     "id": "j_39",
@@ -4070,7 +4468,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผู้ขับร้องบทเพลงด้วยน้ำเสียงไพเราะสื่อสารอารมณ์",
     "exampleSentence": "นักร้องขับกล่อมบทเพลงอันซาบซึ้งตรึงใจผู้ชมทั่วฮอลล์",
-    "romanization": "nak-rong"
+    "romanization": "nak-rong",
+    "english": "Singer"
   },
   {
     "id": "j_40",
@@ -4080,7 +4479,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผู้แสดงบทบาทในละคร ภาพยนตร์ หรือละครเวที",
     "exampleSentence": "นักแสดงเข้าถึงบทบาทและถ่ายทอดอารมณ์ตัวละครได้อย่างยอดเยี่ยม",
-    "romanization": "nak-sa-daeng"
+    "romanization": "nak-sa-daeng",
+    "english": "Actor / Actress"
   },
   {
     "id": "j_41",
@@ -4090,7 +4490,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผู้ควบคุมและชี้นำการสร้างภาพยนตร์ ละคร หรือการแสดง",
     "exampleSentence": "ผู้กำกับดูแลการถ่ายทำฉากสำคัญอย่างพิถีพิถัน",
-    "romanization": "phu-kam-kap"
+    "romanization": "phu-kam-kap",
+    "english": "Film Director"
   },
   {
     "id": "j_42",
@@ -4100,7 +4501,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผู้ประพันธ์หนังสือ นวนิยาย บทความ หรือบทกวี",
     "exampleSentence": "นักเขียนใช้จินตนาการรังสรรค์นวนิยายแฟนตาซีเรื่องใหม่",
-    "romanization": "nak-khian"
+    "romanization": "nak-khian",
+    "english": "Writer / Author"
   },
   {
     "id": "j_43",
@@ -4110,7 +4512,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผู้ค้นหา สัมภาษณ์ และรายงานข้อเท็จจริงสู่สาธารณชน",
     "exampleSentence": "นักข่าวลงพื้นที่รายงานสถานการณ์น้ำท่วมอย่างทันท่วงที",
-    "romanization": "nak-khao"
+    "romanization": "nak-khao",
+    "english": "Journalist / Reporter"
   },
   {
     "id": "j_44",
@@ -4120,7 +4523,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผู้ดูแล คัดเลือก และตรวจแก้เนื้อหาก่อนตีพิมพ์เผยแพร่",
     "exampleSentence": "บรรณาธิการตรวจทานความถูกต้องของต้นฉบับอย่างละเอียด",
-    "romanization": "ban-na-thi-kan"
+    "romanization": "ban-na-thi-kan",
+    "english": "Editor"
   },
   {
     "id": "j_45",
@@ -4130,7 +4534,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผู้แปลคำพูดจากภาษาหนึ่งเป็นอีกภาษาหนึ่งแบบทันที",
     "exampleSentence": "ล่ามแปลคำกล่าวสุนทรพจน์ในการประชุมระดับนานาชาติ",
-    "romanization": "lam"
+    "romanization": "lam",
+    "english": "Interpreter"
   },
   {
     "id": "j_46",
@@ -4140,7 +4545,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผู้แปลงานเขียนหรือวรรณกรรมจากภาษาต่างประเทศเป็นภาษาไทย",
     "exampleSentence": "นักแปลถ่ายทอดวรรณกรรมคลาสสิกด้วยภาษาที่สละสลวย",
-    "romanization": "nak-plae"
+    "romanization": "nak-plae",
+    "english": "Translator"
   },
   {
     "id": "j_47",
@@ -4150,7 +4556,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผู้เชี่ยวชาญการปรุงอาหารประจำภัตตาคารหรือร้านอาหาร (เชฟ)",
     "exampleSentence": "พ่อครัวรังสรรค์เมนูจานเด็ดด้วยวัตถุดิบสดใหม่จากฟาร์ม",
-    "romanization": "pho-khrua"
+    "romanization": "pho-khrua",
+    "english": "Chef / Cook"
   },
   {
     "id": "j_48",
@@ -4160,7 +4567,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "พนักงานเสิร์ฟและคอยบริการอาหารเครื่องดื่มแก่ลูกค้า",
     "exampleSentence": "บริกรเสิร์ฟอาหารด้วยความสุภาพและคล่องแคล่ว",
-    "romanization": "bo-ri-kon"
+    "romanization": "bo-ri-kon",
+    "english": "Waiter / Waitress"
   },
   {
     "id": "j_49",
@@ -4170,7 +4578,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผู้เชี่ยวชาญการชงและรังสรรค์กาแฟสดชนิดต่างๆ",
     "exampleSentence": "บาริสต้าบรรจงทำลาเต้อาร์ตรูปใบไม้บนฟองนมอย่างสวยงาม",
-    "romanization": "ba-rit-ta"
+    "romanization": "ba-rit-ta",
+    "english": "Barista"
   },
   {
     "id": "j_50",
@@ -4180,7 +4589,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผู้ประกอบอาชีพเพาะปลูกพืช เลี้ยงสัตว์ หรือทำไร่ทำสวน",
     "exampleSentence": "เกษตรกรนำแนวคิดเกษตรทฤษฎีใหม่มาปรับใช้ในไร่นา",
-    "romanization": "ka-set-tra-kon"
+    "romanization": "ka-set-tra-kon",
+    "english": "Agriculturist / Farmer"
   },
   {
     "id": "j_51",
@@ -4190,7 +4600,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผู้ปลูกข้าวเป็นอาชีพหลัก ถือเป็นกระดูกสันหลังของชาติ",
     "exampleSentence": "ชาวนาเกี่ยวข้าวในรวงสีเหลืองทองอร่ามเต็มท้องทุ่ง",
-    "romanization": "chao-na"
+    "romanization": "chao-na",
+    "english": "Rice Farmer"
   },
   {
     "id": "j_52",
@@ -4200,7 +4611,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผู้ปลูกไม้ผล ไม้ดอก หรือพืชผักสวนครัว",
     "exampleSentence": "ชาวสวนเก็บเกี่ยวทุเรียนและมังคุดส่งออกสู่ตลาด",
-    "romanization": "chao-suan"
+    "romanization": "chao-suan",
+    "english": "Gardener / Orchardist"
   },
   {
     "id": "j_53",
@@ -4210,7 +4622,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผู้ประกอบอาชีพจับสัตว์น้ำในทะเลหรือแม่น้ำลำคลอง",
     "exampleSentence": "ชาวประมงนำเรือออกหาปลาตั้งแต่ยามค่ำคืนและกลับเข้าฝั่งยามเช้า",
-    "romanization": "chao-pra-mong"
+    "romanization": "chao-pra-mong",
+    "english": "Fisherman"
   },
   {
     "id": "j_54",
@@ -4220,7 +4633,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผู้ศึกษา ค้นคว้า และทดลองเพื่อแสวงหาความจริงทางวิทยาศาสตร์",
     "exampleSentence": "นักวิทยาศาสตร์ค้นพบวัคซีนสูตรใหม่ที่มีประสิทธิภาพสูง",
-    "romanization": "nak-wit-tha-ya-sat"
+    "romanization": "nak-wit-tha-ya-sat",
+    "english": "Scientist"
   },
   {
     "id": "j_55",
@@ -4230,7 +4644,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผู้ทำการค้นคว้าและเก็บรวบรวมข้อมูลอย่างเป็นระบบเพื่อสร้างความรู้ใหม่",
     "exampleSentence": "นักวิจัยกำลังศึกษาผลกระทบของสภาวะโลกร้อนต่อระบบนิเวศ",
-    "romanization": "nak-wi-chai"
+    "romanization": "nak-wi-chai",
+    "english": "Researcher"
   },
   {
     "id": "j_56",
@@ -4240,7 +4655,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผู้ศึกษาประวัติศาสตร์และอารยธรรมมนุษย์จากหลักฐานซากโบราณวัตถุ",
     "exampleSentence": "นักโบราณคดีขุดค้นพบเครื่องปั้นดินเผาโบราณอายุกว่าพันปี",
-    "romanization": "nak-bo-ran-na-kha-di"
+    "romanization": "nak-bo-ran-na-kha-di",
+    "english": "Archaeologist"
   },
   {
     "id": "j_57",
@@ -4250,7 +4666,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผู้เดินทางไปปฏิบัติภารกิจบนยานอวกาศหรือสถานีอวกาศนอกโลก",
     "exampleSentence": "นักบินอวกาศทำการทดลองทางวิทยาศาสตร์บนสถานีอวกาศนานาชาติ",
-    "romanization": "nak-bin-a-wa-kat"
+    "romanization": "nak-bin-a-wa-kat",
+    "english": "Astronaut"
   },
   {
     "id": "j_58",
@@ -4260,7 +4677,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผู้ฝึกซ้อมและเข้าร่วมการแข่งขันกีฬาด้วยน้ำใจนักกีฬา",
     "exampleSentence": "นักกีฬาฝึกซ้อมอย่างหนักเพื่อเข้าร่วมการแข่งขันโอลิมปิก",
-    "romanization": "nak-ki-la"
+    "romanization": "nak-ki-la",
+    "english": "Athlete"
   },
   {
     "id": "j_59",
@@ -4270,7 +4688,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผู้วางแผนและฝึกทักษะให้แก่นักกีฬาหรือทีม (โค้ช)",
     "exampleSentence": "ผู้ฝึกสอนวางแผนกลยุทธ์การเล่นอย่างรัดกุมก่อนลงสนาม",
-    "romanization": "phu-fuek-son"
+    "romanization": "phu-fuek-son",
+    "english": "Coach / Trainer"
   },
   {
     "id": "j_60",
@@ -4280,7 +4699,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผู้ทำงานด้วยความสมัครใจ เสียสละเพื่อประโยชน์สุขของสังคม",
     "exampleSentence": "กลุ่มจิตอาสาร่วมกันเก็บขยะและปลูกป่าชายเลน",
-    "romanization": "chit-a-sa"
+    "romanization": "chit-a-sa",
+    "english": "Volunteer"
   },
   {
     "id": "edu_1",
@@ -4290,7 +4710,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สถานศึกษาสำหรับให้การศึกษาอบรมแก่นักเรียน",
     "exampleSentence": "โรงเรียนจัดกิจกรรมวันไหว้ครูเพื่อรำลึกถึงพระคุณครู",
-    "romanization": "rong-rian"
+    "romanization": "rong-rian",
+    "english": "School"
   },
   {
     "id": "edu_2",
@@ -4300,7 +4721,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สถาบันการศึกษาระดับสูงสุด ให้การสอนและวิจัยในสาขาวิชาชีพต่างๆ",
     "exampleSentence": "เขาเข้าศึกษาต่อในคณะวิศวกรรมศาสตร์ของมหาวิทยาลัยชื่อดัง",
-    "romanization": "ma-ha-wit-tha-ya-lai"
+    "romanization": "ma-ha-wit-tha-ya-lai",
+    "english": "University"
   },
   {
     "id": "edu_3",
@@ -4310,7 +4732,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ห้องสำหรับใช้จัดการเรียนการสอนในโรงเรียน",
     "exampleSentence": "จัดโต๊ะและเก้าอี้ในห้องเรียนให้เอื้อต่อการทำงานกลุ่ม",
-    "romanization": "hong-rian"
+    "romanization": "hong-rian",
+    "english": "Classroom"
   },
   {
     "id": "edu_4",
@@ -4320,7 +4743,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สถานที่ติดตั้งอุปกรณ์สำหรับการทดลองทางวิทยาศาสตร์",
     "exampleSentence": "นักเรียนสวมแว่นนิรภัยขณะทำการทดลองในห้องทดลองเคมี",
-    "romanization": "hong-thot-long"
+    "romanization": "hong-thot-long",
+    "english": "Laboratory"
   },
   {
     "id": "edu_5",
@@ -4330,7 +4754,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "กระบวนการเรียนรู้เพื่อความเจริญงอกงามทางปัญญา จริยธรรม และทักษะ",
     "exampleSentence": "การศึกษาที่มีคุณภาพเป็นรากฐานสำคัญของการพัฒนาประเทศ",
-    "romanization": "kan-suek-sa"
+    "romanization": "kan-suek-sa",
+    "english": "Education"
   },
   {
     "id": "edu_6",
@@ -4340,7 +4765,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ความรู้แจ้งเห็นจริง ความเฉลียวฉลาดรอบรู้",
     "exampleSentence": "การอ่านและคิดวิเคราะห์ช่วยเพิ่มพูนปัญญาให้แก่ผู้เรียน",
-    "romanization": "pan-ya"
+    "romanization": "pan-ya",
+    "english": "Wisdom"
   },
   {
     "id": "edu_7",
@@ -4350,7 +4776,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สิ่งที่สั่งสมมาจากการศึกษา ค้นคว้า และประสบการณ์",
     "exampleSentence": "ความรู้ไม่มีวันหมด ยิ่งเรียนรู้ยิ่งเข้าใจโลกมากขึ้น",
-    "romanization": "khwam-ru"
+    "romanization": "khwam-ru",
+    "english": "Knowledge"
   },
   {
     "id": "edu_8",
@@ -4360,7 +4787,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "เนื้อหาวิชาการที่กำหนดไว้ให้อ่านหรือเรียนในแต่ละครั้ง",
     "exampleSentence": "ทบทวนบทเรียนอย่างสม่ำเสมอช่วยให้จำเนื้อหาได้แม่นยำ",
-    "romanization": "bot-rian"
+    "romanization": "bot-rian",
+    "english": "Lesson"
   },
   {
     "id": "edu_9",
@@ -4370,7 +4798,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "หนังสือที่รวบรวมวิชาความรู้อย่างเป็นระเบียบสำหรับใช้เรียนหรืออ้างอิง",
     "exampleSentence": "ตำราวิชาการเล่มนี้อธิบายหลักการวิทยาศาสตร์ได้อย่างเข้าใจง่าย",
-    "romanization": "tam-ra"
+    "romanization": "tam-ra",
+    "english": "Textbook"
   },
   {
     "id": "edu_10",
@@ -4380,7 +4809,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "งานวิจัยเรียบเรียงขึ้นเพื่อเสนอขอรับปริญญาบัตร",
     "exampleSentence": "เขาทุ่มเทค้นคว้าข้อมูลเพื่อเขียนวิทยานิพนธ์ระดับปริญญาโท",
-    "romanization": "wit-tha-ya-ni-phon"
+    "romanization": "wit-tha-ya-ni-phon",
+    "english": "Thesis / Dissertation"
   },
   {
     "id": "edu_11",
@@ -4390,7 +4820,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "คำถามที่ตั้งขึ้นเพื่อวัดความรู้ความสามารถของผู้เรียน",
     "exampleSentence": "อ่านคำสั่งในข้อสอบให้เข้าใจก่อนลงมือเขียนคำตอบ",
-    "romanization": "kho-sop"
+    "romanization": "kho-sop",
+    "english": "Examination / Test"
   },
   {
     "id": "edu_12",
@@ -4400,7 +4831,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "การทดสอบเพื่อประเมินผลสัมฤทธิ์ทางการเรียน",
     "exampleSentence": "เตรียมนั่งสมาธิและพักผ่อนให้เพียงพอก่อนวันสอบไล่",
-    "romanization": "kan-sop"
+    "romanization": "kan-sop",
+    "english": "Exam"
   },
   {
     "id": "edu_13",
@@ -4410,7 +4842,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "แต้มที่ได้จากการตอบถูกหรือการประเมินผลงาน",
     "exampleSentence": "เขาทำคะแนนสอบวิชาคณิตศาสตร์ได้ยอดเยี่ยม",
-    "romanization": "kha-naen"
+    "romanization": "kha-naen",
+    "english": "Score / Marks"
   },
   {
     "id": "edu_14",
@@ -4420,7 +4853,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "เอกสารรับรองว่าสำเร็จการศึกษาหรือผ่านการอบรมหลักสูตร",
     "exampleSentence": "ได้รับประกาศนียบัตรหลังผ่านการอบรมหลักสูตรการเขียนโปรแกรม",
-    "romanization": "pra-kat-sa-ni-ya-bat"
+    "romanization": "pra-kat-sa-ni-ya-bat",
+    "english": "Certificate"
   },
   {
     "id": "edu_15",
@@ -4430,7 +4864,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "หนังสือรับรองวิทยฐานะขั้นปริญญาที่มหาวิทยาลัยมอบให้",
     "exampleSentence": "พิธีพระราชทานปริญญาบัตรนำความปลื้มปีติมาสู่ครอบครัว",
-    "romanization": "pa-rin-ya-bat"
+    "romanization": "pa-rin-ya-bat",
+    "english": "Degree Diploma"
   },
   {
     "id": "edu_16",
@@ -4440,7 +4875,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "วิชาว่าด้วยการศึกษาภาษา ทั้งโครงสร้าง เสียง และความหมาย",
     "exampleSentence": "การเรียนภาษาศาสตร์ช่วยให้เข้าใจพัฒนาการของภาษาไทย",
-    "romanization": "pha-sa-sat"
+    "romanization": "pha-sa-sat",
+    "english": "Linguistics"
   },
   {
     "id": "edu_17",
@@ -4450,7 +4886,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "หนังสือที่ได้รับยกย่องว่าแต่งดี มีคุณค่าทางศิลปะและเนื้อหา",
     "exampleSentence": "วรรณคดีเรื่องพระอภัยมณีแสดงถึงจินตนาการอันล้ำเลิศของสุนทรภู่",
-    "romanization": "wan-na-kha-di"
+    "romanization": "wan-na-kha-di",
+    "english": "Literature"
   },
   {
     "id": "edu_18",
@@ -4460,7 +4897,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "วิชาว่าด้วยเหตุการณ์ในอดีตของมนุษยชาติและสังคม",
     "exampleSentence": "การเรียนรู้ประวัติศาสตร์ช่วยให้เราเข้าใจปัจจุบันและไม่ทำผิดซ้ำ",
-    "romanization": "pra-wat-ti-sat"
+    "romanization": "pra-wat-ti-sat",
+    "english": "History"
   },
   {
     "id": "edu_19",
@@ -4470,7 +4908,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "วิชาว่าด้วยลักษณะทางกายภาพ ทรัพยากร และสภาพแวดล้อมของโลก",
     "exampleSentence": "แผนที่ภูมิศาสตร์แสดงเขตภูมิอากาศและแนวเทือกเขาสำคัญ",
-    "romanization": "phu-mi-sat"
+    "romanization": "phu-mi-sat",
+    "english": "Geography"
   },
   {
     "id": "edu_20",
@@ -4480,7 +4919,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "วิชาว่าด้วยการคำนวณ จำนวน ปริมาณ และรูปทรงเรขาคณิต",
     "exampleSentence": "คณิตศาสตร์เป็นพื้นฐานสำคัญของวิทยาการคอมพิวเตอร์",
-    "romanization": "kha-nit-ta-sat"
+    "romanization": "kha-nit-ta-sat",
+    "english": "Mathematics"
   },
   {
     "id": "edu_21",
@@ -4490,7 +4930,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ความรู้ที่ได้จากการสังเกต ทดลอง และหาเหตุผลอย่างเป็นระบบ",
     "exampleSentence": "วิทยาศาสตร์ช่วยให้มนุษย์เข้าใจปรากฏการณ์ธรรมชาติ",
-    "romanization": "wit-tha-ya-sat"
+    "romanization": "wit-tha-ya-sat",
+    "english": "Science"
   },
   {
     "id": "edu_22",
@@ -4500,7 +4941,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "วิทยาศาสตร์ที่ศึกษาเกี่ยวกับสสาร พลังงาน แรง และการเคลื่อนที่",
     "exampleSentence": "กฎการเคลื่อนที่ของนิวตันเป็นพื้นฐานสำคัญของวิชาฟิสิกส์",
-    "romanization": "fi-sik"
+    "romanization": "fi-sik",
+    "english": "Physics"
   },
   {
     "id": "edu_23",
@@ -4510,7 +4952,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "วิทยาศาสตร์ที่ศึกษาเกี่ยวกับองค์ประกอบ โครงสร้าง และสมบัติของสาร",
     "exampleSentence": "การทดลองเคมีแสดงปฏิกิริยาการเปลี่ยนสีของสารละลาย",
-    "romanization": "khe-mi"
+    "romanization": "khe-mi",
+    "english": "Chemistry"
   },
   {
     "id": "edu_24",
@@ -4520,7 +4963,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "วิทยาศาสตร์ที่ศึกษาเกี่ยวกับสิ่งมีชีวิตและวิวัฒนาการ",
     "exampleSentence": "การศึกษากล้องจุลทรรศน์ในวิชาชีววิทยาเผยให้เห็นโครงสร้างเซลล์",
-    "romanization": "chi-wa-wit-tha-ya"
+    "romanization": "chi-wa-wit-tha-ya",
+    "english": "Biology"
   },
   {
     "id": "edu_25",
@@ -4530,7 +4974,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "วิชาว่าด้วยดวงดาว วัตถุท้องฟ้า และเอกภพ",
     "exampleSentence": "ใช้กล้องโทรทรรศน์ส่องดูวงแหวนดาวเสาร์ในวิชาดาราศาสตร์",
-    "romanization": "da-ra-sat"
+    "romanization": "da-ra-sat",
+    "english": "Astronomy"
   },
   {
     "id": "edu_26",
@@ -4540,7 +4985,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สิ่งต่างๆ ทั้งธรรมชาติและที่มนุษย์สร้างขึ้นรอบตัวเรา",
     "exampleSentence": "การคัดแยกขยะช่วยลดมลพิษและรักษาสิ่งแวดล้อม",
-    "romanization": "sing-waet-lom"
+    "romanization": "sing-waet-lom",
+    "english": "Environment"
   },
   {
     "id": "edu_27",
@@ -4550,7 +4996,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "การประยุกต์ใช้วิทยาการเพื่อตอบสนองความต้องการและอำนวยความสะดวก",
     "exampleSentence": "เทคโนโลยีปัญญาประดิษฐ์กำลังเข้ามาเปลี่ยนแปลงวิถีชีวิตผู้คน",
-    "romanization": "thek-no-lo-yi"
+    "romanization": "thek-no-lo-yi",
+    "english": "Technology"
   },
   {
     "id": "edu_28",
@@ -4560,7 +5007,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "อุปกรณ์ประมวลผลอิเล็กทรอนิกส์สำหรับคำนวณและจัดเก็บข้อมูล",
     "exampleSentence": "เรียนรู้วิธีการเขียนโปรแกรมคอมพิวเตอร์ตั้งแต่ระดับพื้นฐาน",
-    "romanization": "khom-phiu-toe"
+    "romanization": "khom-phiu-toe",
+    "english": "Computer"
   },
   {
     "id": "edu_29",
@@ -4570,7 +5018,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ความคิด สิ่งประดิษฐ์ หรือวิธีการใหม่ๆ ที่สร้างมูลค่าและประโยชน์",
     "exampleSentence": "นวัตกรรมทางการแพทย์ช่วยให้การรักษาผู้ป่วยมีประสิทธิภาพสูงขึ้น",
-    "romanization": "na-wat-ta-kam"
+    "romanization": "na-wat-ta-kam",
+    "english": "Innovation"
   },
   {
     "id": "edu_30",
@@ -4580,7 +5029,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ความสามารถในการสร้างภาพ ความคิด หรือเรื่องราวขึ้นในใจ",
     "exampleSentence": "จินตนาการสำคัญยิ่งกว่าความรู้ เพราะนำไปสู่การค้นพบสิ่งใหม่",
-    "romanization": "chin-ta-na-kan"
+    "romanization": "chin-ta-na-kan",
+    "english": "Imagination"
   },
   {
     "id": "edu_31",
@@ -4590,7 +5040,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ความสามารถในการคิดริเริ่มสิ่งใหม่ที่แปลกและมีประโยชน์",
     "exampleSentence": "ออกแบบผลงานศิลปะด้วยความคิดสร้างสรรค์ที่ไม่ซ้ำใคร",
-    "romanization": "khwam-khit-sang-san"
+    "romanization": "khwam-khit-sang-san",
+    "english": "Creativity"
   },
   {
     "id": "edu_32",
@@ -4600,7 +5051,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "การปฏิบัติการทางวิทยาศาสตร์เพื่อพิสูจน์ข้อเท็จจริงหรือสมมติฐาน",
     "exampleSentence": "บันทึกผลการทดลองอย่างตรงไปตรงมาตามความเป็นจริง",
-    "romanization": "kan-thot-long"
+    "romanization": "kan-thot-long",
+    "english": "Experiment"
   },
   {
     "id": "edu_33",
@@ -4610,7 +5062,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ข้อคิดเห็นหรือข้อสันนิษฐานที่ตั้งขึ้นเพื่อใช้ทดสอบหาความจริง",
     "exampleSentence": "ตั้งสมมติฐานก่อนเริ่มทำการทดลองเพื่อกำหนดทิศทางการวิจัย",
-    "romanization": "som-mut-ti-than"
+    "romanization": "som-mut-ti-than",
+    "english": "Hypothesis"
   },
   {
     "id": "edu_34",
@@ -4620,7 +5073,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "หลักการทางวิชาการที่ผ่านการพิสูจน์และยอมรับว่าอธิบายปรากฏการณ์ได้",
     "exampleSentence": "ทฤษฎีสัมพัทธภาพของไอน์สไตน์ปฏิวัติวงการฟิสิกส์สมัยใหม่",
-    "romanization": "thrit-sa-di"
+    "romanization": "thrit-sa-di",
+    "english": "Theory"
   },
   {
     "id": "edu_35",
@@ -4630,7 +5084,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ข้อความย่อหรือผลสุดท้ายที่ได้จากการพิจารณาเรื่องราวทั้งหมด",
     "exampleSentence": "เขียนบทสรุปรายงานให้กระชับและครอบคลุมประเด็นสำคัญ",
-    "romanization": "bot-sa-rup"
+    "romanization": "bot-sa-rup",
+    "english": "Conclusion"
   },
   {
     "id": "edu_36",
@@ -4640,7 +5095,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ข้อมูลตัวเลขที่รวบรวมขึ้น หรือวิชาว่าด้วยการวิเคราะห์ข้อมูลตัวเลข",
     "exampleSentence": "นำเสนอผลการวิจัยด้วยกราฟและแผนภูมิทางสถิติ",
-    "romanization": "sa-thi-ti"
+    "romanization": "sa-thi-ti",
+    "english": "Statistics"
   },
   {
     "id": "edu_37",
@@ -4650,7 +5106,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ข้อเท็จจริงหรือตัวเลขที่ใช้เป็นหลักในการคำนวณหรือวิเคราะห์",
     "exampleSentence": "ตรวจสอบความถูกต้องของแหล่งที่มาของข้อมูลก่อนนำมาอ้างอิง",
-    "romanization": "kho-mun"
+    "romanization": "kho-mun",
+    "english": "Data / Information"
   },
   {
     "id": "edu_38",
@@ -4660,7 +5117,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "คิดทำสิ่งของใหม่ๆ ขึ้นมาด้วยความรู้และความคิดสร้างสรรค์",
     "exampleSentence": "นักเรียนประดิษฐ์หุ่นยนต์เก็บขยะอัตโนมัติส่งเข้าประกวด",
-    "romanization": "pra-dit"
+    "romanization": "pra-dit",
+    "english": "Invent"
   },
   {
     "id": "edu_39",
@@ -4670,7 +5128,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "สืบเสาะหาข้อมูลและความรู้อย่างละเอียดถี่ถ้วน",
     "exampleSentence": "ค้นคว้าเอกสารทางวิชาการจากหอสมุดแห่งชาติ",
-    "romanization": "khon-khwa"
+    "romanization": "khon-khwa",
+    "english": "Research / Explore"
   },
   {
     "id": "edu_40",
@@ -4680,7 +5139,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "การศึกษาค้นคว้าอย่างมีระเบียบแบบแผนเพื่อสร้างองค์ความรู้ใหม่",
     "exampleSentence": "ทำงานวิจัยเกี่ยวกับการใช้พลังงานแสงอาทิตย์ในภาคการเกษตร",
-    "romanization": "wi-chai"
+    "romanization": "wi-chai",
+    "english": "Research"
   },
   {
     "id": "rel_1",
@@ -4690,7 +5150,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ชายที่ได้รับการอุปสมบทเป็นนักบวชในพระพุทธศาสนา ถือศีล 227 ข้อ",
     "exampleSentence": "พระภิกษุออกรับบิณฑบาตโปรดญาติโยมในยามเช้าตรู่",
-    "romanization": "phra-phik-su"
+    "romanization": "phra-phik-su",
+    "english": "Buddhist Monk"
   },
   {
     "id": "rel_2",
@@ -4700,7 +5161,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผู้บวชในพระพุทธศาสนาที่มีอายุต่ำกว่า 20 ปี ถือศีล 10 ข้อ",
     "exampleSentence": "สามเณรภาคฤดูร้อนตั้งใจสวดมนต์และศึกษาพระธรรม",
-    "romanization": "sam-ma-nen"
+    "romanization": "sam-ma-nen",
+    "english": "Novice Monk"
   },
   {
     "id": "rel_3",
@@ -4710,7 +5172,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "พิธีบวชเป็นพระภิกษุสงฆ์ตามพระธรรมวินัย",
     "exampleSentence": "ชายไทยนิยมอุปสมบทเพื่อทดแทนพระคุณบิดามารดา",
-    "romanization": "up-pa-som-bot"
+    "romanization": "up-pa-som-bot",
+    "english": "Higher Ordination (Monkhood)"
   },
   {
     "id": "rel_4",
@@ -4720,7 +5183,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "การบวชเป็นสามเณรหรือนักบวชเบื้องต้น",
     "exampleSentence": "เด็กชายเข้ารับการบรรพชาเป็นสามเณรภาคฤดูร้อน",
-    "romanization": "ban-pha-cha"
+    "romanization": "ban-pha-cha",
+    "english": "Novice Ordination"
   },
   {
     "id": "rel_5",
@@ -4730,7 +5194,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "กิริยาที่พระภิกษุสามเณรเดินรับอาหารจากพุทธศาสนิกชน (บาต ไม่มี ร)",
     "exampleSentence": "คุณยายตื่นแต่เช้าเพื่อมารอใส่บาตรพระภิกษุที่มาบิณฑบาต",
-    "romanization": "bin-tha-bat"
+    "romanization": "bin-tha-bat",
+    "english": "Alms Round (Bhiksha)"
   },
   {
     "id": "rel_6",
@@ -4740,7 +5205,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผ้าสำหรับนุ่งห่มของพระภิกษุสามเณร สีย้อมจากเปลือกไม้หรือแก่นขนุน",
     "exampleSentence": "พระภิกษุครองจีวรสีส้มทองอย่างเรียบร้อยและสำรวม",
-    "romanization": "chi-won"
+    "romanization": "chi-won",
+    "english": "Monk's Robe (Civara)"
   },
   {
     "id": "rel_7",
@@ -4750,7 +5216,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผ้านุ่งชั้นในของพระภิกษุสามเณร เป็นหนึ่งในผ้าไตรจีวร",
     "exampleSentence": "พระภิกษุผลัดเปลี่ยนสบงผืนใหม่ก่อนลงทำวัตรเย็น",
-    "romanization": "sa-bong"
+    "romanization": "sa-bong",
+    "english": "Monk's Undergarment (Antaravasaka)"
   },
   {
     "id": "rel_8",
@@ -4760,7 +5227,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ผ้าทาบบ่าหรือผ้าพาดบ่าผืนใหญ่ เป็นผ้าซ้อนสองชั้นของพระสงฆ์",
     "exampleSentence": "พระเถระพาดผ้าสังฆาฏิบนบ่าซ้ายในพิธีสงฆ์สำคัญ",
-    "romanization": "sang-kha-ti"
+    "romanization": "sang-kha-ti",
+    "english": "Shoulder Cloth (Sanghati)"
   },
   {
     "id": "rel_9",
@@ -4770,7 +5238,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ภาชนะกลมทำจากเหล็กหรือดินเผา สำหรับพระสงฆ์ใช้รับภัตตาหาร (สะกด ตร)",
     "exampleSentence": "พระภิกษุเปิดฝาบาตรรับข้าวสุกจากญาติโยมด้วยความสงบ",
-    "romanization": "bat"
+    "romanization": "bat",
+    "english": "Monk's Alms Bowl"
   },
   {
     "id": "rel_10",
@@ -4780,7 +5249,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "เรือนนอนหรือที่พักอาศัยของพระภิกษุสามเณรภายในวัด",
     "exampleSentence": "กุฏิสงฆ์สร้างขึ้นอย่างเรียบง่ายท่ามกลางความสงบร่มรื่นของแมกไม้",
-    "romanization": "kut-ti"
+    "romanization": "kut-ti",
+    "english": "Monk's Dwelling / Cell (Kuti)"
   },
   {
     "id": "rel_11",
@@ -4790,7 +5260,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "นอนหลับ (คำกริยาสำหรับพระภิกษุสงฆ์)",
     "exampleSentence": "หลังจากสวดมนต์ทำวัตรค่ำเสร็จสิ้น พระสงฆ์จึงแยกย้ายกันไปจำวัด",
-    "romanization": "cham-wat"
+    "romanization": "cham-wat",
+    "english": "Sleep (Monastic)"
   },
   {
     "id": "rel_12",
@@ -4800,7 +5271,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "อาหารสำหรับพระภิกษุสามเณร",
     "exampleSentence": "ชาวบ้านร่วมกันถวายภัตตาหารเพลแด่พระสงฆ์ทั้งวัด",
-    "romanization": "phat-ta-han"
+    "romanization": "phat-ta-han",
+    "english": "Monk's Meal (Food)"
   },
   {
     "id": "rel_13",
@@ -4810,7 +5282,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "รับประทานอาหารหรือดื่มน้ำ (คำกริยาสำหรับพระสงฆ์)",
     "exampleSentence": "พระภิกษุสงฆ์ฉันภัตตาหารมื้อเช้าอย่างสงบและสำรวม",
-    "romanization": "chan"
+    "romanization": "chan",
+    "english": "Eat / Consume (Monastic)"
   },
   {
     "id": "rel_14",
@@ -4820,7 +5293,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "ยกสิ่งของส่งมอบให้พระสงฆ์ด้วยมือในระยะหัตถบาส",
     "exampleSentence": "ญาติโยมประเคนถวายสังฆทานแด่เจ้าอาวาส",
-    "romanization": "pra-khen"
+    "romanization": "pra-khen",
+    "english": "Hand over offerings to a monk"
   },
   {
     "id": "rel_15",
@@ -4830,7 +5304,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "ป่วย เจ็บไข้ได้ป่วย (คำสำหรับพระภิกษุสงฆ์)",
     "exampleSentence": "คณะศิษย์นิมนต์แพทย์มารักษาหลวงตาที่กำลังอาพาธ",
-    "romanization": "a-phat"
+    "romanization": "a-phat",
+    "english": "Sick / Ill (Monastic)"
   },
   {
     "id": "rel_16",
@@ -4840,7 +5315,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "มรณะ สิ้นชีพ หรือตาย (คำสำหรับพระภิกษุสงฆ์)",
     "exampleSentence": "หลวงปู่ผู้เป็นที่เคารพศรัทธาของชาวบ้านได้ถึงแก่มรณภาพอย่างสงบ",
-    "romanization": "mo-ra-na-phap"
+    "romanization": "mo-ra-na-phap",
+    "english": "Pass away / Die (Monastic)"
   },
   {
     "id": "rel_17",
@@ -4850,7 +5326,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "โกนผมและคิ้วเพื่อเตรียมเข้าพิธีอุปสมบทหรือรักษาศีล",
     "exampleSentence": "ผู้ขอบวชเข้าพิธีปลงผมท่ามกลางความปลื้มปีติของบิดามารดา",
-    "romanization": "plong-phom"
+    "romanization": "plong-phom",
+    "english": "Shave Head (for ordination)"
   },
   {
     "id": "rel_18",
@@ -4860,7 +5337,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "ท่องบทสวดสรรเสริญคุณพระรัตนตรัยเพื่อชำระจิตใจให้บริสุทธิ์",
     "exampleSentence": "ครอบครัวร่วมกันสวดมนต์ไหว้พระก่อนเข้านอนทุกคืน",
-    "romanization": "suat-mon"
+    "romanization": "suat-mon",
+    "english": "Chant / Prayer"
   },
   {
     "id": "rel_19",
@@ -4870,7 +5348,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "แก้วอันประเสริฐ 3 ประการ ได้แก่ พระพุทธ พระธรรม และพระสงฆ์",
     "exampleSentence": "พุทธศาสนิกชนกราบไหว้ระลึกถึงพระคุณของพระรัตนตรัย",
-    "romanization": "phra-rat-ta-na-trai"
+    "romanization": "phra-rat-ta-na-trai",
+    "english": "The Triple Gem (Three Jewels)"
   },
   {
     "id": "rel_20",
@@ -4880,7 +5359,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "พระบรมศาสดาผู้ตรัสรู้ชอบได้โดยพระองค์เองและก่อตั้งพระพุทธศาสนา",
     "exampleSentence": "พระพุทธเจ้าทรงแสดงธรรมโปรดเวไนยสัตว์ด้วยพระมหากรุณาธิคุณ",
-    "romanization": "phra-phut-tha-chao"
+    "romanization": "phra-phut-tha-chao",
+    "english": "The Lord Buddha"
   },
   {
     "id": "rel_21",
@@ -4890,7 +5370,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "คำสั่งสอนของพระพุทธเจ้า ชี้แนวทางแห่งความจริงและความดับทุกข์",
     "exampleSentence": "การน้อมนำพระธรรมมาปรับใช้ในชีวิตช่วยให้จิตใจสงบสุข",
-    "romanization": "phra-tham"
+    "romanization": "phra-tham",
+    "english": "The Dhamma (Buddha's Teachings)"
   },
   {
     "id": "rel_22",
@@ -4900,7 +5381,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "หมู่สาวกของพระพุทธเจ้า ผู้ปฏิบัติตามพระธรรมวินัยและสืบทอดศาสนา",
     "exampleSentence": "พระสงฆ์ทำหน้าที่เผยแผ่หลักธรรมคำสอนแก่พุทธศาสนิกชน",
-    "romanization": "phra-song"
+    "romanization": "phra-song",
+    "english": "The Sangha (Monastic Order)"
   },
   {
     "id": "rel_23",
@@ -4910,7 +5392,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "คัมภีร์บันทึกคำสอนในพระพุทธศาสนา แบ่งเป็น วินัยปิฎก สุตตันตปิฎก และอภิธรรมปิฎก",
     "exampleSentence": "พระไตรปิฎกเป็นแหล่งรวบรวมหลักธรรมคำสอนที่สมบูรณ์ที่สุด",
-    "romanization": "trai-pi-dok"
+    "romanization": "trai-pi-dok",
+    "english": "Tripitaka (Pali Canon)"
   },
   {
     "id": "rel_24",
@@ -4920,7 +5403,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ข้อประพฤติปฏิบัติเพื่อละเว้นความชั่วและรักษากายวาจาให้บริสุทธิ์",
     "exampleSentence": "การรักษาศีล 5 ช่วยให้สังคมสงบสุขและอยู่ร่วมกันอย่างปลอดภัย",
-    "romanization": "sin"
+    "romanization": "sin",
+    "english": "Precepts / Morality (Sila)"
   },
   {
     "id": "rel_25",
@@ -4930,7 +5414,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ความตั้งมั่นแห่งจิต จิตใจแน่วแน่ สงบนิ่ง ปราศจากความฟุ้งซ่าน",
     "exampleSentence": "การฝึกนั่งสมาธิวันละ 15 นาทีช่วยเพิ่มสติและคลายความเครียด",
-    "romanization": "sa-ma-thi"
+    "romanization": "sa-ma-thi",
+    "english": "Meditation / Concentration (Samadhi)"
   },
   {
     "id": "rel_26",
@@ -4940,7 +5425,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ความรอบรู้ ความรู้แจ้งเห็นจริงตามเหตุและผล",
     "exampleSentence": "ศีลนำมาซึ่งสมาธิ และสมาธินำมาซึ่งปัญญาอันบริสุทธิ์",
-    "romanization": "pan-ya"
+    "romanization": "pan-ya",
+    "english": "Wisdom"
   },
   {
     "id": "rel_27",
@@ -4950,7 +5436,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ความจริงอันประเสริฐ 4 ประการ ได้แก่ ทุกข์ สมุทัย นิโรธ มรรค",
     "exampleSentence": "พระพุทธองค์ทรงแสดงธรรมเรื่องอริยสัจสี่ประการในปฐมเทศนา",
-    "romanization": "a-ri-ya-sat"
+    "romanization": "a-ri-ya-sat",
+    "english": "Four Noble Truths"
   },
   {
     "id": "rel_28",
@@ -4960,7 +5447,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สภาวะความดับสนิทแห่งกิเลสและความทุกข์ทั้งปวง เป้าหมายสูงสุด",
     "exampleSentence": "พระอรหันต์ทั้งหลายบรรลุถึงซึ่งพระนิพพานอันบรมสุข",
-    "romanization": "nip-phan"
+    "romanization": "nip-phan",
+    "english": "Nirvana (Enlightenment)"
   },
   {
     "id": "rel_29",
@@ -4970,7 +5458,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "สร้างคุณงามความดี บำเพ็ญกุศล เพื่อความเจริญใจและประโยชน์สุข",
     "exampleSentence": "ชาวพุทธนิยมไปทำบุญตักบาตรที่วัดในวันพระและวันสำคัญ",
-    "romanization": "tham-bun"
+    "romanization": "tham-bun",
+    "english": "Make Merit (Punya)"
   },
   {
     "id": "rel_30",
@@ -4980,7 +5469,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "นำข้าวสุกและอาหารคาวหวานใส่ลงในบาตรพระสงฆ์ยามเช้า",
     "exampleSentence": "คุณแม่เตรียมข้าวสวยร้อนๆ และดอกไม้เพื่อไปตักบาตรยามเช้า",
-    "romanization": "tak-bat"
+    "romanization": "tak-bat",
+    "english": "Put Food in Monk's Alms Bowl"
   },
   {
     "id": "rel_31",
@@ -4990,7 +5480,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "รินน้ำลงบนพื้นดินพร้อมตั้งจิตอุทิศส่วนบุญกุศลให้ผู้ล่วงลับ",
     "exampleSentence": "หลังจากพระสงฆ์ให้พร เราจะร่วมกันกรวดน้ำอุทิศบุญ",
-    "romanization": "kruat-nam"
+    "romanization": "kruat-nam",
+    "english": "Pour Water of Dedication"
   },
   {
     "id": "rel_32",
@@ -5000,7 +5491,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "เดินประนมมือถือดอกไม้ธูปเทียนเวียนรอบปูชนียสถาน 3 รอบ",
     "exampleSentence": "พุทธศาสนิกชนร่วมเวียนเทียนในคืนวันวิสาขบูชาอย่างพร้อมเพรียง",
-    "romanization": "wian-thian"
+    "romanization": "wian-thian",
+    "english": "Candlelit Procession"
   },
   {
     "id": "rel_33",
@@ -5010,7 +5502,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "แสดงความยินดีและชื่นชมในบุญกุศลที่ผู้อื่นได้กระทำ",
     "exampleSentence": "ขอร่วมอนุโมทนาบุญกับทุกท่านที่ร่วมสร้างโรงทานในครั้งนี้",
-    "romanization": "a-nu-mo-tha-na"
+    "romanization": "a-nu-mo-tha-na",
+    "english": "Rejoice in Others' Merits"
   },
   {
     "id": "rel_34",
@@ -5020,7 +5513,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "การถวายทานแด่สงฆ์ส่วนรวม โดยไม่เจาะจงรูปใดรูปหนึ่ง",
     "exampleSentence": "ครอบครัวนำชุดสังฆทานและยารักษาโรคไปถวายที่วัด",
-    "romanization": "sang-kha-than"
+    "romanization": "sang-kha-than",
+    "english": "Offerings Dedicated to the Sangha"
   },
   {
     "id": "rel_35",
@@ -5030,7 +5524,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "พิธีถวายผ้ากฐินแด่พระสงฆ์ที่จำพรรษาครบสามเดือน มีกำหนดปีละครั้ง",
     "exampleSentence": "ชาวบ้านร่วมกันเป็นเจ้าภาพทอดกฐินสามัคคีเพื่อบูรณะวัด",
-    "romanization": "ka-thin"
+    "romanization": "ka-thin",
+    "english": "Kathina Robe Offering Ceremony"
   },
   {
     "id": "rel_36",
@@ -5040,7 +5535,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "พิธีถวายผ้าบังสุกุลและปัจจัยโดยไม่จำกัดกาลเวลา เพื่อบำรุงพระพุทธศาสนา",
     "exampleSentence": "ขบวนแห่กองผ้าป่าเดินทางมาถึงวัดด้วยความรื่นเริงและอิ่มบุญ",
-    "romanization": "pha-pa"
+    "romanization": "pha-pa",
+    "english": "Pha Pa (Forest Robe Offering)"
   },
   {
     "id": "rel_37",
@@ -5050,7 +5546,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สิ่งของจำเป็นสำหรับดำรงชีพ หรือเงินทองที่ถวายบำรุงวัดและพระสงฆ์",
     "exampleSentence": "ญาติโยมร่วมบริจาคปัจจัยสมทบทุนสร้างศาลาการเปรียญหลังใหม่",
-    "romanization": "pat-chai"
+    "romanization": "pat-chai",
+    "english": "Monastic Requisites / Donations"
   },
   {
     "id": "rel_38",
@@ -5060,7 +5557,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "โบสถ์ อาคารที่พระสงฆ์ใช้ประชุมทำสังฆกรรม เช่น การบวชหรือสวดปาฏิโมกข์",
     "exampleSentence": "พระสงฆ์ลงประชุมพร้อมเพรียงกันในอุโบสถเพื่อทำสังฆกรรม",
-    "romanization": "u-bo-sot"
+    "romanization": "u-bo-sot",
+    "english": "Ordination Hall (Ubosot)"
   },
   {
     "id": "rel_39",
@@ -5070,7 +5568,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "อาคารในวัดที่ประดิษฐานพระพุทธรูปสำคัญ เป็นที่สักการะของประชาชน",
     "exampleSentence": "นักท่องเที่ยวเข้ากราบสักการะพระพุทธชินราชในวิหารหลวง",
-    "romanization": "wi-han"
+    "romanization": "wi-han",
+    "english": "Assembly Hall (Vihara)"
   },
   {
     "id": "rel_40",
@@ -5080,7 +5579,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สิ่งก่อสร้างยอดแหลมสูง บรรจุพระบรมสารีริกธาตุหรืออัฐิของบูรพาจารย์",
     "exampleSentence": "พระมหาเจดีย์สีทองส่องประกายอร่ามตระการตายามต้องแสงแดด",
-    "romanization": "che-di"
+    "romanization": "che-di",
+    "english": "Stupa / Pagoda / Chedi"
   },
   {
     "id": "rel_41",
@@ -5090,7 +5590,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ที่นั่งยกพื้นสูงสำหรับพระภิกษุขึ้นนั่งแสดงธรรมเทศนา",
     "exampleSentence": "พระเถระขึ้นนั่งบนธรรมาสน์เพื่อแสดงพระธรรมเทศนาแก่ญาติโยม",
-    "romanization": "tham-mat"
+    "romanization": "tham-mat",
+    "english": "Preaching Pulpit"
   },
   {
     "id": "rel_42",
@@ -5100,7 +5601,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "แสดงธรรม สั่งสอนและชี้แนะหลักธรรมคำสอน (เทศน์)",
     "exampleSentence": "เจ้าอาวาสเทศนาสั่งสอนให้ทุกคนยึดมั่นในความกตัญญูและความเพียร",
-    "romanization": "thet-sa-na"
+    "romanization": "thet-sa-na",
+    "english": "Deliver a Sermon"
   },
   {
     "id": "rel_43",
@@ -5110,7 +5612,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "การฝึกเจริญภาวนาเพื่อให้จิตรู้แจ้งเห็นจริงในไตรลักษณ์",
     "exampleSentence": "พุทธศาสนิกชนเข้าคอร์สอบรมวิปัสสนากรรมฐานเป็นเวลา 7 วัน",
-    "romanization": "wi-pat-sa-na"
+    "romanization": "wi-pat-sa-na",
+    "english": "Vipassana (Insight Meditation)"
   },
   {
     "id": "rel_44",
@@ -5120,7 +5623,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ที่นั่งหรือเบาะรองนั่งสำหรับพระภิกษุสงฆ์",
     "exampleSentence": "ปูลาดอาสนะสีขาวสะอาดจัดเตรียมไว้สำหรับพระสงฆ์เจริญพระพุทธมนต์",
-    "romanization": "at-sa-na"
+    "romanization": "at-sa-na",
+    "english": "Monk's Sitting Mat"
   },
   {
     "id": "rel_45",
@@ -5130,7 +5634,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ช่วงฤดูฝน 3 เดือนที่พระสงฆ์ต้องอยู่ประจำที่วัด และใช้เป็นหน่วยนับอายุการบวช",
     "exampleSentence": "พระภิกษุรูปนี้บวชเรียนมาแล้วเป็นเวลาถึง 10 พรรษา",
-    "romanization": "phan-sa"
+    "romanization": "phan-sa",
+    "english": "Vassa (Rains Retreat / Years of Monkhood)"
   },
   {
     "id": "rel_46",
@@ -5140,7 +5645,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "พระสงฆ์พักอยู่ประจำวัดแห่งเดียวตลอดฤดูฝน 3 เดือน ไม่ไปค้างแรมที่อื่น",
     "exampleSentence": "พระสงฆ์จำพรรษาตลอดไตรมาสเพื่อปฏิบัติธรรมอย่างเคร่งครัด",
-    "romanization": "cham-phan-sa"
+    "romanization": "cham-phan-sa",
+    "english": "Observe the Rains Retreat"
   },
   {
     "id": "rel_47",
@@ -5150,7 +5656,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "กิริยาอาการ ความประพฤติ และท่วงท่าที่เหมาะสมเรียบร้อยแก่สมณะ",
     "exampleSentence": "พระภิกษุสำรวมกิริยาวาจาอย่างงดงามถูกต้องตามสมณสารูป",
-    "romanization": "sa-ma-na-sa-rup"
+    "romanization": "sa-ma-na-sa-rup",
+    "english": "Monastic Decorum"
   },
   {
     "id": "rel_48",
@@ -5160,7 +5667,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "พระสงฆ์สวดบทสวดพระปริตรเพื่อความเป็นสิริมงคลและขจัดปัดเป่าภัย",
     "exampleSentence": "นิมนต์พระสงฆ์ 9 รูปมาเจริญพระพุทธมนต์ในพิธีขึ้นบ้านใหม่",
-    "romanization": "choe-rin-phra-phut-tha-mon"
+    "romanization": "choe-rin-phra-phut-tha-mon",
+    "english": "Chant Protective Verses (Paritta)"
   },
   {
     "id": "rel_49",
@@ -5170,7 +5678,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "อาคารโถงใหญ่ในวัดสำหรับประกอบพิธีทำบุญ ฟังเทศน์ และเรียนธรรม",
     "exampleSentence": "พุทธศาสนิกชนมารวมตัวกันที่ศาลาการเปรียญเพื่อรับศีลรับพร",
-    "romanization": "sa-la-kan-pa-rian"
+    "romanization": "sa-la-kan-pa-rian",
+    "english": "Preaching Hall (Sala)"
   },
   {
     "id": "rel_50",
@@ -5180,7 +5689,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำอุทาน",
     "meaning": "คำเปล่งแสดงความเห็นชอบ ความยินดีในความดี หรือน้อมรับพร",
     "exampleSentence": "ทุกคนกล่าวคำว่า สาธุ พร้อมกันอย่างกึกก้องด้วยความเลื่อมใส",
-    "romanization": "sa-thu"
+    "romanization": "sa-thu",
+    "english": "Sadhu (Well said / Amen)"
   },
   {
     "id": "s_1",
@@ -5190,7 +5700,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ความเหมาะสมแก่เวลาและสถานที่ในการปฏิบัติตน",
     "exampleSentence": "การแต่งกายสุภาพถูกกาลเทศะเป็นการให้เกียรติสถานที่",
-    "romanization": "ka-la-the-sa"
+    "romanization": "ka-la-the-sa",
+    "english": "Propriety / Good Manners for the Occasion"
   },
   {
     "id": "s_2",
@@ -5200,7 +5711,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ภาพที่นึกคิดขึ้นในใจ จินตภาพ",
     "exampleSentence": "สร้างมโนภาพของฉากในนิยายก่อนลงมือเขียนบทบรรยาย",
-    "romanization": "ma-no-phap"
+    "romanization": "ma-no-phap",
+    "english": "Mental Image / Visualization"
   },
   {
     "id": "s_3",
@@ -5210,7 +5722,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำคุณศัพท์",
     "meaning": "แปลกประหลาด น่าพิศวง มหัศจรรย์ใจ",
     "exampleSentence": "ปรากฏการณ์สุริยุปราคาเต็มดวงเป็นภาพที่อัศจรรย์ยิ่ง",
-    "romanization": "at-sa-chan"
+    "romanization": "at-sa-chan",
+    "english": "Miraculous / Marvelous"
   },
   {
     "id": "s_4",
@@ -5220,7 +5733,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "สำแดงออกมาให้เห็นชัดเจน (สะกดด้วย ฏ ปฏัก)",
     "exampleSentence": "รุ้งกินน้ำปรากฏขึ้นบนท้องฟ้าหลังสายฝนโปรยปราย",
-    "romanization": "pra-kot"
+    "romanization": "pra-kot",
+    "english": "Appear / Manifest"
   },
   {
     "id": "s_5",
@@ -5230,7 +5744,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "ยินยอม ยอมให้ (ไม่มีสระอิบน ต เต่า ไม่เหมือน ญาติ)",
     "exampleSentence": "คุณครูอนุญาตให้นักเรียนออกไปดื่มน้ำได้",
-    "romanization": "a-nu-yat"
+    "romanization": "a-nu-yat",
+    "english": "Permit / Allow"
   },
   {
     "id": "s_6",
@@ -5240,7 +5755,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "ตั้งใจมองเพื่อหาข้อเท็จจริง (ไม่มีสระอุใต้ ต เต่า)",
     "exampleSentence": "นักวิทยาศาสตร์ต้องเป็นคนช่างสังเกตการเปลี่ยนแปลงรอบตัว",
-    "romanization": "sang-ket"
+    "romanization": "sang-ket",
+    "english": "Observe / Notice"
   },
   {
     "id": "s_7",
@@ -5250,7 +5766,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "รสที่สัมผัสได้ด้วยลิ้น (คำว่า ชาติ มีสระอิ)",
     "exampleSentence": "อาหารจานนี้มีรสชาติกลมกล่อมเข้มข้นกำลังดี",
-    "romanization": "rot-chat"
+    "romanization": "rot-chat",
+    "english": "Taste / Flavor"
   },
   {
     "id": "s_8",
@@ -5260,7 +5777,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "รอบระยะเวลา 7 วัน",
     "exampleSentence": "ในหนึ่งสัปดาห์เรามีวันหยุดเรียนสองวัน",
-    "romanization": "sap-da"
+    "romanization": "sap-da",
+    "english": "Week"
   },
   {
     "id": "s_9",
@@ -5270,7 +5788,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ชั้นอากาศที่ห่อหุ้มโลก หรือความรู้สึกรอบตัวในขณะนั้น",
     "exampleSentence": "ร้านกาแฟริมแม่น้ำมีบรรยากาศสงบและร่มรื่น",
-    "romanization": "ban-ya-kat"
+    "romanization": "ban-ya-kat",
+    "english": "Atmosphere / Ambiance"
   },
   {
     "id": "s_10",
@@ -5280,7 +5799,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "การงาน ธุรกิจ หรือหน่วยงานที่ดำเนินการอยู่",
     "exampleSentence": "เขาบริหารกิจการครอบครัวให้เจริญก้าวหน้าอย่างมั่นคง",
-    "romanization": "kit-cha-kan"
+    "romanization": "kit-cha-kan",
+    "english": "Business / Enterprise"
   },
   {
     "id": "s_11",
@@ -5290,7 +5810,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "เวลาที่เหมาะ จังหวะอันควร (สะกดด้วย ส เสือ)",
     "exampleSentence": "เมื่อมีโอกาสที่ดีเข้ามาจงรีบคว้าและลงมือทำอย่างเต็มที่",
-    "romanization": "o-kat"
+    "romanization": "o-kat",
+    "english": "Opportunity / Chance"
   },
   {
     "id": "s_12",
@@ -5300,7 +5821,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "แก๊สที่ล้อมรอบตัวเรา หรือสภาพลมฟ้าในแต่ละวัน (สะกดด้วย ศ ศาลา)",
     "exampleSentence": "ยามเช้าอากาศบริสุทธิ์สดชื่นเหมาะแก่การเดินเล่น",
-    "romanization": "a-kat"
+    "romanization": "a-kat",
+    "english": "Weather / Air"
   },
   {
     "id": "s_13",
@@ -5310,7 +5832,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "กิริยาวาจาที่เรียบร้อยและถูกต้องตามธรรมเนียมสังคม",
     "exampleSentence": "การกล่าวคำขอบคุณและขอโทษถือเป็นมารยาทพื้นฐานที่ดี",
-    "romanization": "ma-ra-yat"
+    "romanization": "ma-ra-yat",
+    "english": "Manners / Etiquette"
   },
   {
     "id": "s_14",
@@ -5320,7 +5843,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สิ่งที่น่าอัศจรรย์เหนือธรรมชาติ เกินความคาดหมาย",
     "exampleSentence": "ผู้รอดชีวิตจากอุบัติเหตุราวกับมีปาฏิหาริย์เกิดขึ้น",
-    "romanization": "pa-ti-han"
+    "romanization": "pa-ti-han",
+    "english": "Miracle"
   },
   {
     "id": "s_15",
@@ -5330,7 +5854,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "กล่าวเป็นเรื่องราวอย่างละเอียดถี่ถ้วน ชี้ให้เห็นภาพชัดเจน",
     "exampleSentence": "กวีพรรณนาความงดงามของแสงจันทร์ในคืนวันเพ็ญได้อย่างจับใจ",
-    "romanization": "phan-na-na"
+    "romanization": "phan-na-na",
+    "english": "Describe in detail / Depict"
   },
   {
     "id": "s_16",
@@ -5340,7 +5865,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำคุณศัพท์",
     "meaning": "งามหยดย้อย งามประณีตบรรจง",
     "exampleSentence": "ลวดลายแกะสลักบนหน้าบันพระอุโบสถมีความวิจิตรตระการตา",
-    "romanization": "wi-chit"
+    "romanization": "wi-chit",
+    "english": "Exquisite / Ornate"
   },
   {
     "id": "s_17",
@@ -5350,7 +5876,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ทิวทัศน์ ภาพทัศน์ที่มองเห็นได้กว้างไกลและสวยงาม",
     "exampleSentence": "โรงแรมตั้งอยู่บนหน้าผาสามารถชมทัศนียภาพท้องทะเลได้รอบทิศ",
-    "romanization": "that-sa-ni-ya-phap"
+    "romanization": "that-sa-ni-ya-phap",
+    "english": "Scenery / Landscape"
   },
   {
     "id": "s_18",
@@ -5360,7 +5887,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "ต้องการ มุ่งหวัง มีใจอยากได้สิ่งดีงาม",
     "exampleSentence": "ขอให้ทุกคนสมปรารถนาในสิ่งที่ตั้งใจไว้ทุกประการ",
-    "romanization": "prat-tha-na"
+    "romanization": "prat-tha-na",
+    "english": "Wish / Desire"
   },
   {
     "id": "s_19",
@@ -5370,7 +5898,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "วิถีชีวิตและความเจริญงอกงามที่สืบทอดกันมาของกลุ่มชน",
     "exampleSentence": "การไหว้เป็นวัฒนธรรมไทยที่สะท้อนถึงความเคารพและอ่อนน้อม",
-    "romanization": "wat-tha-na-tham"
+    "romanization": "wat-tha-na-tham",
+    "english": "Culture"
   },
   {
     "id": "s_20",
@@ -5380,7 +5909,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "สิ่งที่นิยมประพฤติปฏิบัติสืบต่อกันมาจนเป็นแบบแผน",
     "exampleSentence": "ประเพณีลอยกระทงจัดขึ้นเพื่อขอขมาพระแม่คงคา",
-    "romanization": "pra-phe-ni"
+    "romanization": "pra-phe-ni",
+    "english": "Tradition / Custom"
   },
   {
     "id": "s_21",
@@ -5390,7 +5920,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ลักษณะเด่นเฉพาะตัวที่ไม่เหมือนผู้อื่น",
     "exampleSentence": "รอยยิ้มและการไหว้ถือเป็นเอกลักษณ์สำคัญของคนไทย",
-    "romanization": "ek-ka-lak"
+    "romanization": "ek-ka-lak",
+    "english": "Identity / Uniqueness"
   },
   {
     "id": "s_22",
@@ -5400,7 +5931,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ความผูกพัน ความสัมพันธ์อันดีระหว่างบุคคลหรือกลุ่มชน",
     "exampleSentence": "การทำกิจกรรมร่วมกันช่วยสร้างสัมพันธภาพอันดีในครอบครัว",
-    "romanization": "sam-phan-tha-phap"
+    "romanization": "sam-phan-tha-phap",
+    "english": "Relationship / Rapport"
   },
   {
     "id": "s_23",
@@ -5410,7 +5942,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "นิสัยใจคอ ความเป็นมิตรและความมีน้ำใจ",
     "exampleSentence": "เจ้าของบ้านมีอัธยาศัยไมตรีดีและต้อนรับแขกอย่างอบอุ่น",
-    "romanization": "at-tha-ya-sai"
+    "romanization": "at-tha-ya-sai",
+    "english": "Hospitality / Friendliness"
   },
   {
     "id": "s_24",
@@ -5420,7 +5953,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ความรู้หรือความชำนาญที่เกิดจากการลงมือปฏิบัติจริง",
     "exampleSentence": "การเดินทางท่องเที่ยวช่วยเปิดโลกทัศน์และเพิ่มพูนประสบการณ์",
-    "romanization": "pra-sop-kan"
+    "romanization": "pra-sop-kan",
+    "english": "Experience"
   },
   {
     "id": "s_25",
@@ -5430,7 +5964,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "แนวคิด ท่าที หรือมุมมองที่มีต่อสิ่งต่างๆ",
     "exampleSentence": "การมองโลกในแง่ดีช่วยสร้างทัศนคติเชิงบวกในการทำงาน",
-    "romanization": "that-sa-na-kha-ti"
+    "romanization": "that-sa-na-kha-ti",
+    "english": "Attitude / Perspective"
   },
   {
     "id": "s_26",
@@ -5440,7 +5975,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ความสามารถในการทำงานให้สำเร็จอย่างรวดเร็วและคุ้มค่าที่สุด",
     "exampleSentence": "การวางแผนล่วงหน้าช่วยเพิ่มประสิทธิภาพในการทำงาน",
-    "romanization": "pra-sit-thi-phap"
+    "romanization": "pra-sit-thi-phap",
+    "english": "Efficiency / Effectiveness"
   },
   {
     "id": "s_27",
@@ -5450,7 +5986,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำนาม",
     "meaning": "ถ้อยคำที่มีคติสอนใจ ชี้แนะแนวทางความประพฤติที่ดีงาม",
     "exampleSentence": "สุภาษิตสอนใจเป็นมรดกทางปัญญาที่สืบทอดมายาวนาน",
-    "romanization": "su-pha-sit"
+    "romanization": "su-pha-sit",
+    "english": "Proverb / Maxim"
   },
   {
     "id": "s_28",
@@ -5460,7 +5997,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "สำนวน",
     "meaning": "เมื่อมีโอกาสดีมาถึง ควรรีบลงมือทำทันทีอย่าปล่อยให้หลุดลอย",
     "exampleSentence": "เมื่อลูกค้าสนใจสั่งซื้อสินค้าจำนวนมาก น้ำขึ้นให้รีบตัก",
-    "romanization": "nam-khuen-hai-rip-tak"
+    "romanization": "nam-khuen-hai-rip-tak",
+    "english": "Make hay while the sun shines"
   },
   {
     "id": "s_29",
@@ -5470,7 +6008,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "สำนวน",
     "meaning": "คนจะดูดีได้ก็ด้วยการแต่งตัวและการปฏิบัติตนที่เหมาะสม",
     "exampleSentence": "การแต่งกายสุภาพสะอาดสะอ้านช่วยเสริมบุคลิกภาพ ดังคำว่า ไก่งามเพราะขน คนงามเพราะแต่ง",
-    "romanization": "kai-ngam-phro-khon"
+    "romanization": "kai-ngam-phro-khon",
+    "english": "Clothes make the man"
   },
   {
     "id": "s_30",
@@ -5480,7 +6019,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "สำนวน",
     "meaning": "ประพฤติตนให้กลมกลืนตามขนบธรรมเนียมของสถานที่ที่ไปเยือน",
     "exampleSentence": "ไปอยู่ต่างแดนต้องเรียนรู้วัฒนธรรมท้องถิ่น เข้าเมืองตาหลิ่วต้องหลิ่วตาตาม",
-    "romanization": "khao-mueang-ta-lio"
+    "romanization": "khao-mueang-ta-lio",
+    "english": "When in Rome, do as the Romans do"
   },
   {
     "id": "s_31",
@@ -5490,7 +6030,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "สำนวน",
     "meaning": "การพึ่งพาอาศัยซึ่งกันและกันเพื่อประโยชน์ร่วมกัน",
     "exampleSentence": "เพื่อนร่วมงานต้องช่วยเหลือเกื้อกูลกันแบบ น้ำพึ่งเรือเสือพึ่งป่า",
-    "romanization": "nam-phueng-ruea-suea-phueng-pa"
+    "romanization": "nam-phueng-ruea-suea-phueng-pa",
+    "english": "Mutual interdependence"
   },
   {
     "id": "s_32",
@@ -5500,7 +6041,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "สำนวน",
     "meaning": "ค่อยๆ คิด ค่อยๆ ทำอย่างรอบคอบ ย่อมได้ผลงานที่ดีเลิศ",
     "exampleSentence": "อย่าใจร้อนรีบส่งงาน ตรวจทานให้ถี่ถ้วนก่อน ช้าๆ ได้พร้าเล่มงาม",
-    "romanization": "cha-cha-dai-phra-song-lem-ngam"
+    "romanization": "cha-cha-dai-phra-song-lem-ngam",
+    "english": "Slow and steady wins the race"
   },
   {
     "id": "s_33",
@@ -5510,7 +6052,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "สำนวน",
     "meaning": "การเรียนรู้สิ่งต่างๆ ไว้ไม่เสียหาย มีแต่จะได้ประโยชน์ในวันข้างหน้า",
     "exampleSentence": "เรียนรู้คำศัพท์เพิ่มเติมไว้ รู้ไว้ใช่ว่า ใส่บ่าแบกหาม",
-    "romanization": "ru-wai-chai-wa"
+    "romanization": "ru-wai-chai-wa",
+    "english": "Knowledge is never a burden"
   },
   {
     "id": "s_34",
@@ -5520,7 +6063,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "สำนวน",
     "meaning": "พูดจาอ่อนหวานน่าฟังแต่ในใจคิดไม่ดี ไม่จริงใจ",
     "exampleSentence": "ควรระวังคนที่มีลักษณะปากหวานก้นเปรี้ยว พูดจาดีแต่หวังร้าย",
-    "romanization": "pak-wan-kon-prieo"
+    "romanization": "pak-wan-kon-prieo",
+    "english": "Sweet tongue, bitter heart (Hypocritical)"
   },
   {
     "id": "s_35",
@@ -5530,7 +6074,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "สำนวน",
     "meaning": "เกิดเรื่องเสียหายขึ้นแล้วจึงค่อยคิดหาทางป้องกัน",
     "exampleSentence": "ติดตั้งกล้องวงจรปิดก่อนเกิดเหตุขโมย อย่าปล่อยให้เป็นแบบ วัวหายล้อมคอก",
-    "romanization": "wua-hai-lom-khok"
+    "romanization": "wua-hai-lom-khok",
+    "english": "Lock the barn door after the horse is stolen"
   },
   {
     "id": "s_36",
@@ -5540,7 +6085,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "สำนวน",
     "meaning": "บอกลู่ทางหรือแนะแนวทางให้คนทำผิดโดยไม่ได้ตั้งใจ",
     "exampleSentence": "อย่าบอกวิธีแอบเล่นเกมในห้องเรียนให้เพื่อน เหมือนชี้โพรงให้กระรอก",
-    "romanization": "chi-phrong-hai-kra-rok"
+    "romanization": "chi-phrong-hai-kra-rok",
+    "english": "Give someone bad ideas unintentionally"
   },
   {
     "id": "s_37",
@@ -5550,7 +6096,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "สำนวน",
     "meaning": "มุ่งหวังจะทำสองสิ่งพร้อมๆ กันในคราวเดียวจนอาจล้มเหลวทั้งคู่",
     "exampleSentence": "ตั้งใจโฟกัสทำโครงงานทีละชิ้นให้สำเร็จ ดีกว่าจับปลาสองมือแล้วไม่เสร็จสักอย่าง",
-    "romanization": "chap-pla-song-mue"
+    "romanization": "chap-pla-song-mue",
+    "english": "Try to catch two fish at once (Divided attention)"
   },
   {
     "id": "s_38",
@@ -5560,7 +6107,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "สำนวน",
     "meaning": "ผู้มีความรู้น้อยหรือโลกทัศน์แคบ แต่นึกว่าตนเองรอบรู้ทุกอย่าง",
     "exampleSentence": "การเปิดใจรับฟังผู้อื่นช่วยป้องกันไม่ให้เราเป็นกบในกะลาครอบ",
-    "romanization": "kop-nai-ka-la-khrop"
+    "romanization": "kop-nai-ka-la-khrop",
+    "english": "A frog under a coconut shell (Narrow-minded)"
   },
   {
     "id": "s_39",
@@ -5570,7 +6118,8 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำกริยา",
     "meaning": "ให้ความสนใจ ทุ่มเทดูแลอย่างใกล้ชิดและสม่ำเสมอ",
     "exampleSentence": "คุณหมอเอาใจใส่ตรวจคนไข้ทุกคนด้วยความละเอียดรอบคอบ",
-    "romanization": "ao-chai-sai"
+    "romanization": "ao-chai-sai",
+    "english": "Attentive / Caring"
   },
   {
     "id": "s_40",
@@ -5580,6 +6129,7 @@ const INITIAL_WORDS = [
     "partOfSpeech": "คำคุณศัพท์",
     "meaning": "ประพฤติตรง ไม่คดโกง ปฏิบัติหน้าที่ด้วยความโปร่งใส",
     "exampleSentence": "ความซื่อสัตย์สุจริตเป็นเกียรติยศสูงสุดในการทำงาน",
-    "romanization": "sue-sat-sut-cha-rit"
+    "romanization": "sue-sat-sut-cha-rit",
+    "english": "Integrity / Upright Honesty"
   }
 ];

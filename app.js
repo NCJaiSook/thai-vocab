@@ -293,6 +293,7 @@ class VocabApp {
       const q = this.searchQuery.trim().toLowerCase();
       list = list.filter(w => 
         w.word.toLowerCase().includes(q) ||
+        (w.english && w.english.toLowerCase().includes(q)) ||
         w.pronunciation.toLowerCase().includes(q) ||
         w.meaning.toLowerCase().includes(q) ||
         (w.romanization && w.romanization.toLowerCase().includes(q))
@@ -404,8 +405,14 @@ class VocabApp {
 
           <!-- Main Word & Pronunciation -->
           <div class="mb-4">
-            <div class="flex items-baseline gap-3 flex-wrap">
+            <div class="flex items-baseline gap-2.5 flex-wrap">
               <h3 class="text-2xl md:text-3xl font-bold text-slate-800 tracking-tight">${item.word}</h3>
+              ${item.english ? `
+                <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-lg text-xs md:text-sm font-semibold bg-indigo-50 text-indigo-700 border border-indigo-100">
+                  <span class="text-[10px] uppercase font-bold text-indigo-400">EN</span>
+                  <span>${item.english}</span>
+                </span>
+              ` : ''}
               ${item.romanization ? `<span class="text-xs text-slate-400 font-mono">(${item.romanization})</span>` : ''}
             </div>
             
@@ -505,7 +512,8 @@ class VocabApp {
           
           <div class="my-auto py-8">
             <h2 class="text-4xl md:text-6xl font-black text-slate-800 tracking-wide">${item.word}</h2>
-            ${item.romanization ? `<p class="text-slate-400 mt-2 font-mono text-sm">${item.romanization}</p>` : ''}
+            ${item.english ? `<div class="mt-2 text-indigo-600 font-bold text-lg md:text-xl">${item.english}</div>` : ''}
+            ${item.romanization ? `<p class="text-slate-400 mt-1 font-mono text-xs md:text-sm">${item.romanization}</p>` : ''}
           </div>
 
           <div class="flex items-center justify-center gap-3">
@@ -538,6 +546,12 @@ class VocabApp {
                 [${item.pronunciation}]
               </div>
             </div>
+
+            ${item.english ? `
+              <div class="text-amber-100 font-semibold text-sm md:text-base">
+                <span class="opacity-75">English:</span> ${item.english}
+              </div>
+            ` : ''}
 
             <div class="max-w-md mx-auto">
               <span class="text-xs uppercase tracking-widest text-amber-200 font-bold block mb-1">ความหมาย</span>
@@ -935,6 +949,7 @@ class VocabApp {
       addWordForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const word = document.getElementById('newWord').value.trim();
+        const english = document.getElementById('newEnglish') ? document.getElementById('newEnglish').value.trim() : '';
         const pronunciation = document.getElementById('newPronunciation').value.trim();
         const category = document.getElementById('newCategory').value;
         const partOfSpeech = document.getElementById('newPartOfSpeech').value.trim();
@@ -949,6 +964,7 @@ class VocabApp {
         const newWordObj = {
           id: 'custom_' + Date.now(),
           word: word,
+          english: english,
           pronunciation: pronunciation,
           category: category,
           partOfSpeech: partOfSpeech || 'คำนาม',
