@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="referrer" content="no-referrer">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
-  <title>Thai Vocab - คลังคำศัพท์ภาษาไทยฝึกอ่านและออกเสียง</title>
+  <title>Thai Vocab 1,000 - Learn Thai Vocabulary for English Speakers</title>
   
   <!-- Favicon & PWA meta -->
   <meta name="theme-color" content="#4f46e5">
@@ -13,7 +13,7 @@
   <meta name="apple-mobile-web-app-title" content="ThaiVocab">
   <link rel="manifest" href="manifest.json">
 
-  <!-- Google Fonts: Prompt for elegant Thai typography -->
+  <!-- Google Fonts: Prompt for elegant Thai & English typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
@@ -91,68 +91,82 @@
 </head>
 <body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col antialiased selection:bg-indigo-500 selection:text-white">
 
-  <!-- Header / Navigation Bar (Tablet Optimized) -->
+  <!-- Header / Navigation Bar (Tablet & Foreigner Friendly) -->
   <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-xs">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-18 py-3">
+      <div class="flex items-center justify-between py-2.5 gap-2 flex-wrap">
         
         <!-- Brand Logo -->
         <div class="flex items-center gap-3">
-          <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white shadow-md shadow-indigo-200 text-2xl font-bold">
+          <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-amber-500 via-orange-500 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-indigo-200 text-2xl font-bold flex-shrink-0">
             ก
           </div>
           <div>
             <div class="flex items-center gap-2">
-              <h1 class="text-xl md:text-2xl font-black text-slate-800 tracking-tight leading-none">Thai Vocab</h1>
-              <span class="px-2 py-0.5 text-xs font-semibold rounded-md bg-indigo-100 text-indigo-700 hidden sm:inline-block">สำหรับแท็บเล็ต</span>
+              <h1 class="text-lg md:text-2xl font-black text-slate-800 tracking-tight leading-none">Thai Vocab 1,000</h1>
+              <span class="px-2 py-0.5 text-[11px] font-bold rounded-md bg-amber-100 text-amber-800 hidden sm:inline-block">EN • TH Edition</span>
             </div>
-            <p class="text-xs text-slate-500 hidden md:block">คลังคำศัพท์ภาษาไทย พร้อมคำอ่านและเสียงออกเสียง</p>
+            <p class="text-xs text-slate-500 hidden md:block">Learn 1,000 Thai Words with Pronunciation & Romanization • คลังคำศัพท์ไทยสำหรับชาวต่างชาติ</p>
           </div>
         </div>
 
         <!-- Right Action Controls -->
-        <div class="flex items-center gap-2 md:gap-3">
+        <div class="flex items-center gap-2 flex-wrap justify-end">
           
           <!-- Speaking Animation Pill -->
           <div id="speakingIndicator" class="hidden items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-100 border border-emerald-300 text-emerald-800 text-xs font-semibold shadow-xs">
             <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 speaking-pulse"></span>
-            <span>กำลังอ่านออกเสียง...</span>
+            <span>Speaking... / กำลังอ่าน</span>
           </div>
 
+          <!-- Active Profile Switcher Button -->
+          <button 
+            id="profileBtn" 
+            class="flex items-center gap-2 px-3 py-1.5 rounded-2xl bg-indigo-50 hover:bg-indigo-100 border border-indigo-200/80 text-indigo-900 transition-all active:scale-95 shadow-2xs"
+            title="Switch Learner Profile / สลับโปรไฟล์ผู้เรียนและสำรองข้อมูล"
+          >
+            <span id="headerProfileAvatar" class="text-lg leading-none">🪷</span>
+            <div class="text-left leading-tight">
+              <div id="headerProfileName" class="text-xs md:text-sm font-bold text-indigo-950 max-w-[110px] truncate">Learner</div>
+              <div id="headerProfileProgress" class="text-[10px] font-semibold text-emerald-700">✓ 0/1000 Learned</div>
+            </div>
+            <svg class="w-4 h-4 text-indigo-500 ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+
           <!-- Voice Engine Selector -->
-          <div class="flex items-center gap-1.5 bg-slate-100 px-3 py-1.5 rounded-2xl border border-slate-200 text-xs md:text-sm">
-            <span class="text-slate-500 font-medium">เสียง:</span>
-            <select id="voiceEngineSelect" class="bg-transparent font-bold text-indigo-700 outline-none cursor-pointer" title="เลือกระบบเสียง">
-              <option value="google">🌐 Google ไทย (สำเนียงแท้ ธรรมชาติ)</option>
-              <option value="device">📱 ในเครื่อง (Device TTS)</option>
+          <div class="flex items-center gap-1 bg-slate-100 px-2.5 py-1.5 rounded-2xl border border-slate-200 text-xs">
+            <span class="text-slate-500 font-medium hidden lg:inline">Voice:</span>
+            <select id="voiceEngineSelect" class="bg-transparent font-bold text-indigo-700 outline-none cursor-pointer" title="Select Voice Engine / เลือกระบบเสียง">
+              <option value="google">🌐 Google Thai</option>
+              <option value="device">📱 Device TTS</option>
             </select>
           </div>
 
           <!-- Speed Control -->
-          <div class="flex items-center gap-1.5 bg-slate-100 px-3 py-1.5 rounded-2xl border border-slate-200 text-xs md:text-sm">
-            <span class="text-slate-500 font-medium">ความเร็ว:</span>
-            <select id="speechSpeedSelect" class="bg-transparent font-bold text-indigo-700 outline-none cursor-pointer">
-              <option value="1.0">1.0x (ปกติ)</option>
-              <option value="0.8">0.8x (ปานกลาง)</option>
-              <option value="0.6">0.6x (ช้าชัดถ้อย)</option>
+          <div class="flex items-center gap-1 bg-slate-100 px-2.5 py-1.5 rounded-2xl border border-slate-200 text-xs">
+            <span class="text-slate-500 font-medium hidden lg:inline">Speed:</span>
+            <select id="speechSpeedSelect" class="bg-transparent font-bold text-indigo-700 outline-none cursor-pointer" title="Speech Speed / ความเร็วเสียง">
+              <option value="1.0">1.0x Normal</option>
+              <option value="0.8">0.8x Medium</option>
+              <option value="0.6">0.6x Slow</option>
             </select>
           </div>
 
           <!-- Add Word Button -->
           <button 
             id="addWordBtn" 
-            class="flex items-center gap-1.5 px-3.5 py-2 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white font-medium text-xs md:text-sm shadow-sm transition-all active:scale-95"
-            title="เพิ่มคำศัพท์ใหม่"
+            class="flex items-center gap-1.5 px-3 py-2 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-xs shadow-sm transition-all active:scale-95"
+            title="Add Custom Word / เพิ่มคำศัพท์ใหม่"
           >
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
-            <span class="hidden sm:inline">เพิ่มคำศัพท์</span>
+            <span class="hidden sm:inline">+ คำศัพท์ / Add</span>
           </button>
 
           <!-- Fullscreen Button for Tablet -->
           <button 
             id="fullscreenBtn" 
             class="p-2 rounded-2xl text-slate-600 hover:bg-slate-100 transition-colors hidden sm:flex items-center justify-center"
-            title="แสดงผลเต็มจอ (Fullscreen)"
+            title="Fullscreen / แสดงผลเต็มจอ"
           >
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-5h-4m4 0v4m0-4l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/></svg>
           </button>
@@ -160,20 +174,29 @@
 
       </div>
 
-      <!-- Tab Navigation -->
-      <nav class="flex items-center gap-2 md:gap-8 border-t border-slate-100 overflow-x-auto no-scrollbar py-1">
-        <button data-tab="list" class="tab-btn px-4 py-2.5 border-b-2 border-indigo-600 text-indigo-600 font-bold text-sm md:text-base flex items-center gap-2 whitespace-nowrap transition-colors">
-          <span>📚 คลังคำศัพท์</span>
+      <!-- Tab Navigation (Bilingual & Direct Access to Unlearned / Learned / Favorites) -->
+      <nav class="flex items-center gap-1.5 md:gap-4 border-t border-slate-100 overflow-x-auto no-scrollbar py-1">
+        <button data-tab="list" class="tab-btn px-3.5 py-2 border-b-2 border-indigo-600 text-indigo-600 font-bold text-xs md:text-sm flex items-center gap-1.5 whitespace-nowrap transition-colors">
+          <span>📚 คลังคำศัพท์ (All Words)</span>
+          <span id="allCountBadge" class="px-2 py-0.5 rounded-full text-[11px] bg-indigo-100 text-indigo-700 font-bold">1000</span>
         </button>
-        <button data-tab="flashcard" class="tab-btn px-4 py-2.5 border-b-2 border-transparent text-slate-500 hover:text-slate-700 font-medium text-sm md:text-base flex items-center gap-2 whitespace-nowrap transition-colors">
-          <span>🎴 แฟลชการ์ด</span>
+        <button data-tab="unlearned" class="tab-btn px-3.5 py-2 border-b-2 border-transparent text-slate-500 hover:text-slate-700 font-medium text-xs md:text-sm flex items-center gap-1.5 whitespace-nowrap transition-colors">
+          <span>⏳ ยังไม่ได้เรียน (To Learn)</span>
+          <span id="unlearnedCountBadge" class="px-2 py-0.5 rounded-full text-[11px] bg-amber-100 text-amber-800 font-bold">1000</span>
         </button>
-        <button data-tab="quiz" class="tab-btn px-4 py-2.5 border-b-2 border-transparent text-slate-500 hover:text-slate-700 font-medium text-sm md:text-base flex items-center gap-2 whitespace-nowrap transition-colors">
+        <button data-tab="learned" class="tab-btn px-3.5 py-2 border-b-2 border-transparent text-slate-500 hover:text-slate-700 font-medium text-xs md:text-sm flex items-center gap-1.5 whitespace-nowrap transition-colors">
+          <span>✅ เรียนแล้ว (Learned)</span>
+          <span id="learnedCountBadge" class="px-2 py-0.5 rounded-full text-[11px] bg-emerald-100 text-emerald-700 font-bold">0</span>
+        </button>
+        <button data-tab="favorites" class="tab-btn px-3.5 py-2 border-b-2 border-transparent text-slate-500 hover:text-slate-700 font-medium text-xs md:text-sm flex items-center gap-1.5 whitespace-nowrap transition-colors">
+          <span>❤️ คำโปรด (Favorites)</span>
+          <span id="favCountBadge" class="px-2 py-0.5 rounded-full text-[11px] bg-rose-100 text-rose-600 font-bold">0</span>
+        </button>
+        <button data-tab="flashcard" class="tab-btn px-3.5 py-2 border-b-2 border-transparent text-slate-500 hover:text-slate-700 font-medium text-xs md:text-sm flex items-center gap-1.5 whitespace-nowrap transition-colors">
+          <span>🎴 แฟลชการ์ด (Flashcards)</span>
+        </button>
+        <button data-tab="quiz" class="tab-btn px-3.5 py-2 border-b-2 border-transparent text-slate-500 hover:text-slate-700 font-medium text-xs md:text-sm flex items-center gap-1.5 whitespace-nowrap transition-colors">
           <span>🎯 แบบทดสอบ (Quiz)</span>
-        </button>
-        <button data-tab="favorites" class="tab-btn px-4 py-2.5 border-b-2 border-transparent text-slate-500 hover:text-slate-700 font-medium text-sm md:text-base flex items-center gap-2 whitespace-nowrap transition-colors">
-          <span>❤️ คำที่บันทึกไว้</span>
-          <span id="favCountBadge" class="px-2 py-0.5 rounded-full text-xs bg-rose-100 text-rose-600 font-bold">0</span>
         </button>
       </nav>
 
@@ -181,10 +204,51 @@
   </header>
 
   <!-- Main Content Container -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-grow w-full">
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex-grow w-full">
 
-    <!-- TAB 1: LIST / EXPLORER VIEW -->
-    <div id="listSection" class="space-y-6">
+    <!-- TAB 1: LIST / EXPLORER VIEW (Also serves Unlearned, Learned, and Favorites tabs!) -->
+    <div id="listSection" class="space-y-5">
+
+      <!-- Learner Progress & Quick Dashboard Banner -->
+      <div class="bg-gradient-to-r from-indigo-600 via-indigo-700 to-violet-700 rounded-3xl p-4 md:p-5 text-white shadow-md flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
+        <div class="flex items-center gap-3.5">
+          <div id="bannerAvatar" class="w-12 h-12 rounded-2xl bg-white/15 backdrop-blur-xs flex items-center justify-center text-3xl shadow-inner border border-white/20 flex-shrink-0">
+            🪷
+          </div>
+          <div>
+            <div class="flex items-center gap-2 flex-wrap">
+              <h2 class="text-base md:text-lg font-extrabold tracking-tight">
+                ความคืบหน้าของ <span id="bannerProfileName" class="underline decoration-amber-300 decoration-2 underline-offset-4">Learner</span>
+              </h2>
+              <span id="bannerCategoryProgressBadge" class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-white/20 text-amber-200">
+                หมวดนี้: 0 / 100
+              </span>
+            </div>
+            <p class="text-xs md:text-sm text-indigo-100 mt-0.5">
+              แตะปุ่ม <span class="inline-flex items-center px-1.5 py-0.2 bg-emerald-500 text-white rounded-md font-bold text-xs">✓ จำได้แล้ว</span> บนการ์ดคำศัพท์ที่คุณจำได้แล้วเพื่อบันทึกความก้าวหน้า
+            </p>
+          </div>
+        </div>
+
+        <!-- Overall Progress Bar & Stats -->
+        <div class="w-full lg:w-96 bg-black/20 backdrop-blur-xs rounded-2xl p-3 border border-white/10">
+          <div class="flex items-center justify-between text-xs font-bold mb-1.5">
+            <span class="text-indigo-100">ความสำเร็จรวม (Total Mastered)</span>
+            <span id="overallProgressText" class="text-emerald-300">0 / 1,000 คำ (0%)</span>
+          </div>
+          <div class="w-full bg-white/20 rounded-full h-2.5 overflow-hidden">
+            <div id="overallProgressBar" class="bg-gradient-to-r from-emerald-400 to-teal-300 h-2.5 rounded-full transition-all duration-500" style="width: 0%"></div>
+          </div>
+          <div class="flex items-center justify-between text-[11px] text-indigo-100 mt-2 pt-1.5 border-t border-white/10">
+            <span id="statUnlearned">⏳ ยังไม่เรียน: 1000</span>
+            <span id="statLearned">✅ เรียนแล้ว: 0</span>
+            <span id="statFavorites">❤️ คำโปรด: 0</span>
+            <button id="openProfileFromBannerBtn" class="text-amber-300 hover:text-amber-200 font-bold underline cursor-pointer">
+              Export / สลับโปรไฟล์
+            </button>
+          </div>
+        </div>
+      </div>
 
       <!-- Category Filter Section (Pull-down menu + Scrollable Strip) -->
       <div id="categoryFilterSection" class="space-y-3 bg-white p-4 rounded-3xl border border-slate-200/80 shadow-xs">
@@ -193,12 +257,15 @@
         <div class="flex items-center justify-between gap-3 flex-wrap">
           <div class="flex items-center gap-2">
             <span class="text-lg">🏷️</span>
-            <h2 class="text-sm font-bold text-slate-700">หมวดหมู่คำศัพท์</h2>
+            <div>
+              <h2 class="text-sm font-bold text-slate-800 leading-tight">หมวดหมู่คำศัพท์ (Categories • หมวดละ 100 คำ)</h2>
+              <p class="text-[11px] text-slate-500">หมวดแรก: พระพุทธศาสนาและพระสงฆ์ (Buddhism & Monks) สำหรับผู้สนใจศึกษาธรรมะและวัฒนธรรมไทย</p>
+            </div>
           </div>
 
           <!-- Pull-Down Dropdown Menu -->
           <div class="flex items-center gap-2 w-full sm:w-auto">
-            <span class="text-xs font-semibold text-slate-500 whitespace-nowrap">เมนูเลือกหมวด:</span>
+            <span class="text-xs font-semibold text-slate-500 whitespace-nowrap">เลือกหมวด (Category):</span>
             <select id="categorySelect" class="flex-grow sm:flex-grow-0 px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs md:text-sm font-bold text-indigo-700 shadow-xs outline-none focus:ring-2 focus:ring-indigo-100 focus:border-indigo-500 cursor-pointer">
               <!-- Rendered via JS -->
             </select>
@@ -208,7 +275,7 @@
         <!-- Scrollable Category Pills with Left & Right Arrows -->
         <div class="relative flex items-center">
           <!-- Left Scroll Button -->
-          <button id="scrollCatLeft" class="absolute left-0 z-10 w-9 h-9 rounded-full bg-white/95 border border-slate-200 shadow-md text-slate-600 hover:text-indigo-600 hover:bg-slate-50 flex items-center justify-center transition-all active:scale-95" title="เลื่อนไปทางซ้าย">
+          <button id="scrollCatLeft" class="absolute left-0 z-10 w-9 h-9 rounded-full bg-white/95 border border-slate-200 shadow-md text-slate-600 hover:text-indigo-600 hover:bg-slate-50 flex items-center justify-center transition-all active:scale-95" title="Scroll Left / เลื่อนซ้าย">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
           </button>
 
@@ -218,32 +285,57 @@
           </div>
 
           <!-- Right Scroll Button -->
-          <button id="scrollCatRight" class="absolute right-0 z-10 w-9 h-9 rounded-full bg-white/95 border border-slate-200 shadow-md text-slate-600 hover:text-indigo-600 hover:bg-slate-50 flex items-center justify-center transition-all active:scale-95" title="เลื่อนไปทางขวา">
+          <button id="scrollCatRight" class="absolute right-0 z-10 w-9 h-9 rounded-full bg-white/95 border border-slate-200 shadow-md text-slate-600 hover:text-indigo-600 hover:bg-slate-50 flex items-center justify-center transition-all active:scale-95" title="Scroll Right / เลื่อนขวา">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
           </button>
         </div>
 
       </div>
 
-      <!-- Search & Status Bar -->
-      <div class="flex flex-col sm:flex-row items-center justify-between gap-3 bg-white p-4 rounded-3xl border border-slate-200/80 shadow-xs">
-        <div class="relative w-full sm:max-w-md">
+      <!-- Search, Learning Status Filter Pills & Result Count Bar -->
+      <div class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3 bg-white p-4 rounded-3xl border border-slate-200/80 shadow-xs">
+        
+        <!-- Search Input -->
+        <div class="relative flex-grow max-w-full lg:max-w-md">
           <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
           </span>
           <input 
             type="text" 
             id="searchInput" 
-            placeholder="ค้นหาคำศัพท์ คำแปลภาษาอังกฤษ คำอ่าน หรือความหมาย..." 
-            class="w-full pl-11 pr-10 py-2.5 rounded-2xl bg-slate-50 hover:bg-slate-100/70 focus:bg-white border border-slate-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 text-sm md:text-base outline-none transition-all placeholder:text-slate-400"
+            placeholder="ค้นหาคำไทย, English, Romanization (เช่น monk, ka-phrao, สติ)..." 
+            class="w-full pl-11 pr-10 py-2.5 rounded-2xl bg-slate-50 hover:bg-slate-100/70 focus:bg-white border border-slate-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 text-sm outline-none transition-all placeholder:text-slate-400"
           >
           <button id="clearSearch" class="hidden absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-slate-600">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
           </button>
         </div>
 
-        <div class="text-xs md:text-sm text-slate-500 font-medium self-end sm:self-center" id="resultCount">
-          <!-- Filled via JS -->
+        <!-- Status Filter Pills (All / Unlearned / Learned / Favorites) -->
+        <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5">
+          <span class="text-xs font-semibold text-slate-400 mr-1 whitespace-nowrap hidden sm:inline">สถานะ (Filter):</span>
+          <button data-status="all" class="status-filter-btn px-3 py-1.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap bg-indigo-600 text-white shadow-xs">
+            📋 ทั้งหมด (All)
+          </button>
+          <button data-status="unlearned" class="status-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold transition-all whitespace-nowrap bg-slate-100 text-slate-600 hover:bg-amber-50 hover:text-amber-700">
+            ⏳ ยังไม่ได้เรียน (To Learn)
+          </button>
+          <button data-status="learned" class="status-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold transition-all whitespace-nowrap bg-slate-100 text-slate-600 hover:bg-emerald-50 hover:text-emerald-700">
+            ✅ เรียนแล้ว (Learned)
+          </button>
+          <button data-status="favorites" class="status-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold transition-all whitespace-nowrap bg-slate-100 text-slate-600 hover:bg-rose-50 hover:text-rose-700">
+            ❤️ คำโปรด (Favorites)
+          </button>
+        </div>
+
+        <!-- Result Count & Quick Practice Action -->
+        <div class="flex items-center justify-between lg:justify-end gap-3 border-t lg:border-t-0 pt-2 lg:pt-0 border-slate-100">
+          <div class="text-xs md:text-sm text-slate-500 font-semibold whitespace-nowrap" id="resultCount">
+            <!-- Filled via JS -->
+          </div>
+          <button id="practiceCurrentSetBtn" class="px-3 py-1.5 rounded-xl bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-bold text-xs whitespace-nowrap transition-colors" title="ฝึกท่องแฟลชการ์ดจากรายการที่กรองอยู่นี้">
+            🎴 ฝึกชุดนี้ (Flashcards)
+          </button>
         </div>
       </div>
 
@@ -252,29 +344,89 @@
         <!-- Rendered via JavaScript -->
       </div>
 
+      <!-- Load More Container (When viewing All 1,000 words) -->
+      <div id="loadMoreContainer" class="hidden text-center py-6 space-y-2">
+        <p id="loadMoreInfo" class="text-xs text-slate-500 font-medium"></p>
+        <div class="flex items-center justify-center gap-3">
+          <button id="loadMoreBtn" class="px-6 py-3 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm shadow-md shadow-indigo-200 transition-all active:scale-95">
+            แสดงเพิ่มอีก 100 คำ (Load +100 Words)
+          </button>
+          <button id="loadAllBtn" class="px-5 py-3 rounded-2xl bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 font-bold text-sm shadow-xs transition-all active:scale-95">
+            แสดงทั้งหมด (Show All)
+          </button>
+        </div>
+      </div>
+
       <!-- Empty State -->
       <div id="emptyState" class="hidden text-center py-16 px-4 bg-white rounded-3xl border border-slate-200 shadow-xs">
-        <div class="text-5xl mb-4">🔍</div>
-        <h3 class="text-xl font-bold text-slate-700 mb-1">ไม่พบคำศัพท์ที่ค้นหา</h3>
-        <p class="text-sm text-slate-500 mb-6">ลองเปลี่ยนคำค้นหา หรือเลือกหมวดหมู่อื่นดูนะครับ</p>
+        <div class="text-5xl mb-4" id="emptyStateIcon">🔍</div>
+        <h3 class="text-xl font-bold text-slate-700 mb-1" id="emptyStateTitle">ไม่พบคำศัพท์ที่ค้นหา (No matching words found)</h3>
+        <p class="text-sm text-slate-500 mb-6" id="emptyStateDesc">ลองเปลี่ยนคำค้นหา เปลี่ยนตัวกรองสถานะ หรือเลือกหมวดหมู่อื่นดูนะครับ</p>
+        <button id="resetFiltersBtn" class="px-5 py-2.5 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm shadow-sm transition-all">
+          ดูคำศัพท์ทั้งหมด (Show All Words)
+        </button>
       </div>
 
     </div>
 
     <!-- TAB 2: FLASHCARD VIEW -->
-    <div id="flashcardSection" class="hidden max-w-2xl mx-auto py-6 space-y-6">
-      <div class="flex items-center justify-between">
-        <div>
-          <h2 class="text-xl font-bold text-slate-800">ฝึกท่องจำด้วยแฟลชการ์ด</h2>
-          <p class="text-xs text-slate-500">แตะที่การ์ดเพื่อดูเฉลยคำอ่านและความหมาย</p>
+    <div id="flashcardSection" class="hidden max-w-3xl mx-auto py-4 space-y-5">
+      
+      <!-- Flashcard Filter & Mode Controls -->
+      <div class="bg-white p-4 rounded-3xl border border-slate-200/80 shadow-xs space-y-3">
+        <div class="flex items-center justify-between flex-wrap gap-2">
+          <div>
+            <h2 class="text-lg md:text-xl font-bold text-slate-800">🎴 แฟลชการ์ดฝึกจำคำศัพท์ (3D Flashcards)</h2>
+            <p class="text-xs text-slate-500">แตะที่การ์ดเพื่อพลิกดูเฉลย • กดปุ่ม ✓ เมื่อจำคำศัพท์นั้นได้แล้ว</p>
+          </div>
+          <div id="flashcardCounter" class="px-3.5 py-1.5 rounded-xl bg-indigo-50 text-indigo-700 font-bold text-sm">
+            1 / 100
+          </div>
         </div>
-        <div id="flashcardCounter" class="px-3.5 py-1.5 rounded-xl bg-indigo-50 text-indigo-700 font-bold text-sm">
-          1 / 10
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-2 border-t border-slate-100">
+          <!-- Flashcard Category Select -->
+          <div>
+            <label class="block text-[11px] font-bold text-slate-500 uppercase mb-1">หมวดหมู่ (Category)</label>
+            <select id="fcCategorySelect" class="w-full px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs font-bold text-slate-700 outline-none focus:border-indigo-500">
+              <!-- Populated via JS -->
+            </select>
+          </div>
+
+          <!-- Flashcard Status Filter -->
+          <div>
+            <label class="block text-[11px] font-bold text-slate-500 uppercase mb-1">ชุดคำศัพท์ (Study Pool)</label>
+            <select id="fcStatusSelect" class="w-full px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs font-bold text-slate-700 outline-none focus:border-indigo-500">
+              <option value="all">📋 ทั้งหมดในหมวด (All Words)</option>
+              <option value="unlearned">⏳ เฉพาะคำที่ยังไม่ได้เรียน (Unlearned Only)</option>
+              <option value="learned">✅ เฉพาะคำที่เรียนแล้ว (Learned Only)</option>
+              <option value="favorites">❤️ เฉพาะคำโปรด (Favorites Only)</option>
+            </select>
+          </div>
+
+          <!-- Flashcard Front Direction -->
+          <div>
+            <label class="block text-[11px] font-bold text-slate-500 uppercase mb-1">ด้านหน้าการ์ด (Card Front)</label>
+            <select id="fcDirectionSelect" class="w-full px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs font-bold text-indigo-700 outline-none focus:border-indigo-500">
+              <option value="th-en">🇹🇭 ภาษาไทย ➔ 🇬🇧 ความหมายอังกฤษ</option>
+              <option value="en-th">🇬🇧 ภาษาอังกฤษ ➔ 🇹🇭 ทายคำไทย</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-1 flex-wrap gap-2">
+          <label class="inline-flex items-center gap-2 text-xs font-semibold text-slate-600 cursor-pointer select-none">
+            <input type="checkbox" id="fcAutoSpeakCheck" class="rounded text-indigo-600 focus:ring-indigo-500 w-4 h-4">
+            <span>🔊 อ่านออกเสียงอัตโนมัติเมื่อเปลี่ยนคำ (Auto-play Audio)</span>
+          </label>
+          <button id="fcShuffleBtn" class="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition-all active:scale-95">
+            🔀 สุ่มลำดับการ์ด (Shuffle Deck)
+          </button>
         </div>
       </div>
 
       <!-- 3D Card Flip Container -->
-      <div class="h-96 w-full [perspective:1000px] cursor-pointer" id="flashcardElement">
+      <div class="h-[420px] w-full [perspective:1000px] cursor-pointer" id="flashcardElement">
         <div class="flip-card-inner">
           <div class="card-front">
             <!-- Front rendered via JS -->
@@ -285,21 +437,66 @@
         </div>
       </div>
 
-      <!-- Navigation Prev / Next (Large touch targets for tablet fingers) -->
-      <div class="flex items-center justify-between gap-4 pt-4">
-        <button id="prevFcBtn" class="flex-1 py-4 rounded-2xl bg-white border border-slate-200 hover:bg-slate-50 active:scale-95 text-slate-700 font-bold text-base shadow-sm transition-all flex items-center justify-center gap-2">
+      <!-- Navigation Prev / Mark Learned / Next (Large touch targets for tablet fingers) -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+        <button id="prevFcBtn" class="py-3.5 px-4 rounded-2xl bg-white border border-slate-200 hover:bg-slate-50 active:scale-95 text-slate-700 font-bold text-sm md:text-base shadow-sm transition-all flex items-center justify-center gap-2">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
-          <span>คำก่อนหน้า</span>
+          <span>คำก่อนหน้า (Prev)</span>
         </button>
-        <button id="nextFcBtn" class="flex-1 py-4 rounded-2xl bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white font-bold text-base shadow-md shadow-indigo-200 transition-all flex items-center justify-center gap-2">
-          <span>คำถัดไป</span>
+
+        <button id="fcToggleLearnedBtn" class="py-3.5 px-4 rounded-2xl border-2 border-emerald-500 bg-emerald-50 hover:bg-emerald-100 active:scale-95 text-emerald-800 font-bold text-sm md:text-base shadow-sm transition-all flex items-center justify-center gap-2">
+          <span>✓ จำได้แล้ว</span>
+        </button>
+
+        <button id="nextFcBtn" class="py-3.5 px-4 rounded-2xl bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white font-bold text-sm md:text-base shadow-md shadow-indigo-200 transition-all flex items-center justify-center gap-2">
+          <span>คำถัดไป (Next)</span>
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
         </button>
       </div>
     </div>
 
     <!-- TAB 3: QUIZ VIEW -->
-    <div id="quizSection" class="hidden max-w-2xl mx-auto py-6 space-y-6">
+    <div id="quizSection" class="hidden max-w-3xl mx-auto py-4 space-y-5">
+
+      <!-- Quiz Settings Bar -->
+      <div class="bg-white p-4 rounded-3xl border border-slate-200/80 shadow-xs space-y-3">
+        <div class="flex items-center justify-between flex-wrap gap-2">
+          <div>
+            <h2 class="text-lg md:text-xl font-bold text-slate-800">🎯 แบบทดสอบวัดความจำ (Vocabulary Quiz)</h2>
+            <p class="text-xs text-slate-500">เลือกหมวดหมู่และรูปแบบคำถามที่ต้องการทดสอบ (10 ข้อต่อรอบ)</p>
+          </div>
+          <button id="newQuizRoundBtn" class="px-3.5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-xs transition-all active:scale-95">
+            🔄 เริ่มชุดคำถามใหม่ (New Quiz)
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-2 border-t border-slate-100">
+          <div>
+            <label class="block text-[11px] font-bold text-slate-500 uppercase mb-1">หมวดหมู่ (Category)</label>
+            <select id="quizCategorySelect" class="w-full px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs font-bold text-slate-700 outline-none focus:border-indigo-500">
+              <!-- Populated via JS -->
+            </select>
+          </div>
+          <div>
+            <label class="block text-[11px] font-bold text-slate-500 uppercase mb-1">ชุดคำศัพท์ (Word Pool)</label>
+            <select id="quizPoolSelect" class="w-full px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs font-bold text-slate-700 outline-none focus:border-indigo-500">
+              <option value="all">📋 ทั้งหมด (All Words)</option>
+              <option value="unlearned">⏳ เฉพาะคำที่ยังไม่ได้เรียน (Unlearned)</option>
+              <option value="learned">✅ เฉพาะคำที่เรียนแล้ว (Learned)</option>
+              <option value="favorites">❤️ เฉพาะคำโปรด (Favorites)</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-[11px] font-bold text-slate-500 uppercase mb-1">รูปแบบคำถาม (Quiz Type)</label>
+            <select id="quizTypeSelect" class="w-full px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs font-bold text-indigo-700 outline-none focus:border-indigo-500">
+              <option value="mixed">🌟 ผสมทุกรูปแบบ (Mixed EN / TH / Reading)</option>
+              <option value="th-to-en">🇹🇭 ➔ 🇬🇧 ทายคำแปลภาษาอังกฤษ (Thai to English)</option>
+              <option value="en-to-th">🇬🇧 ➔ 🇹🇭 ทายคำศัพท์ภาษาไทย (English to Thai)</option>
+              <option value="pronunciation">🗣️ ทายคำอ่านและเสียงโรมัน (Pronunciation)</option>
+            </select>
+          </div>
+        </div>
+      </div>
 
       <!-- Quiz Card Container -->
       <div id="quizContainer" class="bg-white rounded-3xl p-6 md:p-8 border border-slate-200/80 shadow-md space-y-6">
@@ -307,8 +504,8 @@
         <!-- Header & Progress -->
         <div>
           <div class="flex items-center justify-between text-sm font-semibold mb-2">
-            <span id="quizProgressText" class="text-slate-500">คำถามข้อที่ 1 จาก 10</span>
-            <span id="quizScoreBadge" class="text-indigo-600 bg-indigo-50 px-3 py-1 rounded-lg">คะแนน: 0</span>
+            <span id="quizProgressText" class="text-slate-500">คำถามข้อที่ 1 จาก 10 (Question 1 / 10)</span>
+            <span id="quizScoreBadge" class="text-indigo-600 bg-indigo-50 px-3 py-1 rounded-lg font-bold">คะแนน (Score): 0</span>
           </div>
           <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
             <div id="quizProgressBar" class="bg-indigo-600 h-2.5 rounded-full transition-all duration-300" style="width: 10%"></div>
@@ -316,14 +513,15 @@
         </div>
 
         <!-- Question Body -->
-        <div class="text-center py-6 bg-slate-50/70 rounded-2xl border border-slate-100 space-y-3">
-          <p id="quizQuestionPrompt" class="text-sm md:text-base text-slate-500 font-medium">คำว่านี้มีคำอ่านว่าอย่างไร?</p>
-          <div class="flex items-center justify-center gap-3">
-            <h3 id="quizTargetWord" class="text-4xl md:text-5xl font-black text-slate-800 tracking-wide">กะเพรา</h3>
-            <button id="quizSpeakWordBtn" class="p-3 rounded-full bg-indigo-100 hover:bg-indigo-200 text-indigo-700 transition-all active:scale-95" title="ฟังเสียง">
+        <div class="text-center py-6 px-4 bg-slate-50/70 rounded-2xl border border-slate-100 space-y-3">
+          <p id="quizQuestionPrompt" class="text-sm md:text-base text-slate-500 font-semibold">คำนี้มีความหมายภาษาอังกฤษว่าอย่างไร?</p>
+          <div class="flex items-center justify-center gap-3 flex-wrap">
+            <h3 id="quizTargetWord" class="text-3xl md:text-5xl font-black text-slate-800 tracking-wide">พระภิกษุ</h3>
+            <button id="quizSpeakWordBtn" class="p-3 rounded-full bg-indigo-100 hover:bg-indigo-200 text-indigo-700 transition-all active:scale-95" title="Listen / ฟังเสียง">
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/></svg>
             </button>
           </div>
+          <div id="quizSubHint" class="text-xs md:text-sm text-slate-400 font-mono"></div>
         </div>
 
         <!-- Multiple Choice Options -->
@@ -331,9 +529,17 @@
           <!-- Rendered via JS -->
         </div>
 
+        <!-- Answer Explanation & Mark Learned Box (Appears after answering) -->
+        <div id="quizAnswerFeedbackBox" class="hidden p-4 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+          <div id="quizAnswerDetail" class="text-xs md:text-sm text-slate-700 space-y-0.5"></div>
+          <button id="quizMarkLearnedBtn" class="px-3.5 py-2 rounded-xl text-xs font-bold border transition-all whitespace-nowrap flex-shrink-0">
+            ✓ จำได้แล้ว
+          </button>
+        </div>
+
         <!-- Next Question Button -->
         <button id="quizNextBtn" class="hidden w-full py-4 rounded-2xl bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white font-bold text-base shadow-md shadow-indigo-200 transition-all">
-          ข้อถัดไป ➔
+          ข้อถัดไป (Next Question) ➔
         </button>
 
       </div>
@@ -342,87 +548,200 @@
       <div id="quizSummary" class="hidden text-center py-12 px-6 bg-white rounded-3xl border border-slate-200 shadow-lg space-y-6">
         <div class="text-6xl">🏆</div>
         <div>
-          <h3 class="text-2xl md:text-3xl font-black text-slate-800">ผลการทำแบบทดสอบ</h3>
+          <h3 class="text-2xl md:text-3xl font-black text-slate-800">ผลการทำแบบทดสอบ (Quiz Results)</h3>
           <p id="finalScoreFeedback" class="text-slate-600 mt-2 text-base">ยอดเยี่ยมมากครับ!</p>
         </div>
         <div class="py-4">
-          <span class="text-xs uppercase tracking-wider text-slate-400 font-bold block mb-1">คะแนนรวมของคุณ</span>
+          <span class="text-xs uppercase tracking-wider text-slate-400 font-bold block mb-1">คะแนนรวมของคุณ (Your Score)</span>
           <span id="finalScoreText" class="text-5xl md:text-6xl font-black text-indigo-600">8 / 10</span>
         </div>
-        <button id="restartQuizBtn" class="px-8 py-4 rounded-2xl bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white font-bold text-base shadow-lg shadow-indigo-200 transition-all">
-          ทำแบบทดสอบอีกครั้ง 🔄
-        </button>
+        <div class="flex items-center justify-center gap-3 flex-wrap">
+          <button id="restartQuizBtn" class="px-8 py-4 rounded-2xl bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white font-bold text-base shadow-lg shadow-indigo-200 transition-all">
+            ทำแบบทดสอบอีกครั้ง (Play Again) 🔄
+          </button>
+        </div>
       </div>
 
     </div>
 
   </main>
 
-  <!-- Modal: Add New Word (สำหรับให้ผู้ใช้/คุณครู เพิ่มคำศัพท์เองได้บน Tablet) -->
+  <!-- MODAL 1: PROFILE & BACKUP MANAGER (Local Multi-Profile + Export/Import) -->
+  <div id="profileModal" class="hidden fixed inset-0 z-50 bg-black/50 backdrop-blur-xs flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-2xl w-full p-6 md:p-8 shadow-2xl border border-slate-100 max-h-[92vh] overflow-y-auto space-y-6">
+      
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+        <div class="flex items-center gap-3">
+          <span class="text-3xl">👤</span>
+          <div>
+            <h3 class="text-xl font-extrabold text-slate-800">ระบบโปรไฟล์ผู้เรียน (Learner Profiles)</h3>
+            <p class="text-xs text-slate-500">สลับผู้เรียนบนแท็บเล็ตเครื่องเดียวกัน หรือสำรองข้อมูล (Export / Import) ข้ามเครื่อง</p>
+          </div>
+        </div>
+        <button id="closeProfileModalBtn" class="p-2 text-slate-400 hover:text-slate-600 rounded-full hover:bg-slate-100">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <!-- 1. Profile List -->
+      <div class="space-y-3">
+        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500">1. เลือกโปรไฟล์ผู้เรียน (Select Active Profile)</h4>
+        <div id="profileListContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <!-- Rendered via JS -->
+        </div>
+      </div>
+
+      <!-- 2. Create New Profile -->
+      <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200/80 space-y-3">
+        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-600">2. สร้างโปรไฟล์ผู้เรียนใหม่ (Create New Profile)</h4>
+        <form id="createProfileForm" class="space-y-3">
+          <div class="flex flex-col sm:flex-row gap-3">
+            <div class="flex-grow">
+              <label class="block text-xs font-semibold text-slate-600 mb-1">ชื่อผู้เรียน (Learner Name)</label>
+              <input type="text" id="newProfileNameInput" required placeholder="เช่น Alex, หลวงพี่สมชาย, Sarah..." class="w-full px-3.5 py-2 rounded-xl bg-white border border-slate-200 focus:border-indigo-500 outline-none text-sm font-medium">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1">ไอคอน (Avatar)</label>
+              <select id="newProfileAvatarSelect" class="w-full sm:w-28 px-3 py-2 rounded-xl bg-white border border-slate-200 text-base font-bold outline-none cursor-pointer">
+                <option value="🪷">🪷 บัว</option>
+                <option value="🧘">🧘 สมาธิ</option>
+                <option value="🐘">🐘 ช้าง</option>
+                <option value="🎓">🎓 นักเรียน</option>
+                <option value="🦁">🦁 สิงโต</option>
+                <option value="🐼">🐼 แพนด้า</option>
+                <option value="🦉">🦉 นกฮูก</option>
+                <option value="🦊">🦊 จิ้งจอก</option>
+                <option value="🌟">🌟 ดาว</option>
+                <option value="🚀">🚀 จรวด</option>
+                <option value="☕">☕ กาแฟ</option>
+                <option value="🌴">🌴 ต้นตาล</option>
+              </select>
+            </div>
+          </div>
+          <button type="submit" class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs md:text-sm shadow-xs transition-all active:scale-95">
+            + เพิ่มโปรไฟล์และสลับใช้งาน (Create & Switch)
+          </button>
+        </form>
+      </div>
+
+      <!-- 3. Export / Import Backup -->
+      <div class="bg-indigo-50/60 p-4 rounded-2xl border border-indigo-100 space-y-4">
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-indigo-900">3. สำรองและย้ายข้อมูลข้ามเครื่อง (Export & Import Backup)</h4>
+          <p class="text-xs text-slate-600 mt-0.5">บันทึกความก้าวหน้าคำที่เรียนแล้ว (Learned) คำโปรด และคำศัพท์ที่เพิ่มเองเป็นไฟล์ JSON หรือคัดลอกโค้ดข้อความ</p>
+        </div>
+
+        <!-- Export Controls -->
+        <div class="flex flex-wrap gap-2.5">
+          <button id="exportFileBtn" type="button" class="px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-xs transition-all flex items-center gap-1.5">
+            <span>📥 ดาวน์โหลดไฟล์ Backup (.json)</span>
+          </button>
+          <button id="copyBackupCodeBtn" type="button" class="px-4 py-2.5 rounded-xl bg-white hover:bg-slate-50 text-indigo-700 border border-indigo-200 font-bold text-xs shadow-2xs transition-all flex items-center gap-1.5">
+            <span>📋 คัดลอกโค้ดข้อมูล (Copy Backup Code)</span>
+          </button>
+          <label class="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-xs transition-all flex items-center gap-1.5 cursor-pointer">
+            <span>📤 นำเข้าจากไฟล์ (.json)</span>
+            <input type="file" id="importFileInput" accept=".json,application/json" class="hidden">
+          </label>
+        </div>
+
+        <!-- Paste Code Import -->
+        <div class="space-y-2 pt-2 border-t border-indigo-100">
+          <label class="block text-xs font-semibold text-slate-700">หรือวางโค้ดข้อมูลโปรไฟล์ที่นี่เพื่อนำเข้า (Paste Backup JSON Code):</label>
+          <div class="flex gap-2">
+            <input type="text" id="importCodeInput" placeholder="วางโค้ด JSON ที่คัดลอกมาจากเครื่องอื่น..." class="flex-grow px-3 py-2 rounded-xl bg-white border border-slate-200 text-xs font-mono outline-none focus:border-indigo-500">
+            <button id="importCodeBtn" type="button" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-900 text-white font-bold text-xs whitespace-nowrap transition-all">
+              นำเข้าโค้ด (Import)
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MODAL 2: Add New Word (สำหรับให้ผู้ใช้/คุณครู เพิ่มคำศัพท์เองได้บน Tablet) -->
   <div id="addWordModal" class="hidden fixed inset-0 z-50 bg-black/50 backdrop-blur-xs flex items-center justify-center p-4">
     <div class="bg-white rounded-3xl max-w-lg w-full p-6 md:p-8 shadow-2xl border border-slate-100 max-h-[90vh] overflow-y-auto">
       <div class="flex items-center justify-between mb-5">
-        <h3 class="text-xl font-bold text-slate-800">เพิ่มคำศัพท์ใหม่</h3>
+        <div>
+          <h3 class="text-xl font-bold text-slate-800">เพิ่มคำศัพท์ใหม่ (Add Custom Word)</h3>
+          <p class="text-xs text-slate-500">เพิ่มคำศัพท์ภาษาไทยพร้อมคำแปลภาษาอังกฤษลงในคลังของคุณ</p>
+        </div>
         <button id="closeModalBtn" class="p-2 text-slate-400 hover:text-slate-600 rounded-full">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
         </button>
       </div>
 
       <form id="addWordForm" class="space-y-4">
-        <div>
-          <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">คำศัพท์ภาษาไทย *</label>
-          <input type="text" id="newWord" required placeholder="เช่น ทิวทัศน์" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 outline-none text-slate-800">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">คำศัพท์ภาษาไทย (Thai Word) *</label>
+            <input type="text" id="newWord" required placeholder="เช่น กัลยาณมิตร" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 outline-none text-slate-800">
+          </div>
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">คำแปลอังกฤษ (English) *</label>
+            <input type="text" id="newEnglish" required placeholder="เช่น True Spiritual Friend" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 outline-none text-slate-800">
+          </div>
         </div>
 
-        <div>
-          <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">คำแปลภาษาอังกฤษ (English Translation)</label>
-          <input type="text" id="newEnglish" placeholder="เช่น View / Landscape" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 outline-none text-slate-800">
-        </div>
-
-        <div>
-          <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">คำอ่านออกเสียง *</label>
-          <input type="text" id="newPronunciation" required placeholder="เช่น ทิว - ทัด" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 outline-none text-slate-800">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">คำอ่านไทย (Thai Reading) *</label>
+            <input type="text" id="newPronunciation" required placeholder="เช่น กัน - ละ - ยา - นะ - มิด" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 outline-none text-slate-800">
+          </div>
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">คำอ่านโรมัน (Romanization)</label>
+            <input type="text" id="newRomanization" placeholder="เช่น kan-la-ya-na-mit" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 outline-none text-slate-800 font-mono text-sm">
+          </div>
         </div>
 
         <div class="grid grid-cols-2 gap-3">
           <div>
-            <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">หมวดหมู่</label>
-            <select id="newCategory" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-indigo-500 outline-none bg-white text-slate-800">
-              <option value="food">อาหารและเครื่องดื่ม</option>
-              <option value="animals">สัตว์และธรรมชาติ</option>
-              <option value="body">ร่างกายและสุขภาพ</option>
-              <option value="daily">ชีวิตประจำวัน</option>
-              <option value="travel">การเดินทางและสถานที่</option>
-              <option value="emotions">อารมณ์และความรู้สึก</option>
-              <option value="jobs">อาชีพและการทำงาน</option>
-              <option value="education">การศึกษาและวิทยาการ</option>
-              <option value="buddhism">พระพุทธศาสนาและพระสงฆ์</option>
-              <option value="tricky">คำน่ารู้และสำนวนไทย</option>
+            <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">หมวดหมู่ (Category)</label>
+            <select id="newCategory" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-indigo-500 outline-none bg-white text-slate-800 text-sm">
+              <option value="buddhism">🪷 พระพุทธศาสนาและพระสงฆ์</option>
+              <option value="food">🍲 อาหารและเครื่องดื่ม</option>
+              <option value="animals">🌿 สัตว์และธรรมชาติ</option>
+              <option value="body">❤️ ร่างกายและสุขภาพ</option>
+              <option value="daily">⏰ ชีวิตประจำวัน</option>
+              <option value="travel">✈️ การเดินทางและสถานที่</option>
+              <option value="emotions">😊 อารมณ์และความรู้สึก</option>
+              <option value="jobs">💼 อาชีพและการทำงาน</option>
+              <option value="education">🎓 การศึกษาและวิทยาการ</option>
+              <option value="tricky">💡 คำน่ารู้และสำนวนไทย</option>
             </select>
           </div>
           <div>
-            <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">ชนิดของคำ</label>
+            <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">ชนิดของคำ (Part of Speech)</label>
             <input type="text" id="newPartOfSpeech" placeholder="เช่น คำนาม" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 outline-none text-slate-800">
           </div>
         </div>
 
         <div>
-          <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">ความหมาย *</label>
+          <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">ความหมาย (Meaning) *</label>
           <textarea id="newMeaning" required rows="2" placeholder="อธิบายความหมายสั้นๆ" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 outline-none text-slate-800"></textarea>
         </div>
 
         <div>
-          <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">ตัวอย่างประโยค (ถ้ามี)</label>
-          <input type="text" id="newExample" placeholder="เช่น ทิวทัศน์ยามพระอาทิตย์ตกดินงดงามมาก" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 outline-none text-slate-800">
+          <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1.5">ตัวอย่างประโยค (Example Sentence)</label>
+          <input type="text" id="newExample" placeholder="เช่น มิตรที่ดีคือกลัยาณมิตรที่คอยแนะนำสิ่งที่เป็นประโยชน์" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 outline-none text-slate-800">
         </div>
 
         <div class="pt-3">
           <button type="submit" class="w-full py-3.5 rounded-2xl bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white font-bold text-base shadow-md shadow-indigo-200 transition-all">
-            บันทึกคำศัพท์
+            บันทึกคำศัพท์ (Save Word)
           </button>
         </div>
       </form>
     </div>
+  </div>
+
+  <!-- Toast Notification for instant feedback -->
+  <div id="toastNotification" class="fixed bottom-5 right-5 z-50 hidden px-4 py-3 rounded-2xl bg-slate-900/95 text-white text-xs md:text-sm font-bold shadow-xl border border-slate-700 flex items-center gap-2.5 transition-all">
+    <span id="toastIcon">✅</span>
+    <span id="toastMessage">บันทึกข้อมูลเรียบร้อย</span>
   </div>
 
   <!-- Scripts -->

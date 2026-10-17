@@ -1,48 +1,94 @@
-// แอปพลิเคชันคำศัพท์ภาษาไทยสำหรับ Tablet & Desktop
-// Thai Vocabulary Web App Controller
+// แอปพลิเคชันคำศัพท์ภาษาไทย 1,000 คำ สำหรับชาวต่างชาติและผู้เรียนภาษาไทย (Tablet & Desktop)
+// Thai Vocabulary 1,000 Web App Controller with Local Multi-Profile, Learned Tracking & Bilingual UX
+
+const POS_BILINGUAL_MAP = {
+  'คำนาม': 'คำนาม • Noun',
+  'คำกริยา': 'คำกริยา • Verb',
+  'คำคุณศัพท์': 'คำคุณศัพท์ • Adj',
+  'คำวิเศษณ์': 'คำวิเศษณ์ • Adv',
+  'คำสรรพนาม': 'คำสรรพนาม • Pronoun',
+  'คำทักทาย': 'คำทักทาย • Greeting',
+  'วลี': 'วลี • Phrase',
+  'สำนวน': 'สำนวน • Idiom',
+  'สุภาษิต': 'สุภาษิต • Proverb'
+};
 
 class VocabApp {
   constructor() {
     this.words = [];
     this.categories = INITIAL_CATEGORIES;
     this.currentCategory = 'all';
+    this.statusFilter = 'all'; // 'all' | 'unlearned' | 'learned' | 'favorites'
     this.searchQuery = '';
-    this.currentTab = 'list'; // 'list' | 'flashcard' | 'quiz' | 'favorites'
+    this.currentTab = 'list'; // 'list' | 'unlearned' | 'learned' | 'favorites' | 'flashcard' | 'quiz'
+    this.displayLimit = 100; // Render 100 items initially for fast 60fps performance on tablets
+
+    // Voice & Speech settings
     this.speechSpeed = 1.0;
-    this.voiceEngine = 'google'; // 'google' (Google Thai ธรรมชาติ) | 'device' (Web Speech API)
-    this.audioCache = new Map();
+    this.voiceEngine = 'google'; // 'google' | 'device'
     this.currentAudio = null;
+
+    // Multi-Profile State
+    this.profiles = [];
+    this.activeProfileId = null;
     this.favorites = new Set();
-    
+    this.learned = new Set();
+
     // Flashcard State
     this.flashcardIndex = 0;
     this.isFlipped = false;
     this.flashcardList = [];
+    this.fcCategory = 'all';
+    this.fcStatus = 'all';
+    this.fcDirection = 'th-en'; // 'th-en' | 'en-th'
+    this.fcAutoSpeak = false;
 
     // Quiz State
+    this.quizCategory = 'all';
+    this.quizPool = 'all';
+    this.quizType = 'mixed'; // 'mixed' | 'th-to-en' | 'en-to-th' | 'pronunciation'
     this.quizQuestions = [];
     this.quizCurrentIndex = 0;
     this.quizScore = 0;
-    this.quizSelectedChoice = null;
     this.quizAnswered = false;
 
     // Audio Context for sound effects
     this.audioCtx = null;
+    this.toastTimer = null;
 
     this.init();
   }
 
   init() {
-    this.loadFavorites();
     this.loadCustomWords();
+    this.initProfiles();
     this.updateCategoryCounts();
     this.setupEventListeners();
+    this.populateCategorySelects();
     this.renderCategories();
     this.renderWordList();
+    this.updateProfileUI();
     this.setupSpeechSynthesis();
   }
 
-  // --- Audio Effects via Web Audio API (Zero external mp3 files needed) ---
+  // --- Toast Helper ---
+  showToast(message, icon = '✅') {
+    const toast = document.getElementById('toastNotification');
+    const iconEl = document.getElementById('toastIcon');
+    const msgEl = document.getElementById('toastMessage');
+    if (!toast || !msgEl) return;
+
+    if (iconEl) iconEl.textContent = icon;
+    msgEl.textContent = message;
+    toast.classList.remove('hidden');
+
+    if (this.toastTimer) clearTimeout(this.toastTimer);
+    this.toastTimer = setTimeout(() => {
+      toast.classList.add('hidden');
+    }, 2800);
+  }
+
+  // --- Audio Effects via Web Audio API ---
   getAudioContext() {
     if (!this.audioCtx) {
       const AudioContextClass = window.AudioContext || window.webkitAudioContext;
@@ -68,28 +114,25 @@ class VocabApp {
 
       const now = ctx.currentTime;
       if (type === 'correct') {
-        // High bright chime (C6 -> G6)
         osc.type = 'sine';
         osc.frequency.setValueAtTime(523.25, now);
         osc.frequency.exponentialRampToValueAtTime(783.99, now + 0.15);
-        gain.gain.setValueAtTime(0.2, now);
+        gain.gain.setValueAtTime(0.18, now);
         gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
         osc.start(now);
         osc.stop(now + 0.35);
       } else if (type === 'wrong') {
-        // Low gentle buzz
         osc.type = 'triangle';
         osc.frequency.setValueAtTime(220, now);
         osc.frequency.exponentialRampToValueAtTime(160, now + 0.25);
-        gain.gain.setValueAtTime(0.25, now);
+        gain.gain.setValueAtTime(0.22, now);
         gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
         osc.start(now);
         osc.stop(now + 0.3);
       } else if (type === 'flip') {
-        // Subtle soft click/pop
         osc.type = 'sine';
-        osc.frequency.setValueAtTime(400, now);
-        gain.gain.setValueAtTime(0.1, now);
+        osc.frequency.setValueAtTime(420, now);
+        gain.gain.setValueAtTime(0.08, now);
         gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
         osc.start(now);
         osc.stop(now + 0.08);
@@ -109,6 +152,7 @@ class VocabApp {
   }
 
   speak(text, speedMultiplier = 1) {
+    if (!text) return;
     if (this.voiceEngine === 'google') {
       this.speakGoogle(text, speedMultiplier);
     } else {
@@ -116,11 +160,9 @@ class VocabApp {
     }
   }
 
-  // Google Thai TTS: สำเนียงไทยแท้ 100% ชัดเจน เป็นธรรมชาติ ไม่เพี้ยน
   speakGoogle(text, speedMultiplier = 1) {
     const speakerPill = document.getElementById('speakingIndicator');
 
-    // หยุดเสียงเดิมที่กำลังเล่นอยู่
     if (this.currentAudio) {
       this.currentAudio.pause();
       this.currentAudio.currentTime = 0;
@@ -147,27 +189,23 @@ class VocabApp {
     };
 
     audio.onended = cleanup;
-    audio.onerror = (err) => {
-      console.warn('Google TTS failed, falling back to Device TTS:', err);
+    audio.onerror = () => {
       cleanup();
-      // หากเกิดข้อผิดพลาด เช่น ออฟไลน์ ให้สลับไปใช้ระบบเสียงในเครื่องอัตโนมัติ
       this.speakDevice(text, speedMultiplier);
     };
 
     const playPromise = audio.play();
     if (playPromise !== undefined) {
-      playPromise.catch((e) => {
-        console.warn('Audio play prevented or offline:', e);
+      playPromise.catch(() => {
         cleanup();
         this.speakDevice(text, speedMultiplier);
       });
     }
   }
 
-  // Device Web Speech API Fallback
   speakDevice(text, speedMultiplier = 1) {
     if (!('speechSynthesis' in window)) {
-      alert('เบราว์เซอร์นี้ยังไม่รองรับระบบออกเสียง');
+      this.showToast('เบราว์เซอร์นี้ยังไม่รองรับระบบออกเสียง (TTS not supported)', '⚠️');
       return;
     }
 
@@ -183,11 +221,9 @@ class VocabApp {
     utterance.pitch = 1.0;
 
     const voices = window.speechSynthesis.getVoices();
-    // คัดเลือกเสียงภาษาไทยที่ดีที่สุดในระบบ (เช่น Niwat, Premwadee, Siri หรือ Google)
     const thaiVoices = voices.filter(v => v.lang.toLowerCase().startsWith('th') || v.name.toLowerCase().includes('thai'));
     
     if (thaiVoices.length > 0) {
-      // ให้ลำดับความสำคัญกับ Natural / Neural / Siri / Google
       const bestVoice = thaiVoices.find(v => {
         const name = v.name.toLowerCase();
         return name.includes('natural') || name.includes('neural') || name.includes('siri') || name.includes('google') || name.includes('niwat') || name.includes('premwadee');
@@ -205,21 +241,517 @@ class VocabApp {
     window.speechSynthesis.speak(utterance);
   }
 
-  // --- Local Storage Management ---
-  loadFavorites() {
+  // --- Local Multi-Profile Management + Export / Import ---
+  initProfiles() {
     try {
-      const stored = localStorage.getItem('thai_vocab_favorites');
-      if (stored) {
-        this.favorites = new Set(JSON.parse(stored));
+      const storedProfiles = localStorage.getItem('thai_vocab_profiles_v2');
+      const storedActiveId = localStorage.getItem('thai_vocab_active_profile_id');
+
+      if (storedProfiles) {
+        this.profiles = JSON.parse(storedProfiles);
+      }
+
+      if (!Array.isArray(this.profiles) || this.profiles.length === 0) {
+        // Migrate legacy favorites if present
+        let legacyFavs = [];
+        try {
+          const oldFav = localStorage.getItem('thai_vocab_favorites');
+          if (oldFav) legacyFavs = JSON.parse(oldFav);
+        } catch (e) {}
+
+        const defaultProfile = {
+          id: 'profile_default',
+          name: 'Learner 1',
+          avatar: '🪷',
+          createdAt: new Date().toISOString(),
+          learned: [],
+          favorites: Array.isArray(legacyFavs) ? legacyFavs : [],
+          settings: {
+            voiceEngine: 'google',
+            speechSpeed: 1.0
+          },
+          quizStats: {
+            quizzesPlayed: 0,
+            bestScore: 0,
+            lastScore: 0
+          }
+        };
+        this.profiles = [defaultProfile];
+        this.activeProfileId = defaultProfile.id;
+        this.saveProfilesToStorage();
+      } else {
+        const found = this.profiles.find(p => p.id === storedActiveId);
+        this.activeProfileId = found ? found.id : this.profiles[0].id;
       }
     } catch (e) {
-      this.favorites = new Set();
+      console.warn('Error loading profiles:', e);
+      this.profiles = [{
+        id: 'profile_default',
+        name: 'Learner 1',
+        avatar: '🪷',
+        createdAt: new Date().toISOString(),
+        learned: [],
+        favorites: [],
+        settings: { voiceEngine: 'google', speechSpeed: 1.0 },
+        quizStats: { quizzesPlayed: 0, bestScore: 0, lastScore: 0 }
+      }];
+      this.activeProfileId = 'profile_default';
+    }
+
+    this.applyActiveProfileState();
+  }
+
+  getActiveProfile() {
+    return this.profiles.find(p => p.id === this.activeProfileId) || this.profiles[0];
+  }
+
+  applyActiveProfileState() {
+    const profile = this.getActiveProfile();
+    if (!profile) return;
+
+    this.learned = new Set(Array.isArray(profile.learned) ? profile.learned : []);
+    this.favorites = new Set(Array.isArray(profile.favorites) ? profile.favorites : []);
+
+    if (profile.settings) {
+      this.voiceEngine = profile.settings.voiceEngine || 'google';
+      this.speechSpeed = parseFloat(profile.settings.speechSpeed) || 1.0;
+    }
+
+    const voiceSelect = document.getElementById('voiceEngineSelect');
+    if (voiceSelect) voiceSelect.value = this.voiceEngine;
+
+    const speedSelect = document.getElementById('speechSpeedSelect');
+    if (speedSelect) speedSelect.value = this.speechSpeed.toFixed(1);
+  }
+
+  saveProfilesToStorage() {
+    const profile = this.getActiveProfile();
+    if (profile) {
+      profile.learned = [...this.learned];
+      profile.favorites = [...this.favorites];
+      profile.settings = {
+        voiceEngine: this.voiceEngine,
+        speechSpeed: this.speechSpeed
+      };
+    }
+    try {
+      localStorage.setItem('thai_vocab_profiles_v2', JSON.stringify(this.profiles));
+      localStorage.setItem('thai_vocab_active_profile_id', this.activeProfileId);
+      // Keep legacy key synced for backward compatibility
+      localStorage.setItem('thai_vocab_favorites', JSON.stringify([...this.favorites]));
+    } catch (e) {
+      console.warn('Save profile error:', e);
     }
   }
 
-  saveFavorites() {
-    localStorage.setItem('thai_vocab_favorites', JSON.stringify([...this.favorites]));
+  switchProfile(profileId) {
+    const target = this.profiles.find(p => p.id === profileId);
+    if (!target) return;
+
+    this.saveProfilesToStorage();
+    this.activeProfileId = target.id;
+    localStorage.setItem('thai_vocab_active_profile_id', this.activeProfileId);
+
+    this.applyActiveProfileState();
     this.updateCategoryCounts();
+    this.updateProfileUI();
+    this.renderCategories();
+    this.renderWordList();
+    if (this.currentTab === 'flashcard') this.setupFlashcards();
+    if (this.currentTab === 'quiz') this.setupQuiz();
+    this.renderProfileModalList();
+    this.showToast(`สลับเป็นโปรไฟล์ "${target.name}" แล้ว (Switched to ${target.name})`, target.avatar);
+  }
+
+  createProfile(name, avatar = '🪷') {
+    const cleanName = (name || '').trim();
+    if (!cleanName) return;
+
+    const newProfile = {
+      id: 'profile_' + Date.now(),
+      name: cleanName,
+      avatar: avatar || '🪷',
+      createdAt: new Date().toISOString(),
+      learned: [],
+      favorites: [],
+      settings: {
+        voiceEngine: this.voiceEngine,
+        speechSpeed: this.speechSpeed
+      },
+      quizStats: {
+        quizzesPlayed: 0,
+        bestScore: 0,
+        lastScore: 0
+      }
+    };
+
+    this.profiles.push(newProfile);
+    this.switchProfile(newProfile.id);
+  }
+
+  deleteProfile(profileId) {
+    if (this.profiles.length <= 1) {
+      this.showToast('ต้องมีอย่างน้อย 1 โปรไฟล์ในระบบ (At least 1 profile required)', '⚠️');
+      return;
+    }
+    const target = this.profiles.find(p => p.id === profileId);
+    if (!target) return;
+
+    if (!confirm(`ต้องการลบโปรไฟล์ "${target.name}" และข้อมูลความก้าวหน้าในโปรไฟล์นี้ใช่หรือไม่?\n(Delete profile "${target.name}"?)`)) {
+      return;
+    }
+
+    this.profiles = this.profiles.filter(p => p.id !== profileId);
+    if (this.activeProfileId === profileId) {
+      this.activeProfileId = this.profiles[0].id;
+      this.applyActiveProfileState();
+    }
+    this.saveProfilesToStorage();
+    this.updateCategoryCounts();
+    this.updateProfileUI();
+    this.renderCategories();
+    this.renderWordList();
+    this.renderProfileModalList();
+    this.showToast(`ลบโปรไฟล์ "${target.name}" เรียบร้อยแล้ว`, '🗑️');
+  }
+
+  resetProfileProgress(profileId) {
+    const target = this.profiles.find(p => p.id === profileId);
+    if (!target) return;
+
+    if (!confirm(`ต้องการล้างข้อมูลคำที่เรียนแล้วของ "${target.name}" เริ่มต้นใหม่ใช่หรือไม่?\n(Reset learned words for "${target.name}"?)`)) {
+      return;
+    }
+
+    target.learned = [];
+    if (target.id === this.activeProfileId) {
+      this.learned.clear();
+    }
+    this.saveProfilesToStorage();
+    this.updateCategoryCounts();
+    this.updateProfileUI();
+    this.renderCategories();
+    this.renderWordList();
+    this.renderProfileModalList();
+    this.showToast(`รีเซ็ตความก้าวหน้าของ "${target.name}" แล้ว`, '🔄');
+  }
+
+  getBackupPayload() {
+    this.saveProfilesToStorage();
+    const customWords = JSON.parse(localStorage.getItem('thai_vocab_custom') || '[]');
+    return {
+      app: 'ThaiVocab1000',
+      version: 2,
+      exportedAt: new Date().toISOString(),
+      activeProfileId: this.activeProfileId,
+      profiles: this.profiles,
+      customWords: customWords
+    };
+  }
+
+  exportBackupFile() {
+    const payload = this.getBackupPayload();
+    const jsonStr = JSON.stringify(payload, null, 2);
+    const blob = new Blob([jsonStr], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const activeProfile = this.getActiveProfile();
+    const safeName = (activeProfile ? activeProfile.name : 'learner').replace(/[^a-zA-Z0-9ก-๙_-]/g, '_');
+    const dateStr = new Date().toISOString().slice(0, 10);
+
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `thai-vocab-profile-${safeName}-${dateStr}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    this.showToast('ดาวน์โหลดไฟล์สำรองข้อมูลโปรไฟล์เรียบร้อยแล้ว (Backup downloaded)', '📥');
+  }
+
+  copyBackupCode() {
+    const payload = this.getBackupPayload();
+    const jsonStr = JSON.stringify(payload);
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(jsonStr).then(() => {
+        this.showToast('คัดลอกโค้ดข้อมูลโปรไฟล์ไปยังคลิปบอร์ดแล้ว (Copied to clipboard)', '📋');
+      }).catch(() => {
+        this.fallbackCopyText(jsonStr);
+      });
+    } else {
+      this.fallbackCopyText(jsonStr);
+    }
+  }
+
+  fallbackCopyText(text) {
+    const input = document.getElementById('importCodeInput');
+    if (input) {
+      input.value = text;
+      input.select();
+      document.execCommand('copy');
+      this.showToast('คัดลอกโค้ดข้อมูลแล้ว (สามารถนำไปวางที่เครื่องอื่นได้ทันที)', '📋');
+    }
+  }
+
+  importBackupData(rawJsonString) {
+    try {
+      const data = JSON.parse(rawJsonString.trim());
+      if (!data || (!Array.isArray(data.profiles) && !data.learned)) {
+        alert('รูปแบบข้อมูลไม่ถูกต้อง กรุณาตรวจสอบไฟล์หรือโค้ด JSON อีกครั้งครับ (Invalid backup format)');
+        return;
+      }
+
+      // Import custom words if included
+      if (Array.isArray(data.customWords) && data.customWords.length > 0) {
+        const existingCustom = JSON.parse(localStorage.getItem('thai_vocab_custom') || '[]');
+        const existingIds = new Set(existingCustom.map(w => w.id));
+        data.customWords.forEach(cw => {
+          if (cw && cw.id && !existingIds.has(cw.id)) {
+            existingCustom.push(cw);
+          }
+        });
+        localStorage.setItem('thai_vocab_custom', JSON.stringify(existingCustom));
+        this.loadCustomWords();
+      }
+
+      // Import profiles (merge by id or add)
+      if (Array.isArray(data.profiles)) {
+        data.profiles.forEach(incoming => {
+          if (!incoming || !incoming.id) return;
+          const idx = this.profiles.findIndex(p => p.id === incoming.id);
+          if (idx >= 0) {
+            // Merge learned and favorites sets
+            const mergedLearned = [...new Set([...(this.profiles[idx].learned || []), ...(incoming.learned || [])])];
+            const mergedFavs = [...new Set([...(this.profiles[idx].favorites || []), ...(incoming.favorites || [])])];
+            this.profiles[idx] = {
+              ...this.profiles[idx],
+              ...incoming,
+              learned: mergedLearned,
+              favorites: mergedFavs
+            };
+          } else {
+            this.profiles.push(incoming);
+          }
+        });
+        if (data.activeProfileId && this.profiles.some(p => p.id === data.activeProfileId)) {
+          this.activeProfileId = data.activeProfileId;
+        }
+      }
+
+      this.applyActiveProfileState();
+      this.saveProfilesToStorage();
+      this.updateCategoryCounts();
+      this.updateProfileUI();
+      this.renderCategories();
+      this.renderWordList();
+      this.renderProfileModalList();
+
+      const importCodeInput = document.getElementById('importCodeInput');
+      if (importCodeInput) importCodeInput.value = '';
+
+      this.showToast('นำเข้าข้อมูลโปรไฟล์และความก้าวหน้าเรียบร้อยแล้ว! (Import successful)', '🎉');
+    } catch (e) {
+      console.error('Import error:', e);
+      alert('ไม่สามารถอ่านข้อมูลได้ กรุณาตรวจสอบว่าไฟล์หรือโค้ด JSON ถูกต้องครบถ้วนครับ');
+    }
+  }
+
+  renderProfileModalList() {
+    const container = document.getElementById('profileListContainer');
+    if (!container) return;
+
+    const totalWords = this.words.length;
+
+    container.innerHTML = this.profiles.map(p => {
+      const isActive = p.id === this.activeProfileId;
+      const learnedCount = Array.isArray(p.learned) ? p.learned.length : 0;
+      const favCount = Array.isArray(p.favorites) ? p.favorites.length : 0;
+      const pct = totalWords > 0 ? Math.round((learnedCount / totalWords) * 100) : 0;
+      const quizzes = p.quizStats ? p.quizStats.quizzesPlayed || 0 : 0;
+
+      return `
+        <div class="p-4 rounded-2xl border-2 transition-all flex flex-col justify-between gap-3 ${
+          isActive
+            ? 'border-indigo-600 bg-indigo-50/50 shadow-sm'
+            : 'border-slate-200 bg-white hover:border-indigo-300'
+        }">
+          <div class="flex items-start justify-between gap-2">
+            <div class="flex items-center gap-3 cursor-pointer flex-grow select-profile-trigger" data-id="${p.id}">
+              <div class="w-11 h-11 rounded-2xl bg-white border border-slate-200 flex items-center justify-center text-2xl shadow-2xs">
+                ${p.avatar || '🪷'}
+              </div>
+              <div>
+                <div class="flex items-center gap-1.5">
+                  <span class="font-bold text-slate-800 text-sm md:text-base">${p.name}</span>
+                  ${isActive ? '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-indigo-600 text-white">ใช้งานอยู่ (Active)</span>' : ''}
+                </div>
+                <div class="text-xs text-slate-500 mt-0.5">
+                  ✅ เรียนแล้ว <strong class="text-emerald-700">${learnedCount}/${totalWords}</strong> (${pct}%) • ❤️ ${favCount} • 🎯 Quiz: ${quizzes}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="w-full bg-slate-200/80 rounded-full h-1.5 overflow-hidden">
+            <div class="bg-emerald-500 h-1.5 rounded-full" style="width: ${pct}%"></div>
+          </div>
+
+          <div class="flex items-center justify-between gap-2 pt-1 border-t border-slate-100">
+            ${!isActive ? `
+              <button class="select-profile-trigger px-3 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold transition-all" data-id="${p.id}">
+                สลับใช้โปรไฟล์นี้ (Switch)
+              </button>
+            ` : `
+              <span class="text-[11px] font-bold text-indigo-700">✓ โปรไฟล์ปัจจุบัน</span>
+            `}
+            <div class="flex items-center gap-1.5 ml-auto">
+              <button class="reset-profile-btn px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-amber-100 text-slate-600 hover:text-amber-800 text-[11px] font-semibold transition-colors" data-id="${p.id}" title="รีเซ็ตคำที่เรียนแล้ว">
+                รีเซ็ต
+              </button>
+              ${this.profiles.length > 1 ? `
+                <button class="delete-profile-btn px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-rose-100 text-slate-600 hover:text-rose-700 text-[11px] font-semibold transition-colors" data-id="${p.id}" title="ลบโปรไฟล์">
+                  ลบ
+                </button>
+              ` : ''}
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    container.querySelectorAll('.select-profile-trigger').forEach(el => {
+      el.addEventListener('click', () => this.switchProfile(el.dataset.id));
+    });
+    container.querySelectorAll('.reset-profile-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.resetProfileProgress(btn.dataset.id);
+      });
+    });
+    container.querySelectorAll('.delete-profile-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.deleteProfile(btn.dataset.id);
+      });
+    });
+  }
+
+  updateProfileUI() {
+    const profile = this.getActiveProfile();
+    if (!profile) return;
+
+    const total = this.words.length;
+    const learnedCount = this.learned.size;
+    const unlearnedCount = Math.max(0, total - learnedCount);
+    const favCount = this.favorites.size;
+    const pct = total > 0 ? Math.round((learnedCount / total) * 100) : 0;
+
+    // Header button
+    const headerAvatar = document.getElementById('headerProfileAvatar');
+    const headerName = document.getElementById('headerProfileName');
+    const headerProgress = document.getElementById('headerProfileProgress');
+    if (headerAvatar) headerAvatar.textContent = profile.avatar || '🪷';
+    if (headerName) headerName.textContent = profile.name;
+    if (headerProgress) headerProgress.textContent = `✓ ${learnedCount}/${total} (${pct}%)`;
+
+    // Banner in Explorer
+    const bannerAvatar = document.getElementById('bannerAvatar');
+    const bannerName = document.getElementById('bannerProfileName');
+    const overallText = document.getElementById('overallProgressText');
+    const overallBar = document.getElementById('overallProgressBar');
+    const statUnlearned = document.getElementById('statUnlearned');
+    const statLearned = document.getElementById('statLearned');
+    const statFavorites = document.getElementById('statFavorites');
+    const bannerCatBadge = document.getElementById('bannerCategoryProgressBadge');
+
+    if (bannerAvatar) bannerAvatar.textContent = profile.avatar || '🪷';
+    if (bannerName) bannerName.textContent = profile.name;
+    if (overallText) overallText.textContent = `${learnedCount} / ${total.toLocaleString()} คำ (${pct}%)`;
+    if (overallBar) overallBar.style.width = `${pct}%`;
+    if (statUnlearned) statUnlearned.textContent = `⏳ ยังไม่เรียน: ${unlearnedCount}`;
+    if (statLearned) statLearned.textContent = `✅ เรียนแล้ว: ${learnedCount}`;
+    if (statFavorites) statFavorites.textContent = `❤️ คำโปรด: ${favCount}`;
+
+    if (bannerCatBadge) {
+      if (this.currentCategory === 'all') {
+        bannerCatBadge.textContent = `ทุกหมวด: เรียนแล้ว ${learnedCount} / ${total}`;
+      } else {
+        const catWords = this.words.filter(w => w.category === this.currentCategory);
+        const catLearned = catWords.filter(w => this.learned.has(w.id)).length;
+        const catObj = this.categories.find(c => c.id === this.currentCategory);
+        bannerCatBadge.textContent = `${catObj ? catObj.icon + ' ' + catObj.name : 'หมวดนี้'}: เรียนแล้ว ${catLearned} / ${catWords.length}`;
+      }
+    }
+
+    // Top Navigation Badges
+    const allBadge = document.getElementById('allCountBadge');
+    const unlearnedBadge = document.getElementById('unlearnedCountBadge');
+    const learnedBadge = document.getElementById('learnedCountBadge');
+    const favBadge = document.getElementById('favCountBadge');
+
+    if (allBadge) allBadge.textContent = total;
+    if (unlearnedBadge) unlearnedBadge.textContent = unlearnedCount;
+    if (learnedBadge) learnedBadge.textContent = learnedCount;
+    if (favBadge) favBadge.textContent = favCount;
+
+    // Status Filter Pills active state
+    document.querySelectorAll('.status-filter-btn').forEach(btn => {
+      const st = btn.dataset.status;
+      const active = st === this.statusFilter;
+      btn.className = `status-filter-btn px-3 py-1.5 rounded-xl text-xs transition-all whitespace-nowrap ${
+        active
+          ? 'bg-indigo-600 text-white font-bold shadow-xs'
+          : 'bg-slate-100 text-slate-600 font-semibold hover:bg-slate-200'
+      }`;
+    });
+  }
+
+  // --- Learned (✓) & Favorites (❤️) Toggles ---
+  toggleLearned(id, e) {
+    if (e) e.stopPropagation();
+    const isNowLearned = !this.learned.has(id);
+    if (isNowLearned) {
+      this.learned.add(id);
+      this.playBeep('correct');
+    } else {
+      this.learned.delete(id);
+      this.playBeep('flip');
+    }
+
+    this.saveProfilesToStorage();
+    this.updateCategoryCounts();
+    this.updateProfileUI();
+    this.renderCategories();
+
+    // If user is filtering specifically by unlearned or learned, re-render list so card moves cleanly
+    if (this.statusFilter === 'unlearned' || this.statusFilter === 'learned') {
+      this.renderWordList();
+    } else {
+      this.updateCardLearnedUI(id);
+    }
+
+    if (this.currentTab === 'flashcard') {
+      this.updateFlashcardLearnedButton();
+    }
+  }
+
+  updateCardLearnedUI(id) {
+    const isLearned = this.learned.has(id);
+    document.querySelectorAll(`.vocab-card-${id}`).forEach(card => {
+      card.classList.toggle('border-emerald-300', isLearned);
+      card.classList.toggle('bg-emerald-50/15', isLearned);
+      card.classList.toggle('border-slate-100', !isLearned);
+    });
+
+    document.querySelectorAll(`.learned-btn-${id}`).forEach(btn => {
+      if (isLearned) {
+        btn.className = `learned-btn learned-btn-${id} px-3 py-1.5 rounded-full text-xs font-bold flex items-center gap-1 transition-all bg-emerald-600 text-white shadow-xs hover:bg-emerald-700 active:scale-95`;
+        btn.innerHTML = `<svg class="w-4 h-4 stroke-[2.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>จำได้แล้ว</span>`;
+      } else {
+        btn.className = `learned-btn learned-btn-${id} px-3 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1 transition-all bg-slate-100 text-slate-600 hover:bg-emerald-50 hover:text-emerald-700 border border-slate-200/80 active:scale-95`;
+        btn.innerHTML = `<svg class="w-4 h-4 stroke-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>จำได้แล้ว</span>`;
+      }
+    });
   }
 
   toggleFavorite(id, e) {
@@ -230,8 +762,11 @@ class VocabApp {
       this.favorites.add(id);
       this.playBeep('correct');
     }
-    this.saveFavorites();
-    if (this.currentTab === 'favorites') {
+    this.saveProfilesToStorage();
+    this.updateCategoryCounts();
+    this.updateProfileUI();
+
+    if (this.statusFilter === 'favorites') {
       this.renderWordList();
     } else {
       this.updateFavoriteButtons(id);
@@ -242,11 +777,12 @@ class VocabApp {
     const isFav = this.favorites.has(id);
     document.querySelectorAll(`.fav-btn-${id}`).forEach(btn => {
       btn.innerHTML = isFav 
-        ? `<svg class="w-6 h-6 fill-rose-500 text-rose-500" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>`
-        : `<svg class="w-6 h-6 text-slate-400 hover:text-rose-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>`;
+        ? `<svg class="w-5 h-5 fill-rose-500 text-rose-500" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>`
+        : `<svg class="w-5 h-5 text-slate-400 hover:text-rose-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>`;
     });
   }
 
+  // --- Custom Words ---
   loadCustomWords() {
     let custom = [];
     try {
@@ -264,32 +800,63 @@ class VocabApp {
     localStorage.setItem('thai_vocab_custom', JSON.stringify(custom));
     this.words = [...INITIAL_WORDS, ...custom];
     this.updateCategoryCounts();
+    this.populateCategorySelects();
     this.renderCategories();
     this.renderWordList();
+    this.updateProfileUI();
   }
 
   updateCategoryCounts() {
     const counts = { all: this.words.length };
+    const learnedByCat = { all: this.learned.size };
+
     this.words.forEach(w => {
       counts[w.category] = (counts[w.category] || 0) + 1;
+      if (this.learned.has(w.id)) {
+        learnedByCat[w.category] = (learnedByCat[w.category] || 0) + 1;
+      }
     });
+
     this.categories.forEach(cat => {
       cat.count = counts[cat.id] || 0;
+      cat.learnedCount = learnedByCat[cat.id] || 0;
     });
-    const favCountEl = document.getElementById('favCountBadge');
-    if (favCountEl) favCountEl.textContent = this.favorites.size;
+  }
+
+  populateCategorySelects() {
+    const selectors = ['fcCategorySelect', 'quizCategorySelect'];
+    selectors.forEach(selId => {
+      const el = document.getElementById(selId);
+      if (!el) return;
+      const currentVal = el.value || 'all';
+      el.innerHTML = this.categories.map(cat => `
+        <option value="${cat.id}" ${currentVal === cat.id ? 'selected' : ''}>
+          ${cat.icon} ${cat.name} (${cat.nameEn || cat.id}) - ${cat.count} คำ
+        </option>
+      `).join('');
+    });
   }
 
   // --- Filtering ---
-  getFilteredWords() {
+  getFilteredWords(categoryOverride = null, statusOverride = null) {
+    const targetCat = categoryOverride !== null ? categoryOverride : this.currentCategory;
+    const targetStatus = statusOverride !== null ? statusOverride : this.statusFilter;
+
     let list = this.words;
-    if (this.currentTab === 'favorites') {
-      list = list.filter(w => this.favorites.has(w.id));
-    } else if (this.currentCategory !== 'all') {
-      list = list.filter(w => w.category === this.currentCategory);
+
+    if (targetCat !== 'all') {
+      list = list.filter(w => w.category === targetCat);
     }
 
-    if (this.searchQuery.trim()) {
+    if (targetStatus === 'unlearned') {
+      list = list.filter(w => !this.learned.has(w.id));
+    } else if (targetStatus === 'learned') {
+      list = list.filter(w => this.learned.has(w.id));
+    } else if (targetStatus === 'favorites') {
+      list = list.filter(w => this.favorites.has(w.id));
+    }
+
+    if (categoryOverride === null && this.searchQuery.trim()) {
       const q = this.searchQuery.trim().toLowerCase();
       list = list.filter(w => 
         w.word.toLowerCase().includes(q) ||
@@ -307,34 +874,42 @@ class VocabApp {
     const container = document.getElementById('categoriesContainer');
     const selectEl = document.getElementById('categorySelect');
 
-    // 1. Populate Pull-Down Dropdown Menu
     if (selectEl) {
       selectEl.innerHTML = this.categories.map(cat => `
         <option value="${cat.id}" ${this.currentCategory === cat.id ? 'selected' : ''}>
-          ${cat.icon} ${cat.name} (${cat.count} คำ)
+          ${cat.icon} ${cat.name} • ${cat.nameEn || ''} (✓ ${cat.learnedCount || 0}/${cat.count})
         </option>
       `).join('');
     }
 
-    // 2. Populate Category Pills
     if (!container) return;
 
     container.innerHTML = this.categories.map(cat => {
-      const isActive = this.currentCategory === cat.id && this.currentTab === 'list';
+      const isActive = this.currentCategory === cat.id;
+      const learnedCount = cat.learnedCount || 0;
+      const badgeText = learnedCount > 0 ? `✓ ${learnedCount}/${cat.count}` : `${cat.count}`;
+
       return `
         <button 
           data-category="${cat.id}"
-          class="category-btn flex items-center gap-2.5 px-4 py-2.5 rounded-2xl font-medium transition-all text-sm md:text-base whitespace-nowrap shadow-sm border ${
+          class="category-btn flex items-center gap-2.5 px-4 py-2.5 rounded-2xl font-medium transition-all text-xs md:text-sm whitespace-nowrap shadow-xs border ${
             isActive 
-              ? 'bg-gradient-to-r ' + cat.color + ' text-white border-transparent shadow-md scale-105' 
+              ? 'bg-gradient-to-r ' + cat.color + ' text-white border-transparent shadow-md scale-[1.03]' 
               : 'bg-white hover:bg-slate-50 text-slate-700 border-slate-200/80 hover:border-slate-300'
           }"
         >
           <span class="text-xl">${cat.icon}</span>
-          <span>${cat.name}</span>
+          <div class="text-left leading-tight">
+            <div class="font-bold">${cat.name}</div>
+            <div class="text-[10px] ${isActive ? 'text-white/85' : 'text-slate-400'}">${cat.nameEn || ''}</div>
+          </div>
           <span class="px-2 py-0.5 rounded-full text-xs font-bold ${
-            isActive ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-500'
-          }">${cat.count}</span>
+            isActive
+              ? 'bg-white/25 text-white'
+              : learnedCount > 0
+                ? 'bg-emerald-100 text-emerald-700'
+                : 'bg-slate-100 text-slate-500'
+          }">${badgeText}</span>
         </button>
       `;
     }).join('');
@@ -342,92 +917,170 @@ class VocabApp {
     container.querySelectorAll('.category-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         this.currentCategory = btn.dataset.category;
+        this.displayLimit = 100;
         if (selectEl) selectEl.value = this.currentCategory;
 
-        if (this.currentTab === 'favorites') {
-          this.switchTab('list');
-        } else {
-          this.renderCategories();
-          this.renderWordList();
-          // เลื่อนปุ่มหมวดหมู่นี้มาไว้กลางจอ
-          btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-        }
+        this.updateProfileUI();
+        this.renderCategories();
+        this.renderWordList();
+        btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
       });
     });
   }
 
-  // --- Render Word List (Grid Layout optimized for Tablet) ---
+  // --- Render Word List (Grid Layout with Checkmark Button & Sentence Audio) ---
   renderWordList() {
     const container = document.getElementById('wordListGrid');
     const emptyState = document.getElementById('emptyState');
     const resultCount = document.getElementById('resultCount');
+    const loadMoreContainer = document.getElementById('loadMoreContainer');
+    const loadMoreInfo = document.getElementById('loadMoreInfo');
+
     if (!container) return;
 
-    const list = this.getFilteredWords();
+    const fullList = this.getFilteredWords();
 
     if (resultCount) {
-      resultCount.textContent = `พบ ${list.length} คำศัพท์`;
+      resultCount.textContent = `พบ ${fullList.length.toLocaleString()} คำศัพท์ (Showing ${Math.min(fullList.length, this.displayLimit)} of ${fullList.length})`;
     }
 
-    if (list.length === 0) {
+    if (fullList.length === 0) {
       container.innerHTML = '';
-      if (emptyState) emptyState.classList.remove('hidden');
+      if (loadMoreContainer) loadMoreContainer.classList.add('hidden');
+      if (emptyState) {
+        emptyState.classList.remove('hidden');
+        const titleEl = document.getElementById('emptyStateTitle');
+        const descEl = document.getElementById('emptyStateDesc');
+        const iconEl = document.getElementById('emptyStateIcon');
+
+        if (this.statusFilter === 'learned') {
+          if (iconEl) iconEl.textContent = '🌱';
+          if (titleEl) titleEl.textContent = 'ยังไม่มีคำศัพท์ที่ทำเครื่องหมายว่าจำได้แล้วในหมวดนี้ (No Learned Words Yet)';
+          if (descEl) descEl.textContent = 'กดปุ่ม "✓ จำได้แล้ว" บนการ์ดคำศัพท์ที่คุณจำได้แล้ว เพื่อเก็บเข้าคลังคำที่เรียนแล้วครับ';
+        } else if (this.statusFilter === 'unlearned') {
+          if (iconEl) iconEl.textContent = '🎉';
+          if (titleEl) titleEl.textContent = 'ยอดเยี่ยม! คุณเรียนคำศัพท์ในหมวดนี้ครบทุกคำแล้ว (All Words Mastered!)';
+          if (descEl) descEl.textContent = 'ลองเลือกหมวดหมู่อื่น หรือทำแบบทดสอบ (Quiz) เพื่อทบทวนความจำดูนะครับ';
+        } else if (this.statusFilter === 'favorites') {
+          if (iconEl) iconEl.textContent = '❤️';
+          if (titleEl) titleEl.textContent = 'ยังไม่มีคำโปรดที่บันทึกไว้ (No Favorite Words Yet)';
+          if (descEl) descEl.textContent = 'กดปุ่มรูปหัวใจ ❤️ บนการ์ดคำศัพท์ที่สนใจเพื่อบันทึกไว้ทบทวนเป็นพิเศษ';
+        } else {
+          if (iconEl) iconEl.textContent = '🔍';
+          if (titleEl) titleEl.textContent = 'ไม่พบคำศัพท์ที่ค้นหา (No matching words found)';
+          if (descEl) descEl.textContent = 'ลองเปลี่ยนคำค้นหา เปลี่ยนตัวกรองสถานะ หรือเลือกหมวดหมู่อื่นดูนะครับ';
+        }
+      }
       return;
     }
 
     if (emptyState) emptyState.classList.add('hidden');
 
-    container.innerHTML = list.map(item => {
+    const visibleList = fullList.slice(0, this.displayLimit);
+
+    if (loadMoreContainer) {
+      if (fullList.length > this.displayLimit) {
+        loadMoreContainer.classList.remove('hidden');
+        if (loadMoreInfo) {
+          loadMoreInfo.textContent = `กำลังแสดง ${visibleList.length} คำแรก จากทั้งหมด ${fullList.length} คำ`;
+        }
+      } else {
+        loadMoreContainer.classList.add('hidden');
+      }
+    }
+
+    container.innerHTML = visibleList.map(item => {
       const isFav = this.favorites.has(item.id);
-      const categoryObj = this.categories.find(c => c.id === item.category) || { name: 'ทั่วไป', icon: '📖' };
+      const isLearned = this.learned.has(item.id);
+      const categoryObj = this.categories.find(c => c.id === item.category) || { name: 'ทั่วไป', nameEn: 'General', icon: '📖' };
+      const bilingualPos = POS_BILINGUAL_MAP[item.partOfSpeech] || item.partOfSpeech || 'คำศัพท์ • Word';
 
       return `
-        <div class="vocab-card bg-white rounded-3xl p-5 md:p-6 shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 flex flex-col justify-between group relative overflow-hidden">
-          <!-- Top Tag & Fav -->
-          <div class="flex items-center justify-between mb-3">
-            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-600">
+        <div class="vocab-card vocab-card-${item.id} bg-white rounded-3xl p-5 md:p-6 shadow-xs hover:shadow-xl transition-all duration-300 border ${
+          isLearned ? 'border-emerald-300 bg-emerald-50/15' : 'border-slate-100'
+        } flex flex-col justify-between group relative overflow-hidden">
+          
+          <!-- Top Tag, Checkmark (Learned) Button & Favorite Button -->
+          <div class="flex items-center justify-between gap-1.5 mb-3 flex-wrap">
+            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-medium bg-slate-100 text-slate-600">
               <span>${categoryObj.icon}</span>
-              <span>${categoryObj.name}</span>
-              <span class="text-slate-400">•</span>
-              <span class="text-indigo-600 font-semibold">${item.partOfSpeech || 'คำศัพท์'}</span>
+              <span class="truncate max-w-[115px]">${categoryObj.name}</span>
+              <span class="text-slate-300">•</span>
+              <span class="text-indigo-600 font-semibold">${bilingualPos}</span>
             </span>
-            <button 
-              class="fav-btn fav-btn-${item.id} p-2 rounded-full hover:bg-rose-50 transition-colors"
-              title="บันทึกเป็นคำโปรด"
-              data-id="${item.id}"
-            >
-              ${isFav 
-                ? `<svg class="w-6 h-6 fill-rose-500 text-rose-500" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>`
-                : `<svg class="w-6 h-6 text-slate-400 group-hover:text-rose-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>`
-              }
-            </button>
+
+            <div class="flex items-center gap-1.5">
+              <!-- Checkmark Button for Learned Status -->
+              <button 
+                class="learned-btn learned-btn-${item.id} px-3 py-1.5 rounded-full text-xs ${
+                  isLearned
+                    ? 'font-bold bg-emerald-600 text-white shadow-xs hover:bg-emerald-700'
+                    : 'font-semibold bg-slate-100 text-slate-600 hover:bg-emerald-50 hover:text-emerald-700 border border-slate-200/80'
+                } flex items-center gap-1 transition-all active:scale-95"
+                title="จำได้แล้ว"
+                data-id="${item.id}"
+              >
+                <svg class="w-4 h-4 ${isLearned ? 'stroke-[2.5]' : 'stroke-2'}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                </svg>
+                <span>จำได้แล้ว</span>
+              </button>
+
+              <!-- Favorite Heart Button -->
+              <button 
+                class="fav-btn fav-btn-${item.id} p-1.5 rounded-full hover:bg-rose-50 transition-colors"
+                title="บันทึกเป็นคำโปรด / Save to Favorites"
+                data-id="${item.id}"
+              >
+                ${isFav 
+                  ? `<svg class="w-5 h-5 fill-rose-500 text-rose-500" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>`
+                  : `<svg class="w-5 h-5 text-slate-400 group-hover:text-rose-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>`
+                }
+              </button>
+            </div>
           </div>
 
-          <!-- Main Word & Pronunciation -->
-          <div class="mb-4">
-            <div class="flex items-baseline gap-2.5 flex-wrap">
-              <h3 class="text-2xl md:text-3xl font-bold text-slate-800 tracking-tight">${item.word}</h3>
+          <!-- Main Thai Word, English Meaning & Dual Phonetic Guide -->
+          <div class="mb-4 space-y-2">
+            <div>
+              <h3 class="text-2xl md:text-3xl font-extrabold text-slate-800 tracking-tight leading-snug">${item.word}</h3>
               ${item.english ? `
-                <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-lg text-xs md:text-sm font-semibold bg-indigo-50 text-indigo-700 border border-indigo-100">
-                  <span class="text-[10px] uppercase font-bold text-indigo-400">EN</span>
+                <div class="mt-1 inline-flex items-center gap-1.5 px-3 py-1 rounded-xl text-xs md:text-sm font-bold bg-indigo-50 text-indigo-700 border border-indigo-100">
+                  <span class="text-[10px] uppercase font-black px-1.5 py-0.2 rounded bg-indigo-600 text-white">EN</span>
                   <span>${item.english}</span>
-                </span>
+                </div>
               ` : ''}
-              ${item.romanization ? `<span class="text-xs text-slate-400 font-mono">(${item.romanization})</span>` : ''}
             </div>
             
-            <div class="mt-2 inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-amber-50 border border-amber-200/60 text-amber-800 text-sm md:text-base font-medium">
-              <span class="text-xs text-amber-600 font-semibold uppercase tracking-wider">คำอ่าน:</span>
-              <span class="font-bold tracking-wide">${item.pronunciation}</span>
+            <!-- Dual Pronunciation Box: Romanization (for English Speakers) + Thai Reading -->
+            <div class="p-2.5 rounded-2xl bg-amber-50/90 border border-amber-200/70 space-y-1">
+              ${item.romanization ? `
+                <div class="flex items-center gap-1.5 text-xs md:text-sm">
+                  <span class="text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.2 rounded bg-amber-200/80 text-amber-900">Phonetic</span>
+                  <span class="font-mono font-bold text-amber-950 tracking-wide">${item.romanization}</span>
+                </div>
+              ` : ''}
+              <div class="flex items-center gap-1.5 text-xs md:text-sm text-amber-800">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-amber-600">คำอ่านไทย:</span>
+                <span class="font-bold tracking-wide">${item.pronunciation}</span>
+              </div>
             </div>
           </div>
 
-          <!-- Meaning & Example -->
-          <div class="text-slate-600 text-sm md:text-base leading-relaxed mb-5 space-y-2 flex-grow">
-            <p><span class="font-semibold text-slate-700">ความหมาย:</span> ${item.meaning}</p>
+          <!-- Meaning & Example Sentence with Sentence Audio Button -->
+          <div class="text-slate-600 text-xs md:text-sm leading-relaxed mb-4 space-y-2.5 flex-grow">
+            <p><span class="font-bold text-slate-700">ความหมาย (Meaning):</span> ${item.meaning}</p>
             ${item.exampleSentence ? `
-              <div class="p-3 bg-slate-50/80 rounded-xl border-l-4 border-indigo-400 text-xs md:text-sm text-slate-600 italic">
-                "${item.exampleSentence}"
+              <div class="p-3 bg-slate-50/90 rounded-2xl border-l-4 border-indigo-400 text-xs text-slate-600 flex items-start justify-between gap-2">
+                <span class="italic leading-relaxed">"${item.exampleSentence}"</span>
+                <button 
+                  class="speak-btn p-1.5 rounded-xl bg-white hover:bg-indigo-50 text-indigo-600 border border-slate-200 flex-shrink-0 transition-colors"
+                  title="ฟังเสียงประโยคตัวอย่าง / Listen to Example Sentence"
+                  data-word="${item.exampleSentence.replace(/"/g, '&quot;')}"
+                  data-speed="0.9"
+                >
+                  🔊
+                </button>
               </div>
             ` : ''}
           </div>
@@ -435,20 +1088,20 @@ class VocabApp {
           <!-- Audio Pronunciation Buttons (Touch Friendly) -->
           <div class="pt-3 border-t border-slate-100 flex items-center gap-2">
             <button 
-              class="speak-btn flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-2xl bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white font-medium text-sm md:text-base shadow-md shadow-indigo-200 transition-all"
-              data-word="${item.word}"
+              class="speak-btn flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-2xl bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white font-semibold text-xs md:text-sm shadow-sm shadow-indigo-200 transition-all"
+              data-word="${item.word.replace(/"/g, '&quot;')}"
               data-speed="1.0"
             >
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
               </svg>
-              <span>ฟังเสียง</span>
+              <span>ฟังเสียง (Listen)</span>
             </button>
 
             <button 
-              class="speak-btn py-3 px-4 rounded-2xl bg-slate-100 hover:bg-slate-200 active:scale-95 text-slate-700 font-medium text-xs md:text-sm transition-all"
-              title="ฟังเสียงช้า ชัดถ้อยชัดคำ"
-              data-word="${item.word}"
+              class="speak-btn py-2.5 px-3.5 rounded-2xl bg-slate-100 hover:bg-slate-200 active:scale-95 text-slate-700 font-semibold text-xs transition-all"
+              title="ฟังเสียงช้า ชัดถ้อยชัดคำ / Slow 0.6x"
+              data-word="${item.word.replace(/"/g, '&quot;')}"
               data-speed="0.6"
             >
               🐢 ช้า 0.6x
@@ -459,6 +1112,10 @@ class VocabApp {
     }).join('');
 
     // Attach listeners
+    container.querySelectorAll('.learned-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => this.toggleLearned(btn.dataset.id, e));
+    });
+
     container.querySelectorAll('.fav-btn').forEach(btn => {
       btn.addEventListener('click', (e) => this.toggleFavorite(btn.dataset.id, e));
     });
@@ -473,107 +1130,178 @@ class VocabApp {
     });
   }
 
-  // --- Flashcard Mode (Interactive 3D Flip) ---
-  setupFlashcards() {
-    this.flashcardList = this.getFilteredWords();
+  // --- Flashcard Mode (Interactive 3D Flip with Learned Toggle & Direction Switch) ---
+  setupFlashcards(syncFromExplorer = false) {
+    const fcCatEl = document.getElementById('fcCategorySelect');
+    const fcStatEl = document.getElementById('fcStatusSelect');
+
+    if (syncFromExplorer) {
+      this.fcCategory = this.currentCategory;
+      this.fcStatus = this.statusFilter;
+      if (fcCatEl) fcCatEl.value = this.fcCategory;
+      if (fcStatEl) fcStatEl.value = this.fcStatus;
+    } else {
+      if (fcCatEl) this.fcCategory = fcCatEl.value || 'all';
+      if (fcStatEl) this.fcStatus = fcStatEl.value || 'all';
+    }
+
+    this.flashcardList = this.getFilteredWords(this.fcCategory, this.fcStatus);
     if (this.flashcardList.length === 0) {
-      this.flashcardList = this.words; // Fallback to all
+      this.flashcardList = this.getFilteredWords(this.fcCategory, 'all');
+      if (this.flashcardList.length === 0) {
+        this.flashcardList = this.words;
+      }
+      this.showToast('ไม่มีคำศัพท์ในตัวกรองย่อยนี้ จึงแสดงคำทั้งหมดในหมวดแทนครับ', 'ℹ️');
     }
     this.flashcardIndex = 0;
     this.isFlipped = false;
     this.renderCurrentFlashcard();
   }
 
+  shuffleFlashcards() {
+    if (this.flashcardList.length <= 1) return;
+    this.flashcardList = [...this.flashcardList].sort(() => 0.5 - Math.random());
+    this.flashcardIndex = 0;
+    this.isFlipped = false;
+    this.playBeep('flip');
+    this.renderCurrentFlashcard();
+    this.showToast('สุ่มลำดับแฟลชการ์ดเรียบร้อยแล้ว (Deck shuffled)', '🔀');
+  }
+
+  updateFlashcardLearnedButton() {
+    const btn = document.getElementById('fcToggleLearnedBtn');
+    if (!btn || this.flashcardList.length === 0) return;
+
+    const item = this.flashcardList[this.flashcardIndex];
+    const isLearned = this.learned.has(item.id);
+
+    if (isLearned) {
+      btn.className = 'py-3.5 px-4 rounded-2xl border-2 border-emerald-600 bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white font-bold text-sm md:text-base shadow-md shadow-emerald-100 transition-all flex items-center justify-center gap-2';
+      btn.innerHTML = `<svg class="w-5 h-5 stroke-[2.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>จำได้แล้ว</span>`;
+    } else {
+      btn.className = 'py-3.5 px-4 rounded-2xl border-2 border-emerald-500 bg-emerald-50 hover:bg-emerald-100 active:scale-95 text-emerald-800 font-bold text-sm md:text-base shadow-xs transition-all flex items-center justify-center gap-2';
+      btn.innerHTML = `<svg class="w-5 h-5 stroke-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>จำได้แล้ว</span>`;
+    }
+  }
+
   renderCurrentFlashcard() {
     if (this.flashcardList.length === 0) return;
     const item = this.flashcardList[this.flashcardIndex];
-    const categoryObj = this.categories.find(c => c.id === item.category) || { name: 'ทั่วไป', icon: '📖' };
+    const categoryObj = this.categories.find(c => c.id === item.category) || { name: 'ทั่วไป', nameEn: 'General', icon: '📖' };
+    const bilingualPos = POS_BILINGUAL_MAP[item.partOfSpeech] || item.partOfSpeech || 'คำศัพท์';
     const counterEl = document.getElementById('flashcardCounter');
     const cardEl = document.getElementById('flashcardElement');
+    const isLearned = this.learned.has(item.id);
 
     if (counterEl) {
       counterEl.textContent = `${this.flashcardIndex + 1} / ${this.flashcardList.length}`;
     }
 
+    this.updateFlashcardLearnedButton();
+
     if (cardEl) {
       cardEl.classList.remove('is-flipped');
       this.isFlipped = false;
 
-      // Front: Big Word + Pronounce button + Category
       const front = cardEl.querySelector('.card-front');
-      front.innerHTML = `
-        <div class="h-full flex flex-col justify-between p-8 text-center bg-gradient-to-br from-white via-indigo-50/30 to-blue-50/50 rounded-3xl border border-indigo-100 shadow-xl">
-          <div class="flex items-center justify-between">
-            <span class="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white shadow-sm border border-slate-200 text-slate-700">
-              ${categoryObj.icon} ${categoryObj.name}
-            </span>
-            <span class="text-xs text-indigo-500 font-medium">แตะการ์ดเพื่อดูคำอ่านและความหมาย 👆</span>
-          </div>
-          
-          <div class="my-auto py-8">
-            <h2 class="text-4xl md:text-6xl font-black text-slate-800 tracking-wide">${item.word}</h2>
-            ${item.english ? `<div class="mt-2 text-indigo-600 font-bold text-lg md:text-xl">${item.english}</div>` : ''}
-            ${item.romanization ? `<p class="text-slate-400 mt-1 font-mono text-xs md:text-sm">${item.romanization}</p>` : ''}
-          </div>
-
-          <div class="flex items-center justify-center gap-3">
-            <button class="fc-speak-btn flex items-center gap-2 px-6 py-3 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white font-medium shadow-md shadow-indigo-300 transition-all active:scale-95" data-word="${item.word}">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/></svg>
-              <span>กดฟังเสียง</span>
-            </button>
-            <button class="fc-speak-slow-btn px-4 py-3 rounded-2xl bg-white border border-slate-200 text-slate-700 font-medium hover:bg-slate-50 transition-all active:scale-95" data-word="${item.word}">
-              🐢 0.6x
-            </button>
-          </div>
-        </div>
-      `;
-
-      // Back: Phonetics + Meaning + Example
       const back = cardEl.querySelector('.card-back');
+
+      if (this.fcDirection === 'en-th') {
+        // English on Front -> Guess Thai on Back
+        front.innerHTML = `
+          <div class="h-full flex flex-col justify-between p-6 md:p-8 text-center bg-gradient-to-br from-white via-indigo-50/40 to-blue-50/60 rounded-3xl border-2 ${isLearned ? 'border-emerald-400' : 'border-indigo-100'} shadow-xl">
+            <div class="flex items-center justify-between gap-2">
+              <span class="px-3 py-1 rounded-full text-xs font-semibold bg-white shadow-2xs border border-slate-200 text-slate-700">
+                ${categoryObj.icon} ${categoryObj.name} (${categoryObj.nameEn || ''})
+              </span>
+              <span class="text-xs text-indigo-600 font-semibold">แตะการ์ดเพื่อดูคำศัพท์ภาษาไทย 👆</span>
+            </div>
+            
+            <div class="my-auto py-6 space-y-3">
+              <span class="px-3 py-1 rounded-full text-xs uppercase font-bold bg-indigo-100 text-indigo-700">English Meaning • ${bilingualPos}</span>
+              <h2 class="text-3xl md:text-5xl font-black text-slate-800 tracking-tight">${item.english || item.meaning}</h2>
+              <p class="text-slate-500 text-sm max-w-md mx-auto">${item.meaning}</p>
+            </div>
+
+            <div class="text-xs text-slate-400 font-medium">
+              ลองนึกคำภาษาไทยและการออกเสียงก่อนพลิกการ์ดดูเฉลย
+            </div>
+          </div>
+        `;
+      } else {
+        // Thai on Front -> Guess English & Meaning on Back
+        front.innerHTML = `
+          <div class="h-full flex flex-col justify-between p-6 md:p-8 text-center bg-gradient-to-br from-white via-indigo-50/30 to-blue-50/50 rounded-3xl border-2 ${isLearned ? 'border-emerald-400' : 'border-indigo-100'} shadow-xl">
+            <div class="flex items-center justify-between gap-2">
+              <span class="px-3 py-1 rounded-full text-xs font-semibold bg-white shadow-2xs border border-slate-200 text-slate-700">
+                ${categoryObj.icon} ${categoryObj.name} (${categoryObj.nameEn || ''})
+              </span>
+              <span class="text-xs text-indigo-600 font-semibold">แตะการ์ดเพื่อดูคำอ่านและความหมาย 👆</span>
+            </div>
+            
+            <div class="my-auto py-6">
+              <h2 class="text-4xl md:text-6xl font-black text-slate-800 tracking-wide">${item.word}</h2>
+              ${item.romanization ? `<p class="text-amber-700 mt-3 font-mono font-bold text-sm md:text-base bg-amber-50 inline-block px-3 py-1 rounded-xl border border-amber-200">🗣️ ${item.romanization}</p>` : ''}
+            </div>
+
+            <div class="flex items-center justify-center gap-3">
+              <button class="fc-speak-btn flex items-center gap-2 px-6 py-3 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold shadow-md shadow-indigo-300 transition-all active:scale-95" data-word="${item.word.replace(/"/g, '&quot;')}">
+                <span>🔊 กดฟังเสียง (Listen)</span>
+              </button>
+              <button class="fc-speak-slow-btn px-4 py-3 rounded-2xl bg-white border border-slate-200 text-slate-700 font-semibold hover:bg-slate-50 transition-all active:scale-95" data-word="${item.word.replace(/"/g, '&quot;')}">
+                🐢 0.6x
+              </button>
+            </div>
+          </div>
+        `;
+      }
+
+      // Back: Complete Answer (Thai Word + English + Romanization + Thai Phonetics + Meaning + Example)
       back.innerHTML = `
-        <div class="h-full flex flex-col justify-between p-8 text-center bg-gradient-to-br from-amber-500 to-orange-600 text-white rounded-3xl shadow-xl">
+        <div class="h-full flex flex-col justify-between p-6 md:p-8 text-center bg-gradient-to-br from-amber-500 to-orange-600 text-white rounded-3xl shadow-xl">
           <div class="flex items-center justify-between">
-            <span class="px-3.5 py-1.5 rounded-full text-xs font-bold bg-white/20 backdrop-blur-md">
-              ${item.partOfSpeech || 'คำศัพท์'}
+            <span class="px-3 py-1 rounded-full text-xs font-bold bg-white/20 backdrop-blur-md">
+              ${bilingualPos}
             </span>
             <span class="text-xs text-amber-100 font-medium">แตะเพื่อพลิกกลับ ↩️</span>
           </div>
 
-          <div class="my-auto py-4 space-y-4">
+          <div class="my-auto py-2 space-y-3">
             <div>
-              <span class="text-xs uppercase tracking-widest text-amber-200 font-bold block mb-1">คำอ่านออกเสียง</span>
-              <div class="text-3xl md:text-5xl font-black bg-white/10 backdrop-blur-md py-3 px-6 rounded-2xl inline-block border border-white/20">
-                [${item.pronunciation}]
-              </div>
+              <h3 class="text-2xl md:text-4xl font-black">${item.word}</h3>
+              ${item.english ? `<div class="text-lg md:text-2xl font-extrabold text-amber-100 mt-0.5">🇬🇧 ${item.english}</div>` : ''}
             </div>
 
-            ${item.english ? `
-              <div class="text-amber-100 font-semibold text-sm md:text-base">
-                <span class="opacity-75">English:</span> ${item.english}
-              </div>
-            ` : ''}
+            <div class="inline-flex flex-wrap items-center justify-center gap-2 bg-white/15 backdrop-blur-md py-2 px-4 rounded-2xl border border-white/20 text-sm md:text-base font-bold">
+              <span>คำอ่าน: [${item.pronunciation}]</span>
+              ${item.romanization ? `<span class="text-amber-200 font-mono">• (${item.romanization})</span>` : ''}
+            </div>
 
-            <div class="max-w-md mx-auto">
-              <span class="text-xs uppercase tracking-widest text-amber-200 font-bold block mb-1">ความหมาย</span>
-              <p class="text-base md:text-lg text-white font-medium leading-relaxed">${item.meaning}</p>
+            <div class="max-w-lg mx-auto">
+              <p class="text-sm md:text-base text-white font-medium leading-relaxed">${item.meaning}</p>
             </div>
 
             ${item.exampleSentence ? `
-              <div class="max-w-md mx-auto p-3 bg-black/15 rounded-xl text-xs md:text-sm text-amber-100 italic">
-                "${item.exampleSentence}"
+              <div class="max-w-lg mx-auto p-2.5 bg-black/15 rounded-xl text-xs md:text-sm text-amber-50 italic flex items-center justify-center gap-2">
+                <span>"${item.exampleSentence}"</span>
+                <button class="fc-speak-btn px-2 py-1 rounded-lg bg-white/20 hover:bg-white/30 text-white text-xs not-italic font-bold" data-word="${item.exampleSentence.replace(/"/g, '&quot;')}">
+                  🔊 ประโยค
+                </button>
               </div>
             ` : ''}
           </div>
 
           <div class="flex items-center justify-center gap-3">
-            <button class="fc-speak-btn flex items-center gap-2 px-6 py-3 rounded-2xl bg-white text-orange-600 font-bold shadow-lg transition-all active:scale-95" data-word="${item.word}">
-              🔊 ฟังเสียงอีกครั้ง
+            <button class="fc-speak-btn flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-white text-orange-600 font-bold text-sm shadow-lg transition-all active:scale-95" data-word="${item.word.replace(/"/g, '&quot;')}">
+              🔊 ฟังเสียงคำศัพท์ (Speak Word)
+            </button>
+            <button class="fc-speak-slow-btn px-4 py-2.5 rounded-2xl bg-black/20 hover:bg-black/30 text-white font-bold text-sm transition-all active:scale-95" data-word="${item.word.replace(/"/g, '&quot;')}">
+              🐢 ช้า 0.6x
             </button>
           </div>
         </div>
       `;
 
-      // Speak events inside flashcard
       cardEl.querySelectorAll('.fc-speak-btn').forEach(b => {
         b.addEventListener('click', (e) => {
           e.stopPropagation();
@@ -586,20 +1314,26 @@ class VocabApp {
           this.speak(b.dataset.word, 0.6);
         });
       });
+
+      if (this.fcAutoSpeak) {
+        this.speak(item.word, 1.0);
+      }
     }
   }
 
   nextFlashcard() {
+    if (this.flashcardList.length === 0) return;
     if (this.flashcardIndex < this.flashcardList.length - 1) {
       this.flashcardIndex++;
     } else {
-      this.flashcardIndex = 0; // Loop around
+      this.flashcardIndex = 0;
     }
     this.playBeep('flip');
     this.renderCurrentFlashcard();
   }
 
   prevFlashcard() {
+    if (this.flashcardList.length === 0) return;
     if (this.flashcardIndex > 0) {
       this.flashcardIndex--;
     } else {
@@ -618,8 +1352,16 @@ class VocabApp {
     }
   }
 
-  // --- Quiz Mode (Interactive Mini Game) ---
+  // --- Quiz Mode (Interactive Mini Game for Foreigners & Thai Learners) ---
   setupQuiz() {
+    const catEl = document.getElementById('quizCategorySelect');
+    const poolEl = document.getElementById('quizPoolSelect');
+    const typeEl = document.getElementById('quizTypeSelect');
+
+    if (catEl) this.quizCategory = catEl.value || 'all';
+    if (poolEl) this.quizPool = poolEl.value || 'all';
+    if (typeEl) this.quizType = typeEl.value || 'mixed';
+
     this.quizQuestions = this.generateQuizQuestions(10);
     this.quizCurrentIndex = 0;
     this.quizScore = 0;
@@ -628,36 +1370,72 @@ class VocabApp {
   }
 
   generateQuizQuestions(total = 10) {
-    // Shuffle words
-    const shuffled = [...this.words].sort(() => 0.5 - Math.random());
+    let candidatePool = this.getFilteredWords(this.quizCategory, this.quizPool);
+    if (candidatePool.length < 4) {
+      candidatePool = this.getFilteredWords(this.quizCategory, 'all');
+      if (candidatePool.length < 4) {
+        candidatePool = this.words;
+      }
+    }
+
+    const shuffled = [...candidatePool].sort(() => 0.5 - Math.random());
     const selected = shuffled.slice(0, Math.min(total, shuffled.length));
 
     return selected.map(targetWord => {
-      // Pick 3 random wrong options
       const otherWords = this.words.filter(w => w.id !== targetWord.id);
       const wrongShuffled = otherWords.sort(() => 0.5 - Math.random()).slice(0, 3);
-      
-      // Determine question type (50% pronunciation quiz, 50% meaning quiz)
-      const isPhoneticType = Math.random() > 0.4;
+
+      let mode = this.quizType;
+      if (mode === 'mixed') {
+        const modes = ['th-to-en', 'en-to-th', 'pronunciation', 'meaning-th'];
+        mode = modes[Math.floor(Math.random() * modes.length)];
+      }
+
+      let promptText = '';
+      let displayTarget = targetWord.word;
+      let subHint = '';
+      let getOptionText = (w) => w.english || w.meaning;
+
+      if (mode === 'th-to-en') {
+        promptText = `คำว่า "${targetWord.word}" แปลเป็นภาษาอังกฤษว่าอย่างไร? (What does this word mean in English?)`;
+        displayTarget = targetWord.word;
+        subHint = targetWord.romanization ? `🗣️ ${targetWord.romanization} • [${targetWord.pronunciation}]` : `[${targetWord.pronunciation}]`;
+        getOptionText = (w) => `${w.english} (${w.meaning.slice(0, 38)}${w.meaning.length > 38 ? '...' : ''})`;
+      } else if (mode === 'en-to-th') {
+        promptText = `"${targetWord.english}" ตรงกับคำศัพท์ภาษาไทยในข้อใด? (Which Thai word matches this English meaning?)`;
+        displayTarget = `🇬🇧 ${targetWord.english}`;
+        subHint = targetWord.meaning;
+        getOptionText = (w) => `${w.word} (${w.romanization || w.pronunciation})`;
+      } else if (mode === 'pronunciation') {
+        promptText = `คำว่า "${targetWord.word}" (${targetWord.english}) มีคำอ่านออกเสียงว่าอย่างไร? (How is this pronounced?)`;
+        displayTarget = targetWord.word;
+        subHint = `🇬🇧 ${targetWord.english}`;
+        getOptionText = (w) => `${w.pronunciation} ${w.romanization ? `(${w.romanization})` : ''}`;
+      } else {
+        promptText = `คำว่า "${targetWord.word}" มีความหมายตรงกับข้อใด?`;
+        displayTarget = targetWord.word;
+        subHint = `🇬🇧 ${targetWord.english || ''} • (${targetWord.romanization || targetWord.pronunciation})`;
+        getOptionText = (w) => `${w.meaning} (${w.english || ''})`;
+      }
 
       const choices = [
         {
-          text: isPhoneticType ? targetWord.pronunciation : targetWord.meaning,
+          text: getOptionText(targetWord),
           isCorrect: true
         },
         ...wrongShuffled.map(w => ({
-          text: isPhoneticType ? w.pronunciation : w.meaning,
+          text: getOptionText(w),
           isCorrect: false
         }))
       ].sort(() => 0.5 - Math.random());
 
       return {
+        targetObj: targetWord,
         word: targetWord.word,
-        pronunciation: targetWord.pronunciation,
-        meaning: targetWord.meaning,
-        questionType: isPhoneticType ? 'pronunciation' : 'meaning',
-        questionPrompt: isPhoneticType ? `คำว่า "${targetWord.word}" มีคำอ่านว่าอย่างไร?` : `คำว่า "${targetWord.word}" มีความหมายตรงกับข้อใด?`,
-        choices: choices
+        displayTarget,
+        subHint,
+        questionPrompt: promptText,
+        choices
       };
     });
   }
@@ -665,10 +1443,10 @@ class VocabApp {
   renderQuizQuestion() {
     const container = document.getElementById('quizContainer');
     const summary = document.getElementById('quizSummary');
+    const feedbackBox = document.getElementById('quizAnswerFeedbackBox');
     if (!container) return;
 
     if (this.quizCurrentIndex >= this.quizQuestions.length) {
-      // Quiz Finished
       container.classList.add('hidden');
       if (summary) {
         summary.classList.remove('hidden');
@@ -676,11 +1454,23 @@ class VocabApp {
         const feedback = document.getElementById('finalScoreFeedback');
         const ratio = this.quizScore / this.quizQuestions.length;
         if (ratio === 1) {
-          feedback.textContent = 'ยอดเยี่ยมมาก! คุณตอบถูกครบทุกข้อ 🎉';
+          feedback.textContent = 'ยอดเยี่ยมมาก! คุณตอบถูกครบทุกข้อ (Perfect Score!) 🎉';
         } else if (ratio >= 0.7) {
-          feedback.textContent = 'เก่งมากครับ! มีความรู้ความจำคำศัพท์ดีเยี่ยม 👍';
+          feedback.textContent = 'เก่งมากครับ! มีความรู้ความจำคำศัพท์ดีเยี่ยม (Great Job!) 👍';
         } else {
-          feedback.textContent = 'ฝึกฝนอีกนิด รับรองว่าจะจำคำศัพท์ได้แม่นยำแน่นอนครับ! ✌️';
+          feedback.textContent = 'ฝึกฝนอีกนิด รับรองว่าจะจำคำศัพท์ได้แม่นยำแน่นอนครับ! (Keep Practicing!) ✌️';
+        }
+
+        // Save stats to active profile
+        const profile = this.getActiveProfile();
+        if (profile) {
+          profile.quizStats = profile.quizStats || { quizzesPlayed: 0, bestScore: 0, lastScore: 0 };
+          profile.quizStats.quizzesPlayed = (profile.quizStats.quizzesPlayed || 0) + 1;
+          profile.quizStats.lastScore = this.quizScore;
+          if (this.quizScore > (profile.quizStats.bestScore || 0)) {
+            profile.quizStats.bestScore = this.quizScore;
+          }
+          this.saveProfilesToStorage();
         }
       }
       return;
@@ -688,40 +1478,38 @@ class VocabApp {
 
     container.classList.remove('hidden');
     if (summary) summary.classList.add('hidden');
+    if (feedbackBox) feedbackBox.classList.add('hidden');
 
     const q = this.quizQuestions[this.quizCurrentIndex];
     this.quizAnswered = false;
 
-    // Progress
-    document.getElementById('quizProgressText').textContent = `คำถามข้อที่ ${this.quizCurrentIndex + 1} จาก ${this.quizQuestions.length}`;
-    document.getElementById('quizProgressBar').style.width = `${((this.quizCurrentIndex) / this.quizQuestions.length) * 100}%`;
-    document.getElementById('quizScoreBadge').textContent = `คะแนน: ${this.quizScore}`;
+    document.getElementById('quizProgressText').textContent = `คำถามข้อที่ ${this.quizCurrentIndex + 1} จาก ${this.quizQuestions.length} (Question ${this.quizCurrentIndex + 1}/${this.quizQuestions.length})`;
+    document.getElementById('quizProgressBar').style.width = `${((this.quizCurrentIndex + 1) / this.quizQuestions.length) * 100}%`;
+    document.getElementById('quizScoreBadge').textContent = `คะแนน (Score): ${this.quizScore}`;
 
-    // Prompt
-    document.getElementById('quizTargetWord').textContent = q.word;
+    document.getElementById('quizTargetWord').textContent = q.displayTarget;
     document.getElementById('quizQuestionPrompt').textContent = q.questionPrompt;
+    const subHintEl = document.getElementById('quizSubHint');
+    if (subHintEl) subHintEl.textContent = q.subHint || '';
 
-    // Speak Button in Quiz
     const speakBtn = document.getElementById('quizSpeakWordBtn');
     if (speakBtn) {
       speakBtn.onclick = () => this.speak(q.word, 1.0);
     }
 
-    // Choices
     const choicesContainer = document.getElementById('quizChoices');
     choicesContainer.innerHTML = q.choices.map((choice, idx) => `
       <button 
-        class="quiz-choice-btn w-full p-4 md:p-5 rounded-2xl border-2 border-slate-200 bg-white hover:border-indigo-400 hover:bg-indigo-50/40 text-left font-medium text-slate-700 transition-all text-base md:text-lg flex items-center gap-3 active:scale-[0.98]"
+        class="quiz-choice-btn w-full p-4 rounded-2xl border-2 border-slate-200 bg-white hover:border-indigo-400 hover:bg-indigo-50/40 text-left font-medium text-slate-700 transition-all text-sm md:text-base flex items-center gap-3 active:scale-[0.99]"
         data-index="${idx}"
       >
-        <span class="w-8 h-8 rounded-xl bg-slate-100 flex items-center justify-center font-bold text-slate-500 text-sm flex-shrink-0">
+        <span class="w-8 h-8 rounded-xl bg-slate-100 flex items-center justify-center font-bold text-slate-500 text-xs flex-shrink-0">
           ${String.fromCharCode(65 + idx)}
         </span>
         <span class="flex-grow">${choice.text}</span>
       </button>
     `).join('');
 
-    // Attach choice listeners
     choicesContainer.querySelectorAll('.quiz-choice-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         if (this.quizAnswered) return;
@@ -750,7 +1538,6 @@ class VocabApp {
       buttons[selectedIndex].classList.remove('border-slate-200', 'bg-white');
       buttons[selectedIndex].classList.add('border-rose-500', 'bg-rose-50', 'text-rose-900');
 
-      // Highlight the correct answer
       q.choices.forEach((c, idx) => {
         if (c.isCorrect) {
           buttons[idx].classList.remove('border-slate-200', 'bg-white');
@@ -759,7 +1546,31 @@ class VocabApp {
       });
     }
 
-    // Show Next Button
+    // Show detailed answer feedback & Mark as Learned button
+    const feedbackBox = document.getElementById('quizAnswerFeedbackBox');
+    const detailEl = document.getElementById('quizAnswerDetail');
+    const markLearnedBtn = document.getElementById('quizMarkLearnedBtn');
+    if (feedbackBox && detailEl && q.targetObj) {
+      const w = q.targetObj;
+      feedbackBox.classList.remove('hidden');
+      detailEl.innerHTML = `
+        <div class="font-bold text-slate-800">${w.word} • <span class="text-indigo-600">${w.english || ''}</span></div>
+        <div class="text-xs text-slate-500">คำอ่าน: [${w.pronunciation}] ${w.romanization ? `• (${w.romanization})` : ''} — ${w.meaning}</div>
+      `;
+      const updateQuizLearnedBtn = () => {
+        const isL = this.learned.has(w.id);
+        markLearnedBtn.className = isL
+          ? 'px-3.5 py-2 rounded-xl text-xs font-bold bg-emerald-600 text-white border border-emerald-600 transition-all whitespace-nowrap flex-shrink-0'
+          : 'px-3.5 py-2 rounded-xl text-xs font-bold bg-white text-emerald-700 border border-emerald-500 hover:bg-emerald-50 transition-all whitespace-nowrap flex-shrink-0';
+        markLearnedBtn.textContent = '✓ จำได้แล้ว';
+      };
+      updateQuizLearnedBtn();
+      markLearnedBtn.onclick = () => {
+        this.toggleLearned(w.id);
+        updateQuizLearnedBtn();
+      };
+    }
+
     const nextBtn = document.getElementById('quizNextBtn');
     if (nextBtn) {
       nextBtn.classList.remove('hidden');
@@ -785,24 +1596,25 @@ class VocabApp {
     const listSection = document.getElementById('listSection');
     const flashcardSection = document.getElementById('flashcardSection');
     const quizSection = document.getElementById('quizSection');
-    const categoryFilterSection = document.getElementById('categoryFilterSection');
 
-    // Show/hide sections
-    if (tab === 'list' || tab === 'favorites') {
+    if (tab === 'list' || tab === 'unlearned' || tab === 'learned' || tab === 'favorites') {
       listSection.classList.remove('hidden');
       flashcardSection.classList.add('hidden');
       quizSection.classList.add('hidden');
-      if (tab === 'favorites') {
-        categoryFilterSection.classList.add('hidden');
-      } else {
-        categoryFilterSection.classList.remove('hidden');
-      }
+
+      if (tab === 'list') this.statusFilter = 'all';
+      else if (tab === 'unlearned') this.statusFilter = 'unlearned';
+      else if (tab === 'learned') this.statusFilter = 'learned';
+      else if (tab === 'favorites') this.statusFilter = 'favorites';
+
+      this.displayLimit = 100;
+      this.updateProfileUI();
       this.renderWordList();
     } else if (tab === 'flashcard') {
       listSection.classList.add('hidden');
       flashcardSection.classList.remove('hidden');
       quizSection.classList.add('hidden');
-      this.setupFlashcards();
+      this.setupFlashcards(false);
     } else if (tab === 'quiz') {
       listSection.classList.add('hidden');
       flashcardSection.classList.add('hidden');
@@ -818,21 +1630,40 @@ class VocabApp {
       btn.addEventListener('click', () => this.switchTab(btn.dataset.tab));
     });
 
-    // Category Pull-Down Dropdown Menu listener
+    // Status Filter Pills inside Explorer
+    document.querySelectorAll('.status-filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        this.statusFilter = btn.dataset.status;
+        this.displayLimit = 100;
+        // Sync top tab highlight if matching
+        const tabMap = { all: 'list', unlearned: 'unlearned', learned: 'learned', favorites: 'favorites' };
+        const mappedTab = tabMap[this.statusFilter] || 'list';
+        this.currentTab = mappedTab;
+        document.querySelectorAll('.tab-btn').forEach(tb => {
+          const active = tb.dataset.tab === mappedTab;
+          tb.classList.toggle('text-indigo-600', active);
+          tb.classList.toggle('border-indigo-600', active);
+          tb.classList.toggle('font-bold', active);
+          tb.classList.toggle('text-slate-500', !active);
+          tb.classList.toggle('border-transparent', !active);
+        });
+        this.updateProfileUI();
+        this.renderWordList();
+      });
+    });
+
+    // Category Pull-Down Select Menu
     const categorySelect = document.getElementById('categorySelect');
     if (categorySelect) {
       categorySelect.addEventListener('change', (e) => {
         this.currentCategory = e.target.value;
-        if (this.currentTab === 'favorites') {
-          this.switchTab('list');
-        } else {
-          this.renderCategories();
-          this.renderWordList();
-          // เลื่อนปุ่มหมวดหมู่เข้ามาในมุมมอง
-          const targetBtn = document.querySelector(`.category-btn[data-category="${this.currentCategory}"]`);
-          if (targetBtn) {
-            targetBtn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-          }
+        this.displayLimit = 100;
+        this.updateProfileUI();
+        this.renderCategories();
+        this.renderWordList();
+        const activeBtn = document.querySelector(`.category-btn[data-category="${this.currentCategory}"]`);
+        if (activeBtn) {
+          activeBtn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
         }
       });
     }
@@ -847,15 +1678,12 @@ class VocabApp {
         categoriesContainer.scrollBy({ left: -280, behavior: 'smooth' });
       });
     }
-
     if (scrollCatRight && categoriesContainer) {
       scrollCatRight.addEventListener('click', () => {
         categoriesContainer.scrollBy({ left: 280, behavior: 'smooth' });
       });
     }
-
     if (categoriesContainer) {
-      // รองรับการใช้ลูกกลิ้งเมาส์เลื่อนซ้าย-ขวาบนคอมพิวเตอร์
       categoriesContainer.addEventListener('wheel', (e) => {
         if (e.deltaY !== 0) {
           e.preventDefault();
@@ -864,12 +1692,58 @@ class VocabApp {
       }, { passive: false });
     }
 
+    // Load More / Show All Buttons
+    const loadMoreBtn = document.getElementById('loadMoreBtn');
+    const loadAllBtn = document.getElementById('loadAllBtn');
+    if (loadMoreBtn) {
+      loadMoreBtn.addEventListener('click', () => {
+        this.displayLimit += 100;
+        this.renderWordList();
+      });
+    }
+    if (loadAllBtn) {
+      loadAllBtn.addEventListener('click', () => {
+        this.displayLimit = 99999;
+        this.renderWordList();
+      });
+    }
+
+    // Reset Filters Button
+    const resetFiltersBtn = document.getElementById('resetFiltersBtn');
+    if (resetFiltersBtn) {
+      resetFiltersBtn.addEventListener('click', () => {
+        this.currentCategory = 'all';
+        this.statusFilter = 'all';
+        this.searchQuery = '';
+        this.displayLimit = 100;
+        const searchInput = document.getElementById('searchInput');
+        if (searchInput) searchInput.value = '';
+        this.switchTab('list');
+        this.renderCategories();
+      });
+    }
+
+    // Practice Current Filtered Set in Flashcards
+    const practiceCurrentSetBtn = document.getElementById('practiceCurrentSetBtn');
+    if (practiceCurrentSetBtn) {
+      practiceCurrentSetBtn.addEventListener('click', () => {
+        this.fcCategory = this.currentCategory;
+        this.fcStatus = this.statusFilter;
+        const fcCatEl = document.getElementById('fcCategorySelect');
+        const fcStatEl = document.getElementById('fcStatusSelect');
+        if (fcCatEl) fcCatEl.value = this.fcCategory;
+        if (fcStatEl) fcStatEl.value = this.fcStatus;
+        this.switchTab('flashcard');
+      });
+    }
+
     // Search input
     const searchInput = document.getElementById('searchInput');
     const clearSearch = document.getElementById('clearSearch');
     if (searchInput) {
       searchInput.addEventListener('input', (e) => {
         this.searchQuery = e.target.value;
+        this.displayLimit = 100;
         if (clearSearch) {
           clearSearch.classList.toggle('hidden', !this.searchQuery);
         }
@@ -886,37 +1760,77 @@ class VocabApp {
       });
     }
 
-    // Flashcard buttons
+    // Flashcard controls
     const flashcardEl = document.getElementById('flashcardElement');
     if (flashcardEl) {
       flashcardEl.addEventListener('click', () => this.toggleFlipCard());
     }
     const nextFcBtn = document.getElementById('nextFcBtn');
     const prevFcBtn = document.getElementById('prevFcBtn');
+    const fcToggleLearnedBtn = document.getElementById('fcToggleLearnedBtn');
+    const fcCategorySelect = document.getElementById('fcCategorySelect');
+    const fcStatusSelect = document.getElementById('fcStatusSelect');
+    const fcDirectionSelect = document.getElementById('fcDirectionSelect');
+    const fcAutoSpeakCheck = document.getElementById('fcAutoSpeakCheck');
+    const fcShuffleBtn = document.getElementById('fcShuffleBtn');
+
     if (nextFcBtn) nextFcBtn.addEventListener('click', () => this.nextFlashcard());
     if (prevFcBtn) prevFcBtn.addEventListener('click', () => this.prevFlashcard());
+    if (fcToggleLearnedBtn) {
+      fcToggleLearnedBtn.addEventListener('click', () => {
+        if (this.flashcardList.length === 0) return;
+        const currentItem = this.flashcardList[this.flashcardIndex];
+        this.toggleLearned(currentItem.id);
+      });
+    }
+    if (fcCategorySelect) fcCategorySelect.addEventListener('change', () => this.setupFlashcards(false));
+    if (fcStatusSelect) fcStatusSelect.addEventListener('change', () => this.setupFlashcards(false));
+    if (fcDirectionSelect) {
+      fcDirectionSelect.addEventListener('change', (e) => {
+        this.fcDirection = e.target.value;
+        this.renderCurrentFlashcard();
+      });
+    }
+    if (fcAutoSpeakCheck) {
+      fcAutoSpeakCheck.addEventListener('change', (e) => {
+        this.fcAutoSpeak = e.target.checked;
+      });
+    }
+    if (fcShuffleBtn) {
+      fcShuffleBtn.addEventListener('click', () => this.shuffleFlashcards());
+    }
 
-    // Quiz restart
+    // Quiz controls
     const restartQuizBtn = document.getElementById('restartQuizBtn');
-    if (restartQuizBtn) restartQuizBtn.addEventListener('click', () => this.setupQuiz());
+    const newQuizRoundBtn = document.getElementById('newQuizRoundBtn');
+    const quizCategorySelect = document.getElementById('quizCategorySelect');
+    const quizPoolSelect = document.getElementById('quizPoolSelect');
+    const quizTypeSelect = document.getElementById('quizTypeSelect');
 
-    // Speed toggle
+    if (restartQuizBtn) restartQuizBtn.addEventListener('click', () => this.setupQuiz());
+    if (newQuizRoundBtn) newQuizRoundBtn.addEventListener('click', () => this.setupQuiz());
+    if (quizCategorySelect) quizCategorySelect.addEventListener('change', () => this.setupQuiz());
+    if (quizPoolSelect) quizPoolSelect.addEventListener('change', () => this.setupQuiz());
+    if (quizTypeSelect) quizTypeSelect.addEventListener('change', () => this.setupQuiz());
+
+    // Speed & Voice Engine toggles (saved per profile)
     const speedSelect = document.getElementById('speechSpeedSelect');
     if (speedSelect) {
       speedSelect.addEventListener('change', (e) => {
         this.speechSpeed = parseFloat(e.target.value) || 1.0;
+        this.saveProfilesToStorage();
       });
     }
 
-    // Voice Engine toggle (Google Thai vs Device)
     const voiceEngineSelect = document.getElementById('voiceEngineSelect');
     if (voiceEngineSelect) {
       voiceEngineSelect.addEventListener('change', (e) => {
         this.voiceEngine = e.target.value;
+        this.saveProfilesToStorage();
       });
     }
 
-    // Fullscreen toggle (Great for tablets)
+    // Fullscreen toggle
     const fullscreenBtn = document.getElementById('fullscreenBtn');
     if (fullscreenBtn) {
       fullscreenBtn.addEventListener('click', () => {
@@ -925,6 +1839,76 @@ class VocabApp {
         } else {
           if (document.exitFullscreen) document.exitFullscreen();
         }
+      });
+    }
+
+    // Profile Modal Events
+    const profileBtn = document.getElementById('profileBtn');
+    const openProfileFromBannerBtn = document.getElementById('openProfileFromBannerBtn');
+    const profileModal = document.getElementById('profileModal');
+    const closeProfileModalBtn = document.getElementById('closeProfileModalBtn');
+    const createProfileForm = document.getElementById('createProfileForm');
+    const exportFileBtn = document.getElementById('exportFileBtn');
+    const copyBackupCodeBtn = document.getElementById('copyBackupCodeBtn');
+    const importFileInput = document.getElementById('importFileInput');
+    const importCodeBtn = document.getElementById('importCodeBtn');
+
+    const openProfileModal = () => {
+      if (!profileModal) return;
+      this.renderProfileModalList();
+      profileModal.classList.remove('hidden');
+    };
+
+    if (profileBtn) profileBtn.addEventListener('click', openProfileModal);
+    if (openProfileFromBannerBtn) openProfileFromBannerBtn.addEventListener('click', openProfileModal);
+    if (closeProfileModalBtn && profileModal) {
+      closeProfileModalBtn.addEventListener('click', () => profileModal.classList.add('hidden'));
+    }
+    if (profileModal) {
+      profileModal.addEventListener('click', (e) => {
+        if (e.target === profileModal) profileModal.classList.add('hidden');
+      });
+    }
+
+    if (createProfileForm) {
+      createProfileForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const nameInput = document.getElementById('newProfileNameInput');
+        const avatarSelect = document.getElementById('newProfileAvatarSelect');
+        if (!nameInput || !nameInput.value.trim()) return;
+        this.createProfile(nameInput.value.trim(), avatarSelect ? avatarSelect.value : '🪷');
+        nameInput.value = '';
+      });
+    }
+
+    if (exportFileBtn) {
+      exportFileBtn.addEventListener('click', () => this.exportBackupFile());
+    }
+    if (copyBackupCodeBtn) {
+      copyBackupCodeBtn.addEventListener('click', () => this.copyBackupCode());
+    }
+    if (importFileInput) {
+      importFileInput.addEventListener('change', (e) => {
+        const file = e.target.files && e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = (evt) => {
+          if (evt.target && evt.target.result) {
+            this.importBackupData(evt.target.result);
+          }
+        };
+        reader.readAsText(file, 'UTF-8');
+        importFileInput.value = '';
+      });
+    }
+    if (importCodeBtn) {
+      importCodeBtn.addEventListener('click', () => {
+        const codeInput = document.getElementById('importCodeInput');
+        if (!codeInput || !codeInput.value.trim()) {
+          alert('กรุณาวางโค้ด JSON ในช่องข้อความก่อนกดนำเข้าครับ');
+          return;
+        }
+        this.importBackupData(codeInput.value);
       });
     }
 
@@ -944,6 +1928,11 @@ class VocabApp {
         addWordModal.classList.add('hidden');
       });
     }
+    if (addWordModal) {
+      addWordModal.addEventListener('click', (e) => {
+        if (e.target === addWordModal) addWordModal.classList.add('hidden');
+      });
+    }
 
     if (addWordForm) {
       addWordForm.addEventListener('submit', (e) => {
@@ -951,6 +1940,7 @@ class VocabApp {
         const word = document.getElementById('newWord').value.trim();
         const english = document.getElementById('newEnglish') ? document.getElementById('newEnglish').value.trim() : '';
         const pronunciation = document.getElementById('newPronunciation').value.trim();
+        const romanization = document.getElementById('newRomanization') ? document.getElementById('newRomanization').value.trim() : '';
         const category = document.getElementById('newCategory').value;
         const partOfSpeech = document.getElementById('newPartOfSpeech').value.trim();
         const meaning = document.getElementById('newMeaning').value.trim();
@@ -966,17 +1956,17 @@ class VocabApp {
           word: word,
           english: english,
           pronunciation: pronunciation,
+          romanization: romanization,
           category: category,
           partOfSpeech: partOfSpeech || 'คำนาม',
           meaning: meaning,
-          exampleSentence: example,
-          romanization: ''
+          exampleSentence: example
         };
 
         this.addCustomWord(newWordObj);
         addWordForm.reset();
         addWordModal.classList.add('hidden');
-        alert(`เพิ่มคำศัพท์ "${word}" เรียบร้อยแล้วครับ!`);
+        this.showToast(`เพิ่มคำศัพท์ "${word}" เรียบร้อยแล้วครับ!`, '✨');
       });
     }
   }
